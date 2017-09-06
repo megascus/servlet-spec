@@ -9,3 +9,4 @@ deploy:
   github_token: $GITHUB_API_TOKEN
   on:
     branch: translation
+
