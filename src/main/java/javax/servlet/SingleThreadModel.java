@@ -59,31 +59,20 @@
 package javax.servlet;
 
 /**
- * Ensures that servlets handle
- * only one request at a time. This interface has no methods.
+ * サーブレットが同時に一つのリクエストのみを扱うことを保証します。このインターフェースはメソッドを持ちません。
  *
- * <p>If a servlet implements this interface, you are <i>guaranteed</i>
- * that no two threads will execute concurrently in the
- * servlet's <code>service</code> method. The servlet container
- * can make this guarantee by synchronizing access to a single
- * instance of the servlet, or by maintaining a pool of servlet
- * instances and dispatching each new request to a free servlet.
+ * <p>もしサーブレットがこのインターフェースを実装したのであれば、二つのスレッドが同時にこのサーブレットの<code>service</code>メソッドを実行しないことが <i>保証</i>されます。
+ * サーブレットコンテナは一つのインスタンスのサーブレットを排他制御したり、サーブレットのインスタンスをプールし新しいリクエスト毎に空いているサーブレットを割り当てる事で保証します。
  *
- * <p>Note that SingleThreadModel does not solve all thread safety
- * issues.  For example, session attributes and static variables can
- * still be accessed by multiple requests on multiple threads
- * at the same time, even when SingleThreadModel servlets are used.
- * It is recommended that a developer take other means to resolve
- * those issues instead of implementing this interface, such as
- * avoiding the usage of an instance variable or synchronizing
- * the block of the code accessing those resources.
- * This interface is deprecated in Servlet API version 2.4.
+ * <p>注意： SingleThreadModelはすべてのスレッドセーフの問題を解決しません。
+ * 例えば、SingleThreadModelのサーブレットを使用したとしてもセッションの属性やstatic変数は複数のスレッドに乗った複数のリクエストから同時にアクセスすることができます。
+ * 開発者はスレッドセーフの問題を解決するためにこのインターフェースを実装する代わりに、インスタンス変数の使用を避けたりリソースにアクセスするコードのブロックを同期させる等の手段を取ることをお勧めします。
+ * このインターフェースはServlet API version 2.4で非推奨です。
  *
  *
  * @author	Various
  *
- * @deprecated	As of Java Servlet API 2.4, with no direct
- *	replacement.
+ * @deprecated	Java Servlet API 2.4以降での直接の代替手段はありません。
  */
 @Deprecated
 public interface SingleThreadModel {
