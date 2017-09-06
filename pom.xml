@@ -281,6 +281,7 @@
                             <name>see</name>
                         </tag>
                     </tags>
+                    <reportOutputDirectory>docs</reportOutputDirectory>
                 </configuration>
                 <executions>
                     <execution>
