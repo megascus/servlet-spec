@@ -60,28 +60,17 @@ package javax.servlet;
 
 
 /**
- * Defines an exception that a servlet or filter throws to indicate
- * that it is permanently or temporarily unavailable. 
+ * サーブレットやフィルターが永続的もしくは一時的に使用できない場合にスローする例外を定義します。
  *
- * <p>When a servlet or filter is permanently unavailable, something is wrong
- * with it, and it cannot handle
- * requests until some action is taken. For example, a servlet
- * might be configured incorrectly, or a filter's state may be corrupted.
- * The component should log both the error and the corrective action
- * that is needed.
+ * <p>サーブレットやフィルターが永続的もしくは一時的に使用できない時、何かが間違っていて、なんらかの手段が講じられるまでそれらはリクエストを扱うことができません。
+ * 例えば、サーブレットが正しく設定されていない場合やフィルターが正しくない場合、コンポーネントはエラーと修正のための必要なアクションをログに出力する必要があります。
  *
- * <p>A servlet or filter is temporarily unavailable if it cannot handle
- * requests momentarily due to some system-wide problem. For example,
- * a third-tier server might not be accessible, or there may be 
- * insufficient memory or disk storage to handle requests. A system
- * administrator may need to take corrective action.
- *
- * <p>Servlet containers can safely treat both types of unavailable
- * exceptions in the same way. However, treating temporary unavailability
- * effectively makes the servlet container more robust. Specifically,
- * the servlet container might block requests to the servlet or filter for a period
- * of time suggested by the exception, rather than rejecting them until
- * the servlet container restarts.
+ * <p>システム全体の問題でリクエストをしばらく処理できない場合に、サーブレットやフィルターが一時的に使用できなくなります。
+ * 例えば、3層アーキテクチャでデータ層にアクセスできない場合やリクエストを処理するためのメモリやディスクが不足している場合です。システムアドミニストレーターは修正のためのアクションを取る必要があります。
+ * 
+ * <p>サーブレットコンテナは両方の使用不能を表す例外を同じ方法で安全に処理することができます。
+ * しかしながら、一時的な使用不能をうまく扱うことでサーブレットコンテナはより強固になります。
+ * 具体的にはサーブレットコンテナは再起動されるまで、サーブレットやフィルタへのリクエストを拒否するのではなく、例外によって示された期間ブロックします。
  *
  *
  * @author 	Various
@@ -97,14 +86,12 @@ extends ServletException {
 
     /**
      * 
-     * @deprecated	As of Java Servlet API 2.2, use {@link
-     * 			#UnavailableException(String)} instead.
+     * @deprecated	Java Servlet API 2.2以降では {@link
+     * 			#UnavailableException(String)} を使用してください。
      *
-     * @param servlet 	the <code>Servlet</code> instance that is
-     *                  unavailable
+     * @param servlet 	使用できない <code>Servlet</code> のインスタンス
      *
-     * @param msg 	a <code>String</code> specifying the
-     *                  descriptive message
+     * @param msg 	説明文
      *
      */
     @Deprecated
@@ -115,19 +102,14 @@ extends ServletException {
     }
  
     /**
-     * @deprecated	As of Java Servlet API 2.2, use {@link
-     *			#UnavailableException(String, int)} instead.
+     * @deprecated	Java Servlet API 2.2以降では {@link
+     *			#UnavailableException(String, int)} を使用してください。
      *
-     * @param seconds	an integer specifying the number of seconds
-     * 			the servlet expects to be unavailable; if
-     *			zero or negative, indicates that the servlet
-     *			can't make an estimate
+     * @param seconds	サーブレットが利用できないと予想される秒数; もしゼロか負の数の場合はサーブレットが永続的に使用できないか使用できない期間を見積もれない場合を表します。
      *
-     * @param servlet	the <code>Servlet</code> that is unavailable
+     * @param servlet	使用できない <code>Servlet</code> のインスタンス
      * 
-     * @param msg	a <code>String</code> specifying the descriptive 
-     *			message, which can be written to a log file or 
-     *			displayed for the user.
+     * @param msg	ログファイルに出力するかユーザーに表示するための説明文
      *
      */
     @Deprecated
@@ -142,13 +124,9 @@ extends ServletException {
     }
 
     /**
-     * 
-     * Constructs a new exception with a descriptive
-     * message indicating that the servlet is permanently
-     * unavailable.
+     * サーブレットが永続的に使用できないことを説明する文で新しい例外を構築します。
      *
-     * @param msg 	a <code>String</code> specifying the
-     *                  descriptive message
+     * @param msg 	説明文
      *
      */
 
@@ -159,24 +137,15 @@ extends ServletException {
     }
 
     /**
-     * Constructs a new exception with a descriptive message
-     * indicating that the servlet is temporarily unavailable
-     * and giving an estimate of how long it will be unavailable.
+     * サーブレットが一時的に使用できないことを説明する文と使用できるようになるまでの時間で新しい例外を構築します。
      * 
-     * <p>In some cases, the servlet cannot make an estimate. For
-     * example, the servlet might know that a server it needs is
-     * not running, but not be able to report how long it will take
-     * to be restored to functionality. This can be indicated with
-     * a negative or zero value for the <code>seconds</code> argument.
+     * <p>いくつかのケースでサーブレットは使用可能になるまでの時間を見積もれません。
+     * サーブレットは実行に必要なサーバーが動作していないことを知ることはできたとしても、動くように修正されるまでの時間を知ることはできません。
+     * このような場合は <code>seconds</code> 引数をゼロもしくは負の数で指定します。
      *
-     * @param msg	a <code>String</code> specifying the
-     *                  descriptive message, which can be written
-     *                  to a log file or displayed for the user.
+     * @param msg	ログファイルに出力するかユーザーに表示するための説明文
      *
-     * @param seconds	an integer specifying the number of seconds
-     * 			the servlet expects to be unavailable; if
-     *			zero or negative, indicates that the servlet
-     *			can't make an estimate
+     * @param seconds	サーブレットが利用できないと予想される秒数; もしゼロか負の数の場合はサーブレットが永続的に使用できないか使用できない期間を見積もれない場合を表します。
      *
      */
     
@@ -193,15 +162,12 @@ extends ServletException {
 
     /**
      *
-     * Returns a <code>boolean</code> indicating
-     * whether the servlet is permanently unavailable.
-     * If so, something is wrong with the servlet, and the
-     * system administrator must take some corrective action.
+     * サーブレット永続的に使用不能かどうかを <code>boolean</code>で返します。
+     * 
+     * その場合、サーブレットが何か間違っているのでシステムアドミニストレーターは修正のためのアクションを行わなければいけません。
      *
-     * @return		<code>true</code> if the servlet is
-     *			permanently unavailable; <code>false</code>
-     *			if the servlet is available or temporarily
-     *			unavailable
+     * @return		<code>true</code> の場合、サーブレットは永続的に使用できません。
+     *          ; <code>false</code>の場合、サーブレットは一時的に使用できません。
      *
      */
      
@@ -210,12 +176,11 @@ extends ServletException {
     }
   
     /**
-     * @deprecated	As of Java Servlet API 2.2, with no replacement.
+     * @deprecated	Java Servlet API 2.2以降での代替手段はありません。
      *
-     * Returns the servlet that is reporting its unavailability.
+     * 使用できないことを報告したサーブレットのインスタンスを返します。
      * 
-     * @return		the <code>Servlet</code> object that is 
-     *			throwing the <code>UnavailableException</code>
+     * @return		<code>UnavailableException</code>をスローした <code>Servlet</code>のインスタンス
      *
      */
     @Deprecated
@@ -224,19 +189,12 @@ extends ServletException {
     }
 
     /**
-     * Returns the number of seconds the servlet expects to 
-     * be temporarily unavailable.  
+     * サーブレットが一時的に使用できないと予想される秒数を返します。
      *
-     * <p>If this method returns a negative number, the servlet
-     * is permanently unavailable or cannot provide an estimate of
-     * how long it will be unavailable. No effort is
-     * made to correct for the time elapsed since the exception was
-     * first reported.
+     * <p>サーブレットが永続的に使用できない場合やどれくらいの期間使用できないかの予測時間を提供できない場合はこのメソッドは負の数を返します。
+     *   最初に例外が報告されてからの経過時間は正確には保たれてはいません。
      *
-     * @return		an integer specifying the number of seconds
-     *			the servlet will be temporarily unavailable,
-     *			or a negative number if the servlet is permanently
-     *			unavailable or cannot make an estimate
+     * @return		サーブレットが利用できないと予想される秒数、負の数はサーブレットが永続的に使用できないか使用できない期間を見積もれない場合を表します。
      *
      */
      
