@@ -44,30 +44,24 @@ import java.io.IOException;
 import java.util.EventListener;
 
 /**
- *
- * Callback notification mechanism that signals to the developer it's possible
- * to write content without blocking.
+ * ブロックせずにコンテンツを書き込むことができる開発者へのコールバック通知メカニズムです。
  *
  * @since Servlet 3.1
  */
 public interface WriteListener extends EventListener {
 
     /**
-     * When an instance of the WriteListener is registered with a {@link ServletOutputStream},
-     * this method will be invoked by the container the first time when it is possible
-     * to write data. Subsequently the container will invoke this method if and only
-     * if the {@link javax.servlet.ServletOutputStream#isReady()} method
-     * has been called and has returned a value of <code>false</code> and a write
-     * operation has subsequently become possible.
+     * WriteListenerのインスタンスが{@link ServletOutputStream}に登録されている場合、データが書き込み可能になった初回にこのメソッドはコンテナによって呼び出されます。
+     * 結果として、{@link javax.servlet.ServletOutputStream#isReady()}メソッドが<code>false</code>を返した後に書き込みオペレーションが可能になった場合のみコンテナからメソッドが呼び出されます。　
      *
-     * @throws IOException if an I/O related error has occurred during processing
+     * @throws IOException 処理中にI/O関連のエラーが発生した場合
      */
     public void onWritePossible() throws IOException;
 
     /**
-     * Invoked when an error occurs writing data using the non-blocking APIs.
+     * ノンブロッキングAPIを利用してデータを書き込んでいるときにエラーが発生したら呼び出されます。
      *
-     * @param t the throwable to indicate why the write operation failed
+     * @param t 書き込み操作がなぜ失敗したかを表す例外
      */
     public void onError(final Throwable t);
 
