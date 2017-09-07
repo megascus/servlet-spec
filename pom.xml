@@ -282,6 +282,7 @@
                         </tag>
                     </tags>
                     <reportOutputDirectory>docs</reportOutputDirectory>
+                    <locale>ja_JP</locale>
                 </configuration>
                 <executions>
                     <execution>

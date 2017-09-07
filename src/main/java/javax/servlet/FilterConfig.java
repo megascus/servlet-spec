@@ -61,8 +61,7 @@ package javax.servlet;
 import java.util.Enumeration;
 
 /** 
- * A filter configuration object used by a servlet container
- * to pass information to a filter during initialization.
+ * サーブレットコンテナがフィルターの初期化中に情報を渡すために使用するフィルター設定オブジェクトです。
  *
  * @see Filter 
  * @since Servlet 2.3
@@ -70,20 +69,17 @@ import java.util.Enumeration;
 public interface FilterConfig {
 
     /** 
-     * Returns the filter-name of this filter as defined in the deployment
-     * descriptor. 
+     * デプロイメントディスクリプタに定義されたfilter-nameを返します。
      *
-     * @return the filter name of this filter
+     * @return このフィルターの名前
      */
     public String getFilterName();
 
 
     /**
-     * Returns a reference to the {@link ServletContext} in which the caller
-     * is executing.
+     * 呼び出し元が実行中の{@link ServletContext}への参照を返します。
      *
-     * @return a {@link ServletContext} object, used by the caller to
-     * interact with its servlet container
+     * @return 呼び出し元がサーブレットコンテナと対話するために使用する {@link ServletContext} のオブジェクト
      * 
      * @see ServletContext
      */
@@ -91,28 +87,19 @@ public interface FilterConfig {
     
 
     /**
-     * Returns a <code>String</code> containing the value of the 
-     * named initialization parameter, or <code>null</code> if 
-     * the initialization parameter does not exist.
+     * 初期化パラメーターに含まれる<code>String</code>を返します。<code>null</code>の場合は初期化パラメーターが存在しません。
      *
-     * @param name a <code>String</code> specifying the name of the
-     * initialization parameter
+     * @param name 初期化パラメーターで指定された名称の<code>String</code>
      *
-     * @return a <code>String</code> containing the value of the
-     * initialization parameter, or <code>null</code> if 
-     * the initialization parameter does not exist
+     * @return 初期化パラメーターに含まれる<code>String</code>、<code>null</code>の場合は初期化パラメーターが存在しない
      */
     public String getInitParameter(String name);
 
 
     /**
-     * Returns the names of the filter's initialization parameters
-     * as an <code>Enumeration</code> of <code>String</code> objects, 
-     * or an empty <code>Enumeration</code> if the filter has
-     * no initialization parameters.
+     * フィルターの初期化パラメーターに含まれる名前を<code>String</code>の<code>Enumeration</code>として返します。空の<code>Enumeration</code>の場合、初期化パラメーターは存在しません。
      *
-     * @return an <code>Enumeration</code> of <code>String</code> objects
-     * containing the names of the filter's initialization parameters
+     * @return フィルターの初期化パラメーターに含まれる名前の<code>String</code>の<code>Enumeration</code>
      */
     public Enumeration<String> getInitParameterNames();
 
