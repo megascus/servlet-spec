@@ -65,7 +65,6 @@ import java.io.IOException;
  * 
  * <p>フィルターは<code>doFilter</code>メソッドによりフィルタリングを行います。
  * それぞれのフィルターはフィルタリングタスクのために必要なリソースをロードしたりするために、初期化パラメーターをもつ<code>FilterConfig</code>オブジェクトや使用できる<code>ServletContext</code>への参照を持ちます。
- * Every Filter has access to a FilterConfig object from which it can obtain
  *
  * <p>フィルターはウェブアプリケーションのデプロイメントディスクリプタにより構成されます。
  *
