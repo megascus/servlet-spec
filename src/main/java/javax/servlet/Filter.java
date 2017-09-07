@@ -61,29 +61,25 @@ package javax.servlet;
 import java.io.IOException;
 
 /**
- * <p>A filter is an object that performs 
- * filtering tasks on either the request to a resource (a servlet or static content), or on the response
- * from a resource, or both.</p>
+ * <p>フィルターはリソース(サーブレットもしくは静的コンテンツ)へのリクエストやレスポンス、もしくはその両方をフィルタリングするタスクを処理するためのオブジェクトです。</p>
  * 
- * <p>Filters perform filtering in the <code>doFilter</code> method.
+ * <p>フィルターは<code>doFilter</code>メソッドによりフィルタリングを行います。
+ * それぞれのフィルターはフィルタリングタスクのために必要なリソースをロードしたりするために、初期化パラメーターをもつ<code>FilterConfig</code>オブジェクトや使用できる<code>ServletContext</code>への参照を持ちます。
  * Every Filter has access to a FilterConfig object from which it can obtain
- * its initialization parameters, and a reference to the ServletContext which
- * it can use, for example, to load resources needed for filtering tasks.
  *
- * <p>Filters are configured in the deployment descriptor of a web
- * application.
+ * <p>フィルターはウェブアプリケーションのデプロイメントディスクリプタにより構成されます。
  *
- * <p>Examples that have been identified for this design are:
+ * <p>以下のような用途のために使用できます。
  * <ol>
- * <li>Authentication Filters
- * <li>Logging and Auditing Filters
- * <li>Image conversion Filters
- * <li>Data compression Filters
- * <li>Encryption Filters
- * <li>Tokenizing Filters
- * <li>Filters that trigger resource access events
- * <li>XSL/T filters
- * <li>Mime-type chain Filter
+ * <li>認証フィルター
+ * <li>ロギングと監査フィルター
+ * <li>イメージ変換フィルター
+ * <li>データ圧縮フィルター
+ * <li>暗号化フィルター
+ * <li>トークン分割フィルター
+ * <li>リソースへのアクセスイベントを引き起こすフィルター
+ * <li>XSL/Tフィルター
+ * <li>Mime-typeチェーンフィルター
  * </ol>
  *
  * @since Servlet 2.3
@@ -92,66 +88,44 @@ import java.io.IOException;
 public interface Filter {
 
     /** 
-     * <p>Called by the web container
-     * to indicate to a filter that it is being placed into service.</p>
+     * <p>フィルターがサービスに組み込まれるときにウェブコンテナにより呼び出されます。</p>
      *
-     * <p>The servlet container calls the init
-     * method exactly once after instantiating the filter. The init
-     * method must complete successfully before the filter is asked to do any
-     * filtering work.</p>
+     * <p>サーブレットコンテナはフィルターのインスタンスを生成した跡にinitメソッドを一回だけ呼び出します。initメソッドはフィルタリング動作を行う前に正常に完了しなければいけません。</p>
      * 
-     * <p>The web container cannot place the filter into service if the init
-     * method either</p>
+     * <p>以下の場合にはウェブコンテナはフィルターを実行状態にすることができません。</p>
      * <ol>
-     * <li>Throws a ServletException
-     * <li>Does not return within a time period defined by the web container
+     * <li>ServletExceptionが投げられた
+     * <li>ウェブコンテナで定義した時間内に戻らない
      * </ol>
      * 
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何も行いません。
      *
-     * @param filterConfig a <code>FilterConfig</code> object containing the
-     *                     filter's configuration and initialization parameters 
-     * @throws ServletException if an exception has occurred that interferes with
-     *                          the filter's normal operation
+     * @param filterConfig フィルターの設定や初期化パラメーターが含まれる<code>FilterConfig</code>オブジェクト
+     * @throws ServletException フィルターの通常の処理で例外が発生した
      */
     default public void init(FilterConfig filterConfig) throws ServletException {}
 	
 	
     /**
-     * The <code>doFilter</code> method of the Filter is called by the
-     * container each time a request/response pair is passed through the
-     * chain due to a client request for a resource at the end of the chain.
-     * The FilterChain passed in to this method allows the Filter to pass
-     * on the request and response to the next entity in the chain.
+     * フィルターの<code>doFilter</code>メソッドはチェーンの最後にあるリソースへのクライアントからの要求により、リクエスト/レスポンスのペアがチェーンを通過するたびにコンテナによって呼び出されます。
+     * このメソッドに渡された<code>FilterChain</code>は、フィルターがチェーンの次のエンティティへリクエストとレスポンスを渡せるようにします。
      *
-     * <p>A typical implementation of this method would follow the following
-     * pattern:
+     * <p>このメソッドの典型的な実装は以下のようなものになるでしょう。
      * <ol>
-     * <li>Examine the request
-     * <li>Optionally wrap the request object with a custom implementation to
-     * filter content or headers for input filtering
-     * <li>Optionally wrap the response object with a custom implementation to
-     * filter content or headers for output filtering
+     * <li>リクエストを検査する。
+     * <li>必要に応じて入力フィルタリングのためにコンテンツやヘッダーをフィルターするカスタム実装でリクエストをラップする。
+     * <li>必要に応じて出力フィルタリングのためにコンテンツやヘッダーをフィルターするカスタム実装でレスポンスをラップする。
      * <li>
-     * <ul>
-     * <li><strong>Either</strong> invoke the next entity in the chain
-     * using the FilterChain object
-     * (<code>chain.doFilter()</code>),
-     * <li><strong>or</strong> not pass on the request/response pair to
-     * the next entity in the filter chain to
-     * block the request processing
-     * </ul>
-     * <li>Directly set headers on the response after invocation of the
-     * next entity in the filter chain.
+     * <li>FilterChainオブジェクトを利用(<code>chain.doFilter()</code>)して次のエンティティをチェーン実行する、しないの<strong>どちらかを選択する</strong>。
+     * <li>次のフィルターチェーンのエンティティが実行された後に直接レスポンスのヘッダーに値をセットする。
      * </ol>
      *
-     * @param request the <code>ServletRequest</code> object contains the client's request
-     * @param response the <code>ServletResponse</code> object contains the filter's response
-     * @param chain the <code>FilterChain</code> for invoking the next filter or the resource
-     * @throws IOException if an I/O related error has occurred during the processing
-     * @throws ServletException if an exception occurs that interferes with the
-     *                          filter's normal operation
+     * @param request クライアントのリクエストが含まれる<code>ServletRequest</code>のオブジェクト
+     * @param response フィルターのレスポンスが含まれる<code>ServletResponse</code>のオブジェクト
+     * @param chain the 次のフィルターやリソースの実行に使用される<code>FilterChain</code>
+     * @throws IOException 処理中にI/O関係のエラーが発生した
+     * @throws ServletException フィルターの通常の処理で例外が発生した
      *
      * @see UnavailableException
      */
@@ -161,22 +135,16 @@ public interface Filter {
 
 
     /**
-     * <p>Called by the web container 
-     * to indicate to a filter that it is being
-     * taken out of service.</p>
+     * <p>フィルターがサービスから取り除かれるときにウェブコンテナにより呼び出されます。</p>
      *
-     * <p>This method is only called once all threads within the filter's
-     * doFilter method have exited or after a timeout period has passed.
-     * After the web container calls this method, it will not call the
-     * doFilter method again on this instance of the filter.</p>
+     * <p>このメソッドはすべてのスレッドでフィルターの<code>doFilter</code>メソッドが終了したかタイムアウトした後に一度だけ呼び出されます。
+     * ウェブコンテナはこのメソッドを呼出した後に同じインスタンスで<code>doFilter</code>メソッドを再度呼び出すことはありません。</p>
      *
-     * <p>This method gives the filter an opportunity to clean up any
-     * resources that are being held (for example, memory, file handles,
-     * threads) and make sure that any persistent state is synchronized
-     * with the filter's current state in memory.</p>
+     * <p>このメソッドは保持されているすべてのリソース（メモリ、ファイルハンドル、スレッドなど）をクリーンアップする機会を与えます。
+     * また、フィルターのメモリ上の状態とあらゆる永続状態が同期されるように注意してください。</p>
      * 
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何も行いません。
      */
     default public void destroy() {}
 }
