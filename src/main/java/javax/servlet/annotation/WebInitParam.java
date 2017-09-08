@@ -47,8 +47,7 @@ import java.lang.annotation.Target;
 import java.lang.annotation.Documented;
 
 /**
- * This annotation is used on a Servlet or Filter implementation class
- * to specify an initialization parameter.
+ * このアノテーションは、サーブレットやフィルターの実装クラスで初期化パラメータを指定するために使用されます。
  * 
  * @since Servlet 3.0
  */
@@ -58,23 +57,23 @@ import java.lang.annotation.Documented;
 public @interface WebInitParam {
 
     /**
-     * Name of the initialization parameter
+     * 初期化パラメータの名前
      *
-     * @return name of the initialization parameter
+     * @return 初期化パラメータの名前
      */
     String name();
     
     /**
-     * Value of the initialization parameter
+     * 初期化パラメータの値
      *
-     * @return value of the initialization parameter
+     * @return 初期化パラメータの値
      */    
     String value();
     
     /**
-     * Description of the initialization parameter
+     * 初期化パラメータの説明
      *
-     * @return description of the initialization parameter
+     * @return 初期化パラメータの説明
      */
     String description() default "";
 }
