@@ -48,11 +48,9 @@ import java.lang.annotation.Target;
 import javax.servlet.DispatcherType;
 
 /**
- * Annotation used to declare a servlet filter.
+ * サーブレットフィルターを宣言するために使用されるアノテーションです。
  *
- * <p>This annotation is processed by the container at deployment time,
- * and the corresponding filter applied to the specified URL patterns,
- * servlets, and dispatcher types.
+ * <p>このアノテーションはデプロイ時にコンテナによって処理され、対応するフィルターは指定されたURLパターン、サーブレット、およびディスパッチャーのタイプに適用されます。
  * 
  * @see javax.servlet.Filter
  *
@@ -64,80 +62,81 @@ import javax.servlet.DispatcherType;
 public @interface WebFilter {
 
     /**
-     * The description of the filter
+     * フィルターの説明
      * 
-     * @return the description of the filter
+     * @return フィルターの説明
      */
     String description() default "";
     
     /**
-     * The display name of the filter
+     * フィルターの表示名
      *
-     * @return the display name of the filter
+     * @return フィルターの表示名
      */
     String displayName() default "";
     
     /**
-     * The init parameters of the filter
+     * フィルターの初期化パラメーター
      *
-     * @return the init parameters of the filter
+     * @return フィルターの初期化パラメーター
      */
     WebInitParam[] initParams() default {};
     
     /**
-     * The name of the filter
+     * フィルターの名前
      *
-     * @return the name of the filter
+     * @return フィルターの名前
      */
     String filterName() default "";
     
     /**
-     * The small-icon of the filter
+     * フィルターの小さいアイコン
      *
-     * @return the small-icon of the filter
+     * @return フィルターの小さいアイコン
      */
     String smallIcon() default "";
 
     /**
-     * The large-icon of the filter
+     * フィルターの大きいアイコン
      *
-     * @return the large-icon of the filter
+     * @return フィルターの大きいアイコン
      */
     String largeIcon() default "";
 
     /**
-     * The names of the servlets to which the filter applies.
+     * フィルターを適用するサーブレットの名前
      *
-     * @return the names of the servlets to which the filter applies
+     * @return フィルターを適用するサーブレットの名前
      */
     String[] servletNames() default {};
     
     /**
-     * The URL patterns to which the filter applies
-     * The default value is an empty array.
+     * フィルターを適用するURLパターン
+     * 
+     * デフォルトの値は空の配列です。
      *
-     * @return the URL patterns to which the filter applies
+     * @return フィルターを適用するURLパターン
      */
     String[] value() default {};
 
     /**
-     * The URL patterns to which the filter applies
+     * フィルターを適用するURLパターン
      *
-     * @return the URL patterns to which the filter applies
+     * @return フィルターを適用するURLパターン
      */
     String[] urlPatterns() default {};
 
     /**
-     * The dispatcher types to which the filter applies
+     * フィルターを適用するディスパッチャーのタイプ
      *
-     * @return the dispatcher types to which the filter applies
+     * @return フィルターを適用するディスパッチャーのタイプ
      */
     DispatcherType[] dispatcherTypes() default {DispatcherType.REQUEST};
     
     /**
-     * Declares whether the filter supports asynchronous operation mode.
+     * フィルターが非同期処理モードをサポートしているかどうかを宣言します。
      *
-     * @return {@code true} if the filter supports asynchronous operation mode
+     * @return {@code true} ならばフィルターが非同期処理モードをサポートしている
      * @see javax.servlet.ServletRequest#startAsync
      * @see javax.servlet.ServletRequest#startAsync(ServletRequest,
      * ServletResponse)
