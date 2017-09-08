@@ -47,11 +47,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.Documented;
 
 /**
- * Annotation used to declare a servlet.
+ * サーブレットを宣言するために使用されるアノテーションです。
  *
- * <p>This annotation is processed by the container at deployment time,
- * and the corresponding servlet made available at the specified URL
- * patterns.
+ * <p>このアノテーションはデプロイ時にコンテナによって処理され、対応するサーブレットは指定されたURLパターンで利用可能になります。
  * 
  * @see javax.servlet.Servlet
  *
@@ -63,44 +61,44 @@ import java.lang.annotation.Documented;
 public @interface WebServlet {
     
     /**
-     * The name of the servlet
+     * サーブレットの名前
      *
-     * @return the name of the servlet
+     * @return サーブレットの名前
      */
     String name() default "";
     
     /**
-     * The URL patterns of the servlet
+     * サーブレットのURLパターン
      *
-     * @return the URL patterns of the servlet
+     * @return サーブレットのURLパターン
      */
     String[] value() default {};
 
     /**
-     * The URL patterns of the servlet
+     * サーブレットのURLパターン
      *
-     * @return the URL patterns of the servlet
+     * @return サーブレットのURLパターン
      */
     String[] urlPatterns() default {};
     
     /**
-     * The load-on-startup order of the servlet 
+     * サーブレットの初期化の順序。正の数が指定されている場合、アプリケーションの起動時にサーブレットが起動する。
      *
-     * @return the load-on-startup order of the servlet
+     * @return サーブレットの初期化の順序
      */
     int loadOnStartup() default -1;
     
     /**
-     * The init parameters of the servlet
+     * サーブレットの初期化パラメーター
      *
-     * @return the init parameters of the servlet
+     * @return サーブレットの初期化パラメーター
      */
     WebInitParam [] initParams() default {};
     
     /**
-     * Declares whether the servlet supports asynchronous operation mode.
+     * サーブレットが非同期処理モードをサポートしているかどうかを宣言します。
      *
-     * @return {@code true} if the servlet supports asynchronous operation mode
+     * @return {@code true} ならばサーブレットが非同期処理モードをサポートしている
      * @see javax.servlet.ServletRequest#startAsync
      * @see javax.servlet.ServletRequest#startAsync(ServletRequest,
      * ServletResponse)
@@ -108,30 +106,30 @@ public @interface WebServlet {
     boolean asyncSupported() default false;
     
     /**
-     * The small-icon of the servlet
+     * サーブレット用の小さいアイコン
      *
-     * @return the small-icon of the servlet
+     * @return サーブレット用の小さいアイコン
      */
     String smallIcon() default "";
 
     /**
-     * The large-icon of the servlet
+     * サーブレット用の大きいアイコン
      *
-     * @return the large-icon of the servlet
+     * @return サーブレット用の大きいアイコン
      */
     String largeIcon() default "";
 
     /**
-     * The description of the servlet
+     * サーブレットの説明
      *
-     * @return the description of the servlet
+     * @return サーブレットの説明
      */
     String description() default "";
 
     /**
-     * The display name of the servlet
+     * サーブレットの表示名
      *
-     * @return the display name of the servlet
+     * @return サーブレットの表示名
      */
     String displayName() default "";
 
