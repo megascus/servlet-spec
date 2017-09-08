@@ -47,7 +47,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * このアノテーションはWebListenerを宣言するために使用されます。
+ * WebListenerを宣言するために使用されるアノテーションです。
  * 
  * WebListenerアノテーションを付けられたクラスは以下のインターフェースのうち一つ以上を実装する必要があります。
  * <ol>
