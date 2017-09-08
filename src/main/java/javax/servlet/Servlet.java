@@ -120,18 +120,13 @@ public interface Servlet {
 
     /**
      *
-     * Returns a {@link ServletConfig} object, which contains
-     * initialization and startup parameters for this servlet.
-     * The <code>ServletConfig</code> object returned is the one 
-     * passed to the <code>init</code> method. 
+     * {@link ServletConfig} のオブジェクトを返します。これにはサーブレットを初期化するためのパラメーターが入っています。
+     * この<code>ServletConfig</code> のオブジェクトは <code>init</code> に渡されたものが返されます。
      *
-     * <p>Implementations of this interface are responsible for storing the 
-     * <code>ServletConfig</code> object so that this 
-     * method can return it. The {@link GenericServlet}
-     * class, which implements this interface, already does this.
+     * <p>このインタフェースの実装は <code>ServletConfig</code> のオブジェクトを格納しこのメソッドが返すようにします。 
+     * このインターフェースを実装している {@link GenericServlet} クラスではすでにこれを行っています。
      *
-     * @return		the <code>ServletConfig</code> object
-     *			that initializes this servlet
+     * @return		このサーブレットを初期化する <code>ServletConfig</code> のオブジェクト
      *
      * @see 		#init
      *
