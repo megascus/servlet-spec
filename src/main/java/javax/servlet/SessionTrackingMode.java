@@ -41,7 +41,7 @@
 package javax.servlet;
 
 /**
- * Enumeration of session tracking modes.
+ * セッション追跡方法を表すEnumです。
  *
  * @since Servlet 3.0
  */
