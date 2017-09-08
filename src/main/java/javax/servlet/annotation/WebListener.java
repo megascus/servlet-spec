@@ -49,14 +49,16 @@ import java.lang.annotation.Target;
 /**
  * このアノテーションはWebListenerを宣言するために使用されます。
  * 
- * WebListenerアノテーションを付けられたクラスは
- * {@link javax.servlet.ServletContextListener}か
- * {@link javax.servlet.ServletContextAttributeListener}か
- * {@link javax.servlet.ServletRequestListener}か
- * {@link javax.servlet.ServletRequestAttributeListener}か
- * {@link javax.servlet.http.HttpSessionListener}か
- * {@link javax.servlet.http.HttpSessionAttributeListener}か
- * {@link javax.servlet.http.HttpSessionIdListener}の一つ以上のインターフェースを実装する必要があります。
+ * WebListenerアノテーションを付けられたクラスは以下のインターフェースのうち一つ以上を実装する必要があります。
+ * <ol>
+ * <li>{@link javax.servlet.ServletContextListener}
+ * <li>{@link javax.servlet.ServletContextAttributeListener}
+ * <li>{@link javax.servlet.ServletRequestListener}
+ * <li>{@link javax.servlet.ServletRequestAttributeListener}
+ * <li>{@link javax.servlet.http.HttpSessionListener}
+ * <li>{@link javax.servlet.http.HttpSessionAttributeListener}
+ * <li>{@link javax.servlet.http.HttpSessionIdListener}
+ * </ol>
  * 
  * @since Servlet 3.0
  */
