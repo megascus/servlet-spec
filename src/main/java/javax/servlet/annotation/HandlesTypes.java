@@ -46,9 +46,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * This annotation is used to declare the class types that a
- * {@link javax.servlet.ServletContainerInitializer
- * ServletContainerInitializer} can handle.
+ * このアノテーションでは {@link javax.servlet.ServletContainerInitializer
+ * ServletContainerInitializer} が取り合えるクラスを宣言するために使用されます。
  *
  * @see javax.servlet.ServletContainerInitializer
  *
@@ -59,19 +58,17 @@ import java.lang.annotation.RetentionPolicy;
 public @interface HandlesTypes {
 
     /**
-     * The classes in which a {@link javax.servlet.ServletContainerInitializer
-     * ServletContainerInitializer} has expressed interest.
+     * {@link javax.servlet.ServletContainerInitializer
+     * ServletContainerInitializer} が関心を示しているクラス。
      *
-     * <p>If an implementation of <tt>ServletContainerInitializer</tt> 
-     * specifies this annotation, the Servlet container must pass the
-     * <tt>Set</tt> of application classes that extend, implement, or have
-     * been annotated with the class types listed by this annotation to
-     * the {@link javax.servlet.ServletContainerInitializer#onStartup}
-     * method of the ServletContainerInitializer (if no matching classes
-     * are found, <tt>null</tt> must be passed instead)
+     * <p><tt>ServletContainerInitializer</tt>の実装でこのアノテーションが付けられる場合、
+     * サーブレットコンテナはこのアノテーションで列挙されたクラスの、サブクラス、実装、
+     * アノテーションが付けられたクラスをServletContainerInitializerの
+     * {@link javax.servlet.ServletContainerInitializer#onStartup}メソッドに渡さなければいけません。
+     * (もし見つからない場合はnullを代わりに渡す必要があります。)
      * 
-     * @return the classes in which {@link javax.servlet.ServletContainerInitializer
-     *         ServletContainerInitializer} has expressed interest
+     * @return {@link javax.servlet.ServletContainerInitializer
+     *         ServletContainerInitializer} が関心を示しているクラス
      */
     Class<?>[] value();
 }

@@ -49,10 +49,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * This annotation is used on a Servlet implementation class to specify security
- * constraints to be enforced by a Servlet container on HTTP protocol messages.
- * The Servlet container will enforce these constraints on the url-patterns
- * mapped to the servlets mapped to the annotated class.
+ * このアノテーションはサーブレットの実装クラスで使用され、サーブレットコンテナによってHTTPプロトコルのメッセージで行われるセキュリティ制約を指定します。 
+ * サーブレットコンテナはアノテーションの付いたクラスにマップされたサーブレットにマップされたURLパターンにこれらの制約を適用します。
  *
  * @since Servlet 3.0
  */
