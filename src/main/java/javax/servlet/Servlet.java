@@ -142,24 +142,18 @@ public interface Servlet {
     
 
     /**
-     * Called by the servlet container to allow the servlet to respond to 
-     * a request.
+     * サーブレットがリクエストに応答できるようにサーブレットコンテナによって呼び出されます。
      *
-     * <p>This method is only called after the servlet's <code>init()</code>
-     * method has completed successfully.
+     * <p>このメソッドはサーブレットの<code>init()</code>メソッドが正常に完了した場合のみ呼び出されます。
      * 
-     * <p>  The status code of the response always should be set for a servlet 
-     * that throws or sends an error.
+     * <p> レスポンスのステータスコードはサーブレットがエラーをスローまたは送信するために常に設定するべきです。
      *
      * 
-     * <p>Servlets typically run inside multithreaded servlet containers
-     * that can handle multiple requests concurrently. Developers must 
-     * be aware to synchronize access to any shared resources such as files,
-     * network connections, and as well as the servlet's class and instance 
-     * variables. 
-     * More information on multithreaded programming in Java is available in 
+     * <p>サーブレットは通常、複数のリクエストを同時に処理できるようにサーブレットコンテナ内でマルチスレッドで度さします。
+     * 開発者はファイルやネットワークコネクション、サーブレットのクラスやインスタンス変数などの共有リソースへのアクセスを同期させる必要があります。
+     * マルチスレッドプログラミングに関する詳細な情報は 
      * <a href="http://java.sun.com/Series/Tutorial/java/threads/multithreaded.html">
-     * the Java tutorial on multi-threaded programming</a>.
+     * the Java tutorial on multi-threaded programming</a>を参照してください。
      *
      * 訳注：原文はリンクが切れたままになっているので今のJavaのチュートリアルのページだと<a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/">Lesson: Concurrency</a>が良さそう。
      *
