@@ -47,16 +47,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation is used to declare a WebListener.
- *
- * Any class annotated with WebListener must implement one or more of
- * the {@link javax.servlet.ServletContextListener}, 
- * {@link javax.servlet.ServletContextAttributeListener},
- * {@link javax.servlet.ServletRequestListener},
- * {@link javax.servlet.ServletRequestAttributeListener}, 
- * {@link javax.servlet.http.HttpSessionListener}, or
- * {@link javax.servlet.http.HttpSessionAttributeListener}, or
- * {@link javax.servlet.http.HttpSessionIdListener} interfaces.
+ * このアノテーションはWebListenerを宣言するために使用されます。
+ * 
+ * WebListenerアノテーションを付けられたクラスは
+ * {@link javax.servlet.ServletContextListener}か
+ * {@link javax.servlet.ServletContextAttributeListener}か
+ * {@link javax.servlet.ServletRequestListener}か
+ * {@link javax.servlet.ServletRequestAttributeListener}か
+ * {@link javax.servlet.http.HttpSessionListener}か
+ * {@link javax.servlet.http.HttpSessionAttributeListener}か
+ * {@link javax.servlet.http.HttpSessionIdListener}の一つ以上のインターフェースを実装する必要があります。
  * 
  * @since Servlet 3.0
  */
@@ -65,9 +65,9 @@ import java.lang.annotation.Target;
 @Documented
 public @interface WebListener {
     /**
-     * Description of the listener
+     * リスナーの説明
      *
-     * @return description of the listener
+     * @return リスナーの説明
      */
     String value() default "";
 }
