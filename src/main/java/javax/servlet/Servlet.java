@@ -62,33 +62,25 @@ import java.io.IOException;
 
 
 /**
- * Defines methods that all servlets must implement.
+ * 定義されたメソッドをすべてのサーブレットは実装しなければいけません。
  *
- * <p>A servlet is a small Java program that runs within a Web server.
- * Servlets receive and respond to requests from Web clients,
- * usually across HTTP, the HyperText Transfer Protocol. 
+ * <p>サーブレットはウェブサーバーで動く小さなJavaのプログラムです。
+ * サーブレットは通常、HTTP(HyperText Transfer Protocol)を通じてウェブクライアントからリクエストを受け取りレスポンスを返します。 
  *
- * <p>To implement this interface, you can write a generic servlet
- * that extends
- * <code>javax.servlet.GenericServlet</code> or an HTTP servlet that
- * extends <code>javax.servlet.http.HttpServlet</code>.
+ * <p>このインターフェースを実装するために一般的なサーブレットの場合は<code>javax.servlet.GenericServlet</code>を継承するか、
+ * HTTPに特化したサーブレットの場合は<code>javax.servlet.http.HttpServlet</code>を継承することができます。
  *
- * <p>This interface defines methods to initialize a servlet,
- * to service requests, and to remove a servlet from the server.
- * These are known as life-cycle methods and are called in the
- * following sequence:
+ * <p>このインターフェースは、サーブレットを初期化する、リクエストを処理する、サーブレットをサーバーから取り除くメソッドが定義されています。
+ * これらはライフサイクルメソッドとして知られており、以下のような順番で呼び出されます。
  * <ol>
- * <li>The servlet is constructed, then initialized with the <code>init</code> method.
- * <li>Any calls from clients to the <code>service</code> method are handled.
- * <li>The servlet is taken out of service, then destroyed with the 
- * <code>destroy</code> method, then garbage collected and finalized.
+ * <li>サーブレットのインスタンスが生成されると<code>init</code>メソッドにより初期化されます。
+ * <li>クライアントから呼び出される度に<code>service</code>メソッドが実行されます。
+ * <li>このサーブレットがサービスから取り除かれると<code>destroy</code>メソッドにより終了処理が行われ、その後、ガーベッジコレクションとファイナライズされます。
  * </ol>
  *
- * <p>In addition to the life-cycle methods, this interface
- * provides the <code>getServletConfig</code> method, which the servlet 
- * can use to get any startup information, and the <code>getServletInfo</code>
- * method, which allows the servlet to return basic information about itself,
- * such as author, version, and copyright.
+ * <p>このインターフェースではライフサイクルメソッドに加えて<code>getServletConfig</code>を提供しています。
+ * これはサーブレットが起動時の情報を使用するために使うことができます。
+ * また、<code>getServletInfo</code>で作者やバージョン、コピーライトなどのサーブレット自身についての基本的な情報を返すことが許されます。
  *
  * @author 	Various
  *
@@ -101,29 +93,21 @@ import java.io.IOException;
 public interface Servlet {
 
     /**
-     * Called by the servlet container to indicate to a servlet that the 
-     * servlet is being placed into service.
+     * サーブレットがサービスに組み込まれるときにサーブレットコンテナにより呼び出されます。
      *
-     * <p>The servlet container calls the <code>init</code>
-     * method exactly once after instantiating the servlet.
-     * The <code>init</code> method must complete successfully
-     * before the servlet can receive any requests.
+     * <p>サーブレットコンテナはサーブレットのインスタンスを生成した後に<code>init</code>メソッドを一回だけ呼び出します。
+     * <code>init</code>メソッドはサーブレットがリクエストを受け取る前に正常に完了しなければいけません。
      *
-     * <p>The servlet container cannot place the servlet into service
-     * if the <code>init</code> method
+     * <p>以下の場合にはサーブレットコンテナはサーブレットを実行状態にすることができません。
      * <ol>
-     * <li>Throws a <code>ServletException</code>
-     * <li>Does not return within a time period defined by the Web server
+     * <li><code>init</code>メソッドが<code>ServletException</code>を投げた
+     * <li><code>init</code>メソッドがウェブサーバーで定義した時間内に処理を終了しない
      * </ol>
      *
      *
-     * @param config			a <code>ServletConfig</code> object 
-     *					containing the servlet's
-     * 					configuration and initialization parameters
+     * @param config			サーブレットの設定や初期化パラメーターが含まれる <code>ServletConfig</code> オブジェクト
      *
-     * @exception ServletException 	if an exception has occurred that
-     *					interferes with the servlet's normal
-     *					operation
+     * @exception ServletException 	サーブレットの通常の処理で例外が発生した
      *
      * @see 				UnavailableException
      * @see 				#getServletConfig
@@ -177,17 +161,15 @@ public interface Servlet {
      * <a href="http://java.sun.com/Series/Tutorial/java/threads/multithreaded.html">
      * the Java tutorial on multi-threaded programming</a>.
      *
+     * 訳注：原文はリンクが切れたままになっているので今のJavaのチュートリアルのページだと<a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/">Lesson: Concurrency</a>が良さそう。
      *
-     * @param req 	the <code>ServletRequest</code> object that contains
-     *			the client's request
+     * @param req 	クライアントのリクエストが含まれる<code>ServletRequest</code>のオブジェクト
      *
-     * @param res 	the <code>ServletResponse</code> object that contains
-     *			the servlet's response
+     * @param res 	フィルターのレスポンスが含まれる<code>ServletResponse</code>のオブジェクト
      *
-     * @exception ServletException 	if an exception occurs that interferes
-     *					with the servlet's normal operation 
+     * @exception ServletException 	サーブレットの通常の処理で例外が発生した 
      *
-     * @exception IOException 		if an input or output exception occurs
+     * @exception IOException 		I/Oの例外が発生した
      *
      */
 
@@ -197,14 +179,11 @@ public interface Servlet {
 	
 
     /**
-     * Returns information about the servlet, such
-     * as author, version, and copyright.
+     * サーブレットの情報を返します。作者やバージョン、コピーライトなどです。
      * 
-     * <p>The string that this method returns should
-     * be plain text and not markup of any kind (such as HTML, XML,
-     * etc.).
+     * <p>このメソッドが返す文字列はプレーンテキストにして、あらゆる種類のマークアップ(HTML、XMLその他)で装飾しないほうがよいです。
      *
-     * @return 		a <code>String</code> containing servlet information
+     * @return 		サーブレットの情報が入った<code>String</code>
      *
      */
 
@@ -213,19 +192,12 @@ public interface Servlet {
     
 
     /**
+     * サーブレットがサービスから取り除かれるときにサーブレットコンテナにより呼び出されます。
+     * このメソッドはすべてのスレッドでサーブレットの<code>service</code>メソッドが終了したかタイムアウトした後に一度だけ呼び出されます。
+     * サーブレットコンテナはこのメソッドを呼出した後に同じインスタンスで<code>service</code>メソッドを再度呼び出すことはありません。
      *
-     * Called by the servlet container to indicate to a servlet that the
-     * servlet is being taken out of service.  This method is
-     * only called once all threads within the servlet's
-     * <code>service</code> method have exited or after a timeout
-     * period has passed. After the servlet container calls this 
-     * method, it will not call the <code>service</code> method again
-     * on this servlet.
-     *
-     * <p>This method gives the servlet an opportunity 
-     * to clean up any resources that are being held (for example, memory,
-     * file handles, threads) and make sure that any persistent state is
-     * synchronized with the servlet's current state in memory.
+     * <p>このメソッドは保持されているすべてのリソース（メモリ、ファイルハンドル、スレッドなど）をクリーンアップする機会を与えます。
+     * また、サーブレットのメモリ上の状態とあらゆる永続状態が同期されるように注意してください。
      *
      */
 
