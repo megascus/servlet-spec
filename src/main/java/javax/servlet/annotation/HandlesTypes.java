@@ -63,8 +63,7 @@ public @interface HandlesTypes {
      *
      * <p><tt>ServletContainerInitializer</tt>の実装でこのアノテーションが付けられる場合、
      * サーブレットコンテナはこのアノテーションで列挙されたクラスの、サブクラス、実装、
-     * アノテーションが付けられたクラスを{@link javax.servlet.
-     * ServletContainerInitializer#onStartup}メソッドに渡さなければいけません。
+     * アノテーションが付けられたクラスを{@link javax.servlet.ServletContainerInitializer#onStartup}メソッドに渡さなければいけません。
      * (もし見つからない場合はnullを代わりに渡す必要があります。)
      * 
      * @return {@link javax.servlet.ServletContainerInitializer
