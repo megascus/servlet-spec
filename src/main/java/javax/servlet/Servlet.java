@@ -154,7 +154,7 @@ public interface Servlet {
      *
      * @param req 	クライアントのリクエストが含まれる<code>ServletRequest</code>のオブジェクト
      *
-     * @param res 	フィルターのレスポンスが含まれる<code>ServletResponse</code>のオブジェクト
+     * @param res 	サーブレットのレスポンスが含まれる<code>ServletResponse</code>のオブジェクト
      *
      * @exception ServletException 	サーブレットの通常の処理で例外が発生した 
      *

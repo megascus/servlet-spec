@@ -63,26 +63,18 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 /**
+ * 総称的なプロトコルに依存しないサーブレットを表します。
+ * Webで使用するHTTPのサーブレットを作成したい場合は {@link javax.servlet.http.HttpServlet} を継承してください。
  *
- * Defines a generic, protocol-independent
- * servlet. To write an HTTP servlet for use on the
- * Web, extend {@link javax.servlet.http.HttpServlet} instead.
+ * <p><code>GenericServlet</code> は <code>Servlet</code>と <code>ServletConfig</code> の二つのインターフェースを実装します。 
+ * <code>GenericServlet</code> を直接継承してもよいですが、<code>HttpServlet</code> などのプロトコルに依存したサブクラスを継承するのが一般的です。
  *
- * <p><code>GenericServlet</code> implements the <code>Servlet</code>
- * and <code>ServletConfig</code> interfaces. <code>GenericServlet</code>
- * may be directly extended by a servlet, although it's more common to extend
- * a protocol-specific subclass such as <code>HttpServlet</code>.
+ * <p><code>GenericServlet</code> はサーブレットを簡単に作成できるようにします。
+ * これはライフサイクルメソッドのうち<code>init</code> と <code>destroy</code> の単純な(何もしない)バージョンと、
+ * <code>ServletConfig</code> インターフェースのメソッドを提供します。
+ * <code>GenericServlet</code> は <code>ServletContext</code> インターフェースに定義された <code>log</code> メソッドも実装しています。
  *
- * <p><code>GenericServlet</code> makes writing servlets
- * easier. It provides simple versions of the lifecycle methods 
- * <code>init</code> and <code>destroy</code> and of the methods 
- * in the <code>ServletConfig</code> interface. <code>GenericServlet</code>
- * also implements the <code>log</code> method, declared in the
- * <code>ServletContext</code> interface. 
- *
- * <p>To write a generic servlet, you need only
- * override the abstract <code>service</code> method. 
- *
+ * <p><code>GenericServlet</code> を継承してサーブレットを作成する場合はabstractな<code>service</code>だけ実装する必要があります。
  *
  * @author 	Various
  */
@@ -99,17 +91,15 @@ public abstract class GenericServlet
     
 
     /**
-     *
-     * Does nothing. All of the servlet initialization
-     * is done by one of the <code>init</code> methods.
+     * 何もしません。すべてのサーブレットの初期化は <code>init</code> メソッドで行われます。
      *
      */
     public GenericServlet() { }
     
     
     /**
-     * Called by the servlet container to indicate to a servlet that the
-     * servlet is being taken out of service.  See {@link Servlet#destroy}.
+     * サーブレットがサービスから取り除かれるときにサーブレットコンテナから呼び出されます。
+     * {@link Servlet#destroy} を参照してください。
      *
      * 
      */
@@ -118,19 +108,16 @@ public abstract class GenericServlet
     
     
     /**
-     * Returns a <code>String</code> containing the value of the named
-     * initialization parameter, or <code>null</code> if the parameter does
-     * not exist.  See {@link ServletConfig#getInitParameter}.
+     * 名前付き初期化パラメーターに含まれる値の<code>String</code>を返します。
+     * 存在しない場合は<code>null</code>が帰ります。
+     * {@link ServletConfig#getInitParameter}を参照してください。
      *
-     * <p>This method is supplied for convenience. It gets the 
-     * value of the named parameter from the servlet's 
-     * <code>ServletConfig</code> object.
+     * <p>このメソッドは簡便さのために提供されています。
+     * これはサーブレットの <code>ServletConfig</code> のオブジェクトから名前付きパラメーターを取得します。
      *
-     * @param name 		a <code>String</code> specifying the name 
-     *				of the initialization parameter
+     * @param name 		初期化パラメータの名前を指定する<code>String</code>
      *
-     * @return String 		a <code>String</code> containing the value
-     *				of the initialization parameter
+     * @return String 		初期化パラメータの値を含む値の<code>String</code>
      *
      */ 
     public String getInitParameter(String name) {
@@ -145,14 +132,12 @@ public abstract class GenericServlet
     
     
    /**
-    * Returns the names of the servlet's initialization parameters 
-    * as an <code>Enumeration</code> of <code>String</code> objects,
-    * or an empty <code>Enumeration</code> if the servlet has no
-    * initialization parameters.  See {@link
-    * ServletConfig#getInitParameterNames}.
+    * サーブレットの初期化パラメータの名前を<code>String</code>オブジェクトの<code>Enumeration</code>として返します。
+    * サーブレットに初期化パラメータがない場合は空の<code>Enumeration</code>を返します。 
+    * {@link ServletConfig#getInitParameterNames}を参照してください。
     *
-    * <p>This method is supplied for convenience. It gets the 
-    * parameter names from the servlet's <code>ServletConfig</code> object. 
+    * <p>このメソッドは簡便さのために提供されています。
+    * これはサーブレットの <code>ServletConfig</code> のオブジェクトからパラメーター名を取得します。
     *
     *
     * @return Enumeration 	an enumeration of <code>String</code>
@@ -171,10 +156,9 @@ public abstract class GenericServlet
      
 
     /**
-     * Returns this servlet's {@link ServletConfig} object.
+     * サーブレットの {@link ServletConfig} のオブジェクトを返します。
      *
-     * @return ServletConfig 	the <code>ServletConfig</code> object
-     *				that initialized this servlet
+     * @return ServletConfig 	このサーブレットが初期化された <code>ServletConfig</code> のオブジェクト
      */    
     public ServletConfig getServletConfig() {
 	return config;
@@ -182,16 +166,14 @@ public abstract class GenericServlet
  
     
     /**
-     * Returns a reference to the {@link ServletContext} in which this servlet
-     * is running.  See {@link ServletConfig#getServletContext}.
+     * このサーブレットが動いている{@link ServletContext}を返します。
+     * {@link ServletConfig#getServletContext}を参照してください。
      *
-     * <p>This method is supplied for convenience. It gets the 
-     * context from the servlet's <code>ServletConfig</code> object.
+     * <p>このメソッドは簡便さのために提供されています。
+     * これはサーブレットの <code>ServletConfig</code> のオブジェクトからパラメーター名を取得します。
      *
      *
-     * @return ServletContext 	the <code>ServletContext</code> object
-     *				passed to this servlet by the <code>init</code>
-     *				method
+     * @return ServletContext 	<code>init</code>に渡された <code>ServletContext</code> のオブジェクト
      */
     public ServletContext getServletContext() {
         ServletConfig sc = getServletConfig();
@@ -205,15 +187,13 @@ public abstract class GenericServlet
 
 
     /**
-     * Returns information about the servlet, such as 
-     * author, version, and copyright. 
-     * By default, this method returns an empty string.  Override this method
-     * to have it return a meaningful value.  See {@link
-     * Servlet#getServletInfo}.
+     * サーブレットの情報を返します。作者やバージョン、コピーライトなどです。
+     * デフォルトでは空文字列を返します。
+     * このメソッドをオーバーライドして意味のある値を返すようにします。
+     * {@link Servlet#getServletInfo}を参照してください。
      *
      *
-     * @return String 		information about this servlet, by default an
-     * 				empty string
+     * @return String 		このサーブレットの説明、デフォルトでは空文字列
      */    
     public String getServletInfo() {
 	return "";
@@ -221,21 +201,16 @@ public abstract class GenericServlet
 
 
     /**
-     * Called by the servlet container to indicate to a servlet that the
-     * servlet is being placed into service.  See {@link Servlet#init}.
+     * サーブレットがサービスに組込まれるときにサーブレットコンテナに呼出されます。
+     * {@link Servlet#init}を参照してください。
+     * 
+     * <p>この実装はサーブレットコンテナから受け取った{@link ServletConfig}オブジェクトをあとで使用するために格納します。 
+     * このメソッドの振る舞いをオーバーライドする場合は <code>super.init(config)</code> を呼び出してください。
      *
-     * <p>This implementation stores the {@link ServletConfig}
-     * object it receives from the servlet container for later use.
-     * When overriding this form of the method, call 
-     * <code>super.init(config)</code>.
      *
-     * @param config 			the <code>ServletConfig</code> object
-     *					that contains configuration
-     *					information for this servlet
+     * @param config 			このサーブレットの設定情報を含む<code>ServletConfig</code> のオブジェクト
      *
-     * @exception ServletException 	if an exception occurs that
-     *					interrupts the servlet's normal
-     *					operation
+     * @exception ServletException 	サーブレットの通常の処理で例外が発生した
      * 
      * @see 				UnavailableException
      */
@@ -246,18 +221,14 @@ public abstract class GenericServlet
 
 
     /**
-     * A convenience method which can be overridden so that there's no need
-     * to call <code>super.init(config)</code>.
+     * <code>super.init(config)</code>を呼ばなくてもオーバーライドできるようにするための便利メソッドです。
      *
-     * <p>Instead of overriding {@link #init(ServletConfig)}, simply override
-     * this method and it will be called by
-     * <code>GenericServlet.init(ServletConfig config)</code>.
-     * The <code>ServletConfig</code> object can still be retrieved via {@link
-     * #getServletConfig}. 
+     * <p>{@link #init(ServletConfig)}をオーバーライドしなくても
+     * 単にこのメソッドをオーバーライドすれば <code>GenericServlet.init(ServletConfig config)</code> によって呼び出されます。
+     * <code>ServletConfig</code> オブジェクトは {@link#getServletConfig} から引き続き取得できます。
+     * Instead of overriding {@link #init(ServletConfig)}, simply override
      *
-     * @exception ServletException 	if an exception occurs that
-     *					interrupts the servlet's
-     *					normal operation
+     * @exception ServletException 	サーブレットの通常の処理で例外が発生した
      */
     public void init() throws ServletException {
 
@@ -265,11 +236,10 @@ public abstract class GenericServlet
     
 
     /**
-     * Writes the specified message to a servlet log file, prepended by the
-     * servlet's name.  See {@link ServletContext#log(String)}.
+     * 指定されたメッセージをサーブレットの名前を先頭に付けてログファイルに書き込みます。
+     * {@link ServletContext#log(String)} を参照してください。
      *
-     * @param msg 	a <code>String</code> specifying
-     *			the message to be written to the log file
+     * @param msg 	ログファイルに書き込まれるメッセージ
      */     
     public void log(String msg) {
 	getServletContext().log(getServletName() + ": "+ msg);
@@ -277,17 +247,13 @@ public abstract class GenericServlet
    
    
     /**
-     * Writes an explanatory message and a stack trace
-     * for a given <code>Throwable</code> exception
-     * to the servlet log file, prepended by the servlet's name.
-     * See {@link ServletContext#log(String, Throwable)}.
+     * 指定されたメッセージと<code>Throwable</code>のスタックトレースをサーブレットの名前を先頭に付けてログファイルに書き込みます。
+     * {@link ServletContext#log(String, Throwable)} を参照してください。
      *
      *
-     * @param message 		a <code>String</code> that describes
-     *				the error or exception
+     * @param message 		エラーや例外を説明する <code>String</code>
      *
-     * @param t			the <code>java.lang.Throwable</code> error
-     * 				or exception
+     * @param t			<code>java.lang.Throwable</code>
      */   
     public void log(String message, Throwable t) {
 	getServletContext().log(getServletName() + ": " + message, t);
@@ -295,24 +261,19 @@ public abstract class GenericServlet
     
     
     /**
-     * Called by the servlet container to allow the servlet to respond to
-     * a request.  See {@link Servlet#service}.
+     * サーブレットがリクエストに応答できるようにサーブレットコンテナによって呼び出されます。
+     * {@link Servlet#service} を参照してください。
      * 
-     * <p>This method is declared abstract so subclasses, such as 
-     * <code>HttpServlet</code>, must override it.
+     * <p>このメソッドはabstractで定義されているので、
+     * <code>HttpServlet</code>などのサブクラスでオーバーライドする必要があります。
      *
-     * @param req 	the <code>ServletRequest</code> object
-     *			that contains the client's request
+     * @param req 	クライアントのリクエストが含まれる<code>ServletRequest</code>のオブジェクト
      *
-     * @param res 	the <code>ServletResponse</code> object
-     *			that will contain the servlet's response
+     * @param res 	サーブレットのレスポンスが含まれる <code>ServletResponse</code>のオブジェクト
      *
-     * @exception ServletException 	if an exception occurs that
-     *					interferes with the servlet's
-     *					normal operation occurred
+     * @exception ServletException 	サーブレットの通常の処理で例外が発生した
      *
-     * @exception IOException 		if an input or output
-     *					exception occurs
+     * @exception IOException 		I/Oの例外が発生した
      */
 
     public abstract void service(ServletRequest req, ServletResponse res)
@@ -320,10 +281,10 @@ public abstract class GenericServlet
     
 
     /**
-     * Returns the name of this servlet instance.
-     * See {@link ServletConfig#getServletName}.
+     * サーブレットのインスタンスの名前を返します。
+     * {@link ServletConfig#getServletName}を参照してください。
      *
-     * @return          the name of this servlet instance
+     * @return          サーブレットのインスタンスの名前
      */
     public String getServletName() {
         ServletConfig sc = getServletConfig();
