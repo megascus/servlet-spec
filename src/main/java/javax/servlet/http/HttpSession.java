@@ -62,49 +62,34 @@ import java.util.Enumeration;
 import javax.servlet.ServletContext;
 
 /**
+ * 複数のページリクエストにわたったりウェブサイトを訪れたユーザーを識別する方法や、
+ * ユーザーに関する情報を保管する方法を提供します。
  *
- * Provides a way to identify a user across more than one page
- * request or visit to a Web site and to store information about that user.
+ * <p>サーブレットコンテナはこのインタフェースを使用してHTTPクライアントとHTTPサーバーの間のセッションを作成します。
+ * セッションは指定された期間ユーザーからの複数の接続またはページリクエストにわたって永続化されます。
+ * 1つのセッションは通常、何回もサイトにアクセスする1人のユーザーに対応しています。
+ * サーバーはCookieを使用したりURLを書き換えたりすることでセッションを維持できます。
  *
- * <p>The servlet container uses this interface to create a session
- * between an HTTP client and an HTTP server. The session persists
- * for a specified time period, across more than one connection or
- * page request from the user. A session usually corresponds to one 
- * user, who may visit a site many times. The server can maintain a 
- * session in many ways such as using cookies or rewriting URLs.
- *
- * <p>This interface allows servlets to 
+ * <p>このインタフェースによりサーブレットは以下のようなことができます。
  * <ul>
- * <li>View and manipulate information about a session, such as
- *     the session identifier, creation time, and last accessed time
- * <li>Bind objects to sessions, allowing user information to persist 
- *     across multiple user connections
+ * <li>セッション識別子、作成時間、最後にアクセスされた時間などのセッションに関する情報の表示と操作
+ * <li>セッションにオブジェクトを格納することでユーザー情報をユーザーの複数の接続にまたがらせる
  * </ul>
  *
- * <p>When an application stores an object in or removes an object from a
- * session, the session checks whether the object implements
- * {@link HttpSessionBindingListener}. If it does, 
- * the servlet notifies the object that it has been bound to or unbound 
- * from the session. Notifications are sent after the binding methods complete. 
- * For session that are invalidated or expire, notifications are sent after
- * the session has been invalidated or expired.
- *
- * <p> When container migrates a session between VMs in a distributed container
- * setting, all session attributes implementing the {@link HttpSessionActivationListener}
- * interface are notified.
+ * アプリケーションがセッションにオブジェクトを格納したり削除したりすると、
+ * セッションはそのオブジェクトが {@link HttpSessionBindingListener} を実装しているかどうかをチェックします。
+ * そうであれば、サーブレットはオブジェクトにセッションに格納されたこと、削除されたことをオブジェクトに通知します。格納、削除のメソッドの完了後に通知が送信されます。 
+ * セッションが無効または期限切れになった場合はその後に通知が送信されます。
  * 
- * <p>A servlet should be able to handle cases in which
- * the client does not choose to join a session, such as when cookies are
- * intentionally turned off. Until the client joins the session,
- * <code>isNew</code> returns <code>true</code>.  If the client chooses 
- * not to join
- * the session, <code>getSession</code> will return a different session
- * on each request, and <code>isNew</code> will always return
- * <code>true</code>.
+ * コンテナが分散コンテナ設定のVM間でセッションを移動した場合は{@link HttpSessionActivationListener}インターフェイスを実装するすべてのセッション属性が通知されます。
  *
- * <p>Session information is scoped only to the current web application
- * (<code>ServletContext</code>), so information stored in one context
- * will not be directly visible in another.
+ * サーブレットはCookieが意図的にオフになったときなど、クライアントがセッションに参加しないことを選択したケースを処理できる必要があります。 
+ * 
+ * クライアントがセッションに参加するまで、 <code>isNew</code>は<code>true</code>を返します 。
+ *  クライアントがセッションに参加しないことを選択した場合、 <code>getSession</code>は各リクエストで異なるセッションを返し、
+ *  <code>isNew</code>は常に<code>true</code>を返します。
+ *
+ * セッション情報は現在のWebアプリケーション(<code>ServletContext</code>)のみにスコープが設定されているため、あるコンテキストに格納されている情報は別のコンテキストでは直接参照されません。
  *
  * @author	Various
  *
@@ -115,17 +100,11 @@ import javax.servlet.ServletContext;
 public interface HttpSession {
 
     /**
+     * セッションが作られた日時を1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数で返します。
      *
-     * Returns the time when this session was created, measured
-     * in milliseconds since midnight January 1, 1970 GMT.
+     * @return				セッションが作られた日時の1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数の<code>long</code>
      *
-     * @return				a <code>long</code> specifying
-     * 					when this session was created,
-     *					expressed in 
-     *					milliseconds since 1/1/1970 GMT
-     *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     public long getCreationTime();
     
@@ -347,8 +326,7 @@ public interface HttpSession {
 
 
     /**
-     * @deprecated 	As of Version 2.2, this method is
-     * 			replaced by {@link #removeAttribute}
+     * @deprecated 	Version 2.2から{@link #removeAttribute}に置き換えられました
      *
      * @param name				the name of the object to
      *						remove from this session
@@ -364,8 +342,7 @@ public interface HttpSession {
      * Invalidates this session then unbinds any objects bound
      * to it. 
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					already invalidated session
+     * @exception IllegalStateException	すでに無効になっているセッションで呼び出された場合
      */
     public void invalidate();
     
