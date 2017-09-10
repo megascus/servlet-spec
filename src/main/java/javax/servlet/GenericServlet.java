@@ -117,7 +117,7 @@ public abstract class GenericServlet
      *
      * @param name 		初期化パラメータの名前を指定する<code>String</code>
      *
-     * @return String 		初期化パラメータの値を含む値の<code>String</code>
+     * @return String 		初期化パラメータの値の<code>String</code>
      *
      */ 
     public String getInitParameter(String name) {
@@ -132,8 +132,8 @@ public abstract class GenericServlet
     
     
    /**
-    * サーブレットの初期化パラメータの名前を<code>String</code>オブジェクトの<code>Enumeration</code>として返します。
-    * サーブレットに初期化パラメータがない場合は空の<code>Enumeration</code>を返します。 
+    * サーブレットの初期化パラメーターの名前を<code>String</code>オブジェクトの<code>Enumeration</code>として返します。
+    * サーブレットに初期化パラメーターがない場合は空の<code>Enumeration</code>を返します。 
     * {@link ServletConfig#getInitParameterNames}を参照してください。
     *
     * <p>このメソッドは簡便さのために提供されています。

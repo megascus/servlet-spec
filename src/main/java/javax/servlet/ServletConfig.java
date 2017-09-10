@@ -61,28 +61,25 @@ package javax.servlet;
 import java.util.Enumeration;
 
 /**
- * A servlet configuration object used by a servlet container
- * to pass information to a servlet during initialization. 
+ * サーブレットコンテナが初期化中にサーブレットに情報を渡すために使用するサーブレット設定オブジェクトです。
  */
  public interface ServletConfig {
     
     /**
-     * Returns the name of this servlet instance.
-     * The name may be provided via server administration, assigned in the 
-     * web application deployment descriptor, or for an unregistered (and thus
-     * unnamed) servlet instance it will be the servlet's class name.
+     * サーブレットのインスタンスの名前を返します。
+     * 
+     * 名前はサーバの管理ツールから設定してもよいし、Web アプリケーションのデプロイメントディスクリプタで割り当ててもよいです。 
+     * もしくは、登録されていない (つまり無名の) サーブレットのインスタンスであったときはサーブレットのクラス名になります。   
      *
-     * @return	the name of the servlet instance
+     * @return	サーブレットのインスタンスの名前
      */
     public String getServletName();
 
 
     /**
-     * Returns a reference to the {@link ServletContext} in which the caller
-     * is executing.
+     * 呼び出し元が実行中の {@link ServletContext} を返します。
      *
-     * @return	a {@link ServletContext} object, used
-     * by the caller to interact with its servlet container
+     * @return	呼び出し側がサーブレットコンテナと対話するために使用する {@link ServletContext} のオブジェクト
      * 
      * @see ServletContext
      */
@@ -90,27 +87,20 @@ import java.util.Enumeration;
 
     
     /**
-     * Gets the value of the initialization parameter with the given name.
+     * 与えられた名前で初期化パラメーターを取得します。
      *
-     * @param name the name of the initialization parameter whose value to
-     * get
+     * @param name 値を取得したい初期化パラメーターの名前
      *
-     * @return a <code>String</code> containing the value 
-     * of the initialization parameter, or <code>null</code> if 
-     * the initialization parameter does not exist
+     * @return 初期化パラメーターの値の<code>String</code>、<code>null</code>の場合は存在しない
      */
     public String getInitParameter(String name);
 
 
     /**
-     * Returns the names of the servlet's initialization parameters
-     * as an <code>Enumeration</code> of <code>String</code> objects, 
-     * or an empty <code>Enumeration</code> if the servlet has
-     * no initialization parameters.
+     * サーブレットの初期化パラメーターの名前を<code>String</code>オブジェクトの<code>Enumeration</code>として返します。
+     * サーブレットに初期化パラメーターがない場合は空の<code>Enumeration</code>を返します。
      *
-     * @return an <code>Enumeration</code> of <code>String</code> 
-     * objects containing the names of the servlet's 
-     * initialization parameters
+     * @return サーブレットの初期化パラメーターの名前を含んだ<code>String</code>オブジェクトの<code>Enumeration</code>
      */
     public Enumeration<String> getInitParameterNames();
 
