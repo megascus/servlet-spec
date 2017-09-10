@@ -140,9 +140,7 @@ public abstract class GenericServlet
     * これはサーブレットの <code>ServletConfig</code> のオブジェクトからパラメーター名を取得します。
     *
     *
-    * @return Enumeration 	an enumeration of <code>String</code>
-    *				objects containing the names of 
-    *				the servlet's initialization parameters
+    * @return Enumeration 	サーブレットの初期化パラメータの名前を含んだ<code>String</code>オブジェクトの<code>Enumeration</code>
     */
     public Enumeration<String> getInitParameterNames() {
         ServletConfig sc = getServletConfig();
