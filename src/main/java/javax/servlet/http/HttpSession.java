@@ -108,57 +108,43 @@ public interface HttpSession {
     
         
     /**
-     * Returns a string containing the unique identifier assigned 
-     * to this session. The identifier is assigned 
-     * by the servlet container and is implementation dependent.
+     * このセッションに割り当てられた一意の識別子を含む文字列を返します。 
+     * 識別子はサーブレットコンテナによって割り当てられ、実装に依存します。
      * 
-     * @return				a string specifying the identifier
-     *					assigned to this session
+     * @return				このセッションに割り当てられた識別子を指定する文字列
      */
     public String getId();
     
 
     /**
+     * このセッションによって関連付けられたクライアントが最後にリクエストを投げ
+     * コンテナが受信した日時を1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数で返します。
      *
-     * Returns the last time the client sent a request associated with
-     * this session, as the number of milliseconds since midnight
-     * January 1, 1970 GMT, and marked by the time the container received the
-     * request. 
+     * <p>アプリケーションが実行したセッションに関連付けられた値の取得や設定などのアクションはアクセス時間に影響しません。
      *
-     * <p>Actions that your application takes, such as getting or setting
-     * a value associated with the session, do not affect the access
-     * time.
+     * @return				セッションによって関連付けられたクライアントが最後にリクエストを投げた日時の1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数の <code>long</code>
      *
-     * @return				a <code>long</code>
-     *					representing the last time 
-     *					the client sent a request associated
-     *					with this session, expressed in 
-     *					milliseconds since 1/1/1970 GMT
-     *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     public long getLastAccessedTime();
     
     
     /**
-     * Returns the ServletContext to which this session belongs.
+     * セッションが所属するServletContextを返します。
      *    
-     * @return The ServletContext object for the web application
+     * @return ウェブアプリケーションの ServletContext のオブジェクト
      * @since Servlet 2.3
      */
     public ServletContext getServletContext();
 
 
     /**
-     * Specifies the time, in seconds, between client requests before the 
-     * servlet container will invalidate this session. 
+     * サーブレットコンテナがこのセッションを無効にするまでのクライアントからのリクエストの間隔を秒単位で指定します。
      *
-     * <p>An <tt>interval</tt> value of zero or less indicates that the
-     * session should never timeout.
+     * <p>0以下の <tt>interval</tt> の値はセッションがタイムアウトしないほうが良いことを示します。
+
      *
-     * @param interval		An integer specifying the number
-     * 				of seconds 
+     * @param interval		秒数を指定する整数
      */    
     public void setMaxInactiveInterval(int interval);
 
@@ -203,8 +189,7 @@ public interface HttpSession {
      *
      * @return			the object with the specified name
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     public Object getAttribute(String name);
     
@@ -217,8 +202,7 @@ public interface HttpSession {
      *
      * @return			the object with the specified name
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     @Deprecated
     public Object getValue(String name);
@@ -233,8 +217,7 @@ public interface HttpSession {
      *				names of all the objects bound to
      *				this session
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */    
     public Enumeration<String> getAttributeNames();
     
@@ -248,8 +231,7 @@ public interface HttpSession {
      *					names of all the objects bound to
      *					this session
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     @Deprecated
     public String[] getValueNames();
@@ -280,23 +262,20 @@ public interface HttpSession {
      *
      * @param value			the object to be bound
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     public void setAttribute(String name, Object value);
     
 
     /**
-     * @deprecated 	As of Version 2.2, this method is
-     * 			replaced by {@link #setAttribute}
+     * @deprecated  Version 2.2から{@link #setAttribute}に置き換えられました
      *
      * @param name			the name to which the object is bound;
      *					cannot be null
      *
      * @param value			the object to be bound; cannot be null
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     @Deprecated
     public void putValue(String name, Object value);
@@ -314,11 +293,9 @@ public interface HttpSession {
      * then notifies any <code>HttpSessionAttributeListener</code>s in the web 
      * application.
      *
-     * @param name				the name of the object to
-     *						remove from this session
+     * @param name				セッションから取り除くオブジェクトの名前
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     public void removeAttribute(String name);
 
@@ -326,19 +303,16 @@ public interface HttpSession {
     /**
      * @deprecated 	Version 2.2から{@link #removeAttribute}に置き換えられました
      *
-     * @param name				the name of the object to
-     *						remove from this session
+     * @param name				セッションから取り除くオブジェクトの名前
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     @Deprecated
     public void removeValue(String name);
 
 
     /**
-     * Invalidates this session then unbinds any objects bound
-     * to it. 
+     * このセッションを保存されているすべての値を取り除いてから無効化します。
      *
      * @exception IllegalStateException	すでに無効になっているセッションで呼び出された場合
      */
@@ -346,18 +320,14 @@ public interface HttpSession {
     
     
     /**
-     * Returns <code>true</code> if the client does not yet know about the
-     * session or if the client chooses not to join the session.  For 
-     * example, if the server used only cookie-based sessions, and
-     * the client had disabled the use of cookies, then a session would
-     * be new on each request.
+     * クライアントがセッションについてまだ認識していない場合、
+     * またはクライアントがセッションに参加しないことを選択した場合は <code>true</code> を返します。
+     * たとえば、サーバーがCookieベースのセッションのみを使用し、クライアントがCookieの使用を無効にしていた場合、
+     * セッションは各リクエストに対して新しく生成されます。
      *
-     * @return 				<code>true</code> if the 
-     *					server has created a session, 
-     *					but the client has not yet joined
+     * @return 				<code>true</code> ならばサーバーがセッションを作成したが、クライアントはセッションに参加していない
      *
-     * @exception IllegalStateException	if this method is called on an
-     *					already invalidated session
+     * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
     public boolean isNew();
 
