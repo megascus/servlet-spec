@@ -64,11 +64,9 @@ import java.util.Enumeration;
  *
  * @author		Various
  *
- * @deprecated		As of Java(tm) Servlet API 2.1
- *			for security reasons, with no replacement.
- *			This interface will be removed in a future
- *			version of this API.
- *
+ * @deprecated		セキュリティの理由によりJava(tm) Servlet API 2.1以降非推奨です。
+ * 代替手段はありません。
+ * のちのバージョンでこのAPIは削除されます。
  * @see			HttpSession
  * @see			HttpSessionBindingEvent
  * @see			HttpSessionBindingListener
@@ -80,13 +78,12 @@ public interface HttpSessionContext {
 
     /**
      *
-     * @deprecated 	As of Java Servlet API 2.1 with
-     *			no replacement. This method must 
-     *			return null and will be removed in
-     *			a future version of this API.
-     * @param sessionId the id of the session to be returned
+     * @deprecated 	セキュリティの理由によりJava(tm) Servlet API 2.1以降非推奨です。
+     *          このメソッドはnullを返さなければいけません。また、のちのバージョンでこのAPIは削除されます。
+     * 
+     * @param sessionId 返してほしいセッションのID
      *
-     * @return null in all cases
+     * @return すべての場合にnull
      */
     @Deprecated
     public HttpSession getSession(String sessionId);
@@ -96,10 +93,8 @@ public interface HttpSessionContext {
   
     /**
      *
-     * @deprecated	As of Java Servlet API 2.1 with
-     *			no replacement. This method must return 
-     *			an empty <code>Enumeration</code> and will be removed
-     *			in a future version of this API.
+     * @deprecated	セキュリティの理由によりJava(tm) Servlet API 2.1以降非推奨です。
+     *          このメソッドは空の<code>Enumeration</code>を返さなければいけません。また、のちのバージョンでこのAPIは削除されます。
      *
      * @return null 
      *
