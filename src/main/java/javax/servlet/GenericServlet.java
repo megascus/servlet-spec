@@ -226,7 +226,6 @@ public abstract class GenericServlet
      * <p>{@link #init(ServletConfig)}をオーバーライドしなくても
      * 単にこのメソッドをオーバーライドすれば <code>GenericServlet.init(ServletConfig config)</code> によって呼び出されます。
      * <code>ServletConfig</code> オブジェクトは {@link#getServletConfig} から引き続き取得できます。
-     * Instead of overriding {@link #init(ServletConfig)}, simply override
      *
      * @exception ServletException 	サーブレットの通常の処理で例外が発生した
      */
