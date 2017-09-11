@@ -139,7 +139,7 @@ public interface HttpSession {
 
 
     /**
-     * サーブレットコンテナがこのセッションを無効にするまでのクライアントからのリクエストの間隔を秒単位で指定します。
+     * サーブレットコンテナがこのセッションを無効にするまでのクライアントからのリクエストの最大の間隔を秒単位で指定します。
      *
      * <p>0以下の <tt>interval</tt> の値はセッションがタイムアウトしないほうが良いことを示します。
 
@@ -150,18 +150,12 @@ public interface HttpSession {
 
 
     /**
-     * Returns the maximum time interval, in seconds, that 
-     * the servlet container will keep this session open between 
-     * client accesses. After this interval, the servlet container
-     * will invalidate the session.  The maximum time interval can be set
-     * with the <code>setMaxInactiveInterval</code> method.
+     * サーブレットコンテナがこのセッションをクライアントからのアクセスの間に保持し続ける最大の間隔を秒単位で返します。
+     * この間隔の後にサーブレットコンテナはセッションを無効にします。 最大時間間隔は<code>setMaxInactiveInterval</code>メソッドで設定できます。
+     * 
+     * <p>0以下の戻り値はセッションが決してタイムアウトしないことを示します。
      *
-     * <p>A return value of zero or less indicates that the
-     * session will never timeout.
-     *
-     * @return		an integer specifying the number of
-     *			seconds this session remains open
-     *			between client requests
+     * @return		このセッションがクライアントからのリクエストの間に保持し続ける秒数を指定する整数
      *
      * @see		#setMaxInactiveInterval
      */
@@ -170,24 +164,23 @@ public interface HttpSession {
 
     /**
      *
-     * @deprecated 	As of Version 2.1, this method is
-     *			deprecated and has no replacement.
-     *			It will be removed in a future
-     *			version of the Java Servlet API.
-     *
-     * @return the {@link HttpSessionContext} for this session.
+     * @deprecated 	セキュリティの理由によりJava(tm) Servlet API 2.1以降非推奨です。
+     * 代替手段はありません。
+     * のちのバージョンでこのAPIは削除されます。
+     * 
+     * @return このセッションの {@link HttpSessionContext}
      */
     @Deprecated
     public HttpSessionContext getSessionContext();
     
 
     /**
-     * Returns the object bound with the specified name in this session, or
-     * <code>null</code> if no object is bound under the name.
+     * このセッションに指定された名前で設定されたオブジェクトを返します。
+     * 名前の下にオブジェクトが設定されていない場合は<code>null</code>を返します。
      *
-     * @param name		a string specifying the name of the object
+     * @param name		オブジェクトの名前を示す文字列
      *
-     * @return			the object with the specified name
+     * @return			名前で特定されたオブジェクト
      *
      * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
@@ -195,12 +188,11 @@ public interface HttpSession {
     
     
     /**
-     * @deprecated 	As of Version 2.2, this method is
-     * 			replaced by {@link #getAttribute}.
+     * @deprecated 	Version 2.2から{@link #getAttribute}に置き換えられました
      *
-     * @param name		a string specifying the name of the object
+     * @param name		オブジェクトの名前を示す文字列
      *
-     * @return			the object with the specified name
+     * @return			名前で特定されたオブジェクト
      *
      * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
@@ -209,13 +201,9 @@ public interface HttpSession {
         
 
     /**
-     * Returns an <code>Enumeration</code> of <code>String</code> objects
-     * containing the names of all the objects bound to this session. 
+     * セッションに関連付けられたオブジェクトを示すすべての名前を含んだ<code>String</code>オブジェクトの<code>Enumeration</code>を返します。
      *
-     * @return			an <code>Enumeration</code> of 
-     *				<code>String</code> objects specifying the
-     *				names of all the objects bound to
-     *				this session
+     * @return			セッションに関連付けられたオブジェクトを示すすべての名前を含んだ<code>String</code>オブジェクトの<code>Enumeration</code>
      *
      * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */    
@@ -223,13 +211,9 @@ public interface HttpSession {
     
 
     /**
-     * @deprecated 	As of Version 2.2, this method is
-     * 			replaced by {@link #getAttributeNames}
+     * @deprecated Version 2.2から{@link #getAttributeNames}に置き換えられました
      *
-     * @return				an array of <code>String</code>
-     *					objects specifying the
-     *					names of all the objects bound to
-     *					this session
+     * @return			セッションに関連付けられたオブジェクトを示すすべての名前を含んだ<code>String</code>オブジェクトの配列
      *
      * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
@@ -238,29 +222,20 @@ public interface HttpSession {
     
 
     /**
-     * Binds an object to this session, using the name specified.
-     * If an object of the same name is already bound to the session,
-     * the object is replaced.
+     * 指定された名前を使用して、このセッションにオブジェクトを追加します。
+     * 同じ名前のオブジェクトが既にセッションに追加されている場合はオブジェクトが置き換えられます。
+     * 
+     * <p>このメソッドの実行後、新しいオブジェクトが<code>HttpSessionBindingListener</code>を実装する場合、
+     * コンテナは<code>HttpSessionBindingListener.valueBound</code>を呼び出します。 
+     * 次にコンテナはWebアプリケーション内の<code>HttpSessionAttributeListener</code>に通知します。
+     * 
+     * <p>このセッションにすでに存在したオブジェクトが<code>HttpSessionBindingListener</code>を実装している場合は<code>HttpSessionBindingListener.valueUnbound</code>メソッドが呼び出されます。
+     * 
+     * <p>渡された値がnullの場合はremoveAttribute()を呼び出すのと同じ効果があります。
      *
-     * <p>After this method executes, and if the new object
-     * implements <code>HttpSessionBindingListener</code>,
-     * the container calls 
-     * <code>HttpSessionBindingListener.valueBound</code>. The container then   
-     * notifies any <code>HttpSessionAttributeListener</code>s in the web 
-     * application.
-     
-     * <p>If an object was already bound to this session of this name
-     * that implements <code>HttpSessionBindingListener</code>, its 
-     * <code>HttpSessionBindingListener.valueUnbound</code> method is called.
+     * @param name			オブジェクトを追加する名前;nullにはできない
      *
-     * <p>If the value passed in is null, this has the same effect as calling 
-     * <code>removeAttribute()</code>.
-     *
-     *
-     * @param name			the name to which the object is bound;
-     *					cannot be null
-     *
-     * @param value			the object to be bound
+     * @param value			追加されるオブジェクト
      *
      * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
@@ -270,10 +245,9 @@ public interface HttpSession {
     /**
      * @deprecated  Version 2.2から{@link #setAttribute}に置き換えられました
      *
-     * @param name			the name to which the object is bound;
-     *					cannot be null
+     * @param name			オブジェクトを追加する名前;nullにはできない
      *
-     * @param value			the object to be bound; cannot be null
+     * @param value			追加されるオブジェクト;nullにはできない
      *
      * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
      */
@@ -282,17 +256,13 @@ public interface HttpSession {
 
 
     /**
-     * Removes the object bound with the specified name from
-     * this session. If the session does not have an object
-     * bound with the specified name, this method does nothing.
-     *
-     * <p>After this method executes, and if the object
-     * implements <code>HttpSessionBindingListener</code>,
-     * the container calls 
-     * <code>HttpSessionBindingListener.valueUnbound</code>. The container
-     * then notifies any <code>HttpSessionAttributeListener</code>s in the web 
-     * application.
-     *
+     * このセッションから指定された名前で存在するオブジェクトを削除します。 
+     * セッションに指定された名前で存在するオブジェクトがない場合はこのメソッドは何も行いません。
+     * 
+     * <p>オブジェクトが<code>HttpSessionBindingListener</code>を実装する場合はこのメソッドの実行後に
+     * コンテナは<code>HttpSessionBindingListener.valueUnbound</codeを呼び出します。 
+     * 次にコンテナはWebアプリケーション内の<code>HttpSessionAttributeListener</code>に通知します。
+     * 
      * @param name				セッションから取り除くオブジェクトの名前
      *
      * @exception IllegalStateException	もしこのメソッドが無効なセッションで呼び出された場合
