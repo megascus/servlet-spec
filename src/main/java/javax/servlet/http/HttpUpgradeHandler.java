@@ -41,24 +41,22 @@
 package javax.servlet.http;
 
 /**
- * This interface encapsulates the upgrade protocol processing.
- * A HttpUpgradeHandler implementation would allow the servlet container
- * to communicate with it.
+ * このインターフェイスはアップグレードプロトコルの処理をカプセル化します。
+ * HttpUpgradeHandlerの実装はサーブレットコンテナがアップグレードプロトコルの処理と通信できるようにします。
  *
  * @since Servlet 3.1
  */
 
 public interface HttpUpgradeHandler {
     /**
-     * It is called once the HTTP Upgrade process has been completed and
-     * the upgraded connection is ready to start using the new protocol.
+     * HTTPのアップグレード処理が完了しアップグレードした接続が新しいプロトコルを使用する準備ができた時に呼び出されます。
      *
-     * @param wc the WebConnection object associated to this upgrade request
+     * @param wc このアップグレードリクエストに関連付けられたWebConnectionオブジェクト
      */
     public void init(WebConnection wc);
 
     /**
-     * It is called when the client is disconnected.
+     * クライアントが切断されたときに呼び出されます。
      */
     public void destroy();
 }
