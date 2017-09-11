@@ -61,17 +61,13 @@ package javax.servlet.http;
 import java.util.EventListener;
 
 /**
- * Interface for receiving notification events about HttpSession
- * attribute changes.
+ * HttpSessionの属性が変更された通知イベントを受け取るためのインターフェイスです。
  *
- * <p>In order to receive these notification events, the implementation
- * class must be either declared in the deployment descriptor of the web
- * application, annotated with {@link javax.servlet.annotation.WebListener},
- * or registered via one of the addListener methods defined on
- * {@link javax.servlet.ServletContext}.
+ * <p>通知イベントを受け取るためには、実装クラスをWebアプリケーションのデプロイメントディスクリプタで宣言するか、
+ * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
+ * {@link javax.servlet.ServletContext}で定義されているaddListenerメソッドの1つを使って登録する必要があります。
  *
- * <p>The order in which implementations of this interface are invoked is
- * unspecified.
+ * <p>このインタフェースの実装が呼び出される順序は定義されていません。
  *
  * @since Servlet 2.3
  */
@@ -79,29 +75,23 @@ import java.util.EventListener;
 public interface HttpSessionAttributeListener extends EventListener {
 
     /**
-     * Receives notification that an attribute has been added to a
-     * session.
+     * セッションの属性が追加された通知を受け取ります。
      *
-     * @param event the HttpSessionBindingEvent containing the session
-     * and the name and value of the attribute that was added
+     * @param event セッションと、セッションに追加された属性の名前と値を含むHttpSessionBindingEvent
      */
     default public void attributeAdded(HttpSessionBindingEvent event) {}
 
     /**
-     * Receives notification that an attribute has been removed from a
-     * session.
+     * セッションの属性が削除された通知を受け取ります。
      *
-     * @param event the HttpSessionBindingEvent containing the session
-     * and the name and value of the attribute that was removed
+     * @param event セッションと、セッションから削除された属性の名前と値を含むHttpSessionBindingEvent
      */
     default public void attributeRemoved(HttpSessionBindingEvent event) {}
 
     /**
-     * Receives notification that an attribute has been replaced in a
-     * session.
+     * セッションの属性が変更された通知を受け取ります。
      *
-     * @param event the HttpSessionBindingEvent containing the session
-     * and the name and (old) value of the attribute that was replaced
+     * @param event セッションと、セッションから変更された属性の名前と(古い)値を含むHttpSessionBindingEvent
      */
     default public void attributeReplaced(HttpSessionBindingEvent event) {}
 
