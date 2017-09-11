@@ -60,12 +60,12 @@ package javax.servlet.http;
 
 import java.util.EventListener;
 
-/** Objects that are bound to a session may listen to container
- * events notifying them that sessions will be passivated and that
- * session will be activated. A container that migrates session
- * between VMs or persists sessions is required to notify all
- * attributes bound to sessions implementing
- * HttpSessionActivationListener.
+/**
+ * セッションに保存されたオブジェクトは、セッションが非活性化する、活性化するコンテナイベントの通知を受け取ることができます。
+ * コンテナはVM間でセッションを移動したり、セッションを永続化したときにセッションに保存されたすべての属性のうち HttpSessionActivationListener を実装したものに通知を送ることが必須要件です。
+ * 
+ * 訳注：サーブレットコンテナの実装によってはメモリ上のセッションが肥大化したときにセッションの一部をディスクに退避(非活性化)したり、退避したセッションをメモリ上に復元(活性化)する機能を持っている場合があります。
+ * 同様に、複数のサーブレットコンテナ(VM)でクラスタリングされているときに他のサーブレットコンテナに送信(非活性化)され、受け取る(活性化する機能を持っていることもあります。
  *
  * @since Servlet 2.3
  */
@@ -73,24 +73,22 @@ import java.util.EventListener;
 public interface HttpSessionActivationListener extends EventListener { 
 
     /**
-     * Notification that the session is about to be passivated.
-     *
-     * @implSpec
-     * The default implementation takes no action.
+     * セッションが非活性化されようとしているという通知です。
      * 
-     * @param se the {@link HttpSessionEvent} indicating the passivation
-     * of the session
+     * @implSpec
+     * デフォルト実装では何も行いません。
+     * 
+     * @param se セッションの非活性化をしめす {@link HttpSessionEvent}
      */
     default public void sessionWillPassivate(HttpSessionEvent se) {}
 
     /**
-     * Notification that the session has just been activated.
+     * セッションが活性化されたという通知です。
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何も行いません。
      * 
-     * @param se the {@link HttpSessionEvent} indicating the activation
-     * of the session
+     * @param se セッションの活性化をしめす {@link HttpSessionEvent}
      */
     default public void sessionDidActivate(HttpSessionEvent se) {}
 } 
