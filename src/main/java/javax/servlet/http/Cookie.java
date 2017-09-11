@@ -65,37 +65,29 @@ import java.util.ResourceBundle;
 
 /**
  *
- * Creates a cookie, a small amount of information sent by a servlet to 
- * a Web browser, saved by the browser, and later sent back to the server.
- * A cookie's value can uniquely 
- * identify a client, so cookies are commonly used for session management.
+ * サーブレットによってWebブラウザに送信され、ブラウザによって保存され、後でサーバーに返される少量の情報であるCookieを作成します。
+ * Cookieの値でクライアントを一意に識別できるので、Cookieは一般にセッション管理に使用されます。
  * 
- * <p>A cookie has a name, a single value, and optional attributes
- * such as a comment, path and domain qualifiers, a maximum age, and a
- * version number. Some Web browsers have bugs in how they handle the 
- * optional attributes, so use them sparingly to improve the interoperability 
- * of your servlets.
+ * <p>クッキーは名前や単一の値、コメント、パス、ドメイン修飾子、最大経過時間、バージョン番号などのオプションの属性を持ちます。
+ * 一部のWebブラウザではオプショナルな属性の処理方法にバグがあるためサーブレットの相互運用性を向上させるために余分に使用します
  *
- * <p>The servlet sends cookies to the browser by using the
- * {@link HttpServletResponse#addCookie} method, which adds
- * fields to HTTP response headers to send cookies to the 
- * browser, one at a time. The browser is expected to 
- * support 20 cookies for each Web server, 300 cookies total, and
- * may limit cookie size to 4 KB each.
+ * <p>サーブレットは {@link HttpServletResponse#addCookie} メソッドを使用してHTTPレスポンスヘッダーにフィールドを追加し、ブラウザにCookieを1つずつ送信します。
+ * ブラウザは各Webサーバーごとに20個のCookieをサポートし、合計300個のCookieをサポートし、Cookieサイズはそれぞれ4 KBに制限されるはずです。
  * 
- * <p>The browser returns cookies to the servlet by adding 
- * fields to HTTP request headers. Cookies can be retrieved
- * from a request by using the {@link HttpServletRequest#getCookies} method.
- * Several cookies might have the same name but different path attributes.
+ * <p>ブラウザはHTTPのリクエストヘッダーにフィールドを追加することによって、サーブレットにCookieを返します。
+ * Cookieは {@link HttpServletRequest#getCookies} メソッドを使用することでリクエストから取得できます。
+ * いくつかのクッキーは同じ名前でもパス属性が異なるかもしれません。
  * 
- * <p>Cookies affect the caching of the Web pages that use them. 
- * HTTP 1.0 does not cache pages that use cookies created with
- * this class. This class does not support the cache control
- * defined with HTTP 1.1.
+ * <p>CookieはCookieを使用するWebページのキャッシュに影響します。
+ * HTTP 1.0ではこのクラスで作成されたCookieを使用するページはキャッシュされません。
+ * このクラスはHTTP 1.1で定義されたキャッシュコントロールをサポートしていません。
  *
- * <p>This class supports both the Version 0 (by Netscape) and Version 1 
- * (by RFC 2109) cookie specifications. By default, cookies are
- * created using Version 0 to ensure the best interoperability.
+ * <p>このクラスはバージョン0（Netscape準拠）とバージョン1（RFC2109準拠）の両方のCookie仕様をサポートします。
+ * デフォルトでは最高の相互運用性を確保するためにバージョン0のクッキーが作成されます。
+ * 
+ * <p>訳注：実際には2017年時点での最新のCookieの仕様であるRFC6265に従っているように見えます。
+ * 例えばhttpOnly属性はバージョン0、バージョン1には存在しません。
+ * ただし、version属性自体はRFC6265には存在しません。
  *
  * @author	Various
  */
@@ -140,32 +132,24 @@ public class Cookie implements Cloneable, Serializable {
     private boolean isHttpOnly = false;
 
     /**
-     * Constructs a cookie with the specified name and value.
+     * 指定された名前と値を持つCookieを生成します。
      *
-     * <p>The name must conform to RFC 2109. However, vendors may
-     * provide a configuration option that allows cookie names conforming
-     * to the original Netscape Cookie Specification to be accepted.
+     * <p>名前はRFC 2109に準拠していなければなりません。
+     * ただしベンダーはオリジナルのNetscapeのCookie仕様に準拠したCookie名を受け付ける設定オプションを提供することがあります。
      *
-     * <p>The name of a cookie cannot be changed once the cookie has
-     * been created.
+     * <p>Cookieは作成された後に名前を変更することはできません。
      *
-     * <p>The value can be anything the server chooses to send. Its
-     * value is probably of interest only to the server. The cookie's
-     * value can be changed after creation with the
-     * <code>setValue</code> method.
+     * <p>Cookieの値は作成した後に <code>setValue</code> メソッドで変更可能です。
      *
-     * <p>By default, cookies are created according to the Netscape
-     * cookie specification. The version can be changed with the 
-     * <code>setVersion</code> method.
+     * <p>デフォルトではCookieはNetscapeのCookie仕様に従って作成されます。
+     * バージョンは <code>setVersion</code> メソッドで変更できます。
      *
-     * @param name the name of the cookie
+     * @param name Cookieの名前
      *
-     * @param value the value of the cookie
+     * @param value Cookieの値
      *
-     * @throws IllegalArgumentException	if the cookie name is null or
-     * empty or contains any illegal characters (for example, a comma,
-     * space, or semicolon) or matches a token reserved for use by the
-     * cookie protocol
+     * @throws IllegalArgumentException	Cookieの名前がnullまたは空であるか、不正な文字（コンマ、スペース、セミコロンなど）が含まれている場合、
+     * もしくはCookieプロトコルで使用するために予約されているトークンと一致する場合
      *
      * @see #setValue
      * @see #setVersion
@@ -197,13 +181,12 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Specifies a comment that describes a cookie's purpose.
-     * The comment is useful if the browser presents the cookie 
-     * to the user. Comments
-     * are not supported by Netscape Version 0 cookies.
+     * Cookieの目的を説明するコメントを設定します。
+     * ブラウザがCookieをユーザに表示する場合に便利です。
+     * コメントはNetscapeのCookie仕様に準拠したVersion 0のCookieでサポートされていません。
+
      *
-     * @param purpose		a <code>String</code> specifying the comment 
-     *				to display to the user
+     * @param purpose		ユーザーに表示するコメントの <code>String</code>
      *
      * @see #getComment
      */
@@ -212,10 +195,9 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the comment describing the purpose of this cookie, or
-     * <code>null</code> if the cookie has no comment.
+     * このCookieの目的を説明するコメントを返します。Cookieにコメントがない場合は <code>null</code> を返します。
      *
-     * @return the comment of the cookie, or <code>null</code> if unspecified
+     * @return Cookieのコメント、存在しない場合は <code>null</code>
      *
      * @see #setComment
      */ 
@@ -225,17 +207,18 @@ public class Cookie implements Cloneable, Serializable {
     
     /**
      *
-     * Specifies the domain within which this cookie should be presented.
+     * このCookieを送信する必要があるドメインを設定します。
      *
-     * <p>The form of the domain name is specified by RFC 2109. A domain
-     * name begins with a dot (<code>.foo.com</code>) and means that
-     * the cookie is visible to servers in a specified Domain Name System
-     * (DNS) zone (for example, <code>www.foo.com</code>, but not 
-     * <code>a.b.foo.com</code>). By default, cookies are only returned
-     * to the server that sent them.
+     * <p>ドメイン名の形式はRFC 2109で規定されています。
+     * ドメイン名は <code>.foo.com</code> のように"."で始まります。
+     * この場合、Cookie は指定された Domain Name System (DNS) のゾーン内のサーバから見えるようになります。
+     * 例えば、www.foo.com からは見えるけれど、a.b.foo.com からは見えないというようにです。
+     * デフォルトではCookieは送信したサーバー自身にのみ返されます。
+     * 
+     * <p>訳注：RFC 6265 ではドメイン名は"."から始まる必要はありません。
+     * また、foo.com と指定した場合は www.foo.com からも a.b.foo.com からも参照できますので、先のJavaDocの説明は間違えていると考えられます。
      *
-     * @param domain the domain name within which this cookie is visible;
-     * form is according to RFC 2109
+     * @param domain Cookieが参照できるドメイン名;RFC 2109に従っている必要がある
      *
      * @see #getDomain
      */
@@ -244,11 +227,11 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Gets the domain name of this Cookie.
+     * このCookieに設定されたドメイン名を取得します。
      *
-     * <p>Domain names are formatted according to RFC 2109.
+     * <p>ドメイン名はRFC 2109に従ってフォーマットされています。
      *
-     * @return the domain name of this Cookie
+     * @return このCookieのドメイン名
      *
      * @see #setDomain
      */ 
@@ -257,22 +240,15 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Sets the maximum age in seconds for this Cookie.
+     * Cookieの最長の存続期間を設定します。
      *
-     * <p>A positive value indicates that the cookie will expire
-     * after that many seconds have passed. Note that the value is
-     * the <i>maximum</i> age when the cookie will expire, not the cookie's
-     * current age.
+     * <p>正の値はCookieが指定秒後に失効することを示します。
+     * 注意として、値はCookieの現在の経過時間ではなくCookieが期限切れになるまでの<i>最長の</i>経過時間です。
      *
-     * <p>A negative value means
-     * that the cookie is not stored persistently and will be deleted
-     * when the Web browser exits. A zero value causes the cookie
-     * to be deleted.
+     * <p>負の値はCookieが永続的に保存されずWebブラウザが終了したときに削除されることを意味します。
+     * 値が0の場合はクッキーは削除されます。
      *
-     * @param expiry		an integer specifying the maximum age of the
-     * 				cookie in seconds; if negative, means
-     *				the cookie is not stored; if zero, deletes
-     *				the cookie
+     * @param expiry		正の値の場合Cookieの最長の存続期間の秒数;負の数の場合はWebブラウザが終了したときに削除される;0の場合は消される
      *
      * @see #getMaxAge
      */
@@ -281,14 +257,11 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Gets the maximum age in seconds of this Cookie.
+     * Cookieの最長の存続期間を取得します。
      *
-     * <p>By default, <code>-1</code> is returned, which indicates that
-     * the cookie will persist until browser shutdown.
+     * デフォルトでは-1が返されます。これはブラウザが終了するまでCookieが保持されることを示します。
      *
-     * @return			an integer specifying the maximum age of the
-     *				cookie in seconds; if negative, means
-     *				the cookie persists until browser shutdown
+     * @return			正の値の場合Cookieの最長の存続期間の秒数;負の数の場合はWebブラウザが終了するまで保持されるという意味
      *
      * @see #setMaxAge
      */
@@ -297,20 +270,17 @@ public class Cookie implements Cloneable, Serializable {
     }
     
     /**
-     * Specifies a path for the cookie
-     * to which the client should return the cookie.
+     * クライアントがCookieを返す必要があるpathを指定します。
      *
-     * <p>The cookie is visible to all the pages in the directory
-     * you specify, and all the pages in that directory's subdirectories. 
-     * A cookie's path must include the servlet that set the cookie,
-     * for example, <i>/catalog</i>, which makes the cookie
-     * visible to all directories on the server under <i>/catalog</i>.
+     * <p>Cookieはここで指定したサブディレクトリを含むディレクトリ内のすべてのページで参照することができます。
+     * クッキーのpathはクッキーを設定したサーブレットを含む必要があります。
+     * 例えば<i>/catalog</i>と設定すると、そのCookieはサーバー上の<i>/catalog</i>以下のすべてのディレクトリで参照できます。
      *
-     * <p>Consult RFC 2109 (available on the Internet) for more
-     * information on setting path names for cookies.
+     * <p>Cookieのパス名を設定する方法の詳細についてはRFC 2109（インターネットで入手可能）を参照してください。
+     * 
+     * <p>訳注：RFC 6265（インターネットで入手可能）を参照したほうが良いでしょう。
      *
-     *
-     * @param uri		a <code>String</code> specifying a path
+     * @param uri		パス文字列
      *
      * @see #getPath
      */
@@ -319,12 +289,10 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the path on the server 
-     * to which the browser returns this cookie. The
-     * cookie is visible to all subpaths on the server.
+     * ブラウザがサーバーにCookieを返すpathを返します。
+     * Cookieはサーバー上のこのpathの配下すべてで参照できます。
      *
-     * @return		a <code>String</code> specifying a path that contains
-     *			a servlet name, for example, <i>/catalog</i>
+     * @return		サーブレットの名前を含むpathの文字列、例えば<i>/catalog</i>
      *
      * @see #setPath
      */ 
@@ -333,14 +301,12 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Indicates to the browser whether the cookie should only be sent
-     * using a secure protocol, such as HTTPS or SSL.
+     * HTTPSまたはSSLなどの安全なプロトコルを使用してのみCookieを送信する必要があるかどうかをブラウザに示します。
      *
-     * <p>The default value is <code>false</code>.
+     * <p>デフォルト値は <code>false</code> です。
      *
-     * @param flag if <code>true</code>, sends the cookie from the browser
-     * to the server only when using a secure protocol; if <code>false</code>,
-     * sent on any protocol
+     * @param flag もし <code>true</code>ならばブラウザは安全なプロトコルを使用してのみCookieを送信する; 
+     * もし <code>false</code>ならばどんなプロトコルでも送信する
      *
      * @see #getSecure
      */
@@ -349,12 +315,9 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns <code>true</code> if the browser is sending cookies
-     * only over a secure protocol, or <code>false</code> if the
-     * browser can send cookies using any protocol.
+     * ブラウザが安全なプロトコルを使用してのみCookieを送信する場合は<code>true</code>を返し、どんなプロトコルでもCookieを送信する場合は<code>false</code>を返します。
      *
-     * @return <code>true</code> if the browser uses a secure protocol,
-     * <code>false</code> otherwise
+     * @return ブラウザが安全なプロトコルを使うなら<code>true</code>、そうでないなら<code>false</code>。 
      *
      * @see #setSecure
      */
@@ -363,27 +326,25 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the name of the cookie. The name cannot be changed after
-     * creation.
+     * Cookieの名前を返します。名前は作成した後に変更することはできません。
      *
-     * @return the name of the cookie
+     * @return Cookieの名前
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Assigns a new value to this Cookie.
+     * Cookieに新しい値を設定します。
      * 
-     * <p>If you use a binary value, you may want to use BASE64 encoding.
+     * <p>もしあなたがバイナリデータを使いたいなら、BASE64でエンコードをしてみてもよいです。
+     * 
+     * <p>バージョン0のクッキーでは値に空白、鉤かっこ、丸かっこ、中かっこ、等号、コンマ、二重引用符、スラッシュ、疑問符、アットマーク、コロン、およびセミコロンを含めない方が良いです。
+     * 空の値は、すべてのブラウザで同じように動作しないことがあります。
+     * 
+     * <p>訳注：バージョン0はもう使われてないはずなのでこの記述は無視してよいです。
      *
-     * <p>With Version 0 cookies, values should not contain white 
-     * space, brackets, parentheses, equals signs, commas,
-     * double quotes, slashes, question marks, at signs, colons,
-     * and semicolons. Empty values may not behave the same way
-     * on all browsers.
-     *
-     * @param newValue the new value of the cookie
+     * @param newValue Cookieの新しい値
      *
      * @see #getValue
      */
@@ -392,9 +353,9 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Gets the current value of this Cookie.
+     * Cookieの現在の値を取得します。
      *
-     * @return the current value of this Cookie
+     * @return Cookieの現在の値
      *
      * @see #setValue
      */
@@ -403,15 +364,12 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Returns the version of the protocol this cookie complies 
-     * with. Version 1 complies with RFC 2109, 
-     * and version 0 complies with the original
-     * cookie specification drafted by Netscape. Cookies provided
-     * by a browser use and identify the browser's cookie version.
+     * このCookieが準拠しているCookieのプロトコルのバージョンを返します。
+     * バージョン1の場合はRFC 2109に準拠しています。
+     * バージョン0の場合は元のNetscapeの仕様に準拠しています。
+     * ブラウザが提供するCookieはブラウザのCookieのバージョンを使用して識別します。
      * 
-     * @return			0 if the cookie complies with the
-     *				original Netscape specification; 1
-     *				if the cookie complies with RFC 2109
+     * @return			Cookieが元のNetscapeの仕様に準拠している場合は0;CookieがRFC 2109に準拠している場合は1
      *
      * @see #setVersion
      */
@@ -420,17 +378,16 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Sets the version of the cookie protocol that this Cookie complies
-     * with.
+     * このCookieが準拠しているCookieのプロトコルのバージョンを設定します。
+     * 
+     * <p>バージョン0は、元のNetscape Cookie仕様に準拠しています。バージョン1はRFC 2109に準拠しています。
      *
-     * <p>Version 0 complies with the original Netscape cookie
-     * specification. Version 1 complies with RFC 2109.
+     * <p>RFC 2109はまだ誕生してから時間がたっていないので、バージョン1は実験的なものとみなしてください。本番サイトではまだ使用しないでください。
+     * 
+     * <p>訳注：RFC 2109は2017年現在はすでに失効しているぐらいに古い仕様です。
+     * 2017年現在有効なRFC 6265ではversion属性は存在しないので、この値がどう使用されるかはアプリケーションサーバーの仕様を確認したほうが良いでしょう。
      *
-     * <p>Since RFC 2109 is still somewhat new, consider
-     * version 1 as experimental; do not use it yet on production sites.
-     *
-     * @param v	0 if the cookie should comply with the original Netscape
-     * specification; 1 if the cookie should comply with RFC 2109
+     * @param v	Cookieが元のNetscapeの仕様に準拠する必要がある場合は0;CookieがRFC 2109に準拠する必要がある場合は1
      *
      * @see #getVersion
      */
@@ -460,8 +417,7 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Overrides the standard <code>java.lang.Object.clone</code> 
-     * method to return a copy of this Cookie.
+     * 標準の <code>java.lang.Object.clone</code> をオーバーライドしてこのCookieのコピーを返します。
      */
     public Object clone() {
         try {
@@ -472,18 +428,14 @@ public class Cookie implements Cloneable, Serializable {
     }
 
     /**
-     * Marks or unmarks this Cookie as <i>HttpOnly</i>.
+     * Cookie に <i>HttpOnly</i> 属性を設定します。
      *
-     * <p>If <tt>isHttpOnly</tt> is set to <tt>true</tt>, this cookie is
-     * marked as <i>HttpOnly</i>, by adding the <tt>HttpOnly</tt> attribute
-     * to it.
+     * <tt>isHttpOnly</tt>にtrueを設定すると、このCookieは <tt>HttpOnly</tt> 属性がつけられることで <i>HttpOnly</i> とマークされます。
      *
-     * <p><i>HttpOnly</i> cookies are not supposed to be exposed to
-     * client-side scripting code, and may therefore help mitigate certain
-     * kinds of cross-site scripting attacks.
+     * <p><i>HttpOnly</i> のCookieはクライアント側のスクリプトコードに公開されないことになっているため、
+     * 特定の種類のクロスサイトスクリプティング攻撃を緩和するのに役立ちます。
      *
-     * @param isHttpOnly true if this cookie is to be marked as
-     * <i>HttpOnly</i>, false otherwise
+     * @param isHttpOnly Cookieが <i>HttpOnly</i> の場合はture、それ以外の場合はfalse
      *
      * @since Servlet 3.0
      */
@@ -492,10 +444,9 @@ public class Cookie implements Cloneable, Serializable {
     }
  
     /**
-     * Checks whether this Cookie has been marked as <i>HttpOnly</i>.
+     * Cookieに <i>HttpOnly</i> 属性がついているかどうかを確認します。
      *
-     * @return true if this Cookie has been marked as <i>HttpOnly</i>,
-     * false otherwise
+     * @return trueならCookieに <i>HttpOnly</i> 属性がついている、そうでなければfalse
      *
      * @since Servlet 3.0
      */

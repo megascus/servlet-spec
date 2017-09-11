@@ -47,7 +47,7 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * このアノテーションでは {@link javax.servlet.ServletContainerInitializer
- * ServletContainerInitializer} が取り合えるクラスを宣言するために使用されます。
+ * ServletContainerInitializer} が取り扱えるクラスを宣言するために使用されます。
  *
  * @see javax.servlet.ServletContainerInitializer
  *
@@ -61,10 +61,9 @@ public @interface HandlesTypes {
      * {@link javax.servlet.ServletContainerInitializer
      * ServletContainerInitializer} が関心を示しているクラス。
      *
-     * <p><tt>ServletContainerInitializer</tt>の実装でこのアノテーションが付けられる場合、
+     * <p><tt>ServletContainerInitializer</tt>の実装でこのアノテーションが付けられた場合、
      * サーブレットコンテナはこのアノテーションで列挙されたクラスの、サブクラス、実装、
-     * アノテーションが付けられたクラスをServletContainerInitializerの
-     * {@link javax.servlet.ServletContainerInitializer#onStartup}メソッドに渡さなければいけません。
+     * アノテーションが付けられたクラスを{@link javax.servlet.ServletContainerInitializer#onStartup}メソッドに渡さなければいけません。
      * (もし見つからない場合はnullを代わりに渡す必要があります。)
      * 
      * @return {@link javax.servlet.ServletContainerInitializer
