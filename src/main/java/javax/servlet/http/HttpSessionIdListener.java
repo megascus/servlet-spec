@@ -43,17 +43,13 @@ package javax.servlet.http;
 import java.util.EventListener;
 
 /**
- * Interface for receiving notification events about HttpSession
- * id changes.
- *
- * <p>In order to receive these notification events, the implementation
- * class must be either declared in the deployment descriptor of the web
- * application, annotated with {@link javax.servlet.annotation.WebListener},
- * or registered via one of the addListener methods defined on
- * {@link javax.servlet.ServletContext}.
- *
- * <p>The order in which implementations of this interface are invoked is
- * unspecified.
+ * HttpSessionのIDが変更されたイベントを受け取るためのインターフェースです。
+ * 
+ * <p>通知イベントを受け取るためには、実装クラスをWebアプリケーションのデプロイメントディスクリプタで宣言するか、
+ * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
+ * {@link javax.servlet.ServletContext}で定義されているaddListenerメソッドの1つを使って登録する必要があります。
+ * 
+ * <p>このインタフェースの実装が呼び出される順序は定義されていません。
  *
  * @since Servlet 3.1
  */
@@ -61,13 +57,11 @@ import java.util.EventListener;
 public interface HttpSessionIdListener extends EventListener {
 
     /**
-     * Receives notification that session id has been changed in a
-     * session.
+     * セッションIDが変更された通知を受け取ります。
      *
-     * @param event the HttpSessionBindingEvent containing the session
-     * and the name and (old) value of the attribute that was replaced
+     * @param event セッションと、セッションから変更された属性の名前と(古い)値を含むHttpSessionBindingEvent
      *
-     * @param oldSessionId the old session id
+     * @param oldSessionId 古いセッションのID
      */
     public void sessionIdChanged(HttpSessionEvent event, String oldSessionId);
 

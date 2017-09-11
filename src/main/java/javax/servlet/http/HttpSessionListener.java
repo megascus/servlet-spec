@@ -61,19 +61,14 @@ package javax.servlet.http;
 import java.util.EventListener;
 
 /** 
- * Interface for receiving notification events about HttpSession
- * lifecycle changes.
+ * HttpSessionのライフサイクルが変更された通知を受け取るためのインターフェースです。
+ * 
+ * <p>通知イベントを受け取るためには、実装クラスをWebアプリケーションのデプロイメントディスクリプタで宣言するか、
+ * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
+ * {@link javax.servlet.ServletContext}で定義されているaddListenerメソッドの1つを使って登録する必要があります。
  *
- * <p>In order to receive these notification events, the implementation
- * class must be either declared in the deployment descriptor of the web
- * application, annotated with {@link javax.servlet.annotation.WebListener},
- * or registered via one of the addListener methods defined on
- * {@link javax.servlet.ServletContext}.
- *
- * <p>Implementations of this interface are invoked at their
- * {@link #sessionCreated} method in the order in which they have been
- * declared, and at their {@link #sessionDestroyed} method in reverse
- * order.
+ * <p>このインタフェースの実装は{@link #sessionCreated}メソッドは宣言された順に、 
+ * {@link #sessionDestroyed}メソッドは逆の順序で呼び出されます。
  *
  * @see HttpSessionEvent
  *
@@ -81,23 +76,23 @@ import java.util.EventListener;
  */
 public interface HttpSessionListener extends EventListener {
     
-    /** 
-     * Receives notification that a session has been created.
+    /**
+     * セッションが作成された通知を受け取ります。 
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何も行いません。
      *
-     * @param se the HttpSessionEvent containing the session
+     * @param se セッションを含む HttpSessionEvent
      */
     default public void sessionCreated(HttpSessionEvent se) {}
     
     /** 
-     * Receives notification that a session is about to be invalidated.
+     * セッションが無効化された通知を受け取ります。   
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何も行いません。
      *
-     * @param se the HttpSessionEvent containing the session
+     * @param se セッションを含む HttpSessionEvent
      */
     default public void sessionDestroyed(HttpSessionEvent se) {}
 }
