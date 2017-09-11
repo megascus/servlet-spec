@@ -260,7 +260,7 @@ public interface HttpSession {
      * セッションに指定された名前で存在するオブジェクトがない場合はこのメソッドは何も行いません。
      * 
      * <p>オブジェクトが<code>HttpSessionBindingListener</code>を実装する場合はこのメソッドの実行後に
-     * コンテナは<code>HttpSessionBindingListener.valueUnbound</codeを呼び出します。 
+     * コンテナは<code>HttpSessionBindingListener.valueUnbound</code>を呼び出します。 
      * 次にコンテナはWebアプリケーション内の<code>HttpSessionAttributeListener</code>に通知します。
      * 
      * @param name				セッションから取り除くオブジェクトの名前
