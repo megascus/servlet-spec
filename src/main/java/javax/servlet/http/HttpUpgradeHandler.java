@@ -43,6 +43,8 @@ package javax.servlet.http;
 /**
  * このインターフェイスはアップグレードプロトコルの処理をカプセル化します。
  * HttpUpgradeHandlerの実装はサーブレットコンテナがアップグレードプロトコルの処理と通信できるようにします。
+ * 
+ * 訳注：このクラスは主にWebSocketを実行する際に使用されます。
  *
  * @since Servlet 3.1
  */

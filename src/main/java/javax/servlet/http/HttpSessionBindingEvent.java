@@ -59,16 +59,11 @@
 package javax.servlet.http;
 
 /**
+ * このタイプのイベントは{@link HttpSessionBindingListener}を実装するオブジェクトがセッションに設定や削除された時に送信されるか、
+ * セッションの値が設定、削除、もしくは置換されたときにデプロイメントディスクリプタで設定された{@link HttpSessionAttributeListener}に送信されます。
  *
- * Events of this type are either sent to an object that implements
- * {@link HttpSessionBindingListener} when it is bound or unbound from a
- * session, or to a {@link HttpSessionAttributeListener} that has been
- * configured in the deployment descriptor when any attribute is bound, unbound
- * or replaced in a session.
- *
- * <p>The session binds the object by a call to
- * <code>HttpSession.setAttribute</code> and unbinds the object
- * by a call to <code>HttpSession.removeAttribute</code>.
+ * <p>セッションは{@link HttpSession#setAttribute(java.lang.String,java.lang.Object)}の呼び出しによってオブジェクトを設定し、 
+ * {@link HttpSession#removeAttribute(java.lang.String)}の呼び出しによってオブジェクトを削除します。
  *
  * @author Various
  * 
@@ -88,14 +83,13 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
     private Object value;
     
     /**
+     * セッションに登録、または削除されたことをオブジェクトに通知するイベントを作成します。
+     * イベントを受け取るにはオブジェクトが{@link HttpSessionBindingListener}を実装する必要があります。
+     * 
+     * <p>訳注：クラスのJavaDocにも書いてある通り{@link HttpSessionAttributeListener}を実装したクラスでもイベントを受け取れます。
      *
-     * Constructs an event that notifies an object that it
-     * has been bound to or unbound from a session. 
-     * To receive the event, the object must implement
-     * {@link HttpSessionBindingListener}.
-     *
-     * @param session the session to which the object is bound or unbound
-     * @param name the name with which the object is bound or unbound
+     * @param session オブジェクトが登録、削除されたセッション
+     * @param name オブジェクトが登録、削除された名前
      *
      * @see #getName
      * @see #getSession
@@ -106,15 +100,14 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
     }
     
     /**
+     * セッションに登録、または削除されたことをオブジェクトに通知するイベントを作成します。
+     * イベントを受け取るにはオブジェクトが{@link HttpSessionBindingListener}を実装する必要があります。
+     * 
+     * <p>訳注：クラスのJavaDocにも書いてある通り{@link HttpSessionAttributeListener}を実装したクラスでもイベントを受け取れます。
      *
-     * Constructs an event that notifies an object that it
-     * has been bound to or unbound from a session. 
-     * To receive the event, the object must implement
-     * {@link HttpSessionBindingListener}.
-     *
-     * @param session the session to which the object is bound or unbound
-     * @param name the name with which the object is bound or unbound
-     * @param value the object that is bound or unbound
+     * @param session オブジェクトが登録、削除されたセッション
+     * @param name オブジェクトが登録、削除された名前
+     * @param value 登録、削除されたオブジェクト
      *
      * @see #getName
      * @see #getSession
@@ -125,32 +118,33 @@ public class HttpSessionBindingEvent extends HttpSessionEvent {
         this.value = value;
     }
     
-    /** Return the session that changed. */
+    /** 変更されたセッションを返します。 */
     @Override
     public HttpSession getSession () { 
         return super.getSession();
     }
  
     /**
-     * Returns the name with which the attribute is bound to or
-     * unbound from the session.
+     * オブジェクトがセッションに登録、削除された名前を返します。
      *
-     * @return a string specifying the name with which
-     *         the object is bound to or unbound from the session
+     * @return オブジェクトがセッションに登録、削除された名前を示す文字列
      */
     public String getName() {
         return name;
     }
     
     /**
+     * 登録、削除、または置換された属性の値を返します。 
+     * 属性が追加された場合は属性の値です。
+     * 属性が削除された場合は削除された値です。
+     * 属性が置き換えられた場合は古い値です。
      * Returns the value of the attribute that has been added, removed or
      * replaced. If the attribute was added (or bound), this is the value of the
      * attribute. If the attribute was removed (or unbound), this is the value
      * of the removed attribute. If the attribute was replaced, this is the old
      * value of the attribute.
      *
-     * @return the value of the attribute that has been added, removed
-     * or replaced
+     * @return 登録、削除、または置換された属性の値
      *
      * @since Servlet 2.3
      */
