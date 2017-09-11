@@ -65,13 +65,11 @@ import java.util.EventListener;
  
 
 /**
- * Causes an object to be notified when it is bound to
- * or unbound from a session. The object is notified
- * by an {@link HttpSessionBindingEvent} object. This may be as a result
- * of a servlet programmer explicitly unbinding an attribute from a session,
- * due to a session being invalidated, or due to a session timing out.
+ * セッションに追加または削除されたときにオブジェクトに通知させます。
+ * オブジェクトは{@link HttpSessionBindingEvent}オブジェクトによって通知されます。
+ * これは、サーブレットのプログラマがセッションから属性を削除したり、セッションが無効化されたり、セッションがタイムアウトしたりした時に発生してもよいです。
  *
- *
+ * 訳注：このクラスは実際にセッションに追加するクラスに実装させます。
  * @author		Various
  *
  * @see HttpSession
@@ -82,15 +80,12 @@ import java.util.EventListener;
 public interface HttpSessionBindingListener extends EventListener {
 
     /**
-     *
-     * Notifies the object that it is being bound to
-     * a session and identifies the session.
+     * セッションに追加されたことをオブジェクトに通知し、セッションを識別します。
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何も行いません。
      * 
-     * @param event		the event that identifies the
-     *				session 
+     * @param event		セッションを識別するイベント
      *
      * @see #valueUnbound
      *
@@ -98,15 +93,12 @@ public interface HttpSessionBindingListener extends EventListener {
     default public void valueBound(HttpSessionBindingEvent event) {}
 
     /**
-     *
-     * Notifies the object that it is being unbound
-     * from a session and identifies the session.
+     * セッションから削除されたことをオブジェクトに通知し、セッションを識別します。
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何も行いません。
      *
-     * @param event		the event that identifies
-     *				the session 
+     * @param event		セッションを識別するイベント
      *	
      * @see #valueBound
      *
