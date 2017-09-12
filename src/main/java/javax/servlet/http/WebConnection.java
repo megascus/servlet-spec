@@ -45,29 +45,28 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
 
 /**
- * This interface encapsulates the connection for an upgrade request.
- * It allows the protocol handler to send service requests and status
- * queries to the container.
+ * このインターフェイスは、アップグレードリクエストのコネクションをカプセル化します。 
+ * これによりプロトコルハンドラはサービスリクエストとステータスクエリをコンテナに送信できます。
  *
  * @since Servlet 3.1
  */
 
 public interface WebConnection extends AutoCloseable {
     /**
-     * Returns an input stream for this web connection.
+     * このWebコネクションの入力ストリームを返します。
      *
-     * @return a ServletInputStream for reading binary data
+     * @return バイナリデータを読み込むためのServletInputStream
      *
-     * @exception IOException if an I/O error occurs
+     * @exception IOException I/Oエラーが発生した
      */
     public ServletInputStream getInputStream() throws IOException;
 
     /**
-     * Returns an output stream for this web connection.
+     * このWebコネクションの出力ストリームを返します。
      *
-     * @return a ServletOutputStream for writing binary data
+     * @return バイナリデータを書き込むためのServletOutputStream
      *
-     * @exception IOException if an I/O error occurs
+     * @exception IOException I/Oエラーが発生した
      */
     public ServletOutputStream getOutputStream() throws IOException;
 }
