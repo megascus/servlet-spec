@@ -44,15 +44,14 @@ import java.io.*;
 import java.util.*;
 
 /**
- * <p> This class represents a part or form item that was received within a
- * <code>multipart/form-data</code> POST request.
+ * <p>このクラスはPOSTリクエストの<code>multipart/form-data</code>内で受け取られたパートまたはフォームのアイテムを表します。
  * 
  * @since Servlet 3.0
  */
 public interface Part {
 
     /**
-     * Gets the content of this part as an <tt>InputStream</tt>
+     * パートの内容を <tt>InputStream</tt> として取得します。
      * 
      * @return The content of this part as an <tt>InputStream</tt>
      * @throws IOException If an error occurs in retrieving the content
@@ -61,113 +60,96 @@ public interface Part {
     public InputStream getInputStream() throws IOException;
 
     /**
-     * Gets the content type of this part.
+     * このパートのコンテンツタイプを取得します。
      *
-     * @return The content type of this part.
+     * @return このパートのコンテンツタイプ
      */
     public String getContentType();
 
     /**
-     * Gets the name of this part
+     * パートの名前を取得します。
      *
-     * @return The name of this part as a <tt>String</tt>
+     * @return パートの名前の <tt>String</tt>
      */
     public String getName();
 
     /**
-     * Gets the file name specified by the client
+     * クライアントから示されたファイルの名前を取得します。
      *
-     * @return the submitted file name
+     * @return サブミットされたファイル名
      *
      * @since Servlet 3.1
      */
     public String getSubmittedFileName();
 
     /**
-     * Returns the size of this fille.
+     * このファイルのサイズを返します。
      *
-     * @return a <code>long</code> specifying the size of this part, in bytes.
+     * @return このパートのバイト長を示す<code>long</code>
      */
     public long getSize();
 
     /**
-     * A convenience method to write this uploaded item to disk.
+     * このアップロードされたアイテムをディスクに書き込むための便利メソッドです。
      * 
-     * <p>This method is not guaranteed to succeed if called more than once for
-     * the same part. This allows a particular implementation to use, for
-     * example, file renaming, where possible, rather than copying all of the
-     * underlying data, thus gaining a significant performance benefit.
+     * <p>このメソッドは同じパートに対して複数回呼び出された場合の成功は保証されません。
+     * これにより特定の実装では、例えば可能であれば元のすべてのデータをコピーするのではなくファイルの名前変更を使用することでパフォーマンス上のメリットが得られます。
      *
-     * @param fileName The location into which the uploaded part should
-       be stored. The value may be a file name or a path.  The actual
-       location of the file in the filesystem is relative to {@link
-       javax.servlet.MultipartConfigElement#getLocation()}.  Absolute
-       paths are used as provided and are relative to
-       <code>getLocation()</code>.  Note: that this is a system
-       dependent string and URI notation may not be acceptable on all
-       systems. For portability, this string should be generated with
-       the File or Path APIs.
+     * @param fileName アップロードされたパーツを格納する必要のある場所。
+     * 値はファイル名もしくはパスのどちらかでよいです。
+     * ファイルシステム内のファイルの実際の位置は、 {@link javax.servlet.MultipartConfigElement#getLocation()}からの相対パスです。 
+     * 絶対パスは指定されたとおりに使用され、 <code>getLocation()</code>からの相対パスです。(訳注：JavaDocが間違っている？相対パスではありませんというのが正しそうな気がする)
+     * 
+     *  注意：これはシステムに依存する文字列であり、URI表記はすべてのシステムで受け入れられなくてもよいです。
+     * 移植性のためにはこの文字列はFileもしくはPath APIを使用して生成する必要があります。
      *
-     * @throws IOException if an error occurs.
+     * @throws IOException エラーが起きた場合
      */
     public void write(String fileName) throws IOException;
 
     /**
-     * Deletes the underlying storage for a file item, including deleting any
-     * associated temporary disk file.
+     * 関連する一時ファイルなど、ストレージ上に存在するファイルアイテムを削除します。
      *
-     * @throws IOException if an error occurs.
+     * @throws IOException エラーが起きた場合
      */
     public void delete() throws IOException;
 
     /**
+     * MIMEヘッダーから指定された値を<code>String</code>として返します。
+     * パートが指定された名前をヘッダーに持たない場合、このメソッドは<code>null</code>を返します。
+     * パートが同じ名前で重複したヘッダーを持っていた場合、このメソッドは最初のヘッダーを返します。
+     * ヘッダー名は大文字と小文字を区別しません。
+     * 任意のリクエストのヘッダーでこのメソッドを使用できます。
      *
-     * Returns the value of the specified mime header
-     * as a <code>String</code>. If the Part did not include a header
-     * of the specified name, this method returns <code>null</code>.
-     * If there are multiple headers with the same name, this method
-     * returns the first header in the part.
-     * The header name is case insensitive. You can use
-     * this method with any request header.
+     * @param name		ヘッダー名を指定する <code>String</code>
      *
-     * @param name		a <code>String</code> specifying the
-     *				header name
-     *
-     * @return			a <code>String</code> containing the
-     *				value of the requested
-     *				header, or <code>null</code>
-     *				if the part does not
-     *				have a header of that name
+     * @return			要求されたヘッダーの値を含む<code>String</code>、
+     *              パートにその名前のヘッダーがない場合は<code>null</code>
      */
     public String getHeader(String name);
 
     /**
-     * Gets the values of the Part header with the given name.
+     * 指定された名前でパートのヘッダーの値を取得します。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>Part</code>.
+     * <p>返された<code>Collection</code>に対するいかなる変更もこの<code>Part</code>に影響を与えてはいけません。
      *
-     * <p>Part header names are case insensitive.
+     * <p>パートのヘッダー名は大文字小文字を区別しません。
      *
-     * @param name the header name whose values to return
+     * @param name 値が返されるヘッダー名
      *
-     * @return a (possibly empty) <code>Collection</code> of the values of
-     * the header with the given name
+     * @return ヘッダーの指定された名前の値の(空の可能性のある) <code>Collection</code>
      */
     public Collection<String> getHeaders(String name);
 
     /**
-     * Gets the header names of this Part.
+     * このパートのヘッダーの名前を取得します。
      *
-     * <p>Some servlet containers do not allow
-     * servlets to access headers using this method, in
-     * which case this method returns <code>null</code>
+     * <p>いくつかのサーブレットコンテナはこのメソッドを使用してヘッダーにアクセスする許可しません。
+     * その場合このメソッドは<code>null</code>を返します。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>Part</code>.
+     * <p>返された<code>Collection</code>に対するいかなる変更もこの<code>Part</code>に影響を与えてはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the header
-     * names of this Part
+     * @return このパートのヘッダー名の(空の可能性のある) <code>Collection</code>
      */
     public Collection<String> getHeaderNames();
 
