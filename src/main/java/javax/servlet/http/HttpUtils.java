@@ -65,11 +65,8 @@ import java.util.StringTokenizer;
 import java.io.IOException;
 
 /**
- * @deprecated		As of Java(tm) Servlet API 2.3. 
- *			These methods were only useful
- *			with the default encoding and have been moved
- *			to the request interfaces.
- *
+ * @deprecated		このインターフェースはServlet API version 2.3で非推奨です。
+ *          これらのメソッドはデフォルトのエンコーディングの時のみ有用で、リクエストのいんらーフェースに移されました。
  */
 @Deprecated
 public class HttpUtils {
@@ -81,38 +78,25 @@ public class HttpUtils {
         
     
     /**
-     * Constructs an empty <code>HttpUtils</code> object.
+     * 空の<code>HttpUtils</code>のオブジェクトを作成します。
      */
     public HttpUtils() {}
     
 
     /**
-     * Parses a query string passed from the client to the
-     * server and builds a <code>HashTable</code> object
-     * with key-value pairs. 
-     * The query string should be in the form of a string
-     * packaged by the GET or POST method, that is, it
-     * should have key-value pairs in the form <i>key=value</i>,
-     * with each pair separated from the next by a &amp; character.
+     * クライアントからサーバーに渡されたクエリ文字列を解析し、キーと値のペアを持つ<code>HashTable</code>オブジェクトを生成します。
+     * クエリ文字列は、GETメソッドまたはPOSTメソッドによって提供された文字列の形式でなければなりません。つまり、<i>key=value</i>,の形式でキーと値のペアを持つ必要があります。各ペアは&amp;で区切ります。
      *
-     * <p>A key can appear more than once in the query string
-     * with different values. However, the key appears only once in 
-     * the hashtable, with its value being
-     * an array of strings containing the multiple values sent
-     * by the query string.
-     * 
-     * <p>The keys and values in the hashtable are stored in their
-     * decoded form, so
-     * any + characters are converted to spaces, and characters
-     * sent in hexadecimal notation (like <i>%xx</i>) are
-     * converted to ASCII characters.
+     * <p>キーはクエリ文字列に違う値を持ちつつ複数回現れることがあります。
+     * しかしながらハッシュテーブルではキーは1回だけ表示され、値はクエリ文字列によって送信された複数の値を含む配列になります。
      *
-     * @param s		a string containing the query to be parsed
+     * <p>ハッシュテーブルのキーと値はデコードされた形式で格納されているので、+文字はスペースに変換され、(<i>%xx</i>のような)16進表記で送られた文字はASCII文字に変換されます。
      *
-     * @return		a <code>HashTable</code> object built
-     * 			from the parsed key-value pairs
+     * @param s		解析するクエリを含んだ文字列
      *
-     * @exception IllegalArgumentException if the query string is invalid
+     * @return		解析されたキーと値のペアで構築された <code>HashTable</code>
+     *
+     * @exception IllegalArgumentException クエリ文字列が不正だった
      */
     public static Hashtable<String, String[]> parseQueryString(String s) {
 
@@ -154,39 +138,21 @@ public class HttpUtils {
 
 
     /**
+     * クライアントがHTTP POSTメソッドと<i>application/x-www-form-urlencoded</i> MIME形式を使用してサーバーに送信するHTMLフォームからのデータを解析します。
      *
-     * Parses data from an HTML form that the client sends to 
-     * the server using the HTTP POST method and the 
-     * <i>application/x-www-form-urlencoded</i> MIME type.
+     * <p>POSTメソッドによって送信されるデータにはキーと値のペアが含まれます。
+     * キーはPOSTデータに違う値を持ちつつ複数回現れることがあります。 
+     * しかしながらハッシュテーブルではキーは1回だけ表示され、値ははPOSTメソッドによって送信された複数の値を含む配列になります。
      *
-     * <p>The data sent by the POST method contains key-value
-     * pairs. A key can appear more than once in the POST data
-     * with different values. However, the key appears only once in 
-     * the hashtable, with its value being
-     * an array of strings containing the multiple values sent
-     * by the POST method.
+     * <p>ハッシュテーブルのキーと値はデコードされた形式で格納されているので、+文字はスペースに変換され、(<i>%xx</i>のような)16進表記で送られた文字はASCII文字に変換されます。
      *
-     * <p>The keys and values in the hashtable are stored in their
-     * decoded form, so
-     * any + characters are converted to spaces, and characters
-     * sent in hexadecimal notation (like <i>%xx</i>) are
-     * converted to ASCII characters.
+     * @param len	このメソッドにわたす<code>ServletInputStream</code>のオブジェクトの文字の長さを指定する整数
      *
-     * @param len	an integer specifying the length,
-     *			in characters, of the 
-     *			<code>ServletInputStream</code>
-     *			object that is also passed to this
-     *			method
+     * @param in	クライアントから送信されたデータを含む <code>ServletInputStream</code> のオブジェクト
      *
-     * @param in	the <code>ServletInputStream</code>
-     *			object that contains the data sent
-     *			from the client
-     * 
-     * @return		a <code>HashTable</code> object built
-     *			from the parsed key-value pairs
+     * @return		解析されたキーと値のペアで構築された <code>HashTable</code>
      *
-     * @exception IllegalArgumentException if the data
-     * sent by the POST method is invalid
+     * @exception IllegalArgumentException POSTメソッドによって送られたデータが不正だった
      */
     public static Hashtable<String, String[]> parsePostData(int len, 
                 ServletInputStream in) {
@@ -277,25 +243,16 @@ public class HttpUtils {
 
 
     /**
-     *
-     * Reconstructs the URL the client used to make the request,
-     * using information in the <code>HttpServletRequest</code> object.
-     * The returned URL contains a protocol, server name, port
-     * number, and server path, but it does not include query
-     * string parameters.
+     * <code>HttpServletRequest</code>のオブジェクトの情報を使用してクライアントがリクエストを行うために作ったURLを再構成します。
+     * 返されるURLにはプロトコルやサーバー名、ポート番号とサーバーのパスが含まれますが、クエリパラメータは含まれません。
      * 
-     * <p>Because this method returns a <code>StringBuffer</code>,
-     * not a string, you can modify the URL easily, for example,
-     * to append query parameters.
+     * <p>このメソッドは文字列ではなく<code>StringBuffer</code>を返すので、例えばクエリパラメータを追加する等、簡単にURLを変更することができます。
      *
-     * <p>This method is useful for creating redirect messages
-     * and for reporting errors.
+     * <p>このメソッドはメッセージをリダイレクトしたりエラーを報告するのに役立ちます。  
      *
-     * @param req	a <code>HttpServletRequest</code> object
-     *			containing the client's request
+     * @param req	クライアントのリクエストを含む <code>HttpServletRequest</code> のオブジェクト
      * 
-     * @return		a <code>StringBuffer</code> object containing
-     *			the reconstructed URL
+     * @return		再構築されたURLを含む <code>StringBuffer</code> のオブジェクト
      */
     public static StringBuffer getRequestURL (HttpServletRequest req) {
         StringBuffer url = new StringBuffer();
