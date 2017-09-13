@@ -51,11 +51,10 @@ import java.util.*;
 public interface Part {
 
     /**
-     * パートの内容を <tt>InputStream</tt> として取得します。
+     * パートのコンテンツを <tt>InputStream</tt> として取得します。
      * 
-     * @return The content of this part as an <tt>InputStream</tt>
-     * @throws IOException If an error occurs in retrieving the content
-     * as an <tt>InputStream</tt>
+     * @return パートのコンテンツの <tt>InputStream</tt> 
+     * @throws IOException コンテンツを<tt>InputStream</tt> として取得する際にエラーが発生した場合
      */
     public InputStream getInputStream() throws IOException;
 
