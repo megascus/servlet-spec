@@ -41,35 +41,29 @@
 package javax.servlet.http;
 
 /**
- * <p>Enumeration of Servlet mapping types.</p>
+ * <p>サーブレットマッピングタイプのenumです。</p>
  *
  * @since 4.0
  */
 public enum MappingMatch {
     /**
-     * <p>This is used when the mapping was achieved
-     * with an exact match to the application's context root.</p>
+     * <p>これはマッピングがアプリケーションのコンテキストルートと完全に一致したときに使用されます。</p>
      */
     CONTEXT_ROOT,
     /**
-     * <p>This is used when the mapping was achieved
-     * with an exact match to the default servlet of the application, the '{@code /}'
-     * character.</p>
+     * <p>これはマッピングがアプリケーションのデフォルトサーブレット、 '{@code /}'の文字と完全に一致したときに使用されます。</p>
      */
     DEFAULT,
     /**
-     * <p>This is used when the mapping was achieved
-     * with an exact match to the incoming request.</p>
+     * <p>これはマッピングがリクエストしたパスと完全に一致したときに使用されます。</p>
      */
     EXACT,
     /**
-     * <p>This is used when the mapping was achieved
-     * using an extension, such as "{@code *.xhtml}".</p>
+     * <p>これはマッピングが"{@code *.xhtml}"のような拡張子指定と一致したときに使用されます。</p>
      */
     EXTENSION,
     /**
-     * <p>This is used when the mapping was achieved
-     * using a path, such as "{@code /faces/*}".</p>
+     * <p>これはマッピングが"{@code /faces/*}"のようなパス指定と一致したときに使用されます。</p>
      */
     PATH
 }
