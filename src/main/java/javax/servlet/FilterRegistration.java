@@ -43,18 +43,16 @@ package javax.servlet;
 import java.util.*;
 
 /**
- * Interface through which a {@link Filter} may be further configured.
+ * {@link Filter} を細かく構成するためのインタフェース。
  *
  * @since Servlet 3.0
  */
 public interface FilterRegistration extends Registration {
 
     /**
-     * Adds a filter mapping with the given servlet names and dispatcher
-     * types for the Filter represented by this FilterRegistration.
+     * このFilterRegistrationによって表されるFilterに対して、指定されたサーブレット名とディスパッチャータイプを持つフィルターマッピングを追加します。
      *
-     * <p>Filter mappings are matched in the order in which they were
-     * added.
+     * <p>フィルターマッピングは追加された順番で一致します。
      * 
      * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
      * given filter mapping will be considered after or before any
@@ -65,15 +63,14 @@ public interface FilterRegistration extends Registration {
      * adds to the effects of the former.
      *
      * @param dispatcherTypes the dispatcher types of the filter mapping,
-     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
+     * nullの場合はデフォルトとして <tt>DispatcherType.REQUEST</tt>が使用されます。
      * @param isMatchAfter true if the given filter mapping should be matched
      * after any declared filter mappings, and false if it is supposed to
      * be matched before any declared filter mappings of the ServletContext
      * from which this FilterRegistration was obtained
-     * @param servletNames the servlet names of the filter mapping
+     * @param servletNames フィルターマッピングのサーブレット名
      *
-     * @throws IllegalArgumentException if <tt>servletNames</tt> is null or
-     * empty
+     * @throws IllegalArgumentException <tt>servletNames</tt>がnullもしくは空の場合
      * @throws IllegalStateException if the ServletContext from which this
      * FilterRegistration was obtained has already been initialized
      */

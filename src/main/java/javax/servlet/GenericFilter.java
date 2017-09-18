@@ -55,7 +55,7 @@ import java.util.ResourceBundle;
  * これはライフサイクルメソッドのうち <code>init</code> と <code>destroy</code> の単純な(何もしない)バージョンと、
  * <code>FilterConfig</code> インターフェースのメソッドを提供します。
  * 
- * <p><code>GenericFilter</code> を継承してフィルターを作成する場合はabstractなcode>doFilter</code>メソッドだけを実装する必要があります。
+ * <p><code>GenericFilter</code> を継承してフィルターを作成する場合はabstractな<code>doFilter</code>メソッドだけを実装する必要があります。
  *
  * @author 	Various
  * 
@@ -191,7 +191,7 @@ public abstract class GenericFilter
     /**
      * <p><code>super.init(config)</code>を呼ばなくてもオーバーライドできるようにするための便利メソッドです。</p>
      *
-     * <p>{@link #init(ServletConfig)}をオーバーライドしなくても
+     * <p>{@link #init(FilterConfig)}をオーバーライドしなくても
      * 単にこのメソッドをオーバーライドすれば <code>GenericFilter.init(FilterConfig config)</code> によって呼び出されます。
      * <code>FilterConfig</code> オブジェクトは {@link #getFilterConfig} から引き続き取得できます。
      * 
