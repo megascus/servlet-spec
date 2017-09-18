@@ -63,18 +63,18 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 /**
- * 総称的なプロトコルに依存しないサーブレットを表します。
+ * 総称的なプロトコルに依存しないサーブレットを定義します。
  * Webで使用するHTTPのサーブレットを作成したい場合は {@link javax.servlet.http.HttpServlet} を継承してください。
  *
  * <p><code>GenericServlet</code> は <code>Servlet</code>と <code>ServletConfig</code> の二つのインターフェースを実装します。 
- * <code>GenericServlet</code> を直接継承してもよいですが、<code>HttpServlet</code> などのプロトコルに依存したサブクラスを継承するのが一般的です。
+ * <code>GenericServlet</code> を直接継承してもよいですが、<code>HttpServlet</code> などのプロトコルに依存したサブクラスを継承するのがより一般的です。
  *
  * <p><code>GenericServlet</code> はサーブレットを簡単に作成できるようにします。
  * これはライフサイクルメソッドのうち<code>init</code> と <code>destroy</code> の単純な(何もしない)バージョンと、
  * <code>ServletConfig</code> インターフェースのメソッドを提供します。
  * <code>GenericServlet</code> は <code>ServletContext</code> インターフェースに定義された <code>log</code> メソッドも実装しています。
  *
- * <p><code>GenericServlet</code> を継承してサーブレットを作成する場合はabstractな<code>service</code>だけ実装する必要があります。
+ * <p><code>GenericServlet</code> を継承してサーブレットを作成する場合はabstractな<code>service</code>メソッドだけを実装する必要があります。
  *
  * @author 	Various
  */
@@ -91,7 +91,7 @@ public abstract class GenericServlet
     
 
     /**
-     * 何もしません。すべてのサーブレットの初期化は <code>init</code> メソッドで行われます。
+     * 何もしません。サーブレットのすべての初期化は <code>init</code> メソッドで行われます。
      *
      */
     public GenericServlet() { }
@@ -109,7 +109,7 @@ public abstract class GenericServlet
     
     /**
      * 名前付き初期化パラメーターに含まれる値の<code>String</code>を返します。
-     * 存在しない場合は<code>null</code>が帰ります。
+     * 存在しない場合は<code>null</code>を返します。
      * {@link ServletConfig#getInitParameter}を参照してください。
      *
      * <p>このメソッドは簡便さのために提供されています。
@@ -168,7 +168,7 @@ public abstract class GenericServlet
      * {@link ServletConfig#getServletContext}を参照してください。
      *
      * <p>このメソッドは簡便さのために提供されています。
-     * これはサーブレットの <code>ServletConfig</code> のオブジェクトからパラメーター名を取得します。
+     * これはサーブレットの <code>ServletConfig</code> のオブジェクトからコンテキストを取得します。
      *
      *
      * @return ServletContext 	<code>init</code>に渡された <code>ServletContext</code> のオブジェクト

@@ -45,23 +45,17 @@ import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 /**
- *
- * <p>Defines a generic, protocol-independent
- * filter. To write an HTTP filter for use on the
- * Web, extend {@link javax.servlet.http.HttpFilter} instead.</p>
- *
- * <p><code>GenericFilter</code> implements the <code>Filter</code>
- * and <code>FilterConfig</code> interfaces. <code>GenericFilter</code>
- * may be directly extended by a filter, although it's more common to extend
- * a protocol-specific subclass such as <code>HttpFilter</code>.
- *
- * <p><code>GenericFilter</code> makes writing filters
- * easier. It provides simple versions of the lifecycle methods 
- * <code>init</code> and <code>destroy</code> and of the methods 
- * in the <code>FilterConfig</code> interface.
- *
- * <p>To write a generic filter, you need only
- * override the abstract <code>doFilter</code> method. 
+ * 総称的なプロトコルに依存しないフィルターを定義します。
+ * Webで使用するHTTPのフィルターを作成したい場合は {@link javax.servlet.http.HttpFilter} を継承してください。
+ * 
+ * <p><code>GenericFilter</code> は <code>Filter</code> と <code>FilterConfig</code> の二つのインターフェースを実装します。
+ * <code>GenericFilter</code> を直接継承してもよいですが、<code>HttpFilter</code> などのプロトコルに依存したサブクラスを継承するのがより一般的です。
+ * 
+ * <p><code>GenericFilter</code> はフィルターを簡単に作成できるようにします。
+ * これはライフサイクルメソッドのうち <code>init</code> と <code>destroy</code> の単純な(何もしない)バージョンと、
+ * <code>FilterConfig</code> インターフェースのメソッドを提供します。
+ * 
+ * <p><code>GenericFilter</code> を継承してフィルターを作成する場合はabstractなcode>doFilter</code>メソッドだけを実装する必要があります。
  *
  * @author 	Various
  * 
@@ -81,8 +75,7 @@ public abstract class GenericFilter
 
     /**
      *
-     * <p>Does nothing. All of the filter initialization
-     * is done by one of the <code>init</code> methods.</p>
+     * <p>何もしません。フィルターのすべての初期化は <code>init</code> メソッドで行われます。</p>
      *
      * @since Servlet 4.0
      */
@@ -90,19 +83,14 @@ public abstract class GenericFilter
     
     
     /**
-     * <p>Returns a <code>String</code> containing the value of the named
-     * initialization parameter, or <code>null</code> if the parameter does
-     * not exist.  See {@link FilterConfig#getInitParameter}.</p>
+     * <p>名前付き初期化パラメーターに含まれる値の<code>String</code>を返します。 存在しない場合は<code>null</code>を返します。
+     * {@link FilterConfig#getInitParameter}を参照してください。</p>
+     * 
+     * <p>このメソッドは簡便さのために提供されています。 これはフィルターの <p>FilterConfig</p> のオブジェクトから名前付きパラメーターを取得します。
      *
-     * <p>This method is supplied for convenience. It gets the 
-     * value of the named parameter from the servlet's 
-     * <code>ServletConfig</code> object.
+     * @param name 		初期化パラメータの名前を指定する<code>String</code>
      *
-     * @param name 		a <code>String</code> specifying the name 
-     *				of the initialization parameter
-     *
-     * @return String 		a <code>String</code> containing the value
-     *				of the initialization parameter
+     * @return String 		初期化パラメータの値の<code>String</code>
      *
      * @since Servlet 4.0
      *
@@ -120,18 +108,14 @@ public abstract class GenericFilter
     
     
    /**
-    * <p>Returns the names of the filter's initialization parameters 
-    * as an <code>Enumeration</code> of <code>String</code> objects,
-    * or an empty <code>Enumeration</code> if the filter has no
-    * initialization parameters.  See {@link
-    * FilterConfig#getInitParameterNames}.</p>
+    * <p>フィルターの初期化パラメーターの名前を<code>String</code>オブジェクトの<code>Enumeration</code>として返します。
+    * フィルターに初期化パラメーターがない場合は空の<code>Enumeration</code>を返します。 
+    * {@link FilterConfig#getInitParameterNames}を参照してください。</p>
     *
-    * <p>This method is supplied for convenience. It gets the 
-    * parameter names from the filter's <code>FilterConfig</code> object. 
+    * <p>このメソッドは簡便さのために提供されています。
+    * これはフィルターの <code>FilterConfig</code> のオブジェクトからパラメーター名を取得します。
     *
-    * @return Enumeration 	an enumeration of <code>String</code>
-    *				objects containing the names of 
-    *				the filter's initialization parameters
+    * @return Enumeration 	フィルターの初期化パラメータの名前を含んだ<code>String</code>オブジェクトの<code>Enumeration</code>
     *
     * @since Servlet 4.0
     */
@@ -148,10 +132,9 @@ public abstract class GenericFilter
      
 
     /**
-     * <p>Returns this servlet's {@link ServletConfig} object.</p>
+     * <p>このフィルターの {@link FilterConfig} のオブジェクトを返します。</p>
      *
-     * @return FilterConfig 	the <code>FilterConfig</code> object
-     *				that initialized this filter
+     * @return FilterConfig 	このフィルターが初期化された {@link FilterConfig} のオブジェクト
      *
      * @since Servlet 4.0
      */    
@@ -161,15 +144,14 @@ public abstract class GenericFilter
  
     
     /**
-     * <p>Returns a reference to the {@link ServletContext} in which this filter
-     * is running.  See {@link FilterConfig#getServletContext}.</p>
+     * このサーブレットが動いている{@link ServletContext}を返します。
+     * {@link ServletConfig#getServletContext}を参照してください。
      *
-     * <p>This method is supplied for convenience. It gets the 
-     * context from the filter's <code>FilterConfig</code> object.
+     * <p>このメソッドは簡便さのために提供されています。
+     * これはサーブレットの <code>FilterConfig</code>のオブジェクトからコンテキストを取得します。
      *
-     * @return ServletContext 	the <code>ServletContext</code> object
-     *				passed to this filter by the <code>init</code>
-     *				method
+     *
+     * @return ServletContext 	<code>init</code>でこのフィルターに渡された <code>ServletContext</code> のオブジェクト
      *
      * @since Servlet 4.0
      */
@@ -186,21 +168,15 @@ public abstract class GenericFilter
 
 
     /**
-     * <p>Called by the servlet container to indicate to a filter that
-     * it is being placed into service.  See {@link Filter#init}.</p>
+     * <p>サーブレットがサービスに組込まれるときにサーブレットコンテナに呼出されます。
+     * {@link Filter#init}を参照してください。</p>
      * 
-     * <p>This implementation stores the {@link FilterConfig}
-     * object it receives from the servlet container for later use.
-     * When overriding this form of the method, call 
-     * <code>super.init(config)</code>.
+     * <p>この実装はサーブレットコンテナから受け取った{@link FilterConfig}オブジェクトをあとで使用するために格納します。
+     * このメソッドの振る舞いをオーバーライドする場合は <code>super.init(config)</code> を呼び出してください。
      * 
-     * @param config 			the <code>FilterConfig</code> object
-     *					that contains configuration
-     *					information for this filter
+     * @param config 			このフィルターの設定情報を含む<code>FilterConfig</code> のオブジェクト
      *
-     * @exception ServletException 	if an exception occurs that
-     *					interrupts the servlet's normal
-     *					operation
+     * @exception ServletException 	サーブレットの通常の処理で例外が発生した
      * 
      * @see 				UnavailableException
      *
@@ -213,18 +189,13 @@ public abstract class GenericFilter
     }
 
     /**
-     * <p>A convenience method which can be overridden so that there's no need
-     * to call <code>super.init(config)</code>.</p>
+     * <p><code>super.init(config)</code>を呼ばなくてもオーバーライドできるようにするための便利メソッドです。</p>
      *
-     * <p>Instead of overriding {@link #init(FilterConfig)}, simply override
-     * this method and it will be called by
-     * <code>GenericFilter.init(FilterConfig config)</code>.
-     * The <code>FilterConfig</code> object can still be retrieved via {@link
-     * #getFilterConfig}. 
+     * <p><p>{@link #init(ServletConfig)}をオーバーライドしなくても
+     * 単にこのメソッドをオーバーライドすれば <code>GenericFilter.init(FilterConfig config)</code> によって呼び出されます。
+     * <code>FilterConfig</code> オブジェクトは {@link #getFilterConfig} から引き続き取得できます。
      * 
-     * @exception ServletException 	if an exception occurs that
-     *					interrupts the servlet's
-     *					normal operation
+     * @exception ServletException 	サーブレットの通常の処理で例外が発生した
      *
      * @since Servlet 4.0
      */
@@ -234,10 +205,10 @@ public abstract class GenericFilter
     
 
     /**
-     * <p>Returns the name of this filter instance.
-     * See {@link FilterConfig#getFilterName}.</p>
+     * <p>このフィルターのインスタンスの名前を返します。
+     * {@link FilterConfig#getFilterName} を参照してください。</p>
      *
-     * @return          the name of this filter instance
+     * @return          このフィルターのインスタンスの名前
      *
      * @since Servlet 4.0
      */
