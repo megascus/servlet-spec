@@ -46,15 +46,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Annotation that may be specified on a {@link javax.servlet.Servlet}
- * class, indicating that instances of the <tt>Servlet</tt> expect requests
- * that conform to the <tt>multipart/form-data</tt> MIME type.
+ * {@link javax.servlet.Servlet}クラスに指定できるアノテーションです。
+ * <tt>Servlet</tt>のインスタンスが<tt>multipart/form-data</tt> MIMEタイプに準拠するリクエストを期待していることを示します。
+ * 
+ * <p>MultipartConfigで注釈が付けられたサーブレットは
+ * {@link javax.servlet.http.HttpServletRequest#getPart getPart}または{@link javax.servlet.http.HttpServletRequest#getParts getParts}を呼び出すことによって、
+ * 特定の<tt>multipart/form-data</tt>リクエスト呼び出しの{@link javax.servlet.http.Part}コンポーネントを取得できます。
  *
- * <p>Servlets annotated with <tt>MultipartConfig</tt> may retrieve the
- * {@link javax.servlet.http.Part} components of a given
- * <tt>multipart/form-data</tt> request by calling 
- * {@link javax.servlet.http.HttpServletRequest#getPart getPart} or
- * {@link javax.servlet.http.HttpServletRequest#getParts getParts}.
  */
 
 @Target(ElementType.TYPE)
@@ -62,35 +60,34 @@ import java.lang.annotation.RetentionPolicy;
 public @interface MultipartConfig {
 
     /**
-     * The directory location where files will be stored
+     * ファイルが保存されるディレクトリの場所です。
      *
-     * @return the directory location where files will be stored
+     * @return ファイルが保存されるディレクトリの場所
      */
     String location() default "";
 
     /**
-     * The maximum size allowed for uploaded files.
+     * アップロードされたファイルが許可される最大のサイズです。
      * 
-     * <p>The default is <tt>-1L</tt>, which means unlimited.
+     * <p>デフォルト値の<tt>-1L</tt>は無制限を表します。
      *
-     * @return the maximum size allowed for uploaded files
+     * @return アップロードされたファイルが許可される最大のサイズ
      */
     long maxFileSize() default -1L;
 
     /**
-     * The maximum size allowed for <tt>multipart/form-data</tt>
-     * requests
+     * <tt>multipart/form-data</tt>のリクエストに許可される最大のサイズです。
      * 
-     * <p>The default is <tt>-1L</tt>, which means unlimited.
+     * <p>デフォルト値の<tt>-1L</tt>は無制限を表します。
      *
-     * @return the maximum size allowed for <tt>multipart/form-data</tt> requests
+     * @return <tt>multipart/form-data</tt>のリクエストに許可される最大のサイズ
      */
     long maxRequestSize() default -1L;
 
     /**
-     * The size threshold after which the file will be written to disk
+     * ファイルがディスクに書き込まれるようになるまでのサイズのしきい値です。
      *
-     * @return the size threshold after which the file will be written to disk
+     * @return ファイルがディスクに書き込まれるようになるまでのサイズのしきい値
      */
     int fileSizeThreshold() default 0;
 }
