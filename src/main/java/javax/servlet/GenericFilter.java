@@ -191,7 +191,7 @@ public abstract class GenericFilter
     /**
      * <p><code>super.init(config)</code>を呼ばなくてもオーバーライドできるようにするための便利メソッドです。</p>
      *
-     * <p><p>{@link #init(ServletConfig)}をオーバーライドしなくても
+     * <p>{@link #init(ServletConfig)}をオーバーライドしなくても
      * 単にこのメソッドをオーバーライドすれば <code>GenericFilter.init(FilterConfig config)</code> によって呼び出されます。
      * <code>FilterConfig</code> オブジェクトは {@link #getFilterConfig} から引き続き取得できます。
      * 
