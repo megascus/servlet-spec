@@ -48,232 +48,191 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /** 
- * Build a request to be pushed.
+ * プッシュされるリクエストを生成します。 
  * 
- * According section 8.2 of RFC 7540, a promised request must be cacheable and
- * safe without a request body.
+ * RFC 7540のセクション8.2によればリクエストは、リクエストボディなしでキャッシュ可能かつ安全でなければならないことが約束されています。
  *
- * <p>A PushBuilder is obtained by calling {@link
- * HttpServletRequest#newPushBuilder()}.  Each call to this method will
- * a new instance of a PushBuilder based off the current {@code
- * HttpServletRequest}, or null.  Any mutations to the returned PushBuilder are
- * not reflected on future returns.</p>
+ * <p>PushBuilderは、 {@link HttpServletRequest#newPushBuilder()}を呼び出すことで得られます。
+ * このメソッドを呼び出すたびに現在のHttpServletRequestに基づくPushBuilderの新しいインスタンスが作成されるかnullを返します。
+ * 返されたPushBuilderインスタンスへの変更はその次以降の呼び出しには反映されません。</p>
  *
- * <p>The instance is initialized as follows:</p>
+ * <p>インスタンスは次のように初期化されます。</p>
  *
  * <ul>
  *
- * <li>The method is initialized to "GET"</li>
+ * <li>メソッドは "GET"に初期化されます。</li>
  *
- * <li>The existing request headers of the current {@link HttpServletRequest}
- * are added to the builder, except for:
+ * <li>現在の{@link HttpServletRequest}の既存のリクエストヘッダーは以下を除いてPushBuilderに追加されます。
  *
  * <ul>
- *   <li>Conditional headers (defined in RFC 7232)
- *   <li>Range headers
- *   <li>Expect headers
- *   <li>Authorization headers
- *   <li>Referrer headers
+ *   <li>条件付きヘッダー (RFC 7232にて定義)
+ *   <li>レンジヘッダー(Rangeヘッダー)
+ *   <li>期待ヘッダー(Expectヘッダー)
+ *   <li>認証ヘッダー(Authorizationヘッダー)
+ *   <li>参照元ヘッダー(Referrerヘッダー)
  * </ul>
  *
  * </li>
  *
- * <li>If the request was authenticated, an Authorization header will 
- * be set with a container generated token that will result in equivalent
- * Authorization for the pushed request.</li>
+ * <li>リクエストが認証された場合は認証ヘッダーにコンテナが生成したトークンが設定され、プッシュされたリクエストに対して同等の認証が行われます。</li>
  *
- * <li>The session ID will be the value returned from {@link
- * HttpServletRequest#getRequestedSessionId()}, unless {@link
- * HttpServletRequest#getSession(boolean)} has previously been called to
- * create a new {@link HttpSession} prior to the call to create the
- * {@code PushBuilder}, in which case the new session ID will be used as
- * the PushBuilder's requested session ID.  Note that the session ID
- * returned from the request can effectively come from one of two
- * "sources": a cookie or the URL (as specified in {@link
- * HttpServletRequest#isRequestedSessionIdFromCookie} and {@link
- * HttpServletRequest#isRequestedSessionIdFromURL}, respectively).  The
- * session ID for the {@code PushBuilder} will also come from the same
- * source as the request.</li>
+ * <li>セッションIDは{@code PushBuilder}を作成する前に、新しい{@link HttpSession}を作成するために{@link HttpServletRequest#getSession(boolean)}が呼び出されていない場合、
+ * {@link HttpServletRequest#getRequestedSessionId()}から返された値となり、
+ * この場合PushBuilderでリクエストされたセッションIDとして新しいセッションIDが使用されます。
+ * リクエストから返されるセッションIDはCookieまたはURLの事実上二つの"ソース"から返されることに注意してください。(Cookie：{@link HttpServletRequest#isRequestedSessionIdFromCookie}もしくはURL：{@link HttpServletRequest#isRequestedSessionIdFromURL}で得られる)
+ * {@code PushBuilder}のセッションIDはリクエストと同じソースが使用されます。</li>
+ * 
+ * <li>リファラーヘッダー(Refererヘッダー:原文ママ)は{@link HttpServletRequest#getRequestURL()}と任意の{@link HttpServletRequest#getQueryString()}に設定されます。</li>
  *
- * <li>The Referer(sic) header will be set to {@link
- * HttpServletRequest#getRequestURL()} plus any {@link
- * HttpServletRequest#getQueryString()} </li>
- *
- * <li>If {@link HttpServletResponse#addCookie(Cookie)} has been called
- * on the associated response, then a corresponding Cookie header will be added
- * to the PushBuilder, unless the {@link Cookie#getMaxAge()} is &lt;=0, in which
- * case the Cookie will be removed from the builder.</li>
+ * <li>関連するレスポンスに対してHttpServletResponse.addCookie(Cookie)が呼び出された場合、{@link Cookie#getMaxAge()}が&lt;= 0でない時は対応するCookieヘッダがPushBuilderに追加されます。
+ * &lt;= 0の時はCookieはPushBuilderから削除されます。</li>
  *
  * </ul> 
  *
- * <p>The {@link #path} method must be called on the {@code PushBuilder}
- * instance before the call to {@link #push}.  Failure to do so must
- * cause an exception to be thrown from {@link
- * #push}, as specified in that method.</p>
+ * <p>{@link #push}メソッドの呼び出しの前に{@link #path}メソッドを{@code PushBuilder}のインスタンスで呼び出す必要があります。
+ * そうしないと、そのメソッドで指定されているように{@link#push}から例外がスローされる必要があり失敗します。</p>
  * 
- * <p>A PushBuilder can be customized by chained calls to mutator
- * methods before the {@link #push()} method is called to initiate an
- * asynchronous push request with the current state of the builder.
- * After the call to {@link #push()}, the builder may be reused for
- * another push, however the implementation must make it so the {@link
- * #path(String)} and conditional headers (defined in RFC 7232) 
- * values are cleared before returning from {@link #push}.
- * All other values are retained over calls to {@link #push()}.
+ * <p>PushBuilderは{@link #push()}メソッドが呼び出される前にミューテーターメソッドのチェーン呼び出しによってカスタマイズされ、
+ * PushBuilderの現在の状態で非同期プッシュ要求が開始されます。
+ * {@link #push()}メソッドが呼び出された後、PushBuilderは別のプッシュで再利用されるかもしれませんが、
+ * 実装はpush()から戻る前に{@link#path(String)}および条件付きヘッダー（conditionalヘッダー：RFC 7232で定義）の値がクリアされるようにする必要があります。
+ * 他のすべての値は{@link #push()}呼び出しをまたいで保持されます。
  *
  * @since Servlet 4.0
  */
 public interface PushBuilder {
     /** 
-     * <p>Set the method to be used for the push.</p>
+     * <p>プッシュに使用される(HTTPの)メソッドを設定します。</p>
      * 
-     * @throws NullPointerException if the argument is {@code null}
+     * @throws NullPointerException 引数が {@code null} の場合
      *
-     * @throws IllegalArgumentException if the argument is the empty String,
-     *         or any non-cacheable or unsafe methods defined in RFC 7231,
-     *         which are POST, PUT, DELETE, CONNECT, OPTIONS and TRACE.
+     * @throws IllegalArgumentException 引数が空文字列だった場合や、RFC 7231で定義されたキャッシュができないか安全でない、POST、PUT、DELETE、CONNECT、OPTIONS、TRACEメソッドの場合。
      *
-     * @param method the method to be used for the push.  
-     * @return this builder.
+     * @param method プッシュに使用する(HTTPの)メソッド
+     * @return 自分自身
      */
     public PushBuilder method(String method);
     
     /**
-     * Set the query string to be used for the push.  
+     * プッシュに使用されるクエリ文字列を設定します。  
      *
-     * The query string will be appended to any query String included in a call
-     * to {@link #path(String)}.  Any duplicate parameters must be preserved.
-     * This method should be used instead of a query in {@link #path(String)}
-     * when multiple {@link #push()} calls are to be made with the same
-     * query string.
-     * @param  queryString the query string to be used for the push. 
-     * @return this builder.
+     * クエリ文字列は {@link #path(String)} 呼び出しに含まれるすべてのクエリ文字列に追加されます。
+     * 重複するパラメータはすべて保持しなければいけません。
+     * このメソッドは、同じクエリ文字列で複数の{@link #push()}を呼び出すときに {@link #path(String)} のクエリの代わりに使用する必要があります。
+     * 
+     * @param  queryString プッシュに使用されるクエリ文字列
+     * @return 自分自身
      */
     public PushBuilder queryString(String queryString);
     
     /**
-     * Set the SessionID to be used for the push.
-     * The session ID will be set in the same way it was on the associated request (ie
-     * as a cookie if the associated request used a cookie, or as a url parameter if
-     * the associated request used a url parameter).
-     * Defaults to the requested session ID or any newly assigned session id from
-     * a newly created session.
-     * @param sessionId the SessionID to be used for the push.
-     * @return this builder.
+     * プッシュに使用されるセッションIDを設定します。
+     * セッションIDは関連のあるリクエストと同じ方法で設定されます。
+     * (関連のあるリクエストでCookieが使用された場合はCookieとして、関連のあるリクエストでURLパラメーターが使用された場合はURLパラメータとして設定されます)
+     *  デフォルトでは、リクエストで指定されたセッションIDまたは新しく生成されたセッションの新しく割り当てられたセッションIDになります。
+     * 
+     * @param sessionId プッシュに使用されるセッションID
+     * @return 自分自身
      */
     public PushBuilder sessionId(String sessionId);
     
     /** 
-     * <p>Set a request header to be used for the push.  If the builder has an
-     * existing header with the same name, its value is overwritten.</p>
+     * <p>プッシュに使用されるリクエストヘッダーを設定します。すでにヘッダーに同じ名前が含まれていた場合、その値は上書きされます。</p>
      *
-     * @param name The header name to set
-     * @param value The header value to set
-     * @return this builder.
+     * @param name 設定されるヘッダーの名前
+     * @param value 設定されるヘッダーの値
+     * @return 自分自身
      */
     public PushBuilder setHeader(String name, String value);
     
     /** 
-     * <p>Add a request header to be used for the push.</p>
-     * @param name The header name to add
-     * @param value The header value to add
-     * @return this builder.
+     * <p>プッシュに使用されるリクエストヘッダーの値を追加します。</p>
+     * @param name 追加されるヘッダーの名前
+     * @param value 追加されるヘッダーの値
+     * @return 自分自身
      */
     public PushBuilder addHeader(String name, String value);
 
     /** 
-     * <p>Remove the named request header.  If the header does not exist, take
-     * no action.</p>
+     * <p>リクエストヘッダーから指定された名前を削除します。ヘッダーに存在しない場合何もしません。</p>
      *
-     * @param name The name of the header to remove
-     * @return this builder.
+     * @param name 削除されるヘッダーの名前
+     * @return 自分自身
      */
     public PushBuilder removeHeader(String name);
 
-    /** 
-     * Set the URI path to be used for the push.  The path may start
-     * with "/" in which case it is treated as an absolute path,
-     * otherwise it is relative to the context path of the associated
-     * request.  There is no path default and {@link #path(String)} must
-     * be called before every call to {@link #push()}.  If a query
-     * string is present in the argument {@code path}, its contents must
-     * be merged with the contents previously passed to {@link
-     * #queryString}, preserving duplicates.
+    /**
+     * プッシュに使用されるURIパスを設定します。
+     * 
+     * "/"で始まるパスは絶対パスとして扱われます。そうでない場合は、関連するリクエストのコンテキストパスに相対パスとして扱われます。
+     * パスのデフォルト値はありません。{@link #push()}メソッドを毎回呼び出すたびに{@link #path(String)}メソッドも呼び出す必要があります。
+     * クエリ文字列が{@code path}引数で渡された場合、その内容は以前に{@link #queryString}メソッドで渡された内容とマージされ、重複が保存される必要があります。 
      *
-     * @param path the URI path to be used for the push, which may include a
-     * query string.
-     * @return this builder.
+     * @param path プッシュに使用されるクエリ文字列を含むことがあるURIパス
+     * @return 自分自身
      */
     public PushBuilder path(String path);
     
     /**
-     * Push a resource given the current state of the builder,
-     * the method must be non-blocking.
+     * PushBuilderの現在の状態でリソースをプッシュします、このメソッドはノンブロッキングでなければいけません。
      *
-     * <p>Push a resource based on the current state of the PushBuilder.
-     * Calling this method does not guarantee the resource will actually
-     * be pushed, since it is possible the client can decline acceptance
-     * of the pushed resource using the underlying HTTP/2 protocol.</p>
-     *
-     * <p>If the builder has a session ID, then the pushed request will
-     * include the session ID either as a Cookie or as a URI parameter
-     * as appropriate. The builders query string is merged with any
-     * passed query string.</p>
-     *
-     * <p>Before returning from this method, the builder has its path,
-     * conditional headers (defined in RFC 7232) nulled. All other fields
-     * are left as is for possible reuse in another push.</p>
-     *
-     * @throws IllegalStateException if there was no call to {@link
-     * #path} on this instance either between its instantiation or the
-     * last call to {@code push()} that did not throw an
-     * IllegalStateException.
+     * <p>PushBuilderの現在の状態に基づいてリソースをプッシュします。
+     * このメソッドを呼び出してもリソースが実際にプッシュされることが保証されるわけではありません。
+     * なぜならばHTTP/2プロトコルではクライアントはプッシュされたリソースの受け入れを拒否することができるからです。</p>
+     * 
+     * <p>PushBuilderにセッションIDがある場合、プッシュされたリクエストにはCookieまたはURIパラメーターとして適切なセッションIDが含まれます。
+     * PushBuilderのクエリ文字列は渡されたクエリ文字列とマージされます。</p>
+     * 
+     * このメソッドから戻る前にビルダーはパスと条件付きヘッダー（conditionalヘッダー：RFC 7232で定義されています）をnullにしています。
+     * 他のすべてのフィールドの値は別のプッシュで再利用することができるようにそのままです。</p>
+     * 
+     * @throws IllegalStateException インスタンス化されてから、もしくは最後のIllegalStateExceptionが発生しなかった
+     * {@code push()} メソッドの呼び出しのから{@link #path}メソッドが呼び出されていなかった場合。
      */
     public void push();
     
     /**
-     * Return the method to be used for the push.
+     * プッシュに使用されるメソッドを返します。
      *
-     * @return the method to be used for the push.
+     * @return プッシュに使用されるメソッド
      */
     public String getMethod();
 
     /**
-     * Return the query string to be used for the push.
+     * プッシュに使用されるクエリ文字列を返します。
      *
-     * @return the query string to be used for the push.
+     * @return プッシュに使用されるクエリ文字列
      */
     public String getQueryString();
 
     /**
-     * Return the SessionID to be used for the push.
+     * プッシュに使用されるセッションIDを返します。
      * 
-     * @return the SessionID to be used for the push.
+     * @return プッシュに使用されるセッションID
      */
     public String getSessionId();
 
     /**
-     * Return the set of header to be used for the push.
+     * プッシュに使用されるヘッダーの名前のsetを返します。
      *
-     * <p>The returned set is not backed by the {@code PushBuilder} object,
-     * so changes in the returned set are not reflected in the
-     * {@code PushBuilder} object, and vice-versa.</p>
+     * <p>返されたsetは{@code PushBuilder}オブジェクトにから切り離されるため、返されたセットの変更は{@code PushBuilder}オブジェクトに反映されず、その逆もそうです。</p>
      *
-     * @return the set of header to be used for the push.
+     * @return プッシュに使用されるヘッダーの名前のset
      */
     public Set<String> getHeaderNames();
 
     /**
-     * Return the header of the given name to be used for the push.
-     * @param name the name of the header
+     * 指定された名前でプッシュに使用されるヘッダーの値を返します。
+     * @param name ヘッダーの名前
      *
-     * @return the header of the given name to be used for the push.
+     * @return 指定された名前でプッシュに使用されるヘッダーの値.
      */
     public String getHeader(String name);
 
     /**
-     * Return the URI path to be used for the push.
+     * プッシュに使用されるURIのパスを返します。
      *
-     * @return the URI path to be used for the push.
+     * @return プッシュに使用されるURIのパス
      */
     public String getPath();
 }
