@@ -41,14 +41,12 @@
 package javax.servlet.http;
 
 /**
- * <p>Allows runtime discovery of the manner in which the {@link
- * HttpServlet} for the current {@link HttpServletRequest} was invoked.
- * Invoking any of the methods must not block the caller.  The
- * implementation must be thread safe.  Instances are immutable and are
- * returned from {@link HttpServletRequest#getHttpServletMapping}.</p>
+ * <p>現在の{@link HttpServlet} が {@link HttpServletRequest}から呼び出された方法を実行時に見つけることを可能にします。
+ * いずれのメソッド呼びだしも呼び出し元をブロックしてはいけません。 
+ * 実装はスレッドセーフでなければなりません。
+ * インスタンスは不変で{@link HttpServletRequest#getHttpServletMapping}から返されます。</p>
  *
- * <p>Following are some illustrative examples for various combinations
- * of mappings.  Consider the following Servlet declaration:</p>
+ * <p>以下はマッピングの様々な組み合わせのうちのいくつかの実例です。 以下のサーブレット宣言を考えてみましょう。</p>
  *
  * <pre><code>
  * &lt;servlet&gt;
@@ -64,17 +62,15 @@ package javax.servlet.http;
  * &lt;/servlet-mapping&gt;
  * </code></pre>
  *
- * <p>The expected values of the properties for various incoming URI
- * path values are as shown in this table.  The {@code servletName}
- * column is omitted as its value is always {@code MyServlet}.</p>
+ * <p>さまざまな待ち受けURIパスの値におけるプロパティの期待値はこの表に示すとおりです。 {@code servletName}列は値が常に{@code MyServlet}のため省略されています。</p>
  * 
  * <table border="1">
- *   <caption>Expected values of properties for various URI paths</caption>
+ *   <caption>さまざまなURIパスにおけるプロパティの期待値</caption>
  *   <tr>
  *     <th>URI Path (in quotes)</th>
  *     <th>matchValue</th>
  *     <th>pattern</th>
- *     <th>mappingMatch</th>
+ *     <th>{@link MappingMatch}</th>
  *   </tr>
  *   <tr>
  *     <td>""</td>
@@ -116,56 +112,47 @@ public interface HttpServletMapping {
 
     
     /**
-     * <p>Return the portion of the URI path that caused this request to
-     * be matched.  If the {@link getMappingMatch} value is {@code
-     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the
-     * empty string.  If the {@link getMappingMatch} value is {@code
-     * EXACT}, this method must return the portion of the path that
-     * matched the servlet, omitting any leading slash.  If the {@link
-     * getMappingMatch} value is {@code EXTENSION} or {@code PATH}, this
-     * method must return the value that matched the '*'.  See the class
-     * javadoc for examples. </p>
+     * <p>このリクエストの原因となったURIパスの一部分を返します。</p>
      * 
-     * @return the match.
+     * <p>{@link getMappingMatch}の値が{@code CONTEXT_ROOT}または{@code DEFAULT}の場合、このメソッドは空の文字列を返さなければいけません。
+     * {@link getMappingMatch}の値が{@code EXACT}の場合、このメソッドはスラッシュが省略されたサーブレットに一致するパスの一部分を返さなければいけません。
+     * {@link getMappingMatch}の値が{@code EXTENSION}または{@code PATH}の場合、このメソッドは '*'に一致する値を返す必要があります。
+     * 例についてはクラスのjavadocを参照してください。</p>
+     * 
+     * @return 一致した値
      * 
      * @since 4.0
      */
     public String getMatchValue();
 
     /**
-     * <p>Return the String representation for the {@code url-pattern}
-     * for this mapping.  If the {@link getMappingMatch} value is {@code
-     * CONTEXT_ROOT} or {@code DEFAULT}, this method must return the
-     * empty string. If the {@link getMappingMatch} value is {@code
-     * EXTENSION}, this method must return the pattern, without any
-     * leading slash.  Otherwise, this method returns the pattern
-     * exactly as specified in the descriptor or Java configuration.</p>
+     * <p>このマッピングの{@code url-pattern}の文字列表現を返します。</p>
      * 
-     * @return the String representation for the
-     * {@code url-pattern} for this mapping. 
+     * <p>{@link getMappingMatch}の値が{@code CONTEXT_ROOT}または{@code DEFAULT}の場合このメソッドは空の文字列を返さなければいけません。
+     * {@link getMappingMatch}の値が{@code EXTENSION}の場合、このメソッドはスラッシュを付けずにパターンを返さなければいけません。
+     * それ以外の場合は、このメソッドはディスクリプターまたはJavaコンフィギュレーションで指定されているとおりのパターンを返さなければいけません。</p>
+     * 
+     * @return このマッピングの{@code url-pattern}の文字列表現
      * 
      * @since 4.0
      */
     public String getPattern();
     
     /**
-     * <p>Return the String representation for the {@code servlet-name}
-     * for this mapping.  If the Servlet providing the response is the
-     * default servlet, the return from this method is the name of the
-     * defautl servlet, which is container specific.</p>
+     * <p>このマッピングの{@code servlet-name}の文字列表現を返します。
      * 
-     * @return the String representation for the {@code servlet-name}
-     * for this mapping.
+     * <p>レスポンスを提供するサーブレットがデフォルトサーブレットである場合、このメソッドからの戻り値はコンテナ固有のデフォルトサーブレットの名前です。</p>
+     * 
+     * @return このマッピングの{@code servlet-name}の文字列表現
      * 
      * @since 4.0
      */
     public String getServletName();
 
     /**
-     * <p>Return the {@link MappingMatch} for this 
-     * instance</p> 
+     * <p>このインスタンスの{@link MappingMatch} を返します。</p> 
      * 
-     * @return the {@code MappingMatch} for this instance.
+     * @return このインスタンスの{@link MappingMatch} 
      * 
      * @since 4.0
      */
