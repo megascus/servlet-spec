@@ -183,7 +183,7 @@ public interface PushBuilder {
      * <p>PushBuilderにセッションIDがある場合、プッシュされたリクエストにはCookieまたはURIパラメーターとして適切なセッションIDが含まれます。
      * PushBuilderのクエリ文字列は渡されたクエリ文字列とマージされます。</p>
      * 
-     * このメソッドから戻る前にビルダーはパスと条件付きヘッダー（conditionalヘッダー：RFC 7232で定義されています）をnullにしています。
+     * <p>このメソッドから戻る前にビルダーはパスと条件付きヘッダー（conditionalヘッダー：RFC 7232で定義されています）をnullにしています。
      * 他のすべてのフィールドの値は別のプッシュで再利用することができるようにそのままです。</p>
      * 
      * @throws IllegalStateException インスタンス化されてから、もしくは最後のIllegalStateExceptionが発生しなかった
