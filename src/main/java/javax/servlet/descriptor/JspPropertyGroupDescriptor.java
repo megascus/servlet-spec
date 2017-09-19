@@ -135,20 +135,14 @@ public interface JspPropertyGroupDescriptor {
     public String getTrimDirectiveWhitespaces();
 
     /**
-     * Gets the value of the <code>default-content-type</code> configuration,
-     * which specifies the default response content type for any JSP pages
-     * mapped to the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップにマップされたJSPページのデフォルトのコンテンツタイプを指定する<code>default-content-type</code>の値を取得します。
      *
      * @return <code>default-content-type</code>の値、指定されてない場合はnull
      */
     public String getDefaultContentType();
 
     /**
-     * Gets the value of the <code>buffer</code> configuration, which
-     * specifies the default size of the response buffer for any JSP pages
-     * mapped to the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップにマップされたJSPページのレスポンスバッファのデフォルトサイズを指定する<code>buffer</code>の値を取得します。
      *
      * @return <code>buffer</code>の値、指定されてない場合はnull
      */
