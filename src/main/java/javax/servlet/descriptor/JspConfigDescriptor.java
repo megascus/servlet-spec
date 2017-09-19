@@ -67,7 +67,7 @@ public interface JspConfigDescriptor {
      *
      * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspConfigDescriptor</code>には影響してはいけません。
      *
-     * @returnこの<code>JspConfigDescriptor</code>によって表される<code>&lt;jsp-config&gt;</code>の配下の<code>&lt;jsp-property-group&gt;</code>の(空の可能性がある)<code>Collection</code>
+     * @return この<code>JspConfigDescriptor</code>によって表される<code>&lt;jsp-config&gt;</code>の配下の<code>&lt;jsp-property-group&gt;</code>の(空の可能性がある)<code>Collection</code>
      */
     public Collection<JspPropertyGroupDescriptor> getJspPropertyGroups();
 }
