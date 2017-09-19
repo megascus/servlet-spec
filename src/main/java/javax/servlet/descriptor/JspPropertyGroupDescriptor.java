@@ -52,15 +52,11 @@ import java.util.Collection;
 public interface JspPropertyGroupDescriptor {
     
     /**
-     * Gets the URL patterns of the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループのURLパターンを取得します。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>JspPropertyGroupDescriptor</code>.
+     * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspPropertyGroupDescriptor</code>には影響してはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the URL
-     * patterns of the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>
+     * @return この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループのURLパターンの(空の可能性がある)<code>Collection</code>
      */
     public Collection<String> getUrlPatterns();
 
@@ -70,8 +66,7 @@ public interface JspPropertyGroupDescriptor {
      * any JSP pages mapped to the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the <code>el-ignored</code> configuration, or
-     * null if unspecified
+     * @return <code>el-ignored</code>の値、指定されてない場合はnull
      */
     public String getElIgnored();
 
@@ -81,8 +76,7 @@ public interface JspPropertyGroupDescriptor {
      * to the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the <code>page-encoding</code> configuration, or
-     * null if unspecified
+     * @return <code>page-encoding</code>の値、指定されてない場合はnull
      */
     public String getPageEncoding();
 
@@ -92,8 +86,7 @@ public interface JspPropertyGroupDescriptor {
      * to the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the <code>scripting-invalid</code> configuration,
-     * or null if unspecified
+     * @return <code>scripting-invalid</code>の値、指定されてない場合はnull
      */
     public String getScriptingInvalid();
 
@@ -103,8 +96,7 @@ public interface JspPropertyGroupDescriptor {
      * represented by this <code>JspPropertyGroupDescriptor</code> will
      * be treated as JSP documents (XML syntax).
      *
-     * @return the value of the <code>is-xml</code> configuration, or
-     * null if unspecified
+     * @return <code>is-xml</code>の値、指定されてない場合はnull
      */
     public String getIsXml();
 
@@ -113,13 +105,9 @@ public interface JspPropertyGroupDescriptor {
      * of the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>JspPropertyGroupDescriptor</code>.
+     * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspPropertyGroupDescriptor</code>には影響してはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the
-     * <code>include-prelude</code> configuration of
-     * the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>
+     * @return この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-prelude</code>の(空の可能性がある)<code>Collection</code>
      */
     public Collection<String> getIncludePreludes();
 
@@ -128,13 +116,9 @@ public interface JspPropertyGroupDescriptor {
      * of the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>JspPropertyGroupDescriptor</code>.
+     * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspPropertyGroupDescriptor</code>には影響してはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the
-     * <code>include-coda</code> configuration of
-     * the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>
+     * @return この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-coda</code>の(空の可能性がある)<code>Collection</code>
      */
     public Collection<String> getIncludeCodas();
 
@@ -147,9 +131,7 @@ public interface JspPropertyGroupDescriptor {
      * in any JSP pages mapped to the JSP property group represented by
      * this <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the
-     * <code>deferred-syntax-allowed-as-literal</code> configuration, or
-     * null if unspecified
+     * @return <code>deferred-syntax-allowed-as-literal</code>の値、指定されてない場合はnull
      */
     public String getDeferredSyntaxAllowedAsLiteral();
 
@@ -160,8 +142,7 @@ public interface JspPropertyGroupDescriptor {
      * pages mapped to the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the <code>trim-directive-whitespaces</code>
-     * configuration, or null if unspecified
+     * @return <code>trim-directive-whitespaces</code>の値、指定されてない場合はnull
      */
     public String getTrimDirectiveWhitespaces();
 
@@ -171,8 +152,7 @@ public interface JspPropertyGroupDescriptor {
      * mapped to the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the <code>default-content-type</code>
-     * configuration, or null if unspecified
+     * @return <code>default-content-type</code>の値、指定されてない場合はnull
      */
     public String getDefaultContentType();
 
@@ -182,8 +162,7 @@ public interface JspPropertyGroupDescriptor {
      * mapped to the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the <code>buffer</code> configuration, or
-     * null if unspecified
+     * @return <code>buffer</code>の値、指定されてない場合はnull
      */
     public String getBuffer();
 
@@ -194,8 +173,7 @@ public interface JspPropertyGroupDescriptor {
      * any JSP pages mapped to the JSP property group represented by this
      * <code>JspPropertyGroupDescriptor</code>.
      *
-     * @return the value of the <code>error-on-undeclared-namespace</code>
-     * configuration, or null if unspecified
+     * @return <code>error-on-undeclared-namespace</code>の値、指定されてない場合はnull
      */
     public String getErrorOnUndeclaredNamespace();
 }
