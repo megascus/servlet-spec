@@ -61,49 +61,37 @@ public interface JspPropertyGroupDescriptor {
     public Collection<String> getUrlPatterns();
 
     /**
-     * Gets the value of the <code>el-ignored</code> configuration, which
-     * specifies whether Expression Language (EL) evaluation is enabled for
-     * any JSP pages mapped to the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページでExpression Language(EL)式を使用可能にするかどうかを指定する<code>el-ignored</code>の値を取得します。
      *
      * @return <code>el-ignored</code>の値、指定されてない場合はnull
      */
     public String getElIgnored();
 
     /**
-     * Gets the value of the <code>page-encoding</code> configuration,
-     * which specifies the default page encoding for any JSP pages mapped
-     * to the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページのデフォルトページエンコーディングを指定する<code>page-encoding</code>の値を取得します。
      *
      * @return <code>page-encoding</code>の値、指定されてない場合はnull
      */
     public String getPageEncoding();
 
     /**
-     * Gets the value of the <code>scripting-invalid</code> configuration,
-     * which specifies whether scripting is enabled for any JSP pages mapped
-     * to the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページでスクリプトを有効にするかどうかを指定する<code>scripting-invalid</code>の値を取得します。
      *
      * @return <code>scripting-invalid</code>の値、指定されてない場合はnull
      */
     public String getScriptingInvalid();
 
     /**
-     * Gets the value of the <code>is-xml</code> configuration, which 
-     * specifies whether any JSP pages mapped to the JSP property group
-     * represented by this <code>JspPropertyGroupDescriptor</code> will
-     * be treated as JSP documents (XML syntax).
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップにマップされたJSPページをJSPドキュメント(XML構文)として扱うかどうかを指定する<code>is-xml</code>の値を取得します。
      *
      * @return <code>is-xml</code>の値、指定されてない場合はnull
      */
     public String getIsXml();
 
     /**
-     * Gets the <code>include-prelude</code> configuration
-     * of the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-prelude</code>を取得します。
+     * 
+     * <p>訳注：ファイルのパスを指定することでそのファイルの内容をJSPの先頭にインクルードすることができます。
      *
      * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspPropertyGroupDescriptor</code>には影響してはいけません。
      *
@@ -112,9 +100,9 @@ public interface JspPropertyGroupDescriptor {
     public Collection<String> getIncludePreludes();
 
     /**
-     * Gets the <code>include-coda</code> configuration
-     * of the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-coda</code>を取得します。
+     * 
+     * <p>訳注：ファイルのパスを指定することでそのファイルの内容をJSPの最後にインクルードすることができます。
      *
      * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspPropertyGroupDescriptor</code>には影響してはいけません。
      *
