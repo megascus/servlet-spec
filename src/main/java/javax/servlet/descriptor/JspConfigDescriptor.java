@@ -46,38 +46,28 @@ import java.util.Collection;
  * このインタフェースはウェブアプリケーションの<code>&lt;jsp-config&gt;</code>関連の設定へのアクセス方法を提供します。
  *
  * <p>設定はウェブアプリケーションの<code>web.xml</code>および<code>web-fragment.xml</code>から集められます。
+ * 
+ * <p>訳注：このインターフェース及びにこのインターフェースから返されるすべてのオブジェクトは読み取り専用です。いかなる変更を加えてもウェブアプリケーションの設定は変更できません。
  *
  * @since Servlet 3.0
  */
 public interface JspConfigDescriptor {
 
     /**
-     * Gets the <code>&lt;taglib&gt;</code> child elements of the
-     * <code>&lt;jsp-config&gt;</code> element represented by this
-     * <code>JspConfigDescriptor</code>.
+     * この<code>JspConfigDescriptor</code>によって表される<code>&lt;jsp-config&gt;</code>の配下の<code>&lt;taglib&gt;</code>を取得します。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>JspConfigDescriptor</code>.
+     * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspConfigDescriptor</code>には影響してはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the
-     * <code>&lt;taglib&gt;</code> child elements of the
-     * <code>&lt;jsp-config&gt;</code> element represented by this
-     * <code>JspConfigDescriptor</code>
+     * @return この<code>JspConfigDescriptor</code>によって表される<code>&lt;jsp-config&gt;</code>の配下の<code>&lt;taglib&gt;</code>の(空の可能性がある)<code>Collection</code>
      */
     public Collection<TaglibDescriptor> getTaglibs();
 
     /**
-     * Gets the <code>&lt;jsp-property-group&gt;</code> child elements
-     * of the <code>&lt;jsp-config&gt;</code> element represented by this
-     * <code>JspConfigDescriptor</code>.
+     * この<code>JspConfigDescriptor</code>によって表される<code>&lt;jsp-config&gt;</code>の配下の<code>&lt;jsp-property-group&gt;</code>を取得します。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>JspConfigDescriptor</code>.
+     * <p>返された<code>Collection</code>へのいかなる変更もこの<code>JspConfigDescriptor</code>には影響してはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the
-     * <code>&lt;jsp-property-group&gt;</code> child elements of the
-     * <code>&lt;jsp-config&gt;</code> element represented by this
-     * <code>JspConfigDescriptor</code>
+     * @returnこの<code>JspConfigDescriptor</code>によって表される<code>&lt;jsp-config&gt;</code>の配下の<code>&lt;jsp-property-group&gt;</code>の(空の可能性がある)<code>Collection</code>
      */
     public Collection<JspPropertyGroupDescriptor> getJspPropertyGroups();
 }
