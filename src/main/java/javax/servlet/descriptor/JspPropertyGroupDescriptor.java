@@ -82,14 +82,14 @@ public interface JspPropertyGroupDescriptor {
     public String getScriptingInvalid();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップにマップされたJSPページをJSPドキュメント(XML構文)として扱うかどうかを指定する<code>is-xml</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページをJSPドキュメント(XML構文)として扱うかどうかを指定する<code>is-xml</code>の値を取得します。
      *
      * @return <code>is-xml</code>の値、指定されてない場合はnull
      */
     public String getIsXml();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-prelude</code>を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-prelude</code>の値を取得します。
      * 
      * <p>訳注：ファイルのパスを指定することでそのファイルの内容をJSPの先頭にインクルードすることができます。
      *
@@ -100,7 +100,7 @@ public interface JspPropertyGroupDescriptor {
     public Collection<String> getIncludePreludes();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-coda</code>を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループの<code>include-coda</code>の値を取得します。
      * 
      * <p>訳注：ファイルのパスを指定することでそのファイルの内容をJSPの最後にインクルードすることができます。
      *
@@ -111,49 +111,38 @@ public interface JspPropertyGroupDescriptor {
     public Collection<String> getIncludeCodas();
 
     /**
-     * Gets the value of the
-     * <code>deferred-syntax-allowed-as-literal</code> configuration, which
-     * specifies whether the character sequence <code>&quot;#{&quot;</code>,
-     * which is normally reserved for Expression Language (EL) expressions,
-     * will cause a translation error if it appears as a String literal
-     * in any JSP pages mapped to the JSP property group represented by
-     * this <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページで通常Expression Language(EL)式で予約されている
+     * <code>&quot;#{}&quot;</code>という文字列が文字列リテラルとして現れた時に変換エラーを発生させるかどうかを指定する<code>deferred-syntax-allowed-as-literal</code>の値を取得します。
      *
      * @return <code>deferred-syntax-allowed-as-literal</code>の値、指定されてない場合はnull
      */
     public String getDeferredSyntaxAllowedAsLiteral();
 
     /**
-     * Gets the value of the <code>trim-directive-whitespaces</code>
-     * configuration, which specifies whether template text containing only
-     * whitespaces must be removed from the response output of any JSP
-     * pages mapped to the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページの
+     * レスポンスの出力から空白のみを含むテンプレートテキストを除去するべきであるかどうかを指定する<code>trim-directive-whitespaces</code>の値を取得します。
      *
      * @return <code>trim-directive-whitespaces</code>の値、指定されてない場合はnull
      */
     public String getTrimDirectiveWhitespaces();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップにマップされたJSPページのデフォルトのコンテンツタイプを指定する<code>default-content-type</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページのデフォルトのコンテンツタイプを指定する<code>default-content-type</code>の値を取得します。
      *
      * @return <code>default-content-type</code>の値、指定されてない場合はnull
      */
     public String getDefaultContentType();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップにマップされたJSPページのレスポンスバッファのデフォルトサイズを指定する<code>buffer</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページのレスポンスバッファのデフォルトサイズを指定する<code>buffer</code>の値を取得します。
      *
      * @return <code>buffer</code>の値、指定されてない場合はnull
      */
     public String getBuffer();
 
     /**
-     * Gets the value of the <code>error-on-undeclared-namespace</code>
-     * configuration, which specifies whether an error will be raised at
-     * translation time if tag with an undeclared namespace is used in
-     * any JSP pages mapped to the JSP property group represented by this
-     * <code>JspPropertyGroupDescriptor</code>.
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされた
+     * 宣言されていない名前空間のタグが使用されている場合にJSPページの変換時にエラーが発生するかどうかを指定する<code>error-on-undeclared-namespace</code>の値を取得します。
      *
      * @return <code>error-on-undeclared-namespace</code>の値、指定されてない場合はnull
      */
