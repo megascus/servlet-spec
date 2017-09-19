@@ -41,31 +41,25 @@
 package javax.servlet.descriptor;
 
 /**
- * This interface provides access to the <code>&lt;taglib&gt;</code>
- * related configuration of a web application.
+ * このインタフェースはウェブアプリケーションの<code>&lt;taglib&gt;</code>関連の設定へのアクセス方法を提供します。
  *
- * <p>The configuration is aggregated from the <code>web.xml</code> and
- * <code>web-fragment.xml</code> descriptor files of the web application.
+ * <p>設定はウェブアプリケーションの<code>web.xml</code>および<code>web-fragment.xml</code>から集められます。
  *
  * @since Servlet 3.0
  */
 public interface TaglibDescriptor {
   
     /**
-     * Gets the unique identifier of the tag library represented by this
-     * TaglibDescriptor.
+     * このTaglibDescriptorが表すタグライブラリの一意の識別子を取得します。
      *  
-     * @return the unique identifier of the tag library represented by this
-     * TaglibDescriptor
+     * @return このTaglibDescriptorによって表されるタグライブラリの一意の識別子
      */
     public String getTaglibURI();
 
     /**
-     * Gets the location of the tag library represented by this
-     * TaglibDescriptor.
+     * このTaglibDescriptorが表すタグライブラリの場所を取得します。
      *  
-     * @return the location of the tag library represented by this
-     * TaglibDescriptor
+     * @return このTaglibDescriptorによって表されるタグライブラリの場所
      */    
     public String getTaglibLocation();    
 }
