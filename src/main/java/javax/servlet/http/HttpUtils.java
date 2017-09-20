@@ -66,7 +66,7 @@ import java.io.IOException;
 
 /**
  * @deprecated		このインターフェースはServlet API version 2.3で非推奨です。
- *          これらのメソッドはデフォルトのエンコーディングの時のみ有用で、リクエストのいんらーフェースに移されました。
+ *          これらのメソッドはデフォルトのエンコーディングの時のみ有用で、リクエストのインターフェースに移されました。
  */
 @Deprecated
 public class HttpUtils {
