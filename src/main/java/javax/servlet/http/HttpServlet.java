@@ -186,7 +186,7 @@ public abstract class HttpServlet extends GenericServlet
      * <p>HTTP GETリクエストをサポートし最後の変更時刻を迅速に判断できるサーブレットはこのメソッドをオーバーライドする必要があります。
      * これによりブラウザやプロキシのキャッシュがより効果的に機能し、サーバーやネットワークリソースの負荷が軽減されます。
      * 
-     * 訳注：<code>HttpServletRequest</code>オブジェクトでなく、リクエストに応じてこのサーブレットが示すリソースが最後に変更された時刻を返すのが正しい。
+     * <p>訳注：<code>HttpServletRequest</code>オブジェクトでなく、リクエストに応じてこのサーブレットが示すリソースが最後に変更された時刻を返すのが正しい。
      *
      * @param req   サーブレットに送られた <code>HttpServletRequest</code> のオブジェクト
      *
