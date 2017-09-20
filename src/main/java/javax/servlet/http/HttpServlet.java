@@ -209,8 +209,7 @@ public abstract class HttpServlet extends GenericServlet
      * This makes browser and proxy caches work more effectively,
      * reducing the load on server and network resources.
      *
-     * @param req   the <code>HttpServletRequest</code> 
-     *                  object that is sent to the servlet
+     * @param req   サーブレットに送られた <code>HttpServletRequest</code> のオブジェクト
      *
      * @return  a   <code>long</code> integer specifying
      *                  the time the <code>HttpServletRequest</code>
@@ -684,7 +683,7 @@ public abstract class HttpServlet extends GenericServlet
      * 
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト                              
+     * @param res  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト                              
      *
      * @throws IOException   サーブレットがHTTPリクエストを処理しているときにI/Oエラーが発生した
      *
