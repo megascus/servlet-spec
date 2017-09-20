@@ -180,25 +180,17 @@ public abstract class HttpServlet extends GenericServlet
 
 
     /**
+     * <code>HttpServletRequest</code>オブジェクトが最後に変更された時刻を1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数で返します。
+     * 時刻が判らない場合、このメソッドは負の数を返します。(デフォルトです)
      *
-     * Returns the time the <code>HttpServletRequest</code>
-     * object was last modified,
-     * in milliseconds since midnight January 1, 1970 GMT.
-     * If the time is unknown, this method returns a negative
-     * number (the default).
-     *
-     * <p>Servlets that support HTTP GET requests and can quickly determine
-     * their last modification time should override this method.
-     * This makes browser and proxy caches work more effectively,
-     * reducing the load on server and network resources.
+     * <p>HTTP GETリクエストをサポートし最後の変更時刻を迅速に判断できるサーブレットはこのメソッドをオーバーライドする必要があります。
+     * これによりブラウザやプロキシのキャッシュがより効果的に機能し、サーバーやネットワークリソースの負荷が軽減されます。
+     * 
+     * 訳注：<code>HttpServletRequest</code>オブジェクトでなく、リクエストに応じてこのサーブレットが示すリソースが最後に変更された時刻を返すのが正しい。
      *
      * @param req   サーブレットに送られた <code>HttpServletRequest</code> のオブジェクト
      *
-     * @return  a   <code>long</code> integer specifying
-     *                  the time the <code>HttpServletRequest</code>
-     *                  object was last modified, in milliseconds
-     *                  since midnight, January 1, 1970 GMT, or
-     *                  -1 if the time is not known
+     * @return <code>HttpServletRequest</code>オブジェクトが最後に変更された時刻の1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数の<code>long</code>、不明な場合は-1
      */
 
     protected long getLastModified(HttpServletRequest req) {
@@ -225,9 +217,7 @@ public abstract class HttpServlet extends GenericServlet
      * and idempotent (that is, protects itself from being
      * called multiple times for one HTTP HEAD request).
      *
-     * <p>If the HTTP HEAD request is incorrectly formatted,
-     * <code>doHead</code> returns an HTTP "Bad Request"
-     * message.
+     * <p>HTTP HEADリクエストのフォーマットが正しくない場合、<code>doHead</code>はHTTP "Bad Request"メッセージを返します。
      *
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
