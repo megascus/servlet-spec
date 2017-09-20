@@ -253,13 +253,12 @@ public abstract class HttpServlet extends GenericServlet
      * The content length is automatically set if the entire response fits
      * inside the response buffer.  
      *
-     * <p>When using HTTP 1.1 chunked encoding (which means that the response
-     * has a Transfer-Encoding header), do not set the Content-Length header. 
+     * <p>HTTP 1.1のチャンクエンコーディング（レスポンスにTransfer-Encodingヘッダーがあることを意味します）を使用する場合は
+     * Content-Lengthヘッダーを設定しないでください。
      *
-     * <p>This method does not need to be either safe or idempotent.
-     * Operations requested through POST can have side effects for
-     * which the user can be held accountable, for example, 
-     * updating stored data or buying items online.
+     * <p>このメソッドは安全でも冪等でもある必要はありません。
+     * POSTによって行われる操作にはユーザーが責任を負う可能性のある副作用があります。
+     * 例えば、保存されたデータの更新や、オンラインでの商品の購入などです。
      *
      * <p>HTTP POSTリクエストのフォーマットが正しくない場合、<code>doPost</code>はHTTP "Bad Request"メッセージを返します。
      *
@@ -291,25 +290,19 @@ public abstract class HttpServlet extends GenericServlet
     /**
      * サーブレットがPUTリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
      *
-     * The PUT operation allows a client to 
-     * place a file on the server and is similar to 
-     * sending a file by FTP.
+     * PUT操作ではクライアントはFTPでファイルを送信する場合と同様にサーバーにファイルを置くことができます。
      *
-     * <p>When overriding this method, leave intact
-     * any content headers sent with the request (including
-     * Content-Length, Content-Type, Content-Transfer-Encoding,
-     * Content-Encoding, Content-Base, Content-Language, Content-Location,
-     * Content-MD5, and Content-Range). If your method cannot
-     * handle a content header, it must issue an error message
-     * (HTTP 501 - Not Implemented) and discard the request.
-     * For more information on HTTP 1.1, see RFC 2616
-     * <a href="http://www.ietf.org/rfc/rfc2616.txt"></a>.
+     * <p>このメソッドをオーバーライドするときは、
+     * リクエストで送信されたコンテンツヘッダー(Content-Length、Content-Type、Content-Transfer-Encoding、
+     * Content-Encoding、Content-Base、Content-Language、Content-Location、
+     * Content-MD5、Content-Rangeが含まれる)を完全にそのままにしてください。
+     * メソッドがコンテンツヘッダーを処理できない場合はエラーメッセージ(HTTP 501 - Not Implemented) を発行し李エクスとを破棄する必要があります。
+     * HTTP 1.1のより詳細な情報については、<a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>を参照してください。
+     * .
      *
-     * <p>This method does not need to be either safe or idempotent.
-     * Operations that <code>doPut</code> performs can have side
-     * effects for which the user can be held accountable. When using
-     * this method, it may be useful to save a copy of the
-     * affected URL in temporary storage.
+     * <p>このメソッドは安全でも冪等でもある必要はありません。
+     * <code>doPut</code>によって行われる操作にはユーザーが責任を負う可能性のある副作用があります。
+     * このメソッドを使用する場合は、影響を受けるURLのコピーをテンポラリ領域に保存すると便利です。
      *
      * <p>HTTP PUTリクエストのフォーマットが正しくない場合、<code>doPut</code>はHTTP "Bad Request"メッセージを返します。
      *
