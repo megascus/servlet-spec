@@ -247,10 +247,9 @@ public abstract class HttpServlet extends GenericServlet
      * <code>doHead</code> returns an HTTP "Bad Request"
      * message.
      *
-     * @param req   the request object that is passed to the servlet
-     *                        
-     * @param resp  the response object that the servlet
-     *                  uses to return the headers to the clien
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
+     *
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト
      *
      * @throws IOException   I/Oエラーが発生した
      *
