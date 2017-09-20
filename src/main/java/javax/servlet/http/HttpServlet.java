@@ -71,43 +71,27 @@ import javax.servlet.*;
 
 
 /**
- *
- * Provides an abstract class to be subclassed to create
- * an HTTP servlet suitable for a Web site. A subclass of
- * <code>HttpServlet</code> must override at least 
- * one method, usually one of these:
- *
+ * <p>Webサイトに適したHTTPサーブレットを作成するためにサブクラスが作成される抽象クラスを提供します。
+ * <code>HttpServlet</code>のサブクラスはひとつ以上のメソッドをオーバーライドする必要があります。通常は以下のうちのどれかです。</p>
+ * 
  * <ul>
- * <li> <code>doGet</code>, if the servlet supports HTTP GET requests
- * <li> <code>doPost</code>, for HTTP POST requests
- * <li> <code>doPut</code>, for HTTP PUT requests
- * <li> <code>doDelete</code>, for HTTP DELETE requests
- * <li> <code>init</code> and <code>destroy</code>, 
- * to manage resources that are held for the life of the servlet
- * <li> <code>getServletInfo</code>, which the servlet uses to
- * provide information about itself 
+ * <li> <code>doGet</code>、サーブレットがHTTP GETリクエストをサポートしている場合
+ * <li> <code>doPost</code>、HTTP POSTリクエスト用
+ * <li> <code>doPut</code>、HTTP PUTリクエスト用
+ * <li> <code>doDelete</code>、HTTP DELETETリクエスト用
+ * <li> <code>init</code> と <code>destroy</code>、サーブレットのライフサイクルで保持されているリソースの管理用
+ * <li> <code>getServletInfo</code>、サーブレットが自身に関する情報を提供するために使用する
  * </ul>
  *
- * <p>There's almost no reason to override the <code>service</code>
- * method. <code>service</code> handles standard HTTP
- * requests by dispatching them to the handler methods
- * for each HTTP request type (the <code>do</code><i>XXX</i>
- * methods listed above).
- *
- * <p>Likewise, there's almost no reason to override the 
- * <code>doOptions</code> and <code>doTrace</code> methods.
+ * <code>service</code>メソッドをオーバーライドする理由はほとんどありません。
+ * <code>service</code>メソッドは各HTTPのリクエストタイプの処理メソッド（上記の<code>do</code><i>XXX</i>メソッド）に標準HTTPリクエストをディスパッチして処理します。
  * 
- * <p>Servlets typically run on multithreaded servers,
- * so be aware that a servlet must handle concurrent
- * requests and be careful to synchronize access to shared resources.
- * Shared resources include in-memory data such as
- * instance or class variables and external objects
- * such as files, database connections, and network 
- * connections.
- * See the
- * <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/">
- * Java Tutorial on Multithreaded Programming</a> for more
- * information on handling multiple threads in a Java program.
+ * 同様に、 <code>doOptions</code>メソッドと<code>doTrace</code> メソッドをオーバーライドする理由もほとんどありません。
+ * 
+ * <p>サーブレットは通常、サーバー上でマルチスレッドで実行されるため、フィルタは同時に行われるリクエストを処理し、共有リソースへのアクセスを同期するよう注意しなければなりません。
+ * 
+ * 共有リソースにはインスタンス変数、クラス変数などのインメモリデータや、ファイル、データベース接続、ネットワーク接続などの外部オブジェクトが含まれます。
+ * Javaプログラムで複数のスレッドを処理する方法の詳細は、<a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/">Java Tutorial on Multithreaded Programming</a>を参照してください。
  *
  * @author  Various
  */
@@ -132,8 +116,9 @@ public abstract class HttpServlet extends GenericServlet
    
     
     /**
-     * Does nothing, because this is an abstract class.
+     * <p>このクラスはabstractクラスなので何もしません。</p>
      * 
+     * <p>訳注：理由になってない・・・・・
      */
 
     public HttpServlet() { }
@@ -187,20 +172,13 @@ public abstract class HttpServlet extends GenericServlet
      * <p>If the request is incorrectly formatted, <code>doGet</code>
      * returns an HTTP "Bad Request" message.
      * 
-     * @param req   an {@link HttpServletRequest} object that
-     *                  contains the request the client has made
-     *                  of the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param resp  an {@link HttpServletResponse} object that
-     *                  contains the response the servlet sends
-     *                  to the client
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト
      * 
-     * @throws IOException   if an input or output error is 
-     *                              detected when the servlet handles
-     *                              the GET request
+     * @throws IOException   サーブレットがGETリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws ServletException  if the request for the GET
-     *                                  could not be handled
+     * @throws ServletException  GETのためのリクエストが処理できなかった
      *
      * @see javax.servlet.ServletResponse#setContentType
      */
@@ -274,10 +252,9 @@ public abstract class HttpServlet extends GenericServlet
      * @param resp  the response object that the servlet
      *                  uses to return the headers to the clien
      *
-     * @throws IOException   if an input or output error occurs
+     * @throws IOException   I/Oエラーが発生した
      *
-     * @throws ServletException  if the request for the HEAD
-     *                                  could not be handled
+     * @throws ServletException  HEADのためのリクエストが処理できなかった
      */
     protected void doHead(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException
@@ -329,20 +306,13 @@ public abstract class HttpServlet extends GenericServlet
      * <code>doPost</code> returns an HTTP "Bad Request" message.
      *
      *
-     * @param req   an {@link HttpServletRequest} object that
-     *                  contains the request the client has made
-     *                  of the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param resp  an {@link HttpServletResponse} object that
-     *                  contains the response the servlet sends
-     *                  to the client
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト
      * 
-     * @throws IOException   if an input or output error is 
-     *                              detected when the servlet handles
-     *                              the request
+     * @throws IOException   サーブレットがリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws ServletException  if the request for the POST
-     *                                  could not be handled
+     * @throws ServletException  POSTのためのリクエストが処理できなかった
      *
      * @see javax.servlet.ServletOutputStream
      * @see javax.servlet.ServletResponse#setContentType
@@ -387,20 +357,13 @@ public abstract class HttpServlet extends GenericServlet
      * <p>If the HTTP PUT request is incorrectly formatted,
      * <code>doPut</code> returns an HTTP "Bad Request" message.
      *
-     * @param req   the {@link HttpServletRequest} object that
-     *                  contains the request the client made of
-     *                  the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param resp  the {@link HttpServletResponse} object that
-     *                  contains the response the servlet returns
-     *                  to the client
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト
      *
-     * @throws IOException   if an input or output error occurs
-     *                              while the servlet is handling the
-     *                              PUT request
+     * @throws IOException   サーブレットがPUTリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws ServletException  if the request for the PUT
-     *                                  cannot be handled
+     * @throws ServletException  PUTのためのリクエストが処理できなかった
      */
     protected void doPut(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException
@@ -433,20 +396,13 @@ public abstract class HttpServlet extends GenericServlet
      * <code>doDelete</code> returns an HTTP "Bad Request"
      * message.
      *
-     * @param req   the {@link HttpServletRequest} object that
-     *                  contains the request the client made of
-     *                  the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param resp  the {@link HttpServletResponse} object that
-     *                  contains the response the servlet returns
-     *                  to the client                                
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト                        
      *
-     * @throws IOException   if an input or output error occurs
-     *                              while the servlet is handling the
-     *                              DELETE request
+     * @throws IOException   サーブレットがDELETEリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws ServletException  if the request for the
-     *                                  DELETE cannot be handled
+     * @throws ServletException  DELETEのためのリクエストが処理できなかった
      */
     protected void doDelete(HttpServletRequest req,
                             HttpServletResponse resp)
@@ -504,20 +460,13 @@ public abstract class HttpServlet extends GenericServlet
      * servlet implements new HTTP methods, beyond those 
      * implemented by HTTP 1.1.
      *
-     * @param req   the {@link HttpServletRequest} object that
-     *                  contains the request the client made of
-     *                  the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param resp  the {@link HttpServletResponse} object that
-     *                  contains the response the servlet returns
-     *                  to the client                                
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト                             
      *
-     * @throws IOException   if an input or output error occurs
-     *                              while the servlet is handling the
-     *                              OPTIONS request
+     * @throws IOException   サーブレットがOPTIONSリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws ServletException  if the request for the
-     *                                  OPTIONS cannot be handled
+     * @throws ServletException  OPTIONSのためのリクエストが処理できなかった
      */
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException
@@ -603,21 +552,13 @@ public abstract class HttpServlet extends GenericServlet
      * request to the client, so that they can be used in
      * debugging. There's no need to override this method. 
      *
-     * @param req   the {@link HttpServletRequest} object that
-     *                  contains the request the client made of
-     *                  the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト                            
      *
-     * @param resp  the {@link HttpServletResponse} object that
-     *                  contains the response the servlet returns
-     *                  to the client                                
+     * @throws IOException   サーブレットがTRACEリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws IOException   if an input or output error occurs
-     *                              while the servlet is handling the
-     *                              TRACE request
-     *
-     * @throws ServletException  if the request for the
-     *                                  TRACE cannot be handled
+     * @throws ServletException  TRACEのためのリクエストが処理できなかった
      */
     protected void doTrace(HttpServletRequest req, HttpServletResponse resp) 
         throws ServletException, IOException
@@ -649,27 +590,17 @@ public abstract class HttpServlet extends GenericServlet
 
 
     /**
-     * Receives standard HTTP requests from the public
-     * <code>service</code> method and dispatches
-     * them to the <code>do</code><i>XXX</i> methods defined in 
-     * this class. This method is an HTTP-specific version of the 
-     * {@link javax.servlet.Servlet#service} method. There's no
-     * need to override this method.
+     * publicな<code>service</code>メソッドから標準のHTTPリクエストを受け取りこのクラスで定義されている<code>do</code><i>XXX</i>メソッドにディスパッチします。
+     * このメソッドは{@link javax.servlet.Servlet#service}メソッドのHTTPに特化したバージョンです。
+     * このメソッドをオーバーライドする必要はありません。
      *
-     * @param req   the {@link HttpServletRequest} object that
-     *                  contains the request the client made of
-     *                  the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param resp  the {@link HttpServletResponse} object that
-     *                  contains the response the servlet returns
-     *                  to the client                                
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト                               
      *
-     * @throws IOException   if an input or output error occurs
-     *                              while the servlet is handling the
-     *                              HTTP request
+     * @throws IOException   サーブレットがHTTPリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws ServletException  if the HTTP request
-     *                                  cannot be handled
+     * @throws ServletException  HTTPリクエストが処理できなかった
      * 
      * @see javax.servlet.Servlet#service
      */
@@ -750,26 +681,15 @@ public abstract class HttpServlet extends GenericServlet
    
     
     /**
-     * Dispatches client requests to the protected
-     * <code>service</code> method. There's no need to
-     * override this method.
+     * クライアントからのリクエストをprotectedな<code>service</code>メソッドにディスパッチします。このメソッドをオーバーライドする必要はありません。
      * 
-     * @param req   the {@link HttpServletRequest} object that
-     *                  contains the request the client made of
-     *                  the servlet
+     * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
-     * @param res   the {@link HttpServletResponse} object that
-     *                  contains the response the servlet returns
-     *                  to the client                                
+     * @param resp  クライアントに返すレスポンスを含む{@link HttpServletResponse}オブジェクト                              
      *
-     * @throws IOException   if an input or output error occurs
-     *                              while the servlet is handling the
-     *                              HTTP request
+     * @throws IOException   サーブレットがHTTPリクエストを処理しているときにI/Oエラーが発生した
      *
-     * @throws ServletException  if the HTTP request cannot
-     *                                  be handled or if either parameter is not
-     *                           an instance of its respective {@link HttpServletRequest}
-     *                           or {@link HttpServletResponse} counterparts.
+     * @throws ServletException  HTTPリクエストが処理できなかったか、受け取ったパラメーターがそれぞれ{@link HttpServletRequest}か{@link HttpServletResponse}のインスタンスでなかった場合。
      * 
      * @see javax.servlet.Servlet#service
      */
