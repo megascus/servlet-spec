@@ -125,52 +125,35 @@ public abstract class HttpServlet extends GenericServlet
     
 
     /**
-     *
-     * Called by the server (via the <code>service</code> method) to
-     * allow a servlet to handle a GET request. 
-     *
-     * <p>Overriding this method to support a GET request also
-     * automatically supports an HTTP HEAD request. A HEAD
-     * request is a GET request that returns no body in the
-     * response, only the request header fields.
-     *
-     * <p>When overriding this method, read the request data,
-     * write the response headers, get the response's writer or 
-     * output stream object, and finally, write the response data.
-     * It's best to include content type and encoding. When using
-     * a <code>PrintWriter</code> object to return the response,
-     * set the content type before accessing the
-     * <code>PrintWriter</code> object.
-     *
-     * <p>The servlet container must write the headers before
-     * committing the response, because in HTTP the headers must be sent
-     * before the response body.
-     *
-     * <p>Where possible, set the Content-Length header (with the
-     * {@link javax.servlet.ServletResponse#setContentLength} method),
-     * to allow the servlet container to use a persistent connection 
-     * to return its response to the client, improving performance.
-     * The content length is automatically set if the entire response fits
-     * inside the response buffer.
-     *
-     * <p>When using HTTP 1.1 chunked encoding (which means that the response
-     * has a Transfer-Encoding header), do not set the Content-Length header.
-     *
-     * <p>The GET method should be safe, that is, without
-     * any side effects for which users are held responsible.
-     * For example, most form queries have no side effects.
-     * If a client request is intended to change stored data,
-     * the request should use some other HTTP method.
-     *
-     * <p>The GET method should also be idempotent, meaning
-     * that it can be safely repeated. Sometimes making a
-     * method safe also makes it idempotent. For example, 
-     * repeating queries is both safe and idempotent, but
-     * buying a product online or modifying data is neither
-     * safe nor idempotent. 
-     *
-     * <p>If the request is incorrectly formatted, <code>doGet</code>
-     * returns an HTTP "Bad Request" message.
+     * サーブレットがGETリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
+     * 
+     * <p>GETリクエストをサポートするためにこのメソッドをオーバーライドすると、HTTP HEADリクエストも自動的にサポートされます。
+     * HEADリクエストはレスポンスとして本文がないものが返されるリクエストヘッダフィールドのみのGETリクエストです。
+     * 
+     * <p>このメソッドをオーバーライドするときは、リクエストデータを読み込み、レスポンスヘッダーを書き、
+     * レスポンスのWriterまたはOutputStream オブジェクトを取得し、最後にレスポンスデータを書き込みます。
+     * コンテンツタイプとエンコーディングを含めることをお勧めします。
+     * <code>PrintWriter</code>オブジェクトを使用してレスポンスを返す場合は<code>PrintWriter</code>オブジェクトにアクセスする前にコンテンツタイプを設定します。
+     * 
+     * <p>サーブレットコンテナはレスポンスをコミットする前にヘッダーを書き込まなければいけません。
+     * HTTPではレスポンスボディの前にヘッダーを送信する必要があるからです。
+     * 
+     * 可能であれば({@link javax.servlet.ServletResponse#setContentLength}メソッドを使用して)Content-Lengthヘッダーを設定し、
+     * サーブレットコンテナが永続的な接続を使用して応答をクライアントに返すようにし、パフォーマンスを向上させます。
+     * コンテンツの長さはレスポンス全体がレスポンスバッファ内に収まる場合には自動的に設定されます。
+     * 
+     * <p>HTTP 1.1チャンクエンコーディング(応答にTransfer-Encodingヘッダーがあることを意味します)を使用する場合は、
+     * Content-Lengthヘッダーを設定しないでください。
+     * 
+     * <p>GETメソッドは安全である必要があります。つまりユーザーが責任を負うべき副作用はありません。
+     * たとえばほとんどの検索フォームは副作用がありません。
+     * クライアントのリクエストが格納されたデータを変更することを意図している場合、リクエストは他のHTTPメソッドを使用する必要があります。
+     * 
+     * GETメソッドは冪等である必要があります。つまり安全に繰り返すことができます。
+     * 時にはメソッドを安全にすることも、メソッドを冪等にします。
+     * たとえば、検索を繰り返すことは安全かつ冪等ですが、オンラインで製品を購入したりデータを修正することは安全でもなく冪等でもありません。
+     * 
+     * <p>リクエストのフォーマットが正しくない場合、<code>doGet</code>はHTTP "Bad Request"メッセージを返します。
      * 
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
