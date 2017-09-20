@@ -128,7 +128,7 @@ public abstract class HttpServlet extends GenericServlet
      * サーブレットがGETリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
      * 
      * <p>GETリクエストをサポートするためにこのメソッドをオーバーライドすると、HTTP HEADリクエストも自動的にサポートされます。
-     * HEADリクエストはレスポンスとして本文がないものが返されるリクエストヘッダフィールドのみのGETリクエストです。
+     * HEADリクエストはレスポンスとしてボディがないものが返されるリクエストヘッダフィールドのみのGETリクエストです。
      * 
      * <p>このメソッドをオーバーライドするときは、リクエストデータを読み込み、レスポンスヘッダーを書き、
      * レスポンスのWriterまたはOutputStream オブジェクトを取得し、最後にレスポンスデータを書き込みます。
@@ -199,23 +199,13 @@ public abstract class HttpServlet extends GenericServlet
 
 
     /**
+     * protectedな<code>service</code>メソッドからHTTP HEADリクエストを受け取り、リクエストを処理します。
      * 
-     *
-     * <p>Receives an HTTP HEAD request from the protected
-     * <code>service</code> method and handles the
-     * request.
-     * The client sends a HEAD request when it wants
-     * to see only the headers of a response, such as
-     * Content-Type or Content-Length. The HTTP HEAD
-     * method counts the output bytes in the response
-     * to set the Content-Length header accurately.
-     *
-     * <p>If you override this method, you can avoid computing
-     * the response body and just set the response headers
-     * directly to improve performance. Make sure that the
-     * <code>doHead</code> method you write is both safe
-     * and idempotent (that is, protects itself from being
-     * called multiple times for one HTTP HEAD request).
+     * クライアントはContent-TypeやContent-Lengthなどのレスポンスのヘッダーに含まれる情報だけを参照したいときにHEADリクエストを送ります。
+     * HTTP HEADメソッドはContent-Lengthヘッダを正確に設定するためにレスポンスの出力バイト数をカウントします。
+     * 
+     * <p> このメソッドをオーバーライドすると、レスポンスボディボディの計算を回避しレスポンスヘッダーを直接設定することでパフォーマンスを向上させることができます。
+     * 書き込む<code>doHead</code>メソッドが安全かつ冪等である（つまり、一回のHTTP HEAD要求に対して複数回呼び出されないようにする）ことを確認してください。
      *
      * <p>HTTP HEADリクエストのフォーマットが正しくない場合、<code>doHead</code>はHTTP "Bad Request"メッセージを返します。
      *
@@ -238,9 +228,7 @@ public abstract class HttpServlet extends GenericServlet
 
 
     /**
-     *
-     * Called by the server (via the <code>service</code> method)
-     * to allow a servlet to handle a POST request.
+     * サーブレットがPOSTリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
      *
      * The HTTP POST method allows the client to send
      * data of unlimited length to the Web server a single time
@@ -273,8 +261,7 @@ public abstract class HttpServlet extends GenericServlet
      * which the user can be held accountable, for example, 
      * updating stored data or buying items online.
      *
-     * <p>If the HTTP POST request is incorrectly formatted,
-     * <code>doPost</code> returns an HTTP "Bad Request" message.
+     * <p>HTTP POSTリクエストのフォーマットが正しくない場合、<code>doPost</code>はHTTP "Bad Request"メッセージを返します。
      *
      *
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
@@ -302,8 +289,7 @@ public abstract class HttpServlet extends GenericServlet
 
 
     /**
-     * Called by the server (via the <code>service</code> method)
-     * to allow a servlet to handle a PUT request.
+     * サーブレットがPUTリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
      *
      * The PUT operation allows a client to 
      * place a file on the server and is similar to 
@@ -325,8 +311,7 @@ public abstract class HttpServlet extends GenericServlet
      * this method, it may be useful to save a copy of the
      * affected URL in temporary storage.
      *
-     * <p>If the HTTP PUT request is incorrectly formatted,
-     * <code>doPut</code> returns an HTTP "Bad Request" message.
+     * <p>HTTP PUTリクエストのフォーマットが正しくない場合、<code>doPut</code>はHTTP "Bad Request"メッセージを返します。
      *
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
@@ -350,22 +335,16 @@ public abstract class HttpServlet extends GenericServlet
 
 
     /**
-     * Called by the server (via the <code>service</code> method)
-     * to allow a servlet to handle a DELETE request.
+     * サーブレットがDELETEリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
      *
-     * The DELETE operation allows a client to remove a document
-     * or Web page from the server.
+     * DELETEの操作ではクライアントはサーバーからドキュメントもしくはウェブページを削除できます。
      * 
-     * <p>This method does not need to be either safe
-     * or idempotent. Operations requested through
-     * DELETE can have side effects for which users
-     * can be held accountable. When using
-     * this method, it may be useful to save a copy of the
-     * affected URL in temporary storage.
+     * <p>このメソッドは安全でも冪等でもある必要はありません。
+     * DELETEによって要求された操作にはユーザーが責任を負う可能性のある副作用があります。
+     * このメソッドを使用する場合は、影響を受けるURLのコピーをテンポラリ領域に保存すると便利です。
+     * 
+     * <p>HTTP DELETEリクエストのフォーマットが正しくない場合、<code>doDelete</code>はHTTP "Bad Request"メッセージを返します。
      *
-     * <p>If the HTTP DELETE request is incorrectly formatted,
-     * <code>doDelete</code> returns an HTTP "Bad Request"
-     * message.
      *
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
@@ -416,20 +395,17 @@ public abstract class HttpServlet extends GenericServlet
 
 
     /**
-     * Called by the server (via the <code>service</code> method)
-     * to allow a servlet to handle a OPTIONS request.
-     *
-     * The OPTIONS request determines which HTTP methods 
-     * the server supports and
-     * returns an appropriate header. For example, if a servlet
-     * overrides <code>doGet</code>, this method returns the
-     * following header:
+     * サーブレットがOPTIONSリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
+     * 
+     *  OPTIONS要求はサーバーがサポートするHTTPメソッドを測定し適切なヘッダーを返します。
+     * たとえば、サーブレットが<code>doGet</code>メソッドをオーバーライドする場合、このメソッドは次のヘッダーを返します。
      *
      * <p><code>Allow: GET, HEAD, TRACE, OPTIONS</code>
+     * 
+     * <p>サーブレットがHTTP 1.1で実装されているものよりも新しく制定されたHTTPメソッドを実装していない限り、
+     * このメソッドをオーバーライドする必要はありません。
      *
-     * <p>There's no need to override this method unless the
-     * servlet implements new HTTP methods, beyond those 
-     * implemented by HTTP 1.1.
+     * <p>訳注：HTTP/2でもHTTPのメソッドは増えていないのでこのドキュメントの内容は有効です。
      *
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
@@ -516,12 +492,10 @@ public abstract class HttpServlet extends GenericServlet
     
     
     /**
-     * Called by the server (via the <code>service</code> method)
-     * to allow a servlet to handle a TRACE request.
+     * サーブレットがTRACEリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
      *
-     * A TRACE returns the headers sent with the TRACE
-     * request to the client, so that they can be used in
-     * debugging. There's no need to override this method. 
+     * TRACEは、TRACEリクエストとともに送信されたヘッダーをクライアントに戻しデバッグに使用できるようにします。
+     * このメソッドをオーバーライドする必要はありません。
      *
      * @param req   クライアントからのリクエストを含む{@link HttpServletRequest}オブジェクト
      *
