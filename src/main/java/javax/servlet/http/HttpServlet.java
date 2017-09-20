@@ -296,7 +296,7 @@ public abstract class HttpServlet extends GenericServlet
      * リクエストで送信されたコンテンツヘッダー(Content-Length、Content-Type、Content-Transfer-Encoding、
      * Content-Encoding、Content-Base、Content-Language、Content-Location、
      * Content-MD5、Content-Rangeが含まれる)を完全にそのままにしてください。
-     * メソッドがコンテンツヘッダーを処理できない場合はエラーメッセージ(HTTP 501 - Not Implemented) を発行し李エクスとを破棄する必要があります。
+     * メソッドがコンテンツヘッダーを処理できない場合はエラーメッセージ(HTTP 501 - Not Implemented) を発行しリクエストを破棄する必要があります。
      * HTTP 1.1のより詳細な情報については、<a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a>を参照してください。
      * .
      *
