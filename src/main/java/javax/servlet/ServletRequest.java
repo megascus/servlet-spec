@@ -62,15 +62,12 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Defines an object to provide client request information to a servlet.  The
- * servlet container creates a <code>ServletRequest</code> object and passes
- * it as an argument to the servlet's <code>service</code> method.
- *
- * <p>A <code>ServletRequest</code> object provides data including
- * parameter name and values, attributes, and an input stream.
- * Interfaces that extend <code>ServletRequest</code> can provide
- * additional protocol-specific data (for example, HTTP data is
- * provided by {@link javax.servlet.http.HttpServletRequest}.
+ * サーブレットにクライアントからのリクエストの情報を提供するオブジェクトを定義します。
+ * サーブレットコンテナは<code>ServletRequest</code>オブジェクトを作成し、サーブレットの<code>service</code>メソッドへの引数として渡します。
+ * 
+ * <p><code>ServletRequest</code>オブジェクトはパラメータ名と値、属性、および入力ストリームを含むデータを提供します。
+ * <code>ServletRequest</code>を拡張するインタフェースは追加のプロトコル固有のデータを提供できます。
+ * （たとえば、HTTPのデータは{@link javax.servlet.http.HttpServletRequest}によって提供されます。）
  * 
  * @author Various
  *
@@ -80,37 +77,27 @@ import java.util.*;
 public interface ServletRequest {
 
     /**
-     * Returns the value of the named attribute as an <code>Object</code>,
-     * or <code>null</code> if no attribute of the given name exists. 
+     * 名前の付いた属性の値を<code>Object</code>として返します。指定された名前の属性が存在しない場合は<code>null</code>を返します。
+     * 
+     * <p>属性は2つの方法で設定されます。サーブレットコンテナはリクエストに関する利用可能なカスタム情報を生成するために属性を設定してもよいです。
+     * たとえば、HTTPSを使用して行われたリクエストの場合、<code>javax.servlet.request.X509Certificate</code>の属性からクライアントの証明書に関する情報を取得できます。
+     * 属性は{@link ServletRequest#setAttribute}を使用してプログラムで設定することもできます。 
+     * これにより{@link RequestDispatcher} の呼び出しの前に情報をリクエストに埋め込むことができます。
+     * 
+     * <p>属性名は、パッケージ名と同じ規則に従う必要があります。
+     * この仕様では<code>java.*</code>、<code>javax.*</code>、<code>sun.*</code>と一致する名前を予約しています。
      *
-     * <p> Attributes can be set two ways.  The servlet container may set
-     * attributes to make available custom information about a request.
-     * For example, for requests made using HTTPS, the attribute
-     * <code>javax.servlet.request.X509Certificate</code> can be used to
-     * retrieve information on the certificate of the client.  Attributes
-     * can also be set programatically using 
-     * {@link ServletRequest#setAttribute}.  This allows information to be
-     * embedded into a request before a {@link RequestDispatcher} call.
+     * @param name 属性の名前を示す<code>String</code>
      *
-     * <p>Attribute names should follow the same conventions as package
-     * names. This specification reserves names matching <code>java.*</code>,
-     * <code>javax.*</code>, and <code>sun.*</code>. 
-     *
-     * @param name a <code>String</code> specifying the name of the attribute
-     *
-     * @return an <code>Object</code> containing the value of the attribute,
-     * or <code>null</code> if the attribute does not exist
+     * @return 属性の値を含む<code>Object</code>、属性が存在しない場合はnull
      */
     public Object getAttribute(String name);
     
     /**
-     * Returns an <code>Enumeration</code> containing the
-     * names of the attributes available to this request. 
-     * This method returns an empty <code>Enumeration</code>
-     * if the request has no attributes available to it.
+     * このリクエストで利用可能な属性の値を含む<code>Enumeration</code>を返します。
+     * このメソッドは利用可能な属性がない場合、空の<code>Enumeration</code>を返します。
      * 
-     * @return an <code>Enumeration</code> of strings containing the names 
-     * of the request's attributes
+     * @return このリクエストの属性の名前を含む文字列の<code>Enumeration</code>
      */
     public Enumeration<String> getAttributeNames();
     
