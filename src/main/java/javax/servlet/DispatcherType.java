@@ -41,7 +41,9 @@
 package javax.servlet;
 
 /**
- * Enumeration of filter dispatcher types.
+ * フィルターの dispatcher typeのEnumです。
+ * 
+ * <p>訳注：特定のサーブレットに関連付けられたフィルターがどういった場合に動作するかを指定するのに使用します。
  *
  * @since Servlet 3.0
  */
