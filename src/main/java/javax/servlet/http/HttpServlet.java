@@ -230,28 +230,20 @@ public abstract class HttpServlet extends GenericServlet
     /**
      * サーブレットがPOSTリクエストを処理できるようにするために(serviceメソッド経由で)サーバーによって呼び出されます。
      *
-     * The HTTP POST method allows the client to send
-     * data of unlimited length to the Web server a single time
-     * and is useful when posting information such as
-     * credit card numbers.
+     * HTTP POSTメソッドを使用するとクライアントウェブサーバーに無制限のデータを一度に送信できます。
+     * クレジットカード番号などの情報を送信するときにも便利です。
      *
-     * <p>When overriding this method, read the request data,
-     * write the response headers, get the response's writer or output
-     * stream object, and finally, write the response data. It's best 
-     * to include content type and encoding. When using a
-     * <code>PrintWriter</code> object to return the response, set the 
-     * content type before accessing the <code>PrintWriter</code> object. 
+     * <p>このメソッドをオーバーライドするときは、リクエストデータを読み込み、レスポンスヘッダーを書き、
+     * レスポンスのWriterまたはOutputStream オブジェクトを取得し、最後にレスポンスデータを書き込みます。
+     * コンテンツタイプとエンコーディングを含めることをお勧めします。
+     * <code>PrintWriter</code>オブジェクトを使用してレスポンスを返す場合は<code>PrintWriter</code>オブジェクトにアクセスする前にコンテンツタイプを設定します。
+     * 
+     * <p>サーブレットコンテナはレスポンスをコミットする前にヘッダーを書き込まなければいけません。
+     * HTTPではレスポンスボディの前にヘッダーを送信する必要があるからです。
      *
-     * <p>The servlet container must write the headers before committing the
-     * response, because in HTTP the headers must be sent before the 
-     * response body.
-     *
-     * <p>Where possible, set the Content-Length header (with the
-     * {@link javax.servlet.ServletResponse#setContentLength} method),
-     * to allow the servlet container to use a persistent connection 
-     * to return its response to the client, improving performance.
-     * The content length is automatically set if the entire response fits
-     * inside the response buffer.  
+     * 可能であれば({@link javax.servlet.ServletResponse#setContentLength}メソッドを使用して)Content-Lengthヘッダーを設定し、
+     * サーブレットコンテナが永続的な接続を使用して応答をクライアントに返すようにし、パフォーマンスを向上させます。
+     * コンテンツの長さはレスポンス全体がレスポンスバッファ内に収まる場合には自動的に設定されます。
      *
      * <p>HTTP 1.1のチャンクエンコーディング（レスポンスにTransfer-Encodingヘッダーがあることを意味します）を使用する場合は
      * Content-Lengthヘッダーを設定しないでください。
