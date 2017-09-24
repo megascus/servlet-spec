@@ -193,32 +193,22 @@ public interface ServletRequest {
     public String getParameter(String name);
     
     /**
+     * リクエストに含まれるパラメーターの名前を含む<code>String</code>の<code>Enumeration</code>を返します。
+     * リクエストにパラメーターがない場合は空の<code>Enumeration</code>を返します。
      *
-     * Returns an <code>Enumeration</code> of <code>String</code>
-     * objects containing the names of the parameters contained
-     * in this request. If the request has 
-     * no parameters, the method returns an empty <code>Enumeration</code>. 
-     *
-     * @return an <code>Enumeration</code> of <code>String</code>
-     * objects, each <code>String</code> containing the name of
-     * a request parameter; or an empty <code>Enumeration</code>
-     * if the request has no parameters
+     * @return リクエストに含まれるパラメーターの名前を含む<code>String</code>の<code>Enumeration</code>、
+     * リクエストにパラメーターがない場合は空の<code>Enumeration</code>
      */
     public Enumeration<String> getParameterNames();
         
     /**
-     * Returns an array of <code>String</code> objects containing 
-     * all of the values the given request parameter has, or 
-     * <code>null</code> if the parameter does not exist.
+     * リクエストパラメーターに含まれるすべての値を<code>String</code>オブジェクトの配列として返します。
      *
-     * <p>If the parameter has a single value, the array has a length
-     * of 1.
+     * <p>もしパラメーターが単一の値を持つ場合、その配列の長さは1です。
      *
-     * @param name a <code>String</code> containing the name of 
-     * the parameter whose value is requested
+     * @param name 値が要求されているパラメーターの名前を含めた <code>String</code> 
      *
-     * @return an array of <code>String</code> objects 
-     * containing the parameter's values
+     * @return パラメーターの値が含められた <code>String</code> オブジェクトの配列
      *
      * @see #getParameter
      */
