@@ -237,17 +237,19 @@ public interface ServletRequest {
      * リクエストを作るのに使用されたスキーマを返します。例えば<code>http</code>や<code>https</code>、<code>ftp</code>などです。
      * RFC 1738に記載されているようにスキーマが異なる場合はURLの構築に異なるルールが適用されます。
      *
-     * @return 陸エスを作るのに使用されたスキーマの名前を含む<code>String</code>
+     * @return リクエストを作るのに使用されたスキーマの名前を含む<code>String</code>
      */
     public String getScheme();
     
     /**
+     * リクエストが送られたサーバーのホスト名を返します。
+     * <code>Host</code>が存在する場合は":"の前の部分、もしくは解決されたサーバー名、サーバーのIPアドレスなどです。
      * Returns the host name of the server to which the request was sent.
      * It is the value of the part before ":" in the <code>Host</code>
      * header value, if any, or the resolved server name, or the server IP
      * address.
      *
-     * @return a <code>String</code> containing the name of the server
+     * @return サーバーの名前を含む <code>String</code>
      */
     public String getServerName();
     
