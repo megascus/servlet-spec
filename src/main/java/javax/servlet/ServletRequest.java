@@ -102,18 +102,17 @@ public interface ServletRequest {
     public Enumeration<String> getAttributeNames();
     
     /**
-     * Returns the name of the character encoding used in the body of this
-     * request. This method returns <code>null</code> if no request encoding
-     * character encoding has been specified. The following methods for
-     * specifying the request character encoding are consulted, in decreasing
-     * order of priority: per request, per web app (using
-     * {@link ServletContext#setRequestCharacterEncoding}, deployment
-     * descriptor), and per container (for all web applications deployed in 
-     * that container, using vendor specific configuration).
+     * このリクエストのボディで使用されている文字エンコーディングの名前を返します。 
+     * このメソッドはリクエストの文字エンコーディングが指定されていない場合は<code>null</code>を返します 。
+     * Webアプリケーションごとに（ ServletContext.setRequestCharacterEncoding(java.lang.String) 、デプロイメント記述子を使用して）、コンテナごとに（デプロイされたすべてのWebアプリケーションに対して）リクエスト文字エンコーディングを指定するための以下のメソッドを優先順位の高い順に調べServletContext.setRequestCharacterEncoding(java.lang.String)そのコンテナ内でベンダー固有の設定を使用して）。
+     * リクエストの文字エンコーディングを指定する方法は優先度順で次の通りです。
+     * <ul>
+     * <li>リクエスト毎({@link #getCharacterEncoding}を使用)
+     * <li>ウェブアプリ毎 ({@link ServletContext#setRequestCharacterEncoding}やデプロイメントディスクリプタを使用)
+     * <li>コンテナ (コンテナにデプロイされたすべてのウェブアプリケーションに設定するためにベンダー固有の方法を使用)
+     * </ul>
      * 
-     * @return a <code>String</code> containing the name of the character
-     * encoding, or <code>null</code> if the request does not specify a
-     * character encoding
+     * @return 文字エンコーディングの名前を含んだ<code>String</code>、指定がない場合は<code>null</code>
      */
     public String getCharacterEncoding();
 
