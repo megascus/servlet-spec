@@ -300,12 +300,9 @@ public interface ServletRequest {
      * このリクエストに属性を保存します。
      * 属性はリクエストの度にリセットされます。このメソッドは{@link RequestDispatcher}と組み合わせて使用​​されることがよくあります。
      *
-     * <p>Attribute names should follow the same conventions as
-     * package names. Names beginning with <code>java.*</code>,
-     * <code>javax.*</code>, and <code>com.sun.*</code>, are
-     * reserved for use by Sun Microsystems.
-     *<br> If the object passed in is null, the effect is the same as
-     * calling {@link #removeAttribute}.
+     * <p>属性名はパッケージ名と同じ規則に従う必要があります。
+     * java.*やjavax.*、com.sun.*で始まる名前は、Sun Microsystemsが使用するために予約されています。 
+     * <p>Objectとしてnullが渡された場合、{@link #removeAttribute}を呼び出されたのと同じ効果を及ぼします。
      * <br> It is warned that when the request is dispatched from the
      * servlet resides in a different web application by
      * <code>RequestDispatcher</code>, the object set by this method
