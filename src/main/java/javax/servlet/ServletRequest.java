@@ -128,76 +128,65 @@ public interface ServletRequest {
     public void setCharacterEncoding(String env) throws UnsupportedEncodingException;
 
     /**
-     * リクエストボディのストリームの長さをバイト単位で返し、入力ストリームによって利用可能になります。
+     * リクエストボディの入力ストリームによって利用可能な長さをバイト単位で返します。
      * 長さがわからない場合やInteger.MAX_VALUEより大きい場合は-1を返します。
      * HTTPサーブレットの場合、CGIの変数CONTENT_LENGTHの値と同じです。
      * 
      * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return リクエストボディの長さを含む数値。長さがわからない場合やInteger.MAX_VALUEより大きい場合は-1を返す
+     * @return リクエストボディの長さを含むint。長さがわからない場合やInteger.MAX_VALUEより大きい場合は-1を返す
      */
     public int getContentLength();
     
     /**
-     * Returns the length, in bytes, of the request body and made available by
-     * the input stream, or -1 if the length is not known. For HTTP servlets,
-     * same as the value of the CGI variable CONTENT_LENGTH.
-     *
-     * @return a long containing the length of the request body or -1L if
-     * the length is not known
+     * リクエストボディの入力ストリームによって利用可能な長さをバイト単位で返します。
+     * 長さがわからない場合は-1を返します。
+     * HTTPサーブレットの場合、CGIの変数CONTENT_LENGTHの値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
+     * 
+     * @return リクエストボディの長さを含むlong。長さがわからない場合は-1を返す
      *
      * @since Servlet 3.1
      */
     public long getContentLengthLong();
     
     /**
-     * Returns the MIME type of the body of the request, or 
-     * <code>null</code> if the type is not known. For HTTP servlets, 
-     * same as the value of the CGI variable CONTENT_TYPE.
-     *
-     * @return a <code>String</code> containing the name of the MIME type
-     * of the request, or null if the type is not known
+     * リクエストボディのMIME形式を返します。MIME形式が不明の場合は<code>null</code>を返します。
+     * HTTPサーブレットの場合、CGI変数のCONTENT_TYPEの値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
+     * 
+     * @return リクエストボディのMIME形式を含む<code>String</code>。MIME形式が不明の場合は<code>null</code>を返す
      */
     public String getContentType();
     
     /**
-     * Retrieves the body of the request as binary data using
-     * a {@link ServletInputStream}.  Either this method or 
-     * {@link #getReader} may be called to read the body, not both.
+     * リクエストボディを{@link ServletInputStream}を利用してバイナリデータとして取得します。
+     * このメソッドと{@link #getReader}はどちらかしか呼び出せません。
      *
-     * @return a {@link ServletInputStream} object containing
-     * the body of the request
+     * @return リクエストボディを含む {@link ServletInputStream}のオブジェクト
      *
-     * @exception IllegalStateException if the {@link #getReader} method
-     * has already been called for this request
+     * @exception IllegalStateException {@link #getReader} メソッドがこのリクエストですでに呼び出されていた場合
      *
-     * @exception IOException if an input or output exception occurred
+     * @exception IOException I/Oエラーが発生した
      */
     public ServletInputStream getInputStream() throws IOException; 
      
     /**
-     * Returns the value of a request parameter as a <code>String</code>,
-     * or <code>null</code> if the parameter does not exist. Request parameters
-     * are extra information sent with the request.  For HTTP servlets,
-     * parameters are contained in the query string or posted form data.
+     * リクエストパラメーターを<code>String</code>として返します。パラメーターが存在しない場合は<code>null</code>を返します。
+     * リクエストパラメーターはリクエストと同時に送られる追加の情報です。HTTPサーブレットではリクエストパラメーターはクエリ文字列やフォームからPOSTされたデータを含みます。
+     * 
+     * <p>このメソッドはパラメーターが確実に一つの場合のみ呼び出すことができます。もし二つ以上あるかもしれない場合は{@link #getParameterValues}を使用してください。
      *
-     * <p>You should only use this method when you are sure the
-     * parameter has only one value. If the parameter might have
-     * more than one value, use {@link #getParameterValues}.
+     * <p>もしこのメソッドを複数の値のあるパラメーターに使用した場合、<code>getParameterValues</code>が返す値の最初の値のみを取得できます。
+     * 
+     * <p>もしHTTP POSTリクエストのようにパラメーターがリクエストボディで送られた場合、
+     * {@link #getInputStream}や{@link #getReader}で直接リクエストボディを読み取るとこのメソッドの実行が妨害される可能性があります。
      *
-     * <p>If you use this method with a multivalued
-     * parameter, the value returned is equal to the first value
-     * in the array returned by <code>getParameterValues</code>.
+     * @param name パラメーターの名前を指定する<code>String</code>
      *
-     * <p>If the parameter data was sent in the request body, such as occurs
-     * with an HTTP POST request, then reading the body directly via {@link
-     * #getInputStream} or {@link #getReader} can interfere
-     * with the execution of this method.
-     *
-     * @param name a <code>String</code> specifying the name of the parameter
-     *
-     * @return a <code>String</code> representing the single value of
-     * the parameter
+     * @return パラメーターを代表する単一の値の <code>String</code>
      *
      * @see #getParameterValues
      */
