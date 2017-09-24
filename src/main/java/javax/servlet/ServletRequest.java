@@ -243,42 +243,32 @@ public interface ServletRequest {
     
     /**
      * リクエストが送られたサーバーのホスト名を返します。
-     * <code>Host</code>が存在する場合は":"の前の部分、もしくは解決されたサーバー名、サーバーのIPアドレスなどです。
-     * Returns the host name of the server to which the request was sent.
-     * It is the value of the part before ":" in the <code>Host</code>
-     * header value, if any, or the resolved server name, or the server IP
-     * address.
+     * <code>Host</code>ヘッダーが存在する場合は":"の前の部分、もしくは解決されたサーバー名、サーバーのIPアドレスなどです。
      *
      * @return サーバーの名前を含む <code>String</code>
      */
     public String getServerName();
     
     /**
-     * Returns the port number to which the request was sent.
-     * It is the value of the part after ":" in the <code>Host</code>
-     * header value, if any, or the server port where the client connection
-     * was accepted on.
+     * リクエストが送られたサーバーのポート番号を返します。
+     * <code>Host</code>ヘッダーが存在する場合は":"の後ろの部分、もしくはクライアントのコネクションを受け付けたサーバーのポートです。
      *
-     * @return an integer specifying the port number
+     * @return ポート番号を指定する整数
      */
     public int getServerPort();
     
     /**
-     * Retrieves the body of the request as character data using
-     * a <code>BufferedReader</code>.  The reader translates the character
-     * data according to the character encoding used on the body.
-     * Either this method or {@link #getInputStream} may be called to read the
-     * body, not both.
+     * リクエストボディを<code>BufferedReader</code>.を利用して文字データとして取得します。
+     * Readerはリクエストボディに使用されている文字エンコーディングに従って文字データを変換します。
+     * このメソッドと{@link #getInputStream}はどちらかしか呼び出せません。
      * 
-     * @return a <code>BufferedReader</code> containing the body of the request 
+     * @return リクエストボディを含む <code>BufferedReader</code>  
      *
-     * @exception UnsupportedEncodingException  if the character set encoding
-     * used is not supported and the text cannot be decoded
+     * @exception UnsupportedEncodingException  使用されている文字エンコーディングがサポートされておらず、テキストがデコードできなかった場合
      *
-     * @exception IllegalStateException if {@link #getInputStream} method
-     * has been called on this request
+     * @exception IllegalStateException {@link #getInputStream} メソッドがこのリクエストですでに呼び出されていた場合
      *
-     * @exception IOException if an input or output exception occurred
+     * @exception IOException I/Oエラーが発生した
      *
      * @see #getInputStream
      */
