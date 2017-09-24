@@ -129,7 +129,7 @@ public interface ServletRequest {
     /**
      * リクエストボディの入力ストリームによって利用可能な長さをバイト単位で返します。
      * 長さがわからない場合やInteger.MAX_VALUEより大きい場合は-1を返します。
-     * HTTPサーブレットの場合、CGIの変数CONTENT_LENGTH</code>の値と同じです。
+     * HTTPサーブレットの場合、CGIの変数<code>CONTENT_LENGTH</code>の値と同じです。
      * 
      * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
