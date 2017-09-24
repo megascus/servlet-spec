@@ -275,33 +275,30 @@ public interface ServletRequest {
     public BufferedReader getReader() throws IOException;
     
     /**
-     * Returns the Internet Protocol (IP) address of the client 
-     * or last proxy that sent the request.
-     * For HTTP servlets, same as the value of the 
-     * CGI variable <code>REMOTE_ADDR</code>.
+     * リクエストを送信したクライアントまたは最後のプロキシのインターネットプロトコル(IP)アドレスを返します。
+     * HTTPサーブレットの場合、CGI変数の<code>REMOTE_ADDR</code>の値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return a <code>String</code> containing the 
-     * IP address of the client that sent the request
+     * @return クライアントがリクエストを送信したIPアドレスを含む <code>String</code>
      */
     public String getRemoteAddr();
     
     /**
-     * Returns the fully qualified name of the client
-     * or the last proxy that sent the request.
-     * If the engine cannot or chooses not to resolve the hostname 
-     * (to improve performance), this method returns the dotted-string form of 
-     * the IP address. For HTTP servlets, same as the value of the CGI variable 
-     * <code>REMOTE_HOST</code>.
+     * リクエストを送信したクライアントまたは最後のプロキシの完全修飾名(FQN)を返します。
+     * エンジンがパフォーマンスを向上させるためにホスト名を解決できない、
+     * またはホスト名を解決しないことを選択した場合、このメソッドはIPアドレスのドット文字列形式を返します。
+     * HTTPサーブレットの場合、CGI変数の <code>REMOTE_HOST</code>の値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return a <code>String</code> containing the fully 
-     * qualified name of the client
+     * @return クライアントの完全修飾名(FQN)を含む <code>String</code>
      */
     public String getRemoteHost();
     
     /**
-     * Stores an attribute in this request.
-     * Attributes are reset between requests.  This method is most
-     * often used in conjunction with {@link RequestDispatcher}.
+     * このリクエストに属性を保存します。
+     * 属性はリクエストの度にリセットされます。このメソッドは{@link RequestDispatcher}と組み合わせて使用​​されることがよくあります。
      *
      * <p>Attribute names should follow the same conventions as
      * package names. Names beginning with <code>java.*</code>,
