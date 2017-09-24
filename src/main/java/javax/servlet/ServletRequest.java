@@ -109,24 +109,21 @@ public interface ServletRequest {
      * <ul>
      * <li>リクエスト毎({@link #getCharacterEncoding}を使用)
      * <li>ウェブアプリ毎 ({@link ServletContext#setRequestCharacterEncoding}やデプロイメントディスクリプタを使用)
-     * <li>コンテナ (コンテナにデプロイされたすべてのウェブアプリケーションに設定するためにベンダー固有の方法を使用)
+     * <li>コンテナ(コンテナにデプロイされたすべてのウェブアプリケーションに設定するためにベンダー固有の方法を使用)
      * </ul>
      * 
-     * @return 文字エンコーディングの名前を含んだ<code>String</code>、指定がない場合は<code>null</code>
+     * @return 文字エンコーディングの名前を含む<code>String</code>、指定がない場合は<code>null</code>
      */
     public String getCharacterEncoding();
 
     /**
-     * Overrides the name of the character encoding used in the body of this
-     * request. This method must be called prior to reading request parameters
-     * or reading input using getReader(). Otherwise, it has no effect.
+     * このリクエストのボディで使用されている文字エンコーディングの名前を上書きします。
+     * このメソッドはリクエストパラメータを読み込む前、もしくはgetReader()を使用して入力を読み取る前に呼び出す必要があります。
+     * それ以外の場合、効果はありません。
      * 
-     * @param env <code>String</code> containing the name of
-     * the character encoding.
+     * @param env 文字エンコーディングの名前を含む<code>String</code>
      *
-     * @throws UnsupportedEncodingException if this ServletRequest is still
-     * in a state where a character encoding may be set,
-     * but the specified encoding is invalid
+     * @throws UnsupportedEncodingException このServletRequestにキャラクターエンコーディングを設定してもよい状態で、指定したエンコーディングが不正な場合。
      */
     public void setCharacterEncoding(String env) throws UnsupportedEncodingException;
 
