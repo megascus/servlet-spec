@@ -129,7 +129,7 @@ public interface ServletRequest {
     /**
      * リクエストボディの入力ストリームによって利用可能な長さをバイト単位で返します。
      * 長さがわからない場合やInteger.MAX_VALUEより大きい場合は-1を返します。
-     * HTTPサーブレットの場合、CGIの変数CONTENT_LENGTHの値と同じです。
+     * HTTPサーブレットの場合、CGIの変数CONTENT_LENGTH</code>の値と同じです。
      * 
      * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
@@ -140,7 +140,7 @@ public interface ServletRequest {
     /**
      * リクエストボディの入力ストリームによって利用可能な長さをバイト単位で返します。
      * 長さがわからない場合は-1を返します。
-     * HTTPサーブレットの場合、CGIの変数CONTENT_LENGTHの値と同じです。
+     * HTTPサーブレットの場合、CGIの変数<code>CONTENT_LENGTH</code>の値と同じです。
      * 
      * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      * 
@@ -152,7 +152,7 @@ public interface ServletRequest {
     
     /**
      * リクエストボディのMIME形式を返します。MIME形式が不明の場合は<code>null</code>を返します。
-     * HTTPサーブレットの場合、CGI変数のCONTENT_TYPEの値と同じです。
+     * HTTPサーブレットの場合、CGI変数の<code>CONTENT_TYPE</code>の値と同じです。
      * 
      * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      * 
@@ -214,40 +214,30 @@ public interface ServletRequest {
     public String[] getParameterValues(String name);
  
     /**
-     * Returns a java.util.Map of the parameters of this request.
+     * リクエストのパラメーターの java.util.Map を返します。
      * 
-     * <p>Request parameters are extra information sent with the request.
-     * For HTTP servlets, parameters are contained in the query string or
-     * posted form data.
+     * <p>リクエストパラメーターはリクエストと同時に送られる追加の情報です。
+     * HTTPサーブレットではリクエストパラメーターはクエリ文字列やフォームからPOSTされたデータを含みます。
      *
-     * @return an immutable java.util.Map containing parameter names as 
-     * keys and parameter values as map values. The keys in the parameter
-     * map are of type String. The values in the parameter map are of type
-     * String array.
+     * @return パラメーターのキーのStringとパラメーターの値のStringの配列を含めるイミュータブルな java.util.Map
      */
     public Map<String, String[]> getParameterMap();
     
     /**
-     * Returns the name and version of the protocol the request uses
-     * in the form <i>protocol/majorVersion.minorVersion</i>, for 
-     * example, HTTP/1.1. For HTTP servlets, the value
-     * returned is the same as the value of the CGI variable 
-     * <code>SERVER_PROTOCOL</code>.
+     * リクエストに使用されたプロトコルの名前とバージョンをHTTP/1.1のように<i>protocol/majorVersion.minorVersion</i>の形式で返します。
+     * HTTPサーブレットの場合、CGI変数の<code>SERVER_PROTOCOL</code>の値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return a <code>String</code> containing the protocol 
-     * name and version number
+     * @return プロトコルの名前とバージョンを含む<code>String</code>
      */    
     public String getProtocol();
     
     /**
-     * Returns the name of the scheme used to make this request, 
-     * for example,
-     * <code>http</code>, <code>https</code>, or <code>ftp</code>.
-     * Different schemes have different rules for constructing URLs,
-     * as noted in RFC 1738.
+     * リクエストを作るのに使用されたスキーマを返します。例えば<code>http</code>や<code>https</code>、<code>ftp</code>などです。
+     * RFC 1738に記載されているようにスキーマが異なる場合はURLの構築に異なるルールが適用されます。
      *
-     * @return a <code>String</code> containing the name 
-     * of the scheme used to make this request
+     * @return 陸エスを作るのに使用されたスキーマの名前を含む<code>String</code>
      */
     public String getScheme();
     
