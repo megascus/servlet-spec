@@ -128,13 +128,13 @@ public interface ServletRequest {
     public void setCharacterEncoding(String env) throws UnsupportedEncodingException;
 
     /**
-     * Returns the length, in bytes, of the request body and made available by
-     * the input stream, or -1 if the length is not known ir is greater than
-     * Integer.MAX_VALUE. For HTTP servlets,
-     * same as the value of the CGI variable CONTENT_LENGTH.
+     * リクエストボディのストリームの長さをバイト単位で返し、入力ストリームによって利用可能になります。
+     * 長さがわからない場合やInteger.MAX_VALUEより大きい場合は-1を返します。
+     * HTTPサーブレットの場合、CGIの変数CONTENT_LENGTHの値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return an integer containing the length of the request body or -1 if
-     * the length is not known or is greater than Integer.MAX_VALUE.
+     * @return リクエストボディの長さを含む数値。長さがわからない場合やInteger.MAX_VALUEより大きい場合は-1を返す
      */
     public int getContentLength();
     
