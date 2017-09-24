@@ -104,7 +104,6 @@ public interface ServletRequest {
     /**
      * このリクエストのボディで使用されている文字エンコーディングの名前を返します。 
      * このメソッドはリクエストの文字エンコーディングが指定されていない場合は<code>null</code>を返します 。
-     * Webアプリケーションごとに（ ServletContext.setRequestCharacterEncoding(java.lang.String) 、デプロイメント記述子を使用して）、コンテナごとに（デプロイされたすべてのWebアプリケーションに対して）リクエスト文字エンコーディングを指定するための以下のメソッドを優先順位の高い順に調べServletContext.setRequestCharacterEncoding(java.lang.String)そのコンテナ内でベンダー固有の設定を使用して）。
      * リクエストの文字エンコーディングを指定する方法は優先度順で次の通りです。
      * <ul>
      * <li>リクエスト毎({@link #getCharacterEncoding}を使用)
