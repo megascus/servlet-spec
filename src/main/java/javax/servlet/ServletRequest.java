@@ -303,56 +303,39 @@ public interface ServletRequest {
      * <p>属性名はパッケージ名と同じ規則に従う必要があります。
      * java.*やjavax.*、com.sun.*で始まる名前は、Sun Microsystemsが使用するために予約されています。 
      * <p>Objectとしてnullが渡された場合、{@link #removeAttribute}を呼び出されたのと同じ効果を及ぼします。
-     * <br> It is warned that when the request is dispatched from the
-     * servlet resides in a different web application by
-     * <code>RequestDispatcher</code>, the object set by this method
-     * may not be correctly retrieved in the caller servlet.
+     * <p>リクエストがサーブレットから<code>RequestDispatcher</code>によって別のウェブアプリケーションにディスパッチされた場合、
+     * このメソッドで設定されたオブジェクトは呼び出し側のサーブレットでは正しく取得できないことがあることを注意してください。
      *
-     * @param name a <code>String</code> specifying 
-     * the name of the attribute
+     * @param name 属性の名前を示す <code>String</code>
      *
-     * @param o the <code>Object</code> to be stored
+     * @param o 保存する <code>Object</code>
      *
      */
     public void setAttribute(String name, Object o);
     
     /**
+     * このリクエストから属性を削除します。属性はリクエストが処理されている間だけ永続化されているため、通常はこのメソッドは不要です。
+     * 
+     * <p>属性名はパッケージ名と同じ規則に従う必要があります。
+     * java.*やjavax.*、com.sun.*で始まる名前は、Sun Microsystemsが使用するために予約されています。 
      *
-     * Removes an attribute from this request.  This method is not
-     * generally needed as attributes only persist as long as the request
-     * is being handled.
-     *
-     * <p>Attribute names should follow the same conventions as
-     * package names. Names beginning with <code>java.*</code>,
-     * <code>javax.*</code>, and <code>com.sun.*</code>, are
-     * reserved for use by Sun Microsystems.
-     *
-     * @param name a <code>String</code> specifying 
-     * the name of the attribute to remove
+     * @param name 削除する属性の名前を示す <code>String</code>
      */
     public void removeAttribute(String name);
     
     /**
-     * Returns the preferred <code>Locale</code> that the client will 
-     * accept content in, based on the Accept-Language header.
-     * If the client request doesn't provide an Accept-Language header,
-     * this method returns the default locale for the server.
+     * Accept-Languageヘッダーの値からクライアントがコンテンツを受け入れる優先の<code>Locale</code>(ロケール、地域、言語)を返します。
+     * クライアントリクエストにAccept-Languageヘッダーが存在しない場合、このメソッドはサーバーのデフォルトのlocaleを返します。
      *
-     * @return the preferred <code>Locale</code> for the client
+     * @return クライアントの優先 <code>Locale</code>
      */
     public Locale getLocale();
     
     /**
-     * Returns an <code>Enumeration</code> of <code>Locale</code> objects
-     * indicating, in decreasing order starting with the preferred locale, the
-     * locales that are acceptable to the client based on the Accept-Language
-     * header.
-     * If the client request doesn't provide an Accept-Language header,
-     * this method returns an <code>Enumeration</code> containing one 
-     * <code>Locale</code>, the default locale for the server.
+     * Accept-Languageヘッダーの値からクライアントが受け入れられるlocale(ロケール、地域、言語)の優先度の降順で示す<code>Locale</code>オブジェクトの<code>Enumeration</code>を返します。
+     * クライアントリクエストにAccept-Languageヘッダーが存在しない場合、このメソッドはサーバーのデフォルトのlocaleである単一の<code>Locale</code>を含む<code>Enumeration</code>を返します。
      *
-     * @return an <code>Enumeration</code> of preferred 
-     * <code>Locale</code> objects for the client
+     * @return クライアントの優先<code>Locale</code>のオブジェクトの<code>Enumeration</code>
      */
     public Enumeration<Locale> getLocales();
     
