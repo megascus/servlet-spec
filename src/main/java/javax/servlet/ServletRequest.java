@@ -375,53 +375,45 @@ public interface ServletRequest {
     public String getRealPath(String path);
     
     /**
-     * Returns the Internet Protocol (IP) source port of the client
-     * or last proxy that sent the request.
+     * リクエストを送信したクライアントまたは最後のプロキシのインターネットプロトコル(IP)送信元ポートを返します。
      *
-     * @return an integer specifying the port number
+     * @return ポート番号を指定する整数
      *
      * @since Servlet 2.4
      */    
     public int getRemotePort();
 
     /**
-     * Returns the host name of the Internet Protocol (IP) interface on
-     * which the request was received.
+     * リクエストを受信したインタフェースのインターネットプロトコル(IP)ホスト名を返します。
      *
-     * @return a <code>String</code> containing the host
-     *         name of the IP on which the request was received.
+     * @return リクエストを受信したIPのホスト名を含む <code>String</code>
      *
      * @since Servlet 2.4
      */
     public String getLocalName();
 
     /**
-     * Returns the Internet Protocol (IP) address of the interface on
-     * which the request  was received.
+     * リクエストを受信したインタフェースのインターネットプロトコル(IP)アドレスを返します。
      *
-     * @return a <code>String</code> containing the
-     * IP address on which the request was received. 
+     * @return リクエストを受信したIPアドレスを含む <code>String</code>
      *
      * @since Servlet 2.4
      */       
     public String getLocalAddr();
 
     /**
-     * Returns the Internet Protocol (IP) port number of the interface
-     * on which the request was received.
+     * リクエストを受信したインタフェースのインターネットプロトコル(IP)ポート番号を返します。
      *
-     * @return an integer specifying the port number
+     * @return ポート番号を指定する整数
      *
      * @since Servlet 2.4
      */
     public int getLocalPort();
 
     /**
-     * Gets the servlet context to which this ServletRequest was last
-     * dispatched.
+     * このServletRequestが最後にディスパッチされたサーブレットコンテキストを返します。
      *
-     * @return the servlet context to which this ServletRequest was last
-     * dispatched
+     * @return このServletRequestが最後にディスパッチされたサーブレットコンテキスト
      *
      * @since Servlet 3.0
      */
