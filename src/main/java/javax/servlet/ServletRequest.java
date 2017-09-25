@@ -347,31 +347,18 @@ public interface ServletRequest {
     public boolean isSecure();
     
     /**
+     * 指定されたパスにあるリソースのラッパーとして機能する{@link RequestDispatcher}のオブジェクトを返します。 
+     * code>RequestDispatcher</code>オブジェクトを使用することでリクエストを別のリソースに転送したり、リソースをレスポンスに含めることができます。
+     * リソースは動的なものでも静的なものでもかまいません。
+     * 
+     * <p>指定されたパス名は相対パスにすることができますが現在のサーブレットのコンテキスト外には拡張できません。
+     * パスが "/"で始まる場合、現在のコンテキストルートからの相対パスとして解釈されます。 サーブレットコンテナが<code>RequestDispatcher</code>を返せない場合、このメソッドはnullを返します 。
+     * 
+     * <p>このメソッドと{@link ServletContext#getRequestDispatcher}の違いはこのメソッドが相対パスを取ることができることです。
      *
-     * Returns a {@link RequestDispatcher} object that acts as a wrapper for
-     * the resource located at the given path.  
-     * A <code>RequestDispatcher</code> object can be used to forward
-     * a request to the resource or to include the resource in a response.
-     * The resource can be dynamic or static.
+     * @param path リソースへのパス名を指定する <code>String</code>、相対パスの場合は現在のサーブレットからの相対パスでなければならない
      *
-     * <p>The pathname specified may be relative, although it cannot extend
-     * outside the current servlet context.  If the path begins with 
-     * a "/" it is interpreted as relative to the current context root.  
-     * This method returns <code>null</code> if the servlet container
-     * cannot return a <code>RequestDispatcher</code>.
-     *
-     * <p>The difference between this method and {@link
-     * ServletContext#getRequestDispatcher} is that this method can take a
-     * relative path.
-     *
-     * @param path a <code>String</code> specifying the pathname
-     * to the resource. If it is relative, it must be
-     * relative against the current servlet.
-     *
-     * @return a <code>RequestDispatcher</code> object that acts as a
-     * wrapper for the resource at the specified path,
-     * or <code>null</code> if the servlet container cannot
-     * return a <code>RequestDispatcher</code>
+     * @return 指定されたパスにあるリソースのラッパーとして機能する<code>RequestDispatcher</code>のオブジェクト、サーブレットコンテナが<code>RequestDispatcher</code>を返せない場合はnull
      *
      * @see RequestDispatcher
      * @see ServletContext#getRequestDispatcher
@@ -379,13 +366,11 @@ public interface ServletRequest {
     public RequestDispatcher getRequestDispatcher(String path);
     
     /**
-     * @param path the path for which the real path is to be returned.
+     * @param path 実際のパスが返されるパス
 
-     * @return the <i>real</i> path, or <tt>null</tt> if the
-     * translation cannot be performed.
+     * @return <i>実際の</i>パス、変換できない場合は<tt>null</tt>
 
-     * @deprecated  As of Version 2.1 of the Java Servlet API,
-     *    use {@link ServletContext#getRealPath} instead.
+     * @deprecated  AVersion 2.1 から{@link ServletContext#getRealPath}に置き換えられました
      */
     public String getRealPath(String path);
     
