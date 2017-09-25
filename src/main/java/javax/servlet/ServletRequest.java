@@ -529,10 +529,8 @@ public interface ServletRequest {
      *
      * <p>ServletRequestは{@link #startAsync}や{@link #startAsync(ServletRequest,ServletResponse)}の呼び出しで非同期モードになります。
      * 
-     * <p>This method returns <tt>false</tt> if this request was
-     * put into asynchronous mode, but has since been dispatched using
-     * one of the {@link AsyncContext#dispatch} methods or released
-     * from asynchronous mode via a call to {@link AsyncContext#complete}.
+     * <p>このメソッドは非同期実行モードになってから{@link AsyncContext#dispatch}を使ってディスパッチされている場合や
+     * {@link AsyncContext#complete}が呼ばれて非同期実行モードから開放されている場合には<tt>false</tt>を返します。
      *
      * @return このリクエストが非同期モードになっている場合はtrue、そうでない場合はfalse
      *
