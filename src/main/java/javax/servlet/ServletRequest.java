@@ -420,14 +420,9 @@ public interface ServletRequest {
     public ServletContext getServletContext();
 
     /**
-     * Puts this request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the original (unwrapped) ServletRequest
-     * and ServletResponse objects.
+     * このリクエストを非同期実行モードにし、オリジナルの(ラップされてない)ServletRequestとServletResponseのオブジェクトで{@link AsyncContext}を初期化します。
      *
-     * <p>Calling this method will cause committal of the associated
-     * response to be delayed until {@link AsyncContext#complete} is
-     * called on the returned {@link AsyncContext}, or the asynchronous
-     * operation has timed out.
+     * <p>このメソッドを呼び出すと返された{@link AsyncContext}の{@link AsyncContext#complete}が呼び出されるか非同期操作がタイムアウトになるまで関連するレスポンスのコミットが遅延されます。
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>true</code>. Any filters
@@ -448,7 +443,7 @@ public interface ServletRequest {
      * variant, will return the same AsyncContext instance, reinitialized
      * as appropriate.
      *
-     * @return the (re)initialized AsyncContext
+     * @return (再)初期化されたAsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operations
@@ -465,8 +460,7 @@ public interface ServletRequest {
     public AsyncContext startAsync() throws IllegalStateException;
  
     /**
-     * Puts this request into asynchronous mode, and initializes its
-     * {@link AsyncContext} with the given request and response objects.
+     * このリクエストを非同期実行モードにし、与えられたServletRequestとServletResponseのオブジェクトで{@link AsyncContext}を初期化します。
      *
      * <p>The ServletRequest and ServletResponse arguments must be
      * the same instances, or instances of {@link ServletRequestWrapper} and
@@ -475,10 +469,7 @@ public interface ServletRequest {
      * {@link Filter#doFilter doFilter} method of the Filter, respectively,
      * in whose scope this method is being called.
      *
-     * <p>Calling this method will cause committal of the associated
-     * response to be delayed until {@link AsyncContext#complete} is
-     * called on the returned {@link AsyncContext}, or the asynchronous
-     * operation has timed out.
+     * <p>このメソッドを呼び出すと返された{@link AsyncContext}の{@link AsyncContext#complete}が呼び出されるか非同期操作がタイムアウトになるまで関連するレスポンスのコミットが遅延されます。
      *
      * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
      * the returned AsyncContext will return <code>false</code>,
@@ -516,7 +507,7 @@ public interface ServletRequest {
      * @param servletResponse the ServletResponse used to initialize the
      * AsyncContext
      *
-     * @return the (re)initialized AsyncContext
+     * @return (再)初期化されたAsyncContext
      * 
      * @throws IllegalStateException if this request is within the scope of
      * a filter or servlet that does not support asynchronous operations
