@@ -525,31 +525,26 @@ public interface ServletRequest {
             throws IllegalStateException;
    
     /**
-     * Checks if this request has been put into asynchronous mode.
+     * このリクエストが非同期モードになっているかどうかをチェックします。
      *
-     * <p>A ServletRequest is put into asynchronous mode by calling
-     * {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on it.
+     * <p>ServletRequestは{@link #startAsync}や{@link #startAsync(ServletRequest,ServletResponse)}の呼び出しで非同期モードになります。
      * 
      * <p>This method returns <tt>false</tt> if this request was
      * put into asynchronous mode, but has since been dispatched using
      * one of the {@link AsyncContext#dispatch} methods or released
      * from asynchronous mode via a call to {@link AsyncContext#complete}.
      *
-     * @return true if this request has been put into asynchronous mode,
-     * false otherwise
+     * @return このリクエストが非同期モードになっている場合はtrue、そうでない場合はfalse
      *
      * @since Servlet 3.0
      */
     public boolean isAsyncStarted();
 
     /**
-     * Checks if this request supports asynchronous operation.
+     * このリクエストが非同期操作をサポートしているかどうかをチェックします。
      *
-     * <p>Asynchronous operation is disabled for this request if this request
-     * is within the scope of a filter or servlet that has not been annotated
-     * or flagged in the deployment descriptor as being able to support
-     * asynchronous handling.
+     * <p>このリクエストが非同期処理をサポートできるとアノテーションがつけられていないかデプロイメントディスクリプタにフラグが立てられていないフィルターまたはサーブレットのスコープ内にある場合、
+     * このリクエストに対して非同期操作は無効になります。
      *
      * @return true if this request supports asynchronous operation, false
      * otherwise
@@ -559,18 +554,11 @@ public interface ServletRequest {
     public boolean isAsyncSupported();
 
     /**
-     * Gets the AsyncContext that was created or reinitialized by the
-     * most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on this request.
+     * このリクエストで{@link #startAsync}または{@link #startAsync(ServletRequest,ServletResponse)}の最新の呼び出しによって作成または再初期化されたAsyncContextを取得します。
      *
-     * @return the AsyncContext that was created or reinitialized by the
-     * most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on
-     * this request 
+     * @return このリクエストで{@link #startAsync}または{@link #startAsync(ServletRequest,ServletResponse)}の最新の呼び出しによって作成または再初期化されたAsyncContext
      *
-     * @throws IllegalStateException if this request has not been put 
-     * into asynchronous mode, i.e., if neither {@link #startAsync} nor
-     * {@link #startAsync(ServletRequest,ServletResponse)} has been called
+     * @throws IllegalStateException このリクエストが非同期モードになっていない場合、つまり{@link #startAsync}も{@link #startAsync(ServletRequest,ServletResponse)}も呼び出されていない場合
      *
      * @since Servlet 3.0
      */
