@@ -453,12 +453,9 @@ public interface ServletRequest {
     /**
      * このリクエストを非同期実行モードにし、与えられたServletRequestとServletResponseのオブジェクトで{@link AsyncContext}を初期化します。
      *
-     * <p>The ServletRequest and ServletResponse arguments must be
-     * the same instances, or instances of {@link ServletRequestWrapper} and
-     * {@link ServletResponseWrapper} that wrap them, that were passed to the
-     * {@link Servlet#service service} method of the Servlet or the
-     * {@link Filter#doFilter doFilter} method of the Filter, respectively,
-     * in whose scope this method is being called.
+     * <p>引数のServletRequestとServletResponseはサーブレットの{@link Servlet#service service}
+     * メソッドもしくはフィルターの{@link Filter#doFilter doFilter}メソッドの各々が呼び出されたスコープで同じ院スタンデスであるか、
+     * {@link ServletRequestWrapper}や{@link ServletResponseWrapper}でそれらをラップしたものである必要があります。
      *
      * <p>このメソッドを呼び出すと返された{@link AsyncContext}の{@link AsyncContext#complete}が呼び出されるか非同期操作がタイムアウトになるまで関連するレスポンスのコミットが遅延されます。
      *
