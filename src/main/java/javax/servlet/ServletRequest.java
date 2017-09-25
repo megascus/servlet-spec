@@ -454,7 +454,7 @@ public interface ServletRequest {
      * このリクエストを非同期実行モードにし、与えられたServletRequestとServletResponseのオブジェクトで{@link AsyncContext}を初期化します。
      *
      * <p>引数のServletRequestとServletResponseはサーブレットの{@link Servlet#service service}
-     * メソッドもしくはフィルターの{@link Filter#doFilter doFilter}メソッドの各々が呼び出されたスコープで同じ院スタンデスであるか、
+     * メソッドもしくはフィルターの{@link Filter#doFilter doFilter}メソッドの各々が呼び出されたスコープでの同じインスタンスであるか、
      * {@link ServletRequestWrapper}や{@link ServletResponseWrapper}でそれらをラップしたものである必要があります。
      *
      * <p>このメソッドを呼び出すと返された{@link AsyncContext}の{@link AsyncContext#complete}が呼び出されるか非同期操作がタイムアウトになるまで関連するレスポンスのコミットが遅延されます。
