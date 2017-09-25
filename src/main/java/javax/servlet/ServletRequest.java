@@ -424,21 +424,15 @@ public interface ServletRequest {
      *
      * <p>このメソッドを呼び出すと返された{@link AsyncContext}の{@link AsyncContext#complete}が呼び出されるか非同期操作がタイムアウトになるまで関連するレスポンスのコミットが遅延されます。
      *
-     * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
-     * the returned AsyncContext will return <code>true</code>. Any filters
-     * invoked in the <i>outbound</i> direction after this request was put
-     * into asynchronous mode may use this as an indication that any request
-     * and/or response wrappers that they added during their <i>inbound</i>
-     * invocation need not stay around for the duration of the asynchronous
-     * operation, and therefore any of their associated resources may be
-     * released.
+     * <p>返されたAsyncContextで{@link AsyncContext#hasOriginalRequestAndResponse()}を呼び出すと<code>true</code>が返されます。
+     * このリクエストが非同期モードにされた後に<i>アウトバウンド</i>方向に呼び出されたフィルターは
+     * <i>インバウンド</i>呼び出し中に追加したすべてのリクエストおよび/またはレスポンスラッパーが非同期操作の間、呼び出しを滞留させる必要はありません、
+     * つまり、それらの関連リソースのいずれかが解放される可能性があります。
      *
      * <p>このメソッドは各{@link AsyncListener}をその{@link AsyncListener#onStartAsync onStartAsync}メソッドで呼び出した後、
      * startAsyncメソッドのうちの1つの最新の呼び出しによって返されたAsyncContextに登録された{@link AsyncListener}インスタンス(が存在する場合)のリストをクリアします。
      *
-     * <p>Subsequent invocations of this method, or its overloaded 
-     * variant, will return the same AsyncContext instance, reinitialized
-     * as appropriate.
+     * <p>その後にこのメソッドまたはオーバーロードされたメソッドを呼び出すと必要に応じて再初期化された同じAsyncContextのインスタンスが返されます。
      *
      * @return (再)初期化されたAsyncContext
      * 
@@ -489,12 +483,9 @@ public interface ServletRequest {
      * <p>このメソッドは各{@link AsyncListener}をその{@link AsyncListener#onStartAsync onStartAsync}メソッドで呼び出した後、
      * startAsyncメソッドのうちの1つの最新の呼び出しによって返されたAsyncContextに登録された{@link AsyncListener}インスタンス(が存在する場合)のリストをクリアします。
      *
-     * <p>Subsequent invocations of this method, or its zero-argument
-     * variant, will return the same AsyncContext instance, reinitialized
-     * as appropriate. If a call to this method is followed by a call to its
-     * zero-argument variant, the specified (and possibly wrapped) request
-     * and response objects will remain <i>locked in</i> on the returned
-     * AsyncContext.
+     * <p>その後にこのメソッドまたはオーバーロードされた引数のないメソッドを呼び出すと必要に応じて再初期化された同じAsyncContextのインスタンスが返されます。
+     *  このメソッドの呼び出しのあとに引数のないメソッドの呼び出しがあった場合、
+     * 指定された（場合によってはラップされた）リクエストおよびレスポンスのオブジェクトは返されたAsyncContextに<i>ロック</i>されたままになります。
      *
      * @param servletRequest AsyncContextの初期化に使用するServletRequest
      * 
