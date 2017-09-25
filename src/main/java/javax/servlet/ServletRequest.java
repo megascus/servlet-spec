@@ -586,31 +586,21 @@ public interface ServletRequest {
     public AsyncContext getAsyncContext();
 
     /**
-     * Gets the dispatcher type of this request.
+     * このリクエストのdispatcher typeを取得します。
      *
-     * <p>The dispatcher type of a request is used by the container
-     * to select the filters that need to be applied to the request:
-     * Only filters with matching dispatcher type and url patterns will
-     * be applied.
+     * <p>リクエストのdispatcher typeは、リクエストに適用する必要があるフィルターを選択するためにコンテナによって使用されます。
+     * 一致するdispatcher typeとURLパターンを持つフィルターのみが適用されます。
      * 
-     * <p>Allowing a filter that has been configured for multiple 
-     * dispatcher types to query a request for its dispatcher type
-     * allows the filter to process the request differently depending on
-     * its dispatcher type.
+     * <p>リクエストのdispatcher typeを照会するように設定されたフィルターを複数のdispatcher typeに対して許可すると、フィルターはdispatcher typeに応じてリクエストを個別に処理できます。
+     * 
+     * <p>リクエストのdispatcher typeの初期値は<code>DispatcherType.REQUEST</code>として定義されます。
+     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)}または{@link RequestDispatcher#include(ServletRequest, ServletResponse)}を介してディスパッチされたリクエストのdispatcher typeは
+     * それぞれ<code>DispatcherType.FORWARD</code>または<code>DispatcherType.INCLUDE</code>として与えられ、
+     * {@link AsyncContext#dispatch}メソッドで行われる非同期リクエストのdispatcher typeは<code>DispatcherType.ASYNC</code>として与えられます。 
+     * 最後にコンテナのエラー処理メカニズムによってエラーページにディスパッチされたリクエストのdispatcher typeは<code>DispatcherType.ERROR</code>として与えられます。
      *
-     * <p>The initial dispatcher type of a request is defined as
-     * <code>DispatcherType.REQUEST</code>. The dispatcher type of a request
-     * dispatched via {@link RequestDispatcher#forward(ServletRequest,
-     * ServletResponse)} or {@link RequestDispatcher#include(ServletRequest,
-     * ServletResponse)} is given as <code>DispatcherType.FORWARD</code> or
-     * <code>DispatcherType.INCLUDE</code>, respectively, while the
-     * dispatcher type of an asynchronous request dispatched via
-     * one of the {@link AsyncContext#dispatch} methods is given as
-     * <code>DispatcherType.ASYNC</code>. Finally, the dispatcher type of a
-     * request dispatched to an error page by the container's error handling
-     * mechanism is given as <code>DispatcherType.ERROR</code>.
      *
-     * @return the dispatcher type of this request
+     * @return リクエストのdispatcher type
      * 
      * @see DispatcherType
      *

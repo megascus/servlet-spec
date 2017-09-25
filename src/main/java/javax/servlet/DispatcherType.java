@@ -44,6 +44,8 @@ package javax.servlet;
  * フィルターの dispatcher typeのEnumです。
  * 
  * <p>訳注：特定のサーブレットに関連付けられたフィルターがどういった場合に動作するかを指定するのに使用します。
+ * 
+ * @see ServletRequest#getDispatcherType
  *
  * @since Servlet 3.0
  */
