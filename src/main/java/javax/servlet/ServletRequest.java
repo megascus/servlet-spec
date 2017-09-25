@@ -433,11 +433,8 @@ public interface ServletRequest {
      * operation, and therefore any of their associated resources may be
      * released.
      *
-     * <p>This method clears the list of {@link AsyncListener} instances
-     * (if any) that were registered with the AsyncContext returned by the
-     * previous call to one of the startAsync methods, after calling each
-     * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
-     * method.
+     * <p>このメソッドは各{@link AsyncListener}をその{@link AsyncListener#onStartAsync onStartAsync}メソッドで呼び出した後、
+     * startAsyncメソッドのうちの1つの最新の呼び出しによって返されたAsyncContextに登録された{@link AsyncListener}インスタンス(が存在する場合)のリストをクリアします。
      *
      * <p>Subsequent invocations of this method, or its overloaded 
      * variant, will return the same AsyncContext instance, reinitialized
@@ -489,11 +486,8 @@ public interface ServletRequest {
      * ServletRequestWrapper. The same holds true for ServletResponseWrapper
      * instances. 
      *
-     * <p>This method clears the list of {@link AsyncListener} instances
-     * (if any) that were registered with the AsyncContext returned by the
-     * previous call to one of the startAsync methods, after calling each
-     * AsyncListener at its {@link AsyncListener#onStartAsync onStartAsync}
-     * method.
+     * <p>このメソッドは各{@link AsyncListener}をその{@link AsyncListener#onStartAsync onStartAsync}メソッドで呼び出した後、
+     * startAsyncメソッドのうちの1つの最新の呼び出しによって返されたAsyncContextに登録された{@link AsyncListener}インスタンス(が存在する場合)のリストをクリアします。
      *
      * <p>Subsequent invocations of this method, or its zero-argument
      * variant, will return the same AsyncContext instance, reinitialized
@@ -502,10 +496,9 @@ public interface ServletRequest {
      * and response objects will remain <i>locked in</i> on the returned
      * AsyncContext.
      *
-     * @param servletRequest the ServletRequest used to initialize the
-     * AsyncContext
-     * @param servletResponse the ServletResponse used to initialize the
-     * AsyncContext
+     * @param servletRequest AsyncContextの初期化に使用するServletRequest
+     * 
+     * @param servletResponse AsyncContextの初期化に使用するServletResponse
      *
      * @return (再)初期化されたAsyncContext
      * 
