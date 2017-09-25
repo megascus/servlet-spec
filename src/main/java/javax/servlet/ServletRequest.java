@@ -340,12 +340,9 @@ public interface ServletRequest {
     public Enumeration<Locale> getLocales();
     
     /**
+     * このリクエストがHTTPSなどのセキュアなチャネルを使用して行われたかどうかを示すbooleanを返します。
      *
-     * Returns a boolean indicating whether this request was made using a
-     * secure channel, such as HTTPS.
-     *
-     * @return a boolean indicating if the request was made using a
-     * secure channel
+     * @return このリクエストがHTTPSなどのセキュアなチャネルを使用して行われたかどうかを示すboolean
      */
     public boolean isSecure();
     
