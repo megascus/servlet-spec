@@ -459,16 +459,9 @@ public interface ServletRequest {
      *
      * <p>このメソッドを呼び出すと返された{@link AsyncContext}の{@link AsyncContext#complete}が呼び出されるか非同期操作がタイムアウトになるまで関連するレスポンスのコミットが遅延されます。
      *
-     * <p>Calling {@link AsyncContext#hasOriginalRequestAndResponse()} on
-     * the returned AsyncContext will return <code>false</code>,
-     * unless the passed in ServletRequest and ServletResponse arguments
-     * are the original ones or do not carry any application-provided wrappers.
-     * Any filters invoked in the <i>outbound</i> direction after this
-     * request was put into asynchronous mode may use this as an indication
-     * that some of the request and/or response wrappers that they added
-     * during their <i>inbound</i> invocation may need to stay in place for
-     * the duration of the asynchronous operation, and their associated
-     * resources may not be released.
+     * <p>引数として渡されたServletRequestとServletResponseがオリジナルのものもしくはアプリケーションが提供するラッパーでない限りは返されたAsyncContextで{@link AsyncContext#hasOriginalRequestAndResponse()}を呼び出すと<code>false</code>が返されます。
+     * このリクエストが非同期モードにされた後に<i>アウトバウンド</i>方向に呼び出されたいくつかのフィルターは
+     * <i>インバウンド</i>呼び出し中に追加したすべてのリクエストおよび/またはレスポンスラッパーが非同期操作の間、呼び出しを滞留させる必要があるかもしれず、それらの関連リソースは解放されないかもしれません。
      * A ServletRequestWrapper applied during the <i>inbound</i>
      * invocation of a filter may be released by the <i>outbound</i>
      * invocation of the filter only if the given <code>servletRequest</code>,
