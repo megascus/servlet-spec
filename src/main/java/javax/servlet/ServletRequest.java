@@ -436,14 +436,9 @@ public interface ServletRequest {
      *
      * @return (再)初期化されたAsyncContext
      * 
-     * @throws IllegalStateException if this request is within the scope of
-     * a filter or servlet that does not support asynchronous operations
-     * (that is, {@link #isAsyncSupported} returns false),
-     * or if this method is called again without any asynchronous dispatch
-     * (resulting from one of the {@link AsyncContext#dispatch} methods),
-     * is called outside the scope of any such dispatch, or is called again
-     * within the scope of the same dispatch, or if the response has
-     * already been closed
+     * @throws IllegalStateException このリクエストが非同期操作をサポートしないフィルタまたはサーブレットのスコープ内にある場合({@link #isAsyncSupported}がfalseを返す場合)、
+     * またはこのメソッドが非同期ディスパッチ({@link AsyncContext#dispatch}メソッドの一つで行われる)なしで再度呼び出されディスパッチの範囲外で呼び出された場合、
+     * または同じディスパッチの範囲内で再度呼び出された場合、またはレスポンスがすでに閉じられている場合
      *
      * @see AsyncContext#dispatch()
      * @since Servlet 3.0
@@ -462,13 +457,8 @@ public interface ServletRequest {
      * <p>引数として渡されたServletRequestとServletResponseがオリジナルのものもしくはアプリケーションが提供するラッパーでない限りは返されたAsyncContextで{@link AsyncContext#hasOriginalRequestAndResponse()}を呼び出すと<code>false</code>が返されます。
      * このリクエストが非同期モードにされた後に<i>アウトバウンド</i>方向に呼び出されたいくつかのフィルターは
      * <i>インバウンド</i>呼び出し中に追加したすべてのリクエストおよび/またはレスポンスラッパーが非同期操作の間、呼び出しを滞留させる必要があるかもしれず、それらの関連リソースは解放されないかもしれません。
-     * A ServletRequestWrapper applied during the <i>inbound</i>
-     * invocation of a filter may be released by the <i>outbound</i>
-     * invocation of the filter only if the given <code>servletRequest</code>,
-     * which is used to initialize the AsyncContext and will be returned by
-     * a call to {@link AsyncContext#getRequest()}, does not contain said
-     * ServletRequestWrapper. The same holds true for ServletResponseWrapper
-     * instances. 
+     * フィルターの<i>インバウンド</i>呼び出し中に適用されたServletRequestWrapperは与えられた<code>ServletRequest</code>
+     * (ServletRequestWrapperを含みません)がAsyncContextを初期化し{@link AsyncContext#getRequest()}の呼び出しによって返される場合のみ解放されます。
      *
      * <p>このメソッドは各{@link AsyncListener}をその{@link AsyncListener#onStartAsync onStartAsync}メソッドで呼び出した後、
      * startAsyncメソッドのうちの1つの最新の呼び出しによって返されたAsyncContextに登録された{@link AsyncListener}インスタンス(が存在する場合)のリストをクリアします。
@@ -483,14 +473,9 @@ public interface ServletRequest {
      *
      * @return (再)初期化されたAsyncContext
      * 
-     * @throws IllegalStateException if this request is within the scope of
-     * a filter or servlet that does not support asynchronous operations
-     * (that is, {@link #isAsyncSupported} returns false),
-     * or if this method is called again without any asynchronous dispatch
-     * (resulting from one of the {@link AsyncContext#dispatch} methods),
-     * is called outside the scope of any such dispatch, or is called again
-     * within the scope of the same dispatch, or if the response has
-     * already been closed
+     * @throws IllegalStateException このリクエストが非同期操作をサポートしないフィルタまたはサーブレットのスコープ内にある場合({@link #isAsyncSupported}がfalseを返す場合)、
+     * またはこのメソッドが非同期ディスパッチ({@link AsyncContext#dispatch}メソッドの一つで行われる)なしで再度呼び出されディスパッチの範囲外で呼び出された場合、
+     * または同じディスパッチの範囲内で再度呼び出された場合、またはレスポンスがすでに閉じられている場合
      *
      * @since Servlet 3.0
      */
