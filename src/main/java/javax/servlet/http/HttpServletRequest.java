@@ -143,11 +143,7 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @param name		ヘッダー名を指定する名前の<code>String</code>
      *
-     * @return			a <code>String</code> containing the
-     *				value of the requested
-     *				header, or <code>null</code>
-     *				if the request does not
-     *				have a header of that name
+     * @return			リクエストのヘッダーの値を含む<code>String</code>、リクエストのヘッダーがその名前を持たない場合は<code>null</code>
      */
     public String getHeader(String name);
 
