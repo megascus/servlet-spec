@@ -96,32 +96,23 @@ public interface HttpServletRequest extends ServletRequest {
     public static final String DIGEST_AUTH = "DIGEST";
 
     /**
-     * Returns the name of the authentication scheme used to protect
-     * the servlet. All servlet containers support basic, form and client
-     * certificate authentication, and may additionally support digest
-     * authentication.
-     * If the servlet is not authenticated <code>null</code> is returned.
+     * サーブレットを保護するために使用される認証方式の名前を返します。
+     * すべてのサーブレットコンテナは、ベーシック認証、フォーム認証およびクライアントの証明書認証をサポートしており、さらにダイジェスト認証をサポートしているかもしれません。
+     * サーブレットが認証されていない場合は<code>null</code>を返します。
      *
-     * <p>Same as the value of the CGI variable AUTH_TYPE.
+     * <p>CGIの変数<code>AUTH_TYPE</code>の値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return		one of the static members BASIC_AUTH,
-     *			FORM_AUTH, CLIENT_CERT_AUTH, DIGEST_AUTH
-     *			(suitable for == comparison) or
-     *			the container-specific string indicating
-     *			the authentication scheme, or
-     *			<code>null</code> if the request was
-     *			not authenticated.
+     * @return		静的メンバー変数BASIC_AUTH、FORM_AUTH、CLIENT_CERT_AUTH、DIGEST_AUTH(==で比較もできる)のうちの一つ、
+     * または認証スキームを示すコンテナ固有の文字列のいずれか、リクエストが認証されなかった場合はnull
      */
     public String getAuthType();
 
     /**
-     * Returns an array containing all of the <code>Cookie</code>
-     * objects the client sent with this request.
-     * This method returns <code>null</code> if no cookies were sent.
+     * このリクエストでクライアントが送信したすべての<code>Cookie</code>オブジェクトを含む配列を返します。 このメソッドは、送信されたCookieがない場合は<code>null</code>を返します。
      *
-     * @return		an array of all the <code>Cookies</code>
-     *			included with this request, or <code>null</code>
-     *			if the request has no cookies
+     * @return		このリクエストでクライアントが送信したすべての<code>Cookie</code>オブジェクトを含む配列、送信されたCookieがない場合は<code>null</code>
      */
     public Cookie[] getCookies();
 
