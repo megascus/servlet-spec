@@ -117,50 +117,31 @@ public interface HttpServletRequest extends ServletRequest {
     public Cookie[] getCookies();
 
     /**
-     * Returns the value of the specified request header
-     * as a <code>long</code> value that represents a
-     * <code>Date</code> object. Use this method with
-     * headers that contain dates, such as
-     * <code>If-Modified-Since</code>.
+     * リクエストヘッダーの指定された値の<code>Date</code>オブジェクトを表す<code>long</code> 値を返します。
+     * このメソッドは<code>If-Modified-Since</code>のような日付を含むヘッダーに使用します。
+     * 
+     * <p>返される日付は1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数です。
+     * ヘッダー名は大文字小文字を区別しません。
      *
-     * <p>The date is returned as
-     * the number of milliseconds since January 1, 1970 GMT.
-     * The header name is case insensitive.
+     * <p>リクエストのヘッダーに指定された名前が存在しない場合はこのメソッドは-1を返します。
+     * もしヘッダーを日付に変換できない場合、このメソッドは<code>IllegalArgumentException</code>を投げます。
      *
-     * <p>If the request did not have a header of the
-     * specified name, this method returns -1. If the header
-     * can't be converted to a date, the method throws
-     * an <code>IllegalArgumentException</code>.
+     * @param name		ヘッダーの名前を指定する<code>String</code>
      *
-     * @param name		a <code>String</code> specifying the
-     *				name of the header
+     * @return			指定されたヘッダーの日付の1970 年 1 月 1 日 00:00:00 GMT からのミリ秒数を表す<code>long</code>値、リクエストのヘッダーに名前が含まれない場合は-1
      *
-     * @return			a <code>long</code> value
-     *				representing the date specified
-     *				in the header expressed as
-     *				the number of milliseconds
-     *				since January 1, 1970 GMT,
-     *				or -1 if the named header
-     *				was not included with the
-     *				request
-     *
-     * @exception	IllegalArgumentException	If the header value
-     *							can't be converted
-     *							to a date
+     * @exception	IllegalArgumentException	ヘッダーの値を日付に変換できなかった
      */
     public long getDateHeader(String name);
 
     /**
-     * Returns the value of the specified request header
-     * as a <code>String</code>. If the request did not include a header
-     * of the specified name, this method returns <code>null</code>.
-     * If there are multiple headers with the same name, this method
-     * returns the first head in the request.
-     * The header name is case insensitive. You can use
-     * this method with any request header.
+     * リクエストヘッダーの指定された値を<code>String</code>として返します。
+     * リクエストが指定された名前のヘッダーを含まない場合は<code>null</code>を返します。
+     * もしヘッダーに同じ名前で複数の値が含まれていた場合、このメソッドはリクエストの最初のヘッダーを返します。
+     * ヘッダー名は大文字小文字を区別しません。
+     * このメソッドは任意のリクエストヘッダーに対して使用できます。
      *
-     * @param name		a <code>String</code> specifying the
-     *				header name
+     * @param name		ヘッダー名を指定する名前の<code>String</code>
      *
      * @return			a <code>String</code> containing the
      *				value of the requested
