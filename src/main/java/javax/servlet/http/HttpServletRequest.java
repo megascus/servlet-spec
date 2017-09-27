@@ -65,13 +65,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 
 /**
+ * {@link javax.servlet.ServletRequest}を拡張してHTTPサーブレットのためのリクエストの情報を提供します。
  *
- * Extends the {@link javax.servlet.ServletRequest} interface to provide
- * request information for HTTP servlets.
- *
- * <p>The servlet container creates an <code>HttpServletRequest</code>
- * object and passes it as an argument to the servlet's service
- * methods (<code>doGet</code>, <code>doPost</code>, etc).
+ * <p>サーブレットコンテナは<code>HttpServletRequest</code>を作成してサーブレットの<code>service</code>(<code>doGet</code>、<code>doPost</code>、など)メソッドの引数として渡します。
  *
  *
  * @author 	Various
@@ -80,22 +76,22 @@ import javax.servlet.ServletRequest;
 public interface HttpServletRequest extends ServletRequest {
 
     /**
-     * String identifier for Basic authentication. Value "BASIC"
+     * ベーシック認証のための識別文字列です。"BASIC"
      */
     public static final String BASIC_AUTH = "BASIC";
 
     /**
-     * String identifier for Form authentication. Value "FORM"
+     * フォーム認証のための識別文字列です。"FORM"
      */
     public static final String FORM_AUTH = "FORM";
 
     /**
-     * String identifier for Client Certificate authentication. Value "CLIENT_CERT"
+     * クライアント証明書認証のための識別文字列です。"CLIENT_CERT"
      */
     public static final String CLIENT_CERT_AUTH = "CLIENT_CERT";
 
     /**
-     * String identifier for Digest authentication. Value "DIGEST"
+     * ダイジェスト認証のための識別文字列です。"DIGEST"
      */
     public static final String DIGEST_AUTH = "DIGEST";
 
