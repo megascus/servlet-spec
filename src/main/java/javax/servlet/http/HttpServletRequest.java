@@ -152,48 +152,27 @@ public interface HttpServletRequest extends ServletRequest {
     public String getHeader(String name);
 
     /**
-     * Returns all the values of the specified request header
-     * as an <code>Enumeration</code> of <code>String</code> objects.
+     * リクエストヘッダーの指定された値を<code>String</code>オブジェクトの<code>Enumeration</code>として返します。
+     * 
+     * <p><code>Accept-Language</code>のようないくつかのヘッダーはクライアントからカンマで区切られたリストとして送信されるのではなく、異なる値を持つ複数のヘッダーとして送信されます。
      *
-     * <p>Some headers, such as <code>Accept-Language</code> can be sent
-     * by clients as several headers each with a different value rather than
-     * sending the header as a comma separated list.
+     * <p>リクエストに指定した名前のヘッダーが含まれない場合はこのメソッドは空の<code>Enumeration</code>を返します。
+     * ヘッダー名は大文字小文字を区別しません。
+     * このメソッドは任意のリクエストヘッダーに対して使用できます。
      *
-     * <p>If the request did not include any headers
-     * of the specified name, this method returns an empty
-     * <code>Enumeration</code>.
-     * The header name is case insensitive. You can use
-     * this method with any request header.
+     * @param name		ヘッダーの名前を示す <code>String</code>
      *
-     * @param name		a <code>String</code> specifying the
-     *				header name
-     *
-     * @return			an <code>Enumeration</code> containing
-     *                  	the values of the requested header. If
-     *                  	the request does not have any headers of
-     *                  	that name return an empty
-     *                  	enumeration. If
-     *                  	the container does not allow access to
-     *                  	header information, return null
+     * @return			要求されたヘッダーの値を含むEnumeration、リクエストにその名前のヘッダーがない場合は空のEnumeration、コンテナがヘッダー情報へのアクセスを許可しない場合はnull
      */
     public Enumeration<String> getHeaders(String name);
 
     /**
-     * Returns an enumeration of all the header names
-     * this request contains. If the request has no
-     * headers, this method returns an empty enumeration.
+     * リクエストに含まれるすべてのヘッダーの名前のEnumerationを返します。
+     * リクエストにヘッダーがない場合はこのメソッドは空のEnumerationを返します。
      *
-     * <p>Some servlet containers do not allow
-     * servlets to access headers using this method, in
-     * which case this method returns <code>null</code>
+     * <p>サーブレットコンテナによってはサーブレットはこのメソッドを使用してヘッダーにアクセスすることを許されていません。その場合このメソッドは<code>null</code>を返します。
      *
-     * @return			an enumeration of all the
-     *				header names sent with this
-     *				request; if the request has
-     *				no headers, an empty enumeration;
-     *				if the servlet container does not
-     *				allow servlets to use this method,
-     *				<code>null</code>
+     * @return			このリクエストで送られたすべてのヘッダ名のEnumeration、リクエストにヘッダーがない場合は空のEnumeration、サーブレットコンテナがサーブレットでこのメソッドの使用を許可しない場合はnull
      */
     public Enumeration<String> getHeaderNames();
 
