@@ -403,22 +403,14 @@ public interface HttpServletRequest extends ServletRequest {
     public String getRequestURI();
 
     /**
-     * Reconstructs the URL the client used to make the request.
-     * The returned URL contains a protocol, server name, port
-     * number, and server path, but it does not include query
-     * string parameters.
+     * クライアントがリクエストに使用したURLを再構成します。
+     * 返されるURLには、プロトコルとサーバー名、ポート番号、サーバーパスが含まれますが、クエリ文字列パラメーターは含まれません。
+     * 
+     * <p>このリクエストが{@link javax.servlet.RequestDispatcher#forward}を使用して転送された場合、再構築されたURLのサーバーパスはクライアントによって指定されたサーバーパスではなくRequestDispatcherを取得するために使用されたパスを反映しなければいけません。
+     * 
+     * <p>このメソッドは文字列ではなく<code>StringBuffer</code>を返すので、たとえばクエリパラメータを追加したりとURLを簡単に変更できます。
      *
-     * <p>If this request has been forwarded using
-     * {@link javax.servlet.RequestDispatcher#forward}, the server path in the
-     * reconstructed URL must reflect the path used to obtain the
-     * RequestDispatcher, and not the server path specified by the client.
-     *
-     * <p>Because this method returns a <code>StringBuffer</code>,
-     * not a string, you can modify the URL easily, for example,
-     * to append query parameters.
-     *
-     * <p>This method is useful for creating redirect messages
-     * and for reporting errors.
+     * <p>このメソッドは、リダイレクトメッセージの作成やエラーの報告に便利です。
      *
      * @return		再構成されたURLを含む<code>StringBuffer</code>のオブジェクト
      */
