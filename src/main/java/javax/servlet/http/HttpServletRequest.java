@@ -646,27 +646,19 @@ public interface HttpServletRequest extends ServletRequest {
     }
 
     /**
-     * Return a boolean indicating whether trailer fields are ready to read
-     * using {@link #getTrailerFields}.
-     *
-     * This methods returns true immediately if it is known that there is no
-     * trailer in the request, for instance, the underlying protocol (such
-     * as HTTP 1.0) does not supports the trailer fields, or the request is
-     * not in chunked encoding in HTTP 1.1.
-     * And the method also returns true if both of the following conditions
-     * are satisfied:
+     * トレーラーフィールドが{@link #getTrailerFields}を使用して読み込み可能かどうかを示すbooleanを返します。
+     * 
+     * このメソッドは、リクエストにトレーラーがないことがわかっている場合、たとえば、HTTP 1.0などで基本プロトコルがトレーラーフィールドをサポートしていない場合、
+     * またはリクエストがHTTP 1.1のチャンクエンコーディングでない場合には即座にtrueを返します。
+     * また、次の条件の両方が満たされていればtrueを返します。
      * <ol type="a">
-     *   <li> the application has read all the request data and an EOF
-     *        indication has been returned from the {@link #getReader}
-     *        or {@link #getInputStream}.
-     *   <li> all the trailer fields sent by the client have been received.
-     *        Note that it is possible that the client has sent no trailer fields.
+     * <li>アプリケーションはすべてのリクエストデータを読み取り、{@link #getReader}もしくは{@link #getInputStream}からEOFが返された。
+     * <li>クライアントによって送信されたすべてのトレーラフィールドが受信された。この場合クライアントがトレーラフィールドをまったく送信していない可能性があることに注意してください。
      * </ol>
      *
-     * @implSpec
-     * The default implementation returns false.
+     * @implSpec デフォルト実装ではfalseを返します。
      *
-     * @return a boolean whether trailer fields are ready to read
+     * @return トレーラーフィールドが読み込み可能かを示すboolean
      *
      * @since Servlet 4.0
      */
