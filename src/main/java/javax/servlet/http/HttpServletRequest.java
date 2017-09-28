@@ -561,30 +561,21 @@ public interface HttpServletRequest extends ServletRequest {
     public void logout() throws ServletException;
 
     /**
-     * Gets all the {@link Part} components of this request, provided
-     * that it is of type <code>multipart/form-data</code>.
+     * <code>multipart/form-data</code>によって提供されるこのリクエストのすべての{@link Part}要素を取得します。
      *
-     * <p>If this request is of type <code>multipart/form-data</code>, but
-     * does not contain any <code>Part</code> components, the returned
-     * <code>Collection</code> will be empty.
+     * <p>このリクエストが<code>multipart/form-data</code>だけれども<code>Part</code>要素を含まない場合、返される<code>Collection</code>は空になるでしょう。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not
-     * affect this <code>HttpServletRequest</code>.
+     * <p>返された<code>Collection</code>へのいかなる変更もこの<code>HttpServletRequest</code>に影響を与えてはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the
-     * <code>Part</code> components of this request
+     * @return このリクエストの{@link Part}要素の(空の可能性のある)<code>Collection</code>
      *
-     * @throws IOException if an I/O error occurred during the retrieval
-     * of the {@link Part} components of this request
+     * @throws IOException このリクエストの{@link Part}要素の取得中にI/Oエラーが発生した場合
      *
-     * @throws ServletException if this request is not of type
-     * <code>multipart/form-data</code>
+     * @throws ServletException このリクエストが<code>multipart/form-data</code>でない場合
      *
-     * @throws IllegalStateException if the request body is larger than
-     * <code>maxRequestSize</code>, or any <code>Part</code> in the
-     * request is larger than <code>maxFileSize</code>, or there is no
-     * <code>@MultipartConfig</code> or <code>multipart-config</code> in
-     * deployment descriptors
+     * @throws IllegalStateException リクエストボディが<code>maxRequestSize</code>より大きい場合、
+     * もしくはリクエスト内の<code>Part</code>のいずれかが<code>maxFileSize</code>,より大きい場合、
+     * もしくはデプロイメントディスクリプタに<code>@MultipartConfig</code>または<code>multipart-config</code>が存在しない場合
      *
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
