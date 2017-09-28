@@ -288,17 +288,12 @@ public interface HttpServletRequest extends ServletRequest {
     public String getPathTranslated();
 
     /**
-     * Instantiates a new instance of {@link PushBuilder} for issuing server
-     * push responses from the current request. This method returns null
-     * if the current connection does not support server push, or server
-     * push has been disabled by the client via a
-     * {@code SETTINGS_ENABLE_PUSH} settings frame value of {@code 0} (zero).
+     * 現在のリクエストからサーバープッシュレスポンスを発行するための{@link PushBuilder}の新しいインスタンスを作成します。
+     * 現在の接続がサーバープッシュをサポートしていないか、またはサーバープッシュが{@code SETTINGS_ENABLE_PUSH}設定フレーム値0(ゼロ)でクライアントによって無効化されている場合、このメソッドはnullを返します。
      *
-     * @implSpec
-     * The default implementation returns null.
+     * @implSpec デフォルト実装ではnullを返します。
      *
-     * @return a {@link PushBuilder} for issuing server push responses
-     * from the current request, or null if push is not supported
+     * @return 現在のリクエストからサーバープッシュレスポンスを発行するための{@link PushBuilder}、プッシュがサポートされていない場合はnull
      *
      * @since Servlet 4.0
      */
