@@ -282,6 +282,8 @@ public interface HttpServletRequest extends ServletRequest {
      * サーブレットコンテナは何らかの理由で(Webアプリケーションがアーカイブから実行されたときなど)仮想パスを実際のパスに変換できない場合があります。
      * 
      * Webコンテナはこの文字列をデコードしません。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
      * @return		実際のパスを示す<code>String</code>、URLに拡張パスの情報がない場合は<code>null</code>
      */
@@ -302,40 +304,31 @@ public interface HttpServletRequest extends ServletRequest {
      }
 
     /**
-     * Returns the portion of the request URI that indicates the context
-     * of the request. The context path always comes first in a request
-     * URI. The path starts with a "/" character but does not end with a "/"
-     * character. For servlets in the default (root) context, this method
-     * returns "". The container does not decode this string.
+     * リクエストURIからリクエストのコンテキストを示す部分を返します。
+     * コンテキストパスは常にリクエストURIの最初に来ます。
+     * パスは "/"文字で始まりますが、 "/"文字で終わらないパスです。 
+     * デフォルト(ルート)コンテキストのサーブレットの場合、このメソッドは ""を返します。
+     * コンテナはこの文字列をデコードしません。
+
+     * <p>サーブレットコンテナが複数のコンテキストパスによってコンテキストに一致する可能性があります。
+     * そのような場合、このメソッドはリクエストによって使用される実際のコンテキストパスを返し、
+     * それは{@link javax.servlet.ServletContext#getContextPath()}メソッドによって返されるパスと異なる場合があります。
+     * {@link javax.servlet.ServletContext#getContextPath()}によって返されるコンテキストパスはアプリケーションのプライマリコンテキストパスまたは優先コンテキストパスと見なす必要があります。
      *
-     * <p>It is possible that a servlet container may match a context by
-     * more than one context path. In such cases this method will return the
-     * actual context path used by the request and it may differ from the
-     * path returned by the
-     * {@link javax.servlet.ServletContext#getContextPath()} method.
-     * The context path returned by
-     * {@link javax.servlet.ServletContext#getContextPath()}
-     * should be considered as the prime or preferred context path of the
-     * application.
-     *
-     * @return		a <code>String</code> specifying the
-     *			portion of the request URI that indicates the context
-     *			of the request
+     * @return		リクエストURIからリクエストのコンテキストを示す部分を示す <code>String</code>
      *
      * @see javax.servlet.ServletContext#getContextPath()
      */
     public String getContextPath();
 
     /**
-     * Returns the query string that is contained in the request
-     * URL after the path. This method returns <code>null</code>
-     * if the URL does not have a query string. Same as the value
-     * of the CGI variable QUERY_STRING.
-     *
-     * @return		a <code>String</code> containing the query
-     *			string or <code>null</code> if the URL
-     *			contains no query string. The value is not
-     *			decoded by the container.
+     * リクエストURLからパスの後に含まれるクエリ文字列を返します。
+     * このメソッドは、URLにクエリ文字列がない場合はnullを返します。
+     * CGIの変数QUERY_STRINGの値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
+     * 
+     * @return		クエリ文字列を含む<code>String</code>、URLにクエリ文字列が含まれない場合は<code>null</code>、この値はコンテナによってデコードされない
      */
     public String getQueryString();
 
