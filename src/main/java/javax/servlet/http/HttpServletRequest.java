@@ -177,25 +177,17 @@ public interface HttpServletRequest extends ServletRequest {
     public Enumeration<String> getHeaderNames();
 
     /**
-     * Returns the value of the specified request header
-     * as an <code>int</code>. If the request does not have a header
-     * of the specified name, this method returns -1. If the
-     * header cannot be converted to an integer, this method
-     * throws a <code>NumberFormatException</code>.
+     * リクエストヘッダーの指定された値を<code>int</code>として返します。
+     * p>リクエストのヘッダーに指定された名前が存在しない場合はこのメソッドは-1を返します。
+     * ヘッダーを整数に変換できない場合、このメソッドは<code>NumberFormatException</code>を投げます。
      *
-     * <p>The header name is case insensitive.
+     * <p>ヘッダー名は大文字小文字を区別しません。
      *
-     * @param name		a <code>String</code> specifying the name
-     *				of a request header
+     * @param name		ヘッダーの名前を示す <code>String</code>
      *
-     * @return			an integer expressing the value
-     * 				of the request header or -1
-     *				if the request doesn't have a
-     *				header of this name
+     * @return		    リクエストヘッダーの値を表す整数、リクエストのヘッダーに名前が含まれない場合は-1
      *
-     * @exception	NumberFormatException		If the header value
-     *							can't be converted
-     *							to an <code>int</code>
+     * @exception	NumberFormatException		ヘッダーの値を<code>int</code>に変換できなかった
      */
     public int getIntHeader(String name);
 
