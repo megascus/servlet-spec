@@ -585,24 +585,17 @@ public interface HttpServletRequest extends ServletRequest {
     public Collection<Part> getParts() throws IOException, ServletException;
 
     /**
-     * Gets the {@link Part} with the given name.
+     * 与えられた名前で{@link Part}を取得します。
      *
-     * @param name the name of the requested <code>Part</code>
+     * @param name 要求する<code>Part</code>の名前
      *
-     * @return The <code>Part</code> with the given name, or
-     * <code>null</code> if this request is of type
-     * <code>multipart/form-data</code>, but does not
-     * contain the requested <code>Part</code>
+     * @return 与えられた名前の<code>Part</code>、このリクエストが<code>multipart/form-data</code>だけど要求された<code>Part</code>が含まれてない場合は<code>null</code>
      *
-     * @throws IOException if an I/O error occurred during the retrieval
-     * of the requested <code>Part</code>
-     * @throws ServletException if this request is not of type
-     * <code>multipart/form-data</code>
-     * @throws IllegalStateException if the request body is larger than
-     * <code>maxRequestSize</code>, or any <code>Part</code> in the
-     * request is larger than <code>maxFileSize</code>, or there is no
-     * <code>@MultipartConfig</code> or <code>multipart-config</code> in
-     * deployment descriptors
+     * @throws IOException 要求された<code>Part</code>の取得中にI/Oエラーが発生した場合
+     * @throws ServletException このリクエストが<code>multipart/form-data</code>でない場合
+     * @throws IllegalStateException リクエストボディが<code>maxRequestSize</code>より大きい場合、
+     * もしくはリクエスト内の<code>Part</code>のいずれかが<code>maxFileSize</code>,より大きい場合、
+     * もしくはデプロイメントディスクリプタに<code>@MultipartConfig</code>または<code>multipart-config</code>が存在しない場合
      *
      * @see javax.servlet.annotation.MultipartConfig#maxFileSize
      * @see javax.servlet.annotation.MultipartConfig#maxRequestSize
