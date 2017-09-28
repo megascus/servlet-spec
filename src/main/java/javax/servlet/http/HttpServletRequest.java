@@ -439,11 +439,8 @@ public interface HttpServletRequest extends ServletRequest {
      *
      * @param create	<code>true</code>の場合、必要に応じてこのリクエストのために新しいセッションを作成する、<code>false</code>の場合、現在のセッションが存在しない場合は<code>null</code>を返す
      *
-     * @return 		the <code>HttpSession</code> associated
-     *			with this request or <code>null</code> if
-     * 			<code>create</code> is <code>false</code>
-     *			and the request has no valid session
-     *
+     * @return 		このリクエストに関連付けられている<code>HttpSession</code>、<code>create</code>が<code>false</code>でリクエストが妥当なセッションを持っていない場合は<code>null</code>
+     * 
      * @see #getSession()
      */
     public HttpSession getSession(boolean create);
