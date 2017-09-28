@@ -261,43 +261,29 @@ public interface HttpServletRequest extends ServletRequest {
     public String getMethod();
 
     /**
-     * Returns any extra path information associated with
-     * the URL the client sent when it made this request.
-     * The extra path information follows the servlet path
-     * but precedes the query string and will start with
-     * a "/" character.
+     * このリクエストを行ったときにクライアントが送信したURLに関連付けられた拡張パス情報を返します。
+     * 拡張パス情報はサーブレットのパスの後ろからクエリ文字列の前までで"/"文字で始まります。
      *
-     * <p>This method returns <code>null</code> if there
-     * was no extra path information.
+     * <p>このメソッドは拡張パス情報が存在しない場合は<code>null</code>を返します。
      *
-     * <p>Same as the value of the CGI variable PATH_INFO.
-     *
-     * @return		a <code>String</code>, decoded by the
-     *			web container, specifying
-     *			extra path information that comes
-     *			after the servlet path but before
-     *			the query string in the request URL;
-     *			or <code>null</code> if the URL does not have
-     *			any extra path information
+     * <p>CGIの変数PATH_INFOの値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
+     * 
+     * @return		Webコンテナによってデコードされ、サーブレットパスの後からリクエストURLのクエリ文字列の前までの拡張パス情報を指定する<code>String</code>、URLに拡張パス情報がない場合は<code>null</code>
      */
     public String getPathInfo();
 
     /**
-     * Returns any extra path information after the servlet name
-     * but before the query string, and translates it to a real
-     * path. Same as the value of the CGI variable PATH_TRANSLATED.
+     * サーブレット名の後ろからクエリ文字列の前の拡張パス情報を実際のパスに変換したものを返します。
+     * CGIの変数PATH_TRANSLATEDの値と同じです。
+     * 
+     * <p>URLに拡張パス情報がない場合、このメソッドはnullを返します。
+     * サーブレットコンテナは何らかの理由で(Webアプリケーションがアーカイブから実行されたときなど)仮想パスを実際のパスに変換できない場合があります。
+     * 
+     * Webコンテナはこの文字列をデコードしません。
      *
-     * <p>If the URL does not have any extra path information,
-     * this method returns <code>null</code> or the servlet container
-     * cannot translate the virtual path to a real path for any reason
-     * (such as when the web application is executed from an archive).
-     *
-     * The web container does not decode this string.
-     *
-     * @return		a <code>String</code> specifying the
-     *			real path, or <code>null</code> if
-     *			the URL does not have any extra path
-     *			information
+     * @return		実際のパスを示す<code>String</code>、URLに拡張パスの情報がない場合は<code>null</code>
      */
     public String getPathTranslated();
 
