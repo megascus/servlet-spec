@@ -333,55 +333,37 @@ public interface HttpServletRequest extends ServletRequest {
     public String getQueryString();
 
     /**
-     * Returns the login of the user making this request, if the
-     * user has been authenticated, or <code>null</code> if the user
-     * has not been authenticated.
-     * Whether the user name is sent with each subsequent request
-     * depends on the browser and type of authentication. Same as the
-     * value of the CGI variable REMOTE_USER.
+     * ユーザーが認証されている場合にこのリクエストを行うユーザーのログイン名を返します。ユーザーが認証されていない場合はnullを返します。
+     * 後続のリクエストごとにユーザー名を送信するかどうかはブラウザと認証タイプに依存します。 CGIの変数REMOTE_USERの値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return		a <code>String</code> specifying the login
-     *			of the user making this request, or <code>null</code>
-     *			if the user login is not known
+     * @return		このリクエストを行ったユーザーのログイン名を示す <code>String</code>、ユーザーのログイン名が不明な場合は<code>null</code>
      */
     public String getRemoteUser();
 
     /**
-     * Returns a boolean indicating whether the authenticated user is included
-     * in the specified logical "role".  Roles and role membership can be
-     * defined using deployment descriptors.  If the user has not been
-     * authenticated, the method returns <code>false</code>.
+     * 認証されたユーザが指定された論理的な"ロール"に含まれているかどうかを示すbooleanを返します。
+     * ロールとロールのメンバーシップはデプロイメントディスクリプタを使用して定義できます。
+     * ユーザーが認証されていない場合、このメソッドは<code>false</code>を返します。
      *
-     * <p>The role name "*" should never be used as an argument in calling
-     * <code>isUserInRole</code>. Any call to <code>isUserInRole</code> with
-     * "*" must return false.
-     * If the role-name of the security-role to be tested is "**", and
-     * the application has NOT declared an application security-role with
-     * role-name "**", <code>isUserInRole</code> must only return true if
-     * the user has been authenticated; that is, only when
-     * {@link #getRemoteUser} and {@link #getUserPrincipal} would both return
-     * a non-null value. Otherwise, the container must check
-     * the user for membership in the application role.
+     * <p>ロール名 "*"は<code>isUserInRole</code>を呼び出す時に引数として使用されるべきではありません。
+     * <code>isUserInRole</code>の"*"での呼び出しはfalseを返す必要があります。
+     * テスト対象のセキュリティロールのロール名が"**"でアプリケーションがロール名が「**」のアプリケーションセキュリティロールを宣言していない場合、
+     * <code>isUserInRole</code>は、ユーザーが認証されている場合のみtrueを返す必要があります。つまり、{@link #getRemoteUser}と{@link #getUserPrincipal}が両方ともnull以外の値を返す場合のみです。
+     * それ以外の場合、コンテナはユーザーのアプリケーションロールのメンバーシップを確認する必要があります。
      *
-     * @param role		a <code>String</code> specifying the name
-     *				of the role
+     * @param role		ロールの名前を示す<code>String</code>
      *
-     * @return		a <code>boolean</code> indicating whether
-     *			the user making this request belongs to a given role;
-     *			<code>false</code> if the user has not been
-     *			authenticated
+     * @return		このリクエストを行うユーザが指定されたロールに属しているかどうかを示す<code>boolean</code>、ユーザーが認証されていない場合は<code>false</code>
      */
     public boolean isUserInRole(String role);
 
     /**
-     * Returns a <code>java.security.Principal</code> object containing
-     * the name of the current authenticated user. If the user has not been
-     * authenticated, the method returns <code>null</code>.
+     * 現在の認証されたユーザの名前を含む<code>java.security.Principal</code>のオブジェクトを返します。
+     * ユーザーが認証されていない場合、このメソッドは<code>null</code>を返します。
      *
-     * @return		a <code>java.security.Principal</code> containing
-     *			the name of the user making this request;
-     *			<code>null</code> if the user has not been
-     *			authenticated
+     * @return		このリクエストを送るユーザの名前を含む<code>java.security.Principal</code>のオブジェクト、ユーザーが認証されていない場合は<code>null</code>
      */
     public java.security.Principal getUserPrincipal();
 
