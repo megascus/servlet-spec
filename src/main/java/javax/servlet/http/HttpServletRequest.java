@@ -76,22 +76,26 @@ import javax.servlet.ServletRequest;
 public interface HttpServletRequest extends ServletRequest {
 
     /**
-     * ベーシック認証のための識別文字列です。"BASIC"
+     * ベーシック認証のための識別文字列です。
+     * "BASIC"
      */
     public static final String BASIC_AUTH = "BASIC";
 
     /**
-     * フォーム認証のための識別文字列です。"FORM"
+     * フォーム認証のための識別文字列です。
+     * "FORM"
      */
     public static final String FORM_AUTH = "FORM";
 
     /**
-     * クライアント証明書認証のための識別文字列です。"CLIENT_CERT"
+     * クライアント証明書認証のための識別文字列です。
+     * "CLIENT_CERT"
      */
     public static final String CLIENT_CERT_AUTH = "CLIENT_CERT";
 
     /**
-     * ダイジェスト認証のための識別文字列です。"DIGEST"
+     * ダイジェスト認証のための識別文字列です。
+     * "DIGEST"
      */
     public static final String DIGEST_AUTH = "DIGEST";
 
