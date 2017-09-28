@@ -625,22 +625,17 @@ public interface HttpServletRequest extends ServletRequest {
         throws IOException, ServletException;
 
     /**
-     * Get the request trailer fields.
-     *
-     * <p>The returned map is not backed by the {@code HttpServletRequest} object,
-     * so changes in the returned map are not reflected in the
-     * {@code HttpServletRequest} object, and vice-versa.</p>
+     * リクエストのトレーラフィールドを取得します。
      * 
-     * <p>{@link #isTrailerFieldsReady()} should be called first to determine
-     * if it is safe to call this method without causing an exception.</p>
-     *
-     * @implSpec
-     * The default implementation returns an empty map.
+     * <p>返されるMapはHttpServletRequestオブジェクトによって追跡されていないため、返されるMapへの変更はHttpServletRequestオブジェクトには反映されません。
+     * その逆もそうです。</p>
      * 
-     * @return A map of trailer fields in which all the keys are in lowercase,
-     * regardless of the case they had at the protocol level. If there are no
-     * trailer fields, yet {@link #isTrailerFieldsReady} is returning true,
-     * the empty map is returned.
+     * <p>{@link #isTrailerFieldsReady()}は例外を発生させずにこのメソッドを安全に呼び出すことができるかどうかを調べるために最初に呼び出す必要があります。</p>
+     *
+     * @implSpec デフォルト実装は空のMapを返します。
+     * 
+     * @return プロトコルレベルでの大文字小文字に関係なく、すべてのキーが小文字であるトレーラーフィールドのMap、
+     * トレーラーフィールドがないが{@link #isTrailerFieldsReady}がtrueを返す場合は空のMapを返す
      *
      * @throws IllegalStateException if {@link #isTrailerFieldsReady()} is false
      *
