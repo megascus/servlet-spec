@@ -270,7 +270,7 @@ public interface HttpServletRequest extends ServletRequest {
      * 
      * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      * 
-     * @return		Webコンテナによってデコードされ、サーブレットパスの後からリクエストURLのクエリ文字列の前までの拡張パス情報を指定する<code>String</code>、URLに拡張パス情報がない場合は<code>null</code>
+     * @return		ウェブコンテナによってデコードされ、サーブレットパスの後からリクエストURLのクエリ文字列の前までの拡張パス情報を指定する<code>String</code>、URLに拡張パス情報がない場合は<code>null</code>
      */
     public String getPathInfo();
 
@@ -279,9 +279,9 @@ public interface HttpServletRequest extends ServletRequest {
      * CGIの変数PATH_TRANSLATEDの値と同じです。
      * 
      * <p>URLに拡張パス情報がない場合、このメソッドはnullを返します。
-     * サーブレットコンテナは何らかの理由で(Webアプリケーションがアーカイブから実行されたときなど)仮想パスを実際のパスに変換できない場合があります。
+     * サーブレットコンテナは何らかの理由で(ウェブアプリケーションがアーカイブから実行されたときなど)仮想パスを実際のパスに変換できない場合があります。
      * 
-     * Webコンテナはこの文字列をデコードしません。
+     * ウェブコンテナはこの文字列をデコードしません。
      * 
      * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
@@ -363,46 +363,40 @@ public interface HttpServletRequest extends ServletRequest {
      * 現在の認証されたユーザの名前を含む<code>java.security.Principal</code>のオブジェクトを返します。
      * ユーザーが認証されていない場合、このメソッドは<code>null</code>を返します。
      *
-     * @return		このリクエストを送るユーザの名前を含む<code>java.security.Principal</code>のオブジェクト、ユーザーが認証されていない場合は<code>null</code>
+     * @return		このリクエストを送るユーザの名前を含む<code>java.security.Principal</code>、ユーザーが認証されていない場合は<code>null</code>
      */
     public java.security.Principal getUserPrincipal();
 
     /**
-     * Returns the session ID specified by the client. This may
-     * not be the same as the ID of the current valid session
-     * for this request.
-     * If the client did not specify a session ID, this method returns
-     * <code>null</code>.
+     * クライアントによって指定されたセッションIDを返します。
+     * これはこのリクエストの現在の有効なセッションIDと同じではない可能性があります。
+     * クライアントがセッションIDを指定しなかった場合、このメソッドは<code>null</code>を返します。
      *
-     * @return		a <code>String</code> specifying the session
-     *			ID, or <code>null</code> if the request did
-     *			not specify a session ID
-     *
+     * @return		指定されたセッションIDの<code>String</code>、リクエストがセッションIDを指定しない場合は<code>null</code>
+     * 
      * @see     #isRequestedSessionIdValid
      */
     public String getRequestedSessionId();
 
     /**
-     * Returns the part of this request's URL from the protocol
-     * name up to the query string in the first line of the HTTP request.
-     * The web container does not decode this String.
-     * For example:
+     * このリクエストのURLのうち、プロトコル名からHTTPリクエストの最初の行のクエリ文字列までの部分を返します。
+     * ウェブコンテナはこの文字列をデコードしません。
+     * <p>例えば：
      *
-     * <table summary="Examples of Returned Values">
-     * <tr align=left><th>First line of HTTP request      </th>
-     * <th>     Returned Value</th>
+     * <table summary="戻り値の例">
+     * <tr align=left><th>HTTPリクエストの最初の行          </th>
+     * <th>              戻り値</th>
      * <tr><td>POST /some/path.html HTTP/1.1<td><td>/some/path.html
      * <tr><td>GET http://foo.bar/a.html HTTP/1.0
      * <td><td>/a.html
      * <tr><td>HEAD /xyz?a=b HTTP/1.1<td><td>/xyz
      * </table>
      *
-     * <p>To reconstruct an URL with a scheme and host, use
-     * {@link HttpUtils#getRequestURL}.
+     * <p>スキームとホストでURLを再構築するには、 {@link HttpUtils#getRequestURL}を使用してください。
+     * 
+     * <p>訳注：{@link HttpUtils#getRequestURL}は非推奨なので代替APIの{@link #getRequestURL}を使用してください。
      *
-     * @return		a <code>String</code> containing
-     *			the part of the URL from the
-     *			protocol name up to the query string
+     * @return		プロトコル名からクエリ文字列までのURLの部分を含む<code>String</code>
      *
      * @see     HttpUtils#getRequestURL
      */
@@ -426,8 +420,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>This method is useful for creating redirect messages
      * and for reporting errors.
      *
-     * @return		a <code>StringBuffer</code> object containing
-     *			the reconstructed URL
+     * @return		再構成されたURLを含む<code>StringBuffer</code>のオブジェクト
      */
     public StringBuffer getRequestURL();
 
