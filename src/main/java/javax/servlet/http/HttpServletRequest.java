@@ -605,19 +605,16 @@ public interface HttpServletRequest extends ServletRequest {
     public Part getPart(String name) throws IOException, ServletException;
 
     /**
-     * Creates an instance of <code>HttpUpgradeHandler</code> for a given
-     * class and uses it for the http protocol upgrade processing.
+     * 指定されたクラスで<code>HttpUpgradeHandler</code>のインスタンスを作成し、httpプロトコルのアップグレードプロセスに使用します。
      *
-     * @param <T> The {@code Class}, which extends {@link
-     * HttpUpgradeHandler}, of the {@code handlerClass}.
-
-     * @param handlerClass The <code>HttpUpgradeHandler</code> class used for the upgrade.
+     * @param <T> {@code handlerClass}の{@link HttpUpgradeHandler}を拡張する{@code Class}
+     * 
+     * @param handlerClass アップグレードに使用する<code>HttpUpgradeHandler</code>
      *
-     * @return an instance of the <code>HttpUpgradeHandler</code>
+     * @return <code>HttpUpgradeHandler</code>のインスタンス
      *
-     * @exception IOException if an I/O error occurred during the upgrade
-     * @exception ServletException if the given <code>handlerClass</code> fails to
-     * be instantiated
+     * @exception IOException アップグレード中にI/Oエラーが発生した
+     * @exception ServletException 与えられた<code>handlerClass</code>のインスタンス化に失敗した
      *
      * @see javax.servlet.http.HttpUpgradeHandler
      * @see javax.servlet.http.WebConnection
