@@ -178,7 +178,8 @@ public interface HttpServletRequest extends ServletRequest {
 
     /**
      * リクエストヘッダーの指定された値を<code>int</code>として返します。
-     * p>リクエストのヘッダーに指定された名前が存在しない場合はこのメソッドは-1を返します。
+     * 
+     * <p>リクエストのヘッダーに指定された名前が存在しない場合はこのメソッドは-1を返します。
      * ヘッダーを整数に変換できない場合、このメソッドは<code>NumberFormatException</code>を投げます。
      *
      * <p>ヘッダー名は大文字小文字を区別しません。
@@ -197,9 +198,9 @@ public interface HttpServletRequest extends ServletRequest {
      * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link ServletRequest#getRequestDispatcher}後の{@link RequestDispatcher#forward}の呼び出しによって行われた場合、
      * 返される{@code HttpServletMapping}は{@link RequestDispatcher}を取得するために使用されたパスに対応します。
      * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link ServletRequest#getRequestDispatcher}後の{@link RequestDispatcher#include}の呼び出しによって行われた場合、
-     * 返される{@code HttpServletMapping}は呼び出しシーケンスの最初の{@link Servlet}を呼び出す原因となったパスに対応します。
+     * 返される{@code HttpServletMapping}は呼び出しシーケンスの最初の<code>Servlet</code>を呼び出す原因となったパスに対応します。
      * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link javax.servlet.AsyncContext#dispatch}の呼び出しによって行われた場合、
-     * 返される{@code HttpServletMapping}は呼び出しシーケンスの最初の{@link Servlet}を呼び出す原因となったパスに対応します。
+     * 返される{@code HttpServletMapping}は呼び出しシーケンスの最初の<code>Servlet</code>を呼び出す原因となったパスに対応します。
      * {@code HttpServletMapping}に関連する追加のリクエストの属性については、{@link javax.servlet.RequestDispatcher#FORWARD_MAPPING}、
      * {@link javax.servlet.RequestDispatcher#INCLUDE_MAPPING}、{@link javax.servlet.AsyncContext#ASYNC_MAPPING}を参照してください。
      * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link javax.servlet.ServletContext#getNamedDispatcher}の呼び出しによって行われた場合、
@@ -436,10 +437,7 @@ public interface HttpServletRequest extends ServletRequest {
      * <p>セッションが正しく維持されていることを確認するにはレスポンスがコミットされる前にこのメソッドを呼び出す必要があります。
      * コンテナがセッションの整合性を維持するためにクッキーを使用しており、レスポンスがコミットされた後に新しいセッションを作成するよう要求された場合はIllegalStateExceptionが投げられます。
      *
-     * @param create	<code>true</code> to create
-     *			a new session for this request if necessary;
-     *			<code>false</code> to return <code>null</code>
-     *			if there's no current session
+     * @param create	<code>true</code>の場合、必要に応じてこのリクエストのために新しいセッションを作成する、<code>false</code>の場合、現在のセッションが存在しない場合は<code>null</code>を返す
      *
      * @return 		the <code>HttpSession</code> associated
      *			with this request or <code>null</code> if
