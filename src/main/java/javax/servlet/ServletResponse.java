@@ -88,11 +88,8 @@ import java.util.Locale;
  * be called before <code>getWriter</code> and before committing
  * the response for the character encoding to be used.
  * 
- * <p>See the Internet RFCs such as 
- * <a href="http://www.ietf.org/rfc/rfc2045.txt">
- * RFC 2045</a> for more information on MIME. Protocols such as SMTP
- * and HTTP define profiles of MIME, and those standards
- * are still evolving.
+ * <p>MIMEの詳細情報については、<a href="http://www.ietf.org/rfc/rfc2045.txt">RFC 2045</a>などのインターネットRFCを参照してください。
+ * SMTPやHTTPなどのプロトコルでMIMEのプロファイルを定義しており、これらの標準はまだ進化し続けています。
  *
  * @author Various
  *
