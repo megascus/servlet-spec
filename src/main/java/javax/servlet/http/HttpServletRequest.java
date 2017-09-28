@@ -479,37 +479,27 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdValid();
 
     /**
-     * <p>Checks whether the requested session ID was conveyed to the
-     * server as an HTTP cookie.</p>
+     * <p>要求されたセッションIDがHTTP Cookieとしてサーバーに送信されたかどうかを確認します。</p>
      *
-     * @return			<code>true</code> if the session ID
-     *				was conveyed to the server an an HTTP
-     *				cookie; otherwise, <code>false</code>
+     * @return			セッションIDがHTTP Cookieとしてサーバーに送信された場合は<code>true</code>、そうでない場合は<code>false</code>
      *
      * @see         #getSession
      */
     public boolean isRequestedSessionIdFromCookie();
 
     /**
-     * <p>Checks whether the requested session ID was conveyed to the
-     * server as part of the request URL.</p>
+     * <p>要求されたセッションIDがリクエストURLの一部としてサーバーに送信されたかどうかを確認します。</p>
      *
-     * @return <code>true</code> if the session ID was conveyed to the
-     *				server as part of a URL; otherwise,
-     *				<code>false</code>
+     * @return セッションIDがリクエストURLの一部としてサーバーに送信された場合は<code>true</code>、そうでない場合は<code>false</code>
      *
      * @see         #getSession
      */
     public boolean isRequestedSessionIdFromURL();
 
     /**
-     * @deprecated		As of Version 2.1 of the Java Servlet
-     *				API, use {@link #isRequestedSessionIdFromURL}
-     *				instead.
+     * @deprecated	    Java Servlet API Version 2.1 から{@link #isRequestedSessionIdFromURL}に置き換えられました。
      *
-     * @return <code>true</code> if the session ID was conveyed to the
-     *				server as part of a URL; otherwise,
-     *				<code>false</code>
+     * @return セッションIDがリクエストURLの一部としてサーバーに送信された場合は<code>true</code>、そうでない場合は<code>false</code>
      */
     @Deprecated
     public boolean isRequestedSessionIdFromUrl();

@@ -370,7 +370,7 @@ public interface ServletRequest {
 
      * @return <i>実際の</i>パス、変換できない場合は<tt>null</tt>
 
-     * @deprecated  AVersion 2.1 から{@link ServletContext#getRealPath}に置き換えられました
+     * @deprecated  Version 2.1 から{@link ServletContext#getRealPath}に置き換えられました
      */
     public String getRealPath(String path);
     
