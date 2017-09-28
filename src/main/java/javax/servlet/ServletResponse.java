@@ -64,18 +64,13 @@ import java.util.Locale;
 
 
 /**
- * Defines an object to assist a servlet in sending a response to the client.
- * The servlet container creates a <code>ServletResponse</code> object and
- * passes it as an argument to the servlet's <code>service</code> method.
+ * サーブレットがクライアントにレスポンスを送るのを手助けするオブジェクトを定義します。
+ * サーブレットコンテナは<code>ServletResponse</code>オブジェクトを作成し、サーブレットの<code>service</code>メソッドに渡します。
  *
- * <p>To send binary data in a MIME body response, use
- * the {@link ServletOutputStream} returned by {@link #getOutputStream}.
- * To send character data, use the <code>PrintWriter</code> object 
- * returned by {@link #getWriter}. To mix binary and text data,
- * for example, to create a multipart response, use a
- * <code>ServletOutputStream</code> and manage the character sections
- * manually.
- *
+ * <p>レスポンスのMIMEボディでバイナリデータを送るには{@link #getOutputStream}が返す{@link ServletOutputStream}を使用してください。
+ * 文字データを送るには{@link #getWriter}が返す<code>PrintWriter</code>オブジェクトを使用してください。
+ * バイナリとテキストデータを混在させる、例えば、マルチパートのレスポンスを作成するのであれば<code>ServletOutputStream</code>を使用して文字列の部分は手動で管理します。
+ * 
  * <p>The charset for the MIME body response can be specified explicitly
  * using any of the following techniques: per request, per web-app (using
  * {@link ServletContext#setRequestCharacterEncoding}, deployment descriptor),
