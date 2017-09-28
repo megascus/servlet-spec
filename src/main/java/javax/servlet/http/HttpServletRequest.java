@@ -505,33 +505,20 @@ public interface HttpServletRequest extends ServletRequest {
     public boolean isRequestedSessionIdFromUrl();
 
     /**
-     * Use the container login mechanism configured for the
-     * <code>ServletContext</code> to authenticate the user making
-     * this request.
+     * <code>ServletContext</code>用に設定されたコンテナログインメカニズムを使用して、このリクエストを行うユーザーを認証します。
      *
-     * <p>This method may modify and commit the argument
-     * <code>HttpServletResponse</code>.
+     * <p>このメソッドは引数の<code>HttpServletResponse</code>を変更してコミットするかもしれません。
      *
-     * @param response The <code>HttpServletResponse</code>
-     * associated with this <code>HttpServletRequest</code>
+     * @param response この<code>HttpServletRequest</code>に関連する<code>HttpServletResponse</code>
      *
-     * @return <code>true</code> when non-null values were or have been
-     * established as the values returned by <code>getUserPrincipal</code>,
-     * <code>getRemoteUser</code>, and <code>getAuthType</code>. Return
-     * <code>false</code> if authentication is incomplete and the underlying
-     * login mechanism has committed, in the response, the message (e.g.,
-     * challenge) and HTTP status code to be returned to the user.
+     * @return <code>getUserPrincipal</code>と<code>getRemoteUser</code>、<code>getAuthType</code>によって返される値としてnull以外の値が設定されている場合に<code>true</code>、
+     * 認証が不完全で、基礎となるログインメカニズムがメッセージ（例えばチャレンジ）とHTTPステータスコードをユーザーへのレスポンスとして返す場合は<code>false</code>
      *
-     * @throws IOException if an input or output error occurred while
-     * reading from this request or writing to the given response
+     * @throws IOException このリクエストからの読み取り中または指定されたレスポンスへの書き込み中に入出力エラーが発生した場合
      *
-     * @throws IllegalStateException if the login mechanism attempted to
-     * modify the response and it was already committed
+     * @throws IllegalStateException ログインメカニズムがレスポンスの変更を試みたときに、すでにコミットされていた場合
      *
-     * @throws ServletException if the authentication failed and
-     * the caller is responsible for handling the error (i.e., the
-     * underlying login mechanism did NOT establish the message and
-     * HTTP status code to be returned to the user)
+     * @throws ServletException 認証に失敗し、呼び出し側がエラーの処理を担当している場合（つまり基礎となるログインメカニズムでメッセージとHTTPステータスコードをユーザーに返すように設定していない場合）
      *
      * @since Servlet 3.0
      */
