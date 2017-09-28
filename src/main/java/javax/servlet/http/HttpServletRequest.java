@@ -435,11 +435,11 @@ public interface HttpServletRequest extends ServletRequest {
      * <p><code>create</code>が<code>false</code>で、リクエストに有効な<code>HttpSession</code>がない場合、このメソッドは<code>null</code>を返します。
      * 
      * <p>セッションが正しく維持されていることを確認するにはレスポンスがコミットされる前にこのメソッドを呼び出す必要があります。
-     * コンテナがセッションの整合性を維持するためにクッキーを使用しており、レスポンスがコミットされた後に新しいセッションを作成するよう要求された場合はIllegalStateExceptionが投げられます。
+     * コンテナがセッションの整合性を維持するためにCookieを使用しており、レスポンスがコミットされた後に新しいセッションを作成するよう要求された場合はIllegalStateExceptionが投げられます。
      *
      * @param create	<code>true</code>の場合、必要に応じてこのリクエストのために新しいセッションを作成する、<code>false</code>の場合、現在のセッションが存在しない場合は<code>null</code>を返す
      *
-     * @return 		このリクエストに関連付けられている<code>HttpSession</code>、<code>create</code>が<code>false</code>でリクエストが妥当なセッションを持っていない場合は<code>null</code>
+     * @return 		このリクエストに関連付けられている<code>HttpSession</code>、<code>create</code>が<code>false</code>でリクエストが有効なセッションを持っていない場合は<code>null</code>
      * 
      * @see #getSession()
      */
@@ -455,28 +455,22 @@ public interface HttpServletRequest extends ServletRequest {
     public HttpSession getSession();
 
     /**
-     * Change the session id of the current session associated with this
-     * request and return the new session id.
+     * このリクエストに関連付けられている現在のセッションのセッションIDを変更し、新しいセッションIDを返します。
      *
-     * @return the new session id
+     * @return 新しいセッションID
      *
-     * @throws IllegalStateException if there is no session associated
-     * with the request
+     * @throws IllegalStateException リクエストに関連付けられたセッションが存在しない
      *
      * @since Servlet 3.1
      */
     public String changeSessionId();
 
     /**
-     * Checks whether the requested session ID is still valid.
+     * 要求されたセッションIDがまだ有効かどうかを確認します。
+     * 
+     * <p>クライアントがセッションIDを指定しなかった場合、このメソッドは<code>false</code>を返します。
      *
-     * <p>If the client did not specify any session ID, this method returns
-     * <code>false</code>.
-     *
-     * @return			<code>true</code> if this
-     *				request has an id for a valid session
-     *				in the current session context;
-     *				<code>false</code> otherwise
+     * @return			このリクエストが現在のセッションコンテキスト内の有効なセッションのIDを持っている場合は<code>true</code>、そうでない場合は<code>false</code>
      *
      * @see			#getRequestedSessionId
      * @see			#getSession
