@@ -192,45 +192,24 @@ public interface HttpServletRequest extends ServletRequest {
     public int getIntHeader(String name);
 
     /**
-     * <p>Return the {@link HttpServletMapping} by which the {@link
-     * HttpServlet} for this {@code HttpServletRequest} was invoked.
-     * The mappings for any applicable {@link javax.servlet.Filter}s are
-     * not indicated in the result.  If the currently active {@link
-     * javax.servlet.Servlet} invocation was obtained by a call to
-     * {@link ServletRequest#getRequestDispatcher} followed by a call to
-     * {@link RequestDispatcher#forward}, the returned {@code
-     * HttpServletMapping} is the one corresponding to the path used to
-     * obtain the {@link RequestDispatcher}.  If the currently active
-     * {@code Servlet} invocation was obtained by a call to {@link
-     * ServletRequest#getRequestDispatcher} followed by a call to {@link
-     * RequestDispatcher#include}, the returned {@code
-     * HttpServletMapping} is the one corresponding to the path that
-     * caused the first {@code Servlet} in the invocation sequence to be
-     * invoked.  If the currently active {@code Servlet} invocation was
-     * obtained by a call to {@link
-     * javax.servlet.AsyncContext#dispatch}, the returned {@code
-     * HttpServletMapping} is the one corresponding to the path that
-     * caused the first {@code Servlet} in the invocation sequence to be
-     * invoked.  See {@link
-     * javax.servlet.RequestDispatcher#FORWARD_MAPPING}, {@link
-     * javax.servlet.RequestDispatcher#INCLUDE_MAPPING} and {@link
-     * javax.servlet.AsyncContext#ASYNC_MAPPING} for additional request
-     * attributes related to {@code HttpServletMapping}. If the
-     * currently active {@code Servlet} invocation was obtained by a
-     * call to {@link javax.servlet.ServletContext#getNamedDispatcher},
-     * the returned {@code HttpServletMapping} is the one corresponding
-     * to the path for the mapping last applied to this request.</p>
+     * <p>この{@code HttpServletRequest}が呼び出された{@link HttpServlet}の{@link HttpServletMapping}を返します。
+     * 該当する{@link javax.servlet.Filter}のマッピングは結果に表示されません。
+     * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link ServletRequest#getRequestDispatcher}後の{@link RequestDispatcher#forward}の呼び出しによって行われた場合、
+     * 返される{@code HttpServletMapping}は{@link RequestDispatcher}を取得するために使用されたパスに対応します。
+     * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link ServletRequest#getRequestDispatcher}後の{@link RequestDispatcher#include}の呼び出しによって行われた場合、
+     * 返される{@code HttpServletMapping}は呼び出しシーケンスの最初の{@link Servlet}を呼び出す原因となったパスに対応します。
+     * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link javax.servlet.AsyncContext#dispatch}の呼び出しによって行われた場合、
+     * 返される{@code HttpServletMapping}は呼び出しシーケンスの最初の{@link Servlet}を呼び出す原因となったパスに対応します。
+     * {@code HttpServletMapping}に関連する追加のリクエストの属性については、{@link javax.servlet.RequestDispatcher#FORWARD_MAPPING}、
+     * {@link javax.servlet.RequestDispatcher#INCLUDE_MAPPING}、{@link javax.servlet.AsyncContext#ASYNC_MAPPING}を参照してください。
+     * 現在のアクティブな{@link javax.servlet.Servlet}呼び出しが、{@link javax.servlet.ServletContext#getNamedDispatcher}の呼び出しによって行われた場合、
+     * 返された{@code HttpServletMapping}はこのリクエストに最後に適用されたマッピングのパスに対応するものです。</p>
      * 
-     * <p>The returned object is immutable.  Servlet 4.0 compliant
-     * implementations must override this method.</p>
+     * <p>返されるオブジェクトは不変です。 Servlet 4.0準拠の実装では、このメソッドをオーバーライドする必要があります。</p>
      * 
-     * @implSpec The default implementation returns a {@code
-     * HttpServletMapping} that returns the empty string for the match
-     * value, pattern and servlet name and {@code null} for the match
-     * type.
+     * @implSpec デフォルトの実装ではMatchValue、PatternおよびServletNameとしての空の文字列を返し、MappingMatchとしてnullを返す{@code HttpServletMapping}が返されます。
      *
-     * @return An instance of {@code HttpServletMapping} describing the manner in which
-     * the current request was invoked.
+     * @return 現在のリクエストが呼び出された方法を示す{@code HttpServletMapping}のインスタンス
      * 
      * @since 4.0
      */
@@ -272,14 +251,12 @@ public interface HttpServletRequest extends ServletRequest {
     }
     
     /**
-     * Returns the name of the HTTP method with which this
-     * request was made, for example, GET, POST, or PUT.
-     * Same as the value of the CGI variable REQUEST_METHOD.
+     * リクエストが行われたHTTPのメソッドの名前を返します。たとえば、GETやPOST、PUTです。
+     * CGIの変数REQUEST_METHODの値と同じです。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
      *
-     * @return			a <code>String</code>
-     *				specifying the name
-     *				of the method with which
-     *				this request was made
+     * @return			リクエストが行われたメソッドの名前を示す<code>String</code>
      */
     public String getMethod();
 
