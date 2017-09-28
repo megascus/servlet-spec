@@ -526,39 +526,25 @@ public interface HttpServletRequest extends ServletRequest {
 	throws IOException,ServletException;
 
     /**
-     * Validate the provided username and password in the password validation
-     * realm used by the web container login mechanism configured for the
-     * <code>ServletContext</code>.
+     * 提供されたユーザ名とパスワードを<code>ServletContext</code>用に設定されたウェブコンテナログインメカニズムによって使用されるパスワード検証機構で検証します。
+     * 
+     * <p>このメソッドは、 <code>ServletContext</code>用に設定されたログイン機構がユーザー名のパスワード検証をサポートしているとき、
+     * かつログイン呼び出し時にリクエストの呼び出し元の身元が確立されていないとき（つまり<code>getUserPrincipal</code>、<code>getRemoteUser</code>、<code>getAuthType</code>がnullを返す）、
+     * かつ提供された資格証明の検証が成功した場合に<code>ServletException</code>を投げずに処理を戻します。
+     * それ以外の場合はこのメソッドは以下に説明するように<code>ServletException</code>を投げます。
+     * 
+     * <p>訳注：ログインの設定ができていてユーザーがまだログインしていなくてこのメソッドでログインに成功した場合に<code>ServletException</code>を投げずに処理を戻します。
+     * 
+     * <p>このメソッドが例外を投げないで処理を返すときは<code>getUserPrincipal</code>、<code>getRemoteUser</code>、<code>getAuthType</code>
+     * から返される値としてnull以外の値を設定するべきです。
      *
-     * <p>This method returns without throwing a <code>ServletException</code>
-     * when the login mechanism configured for the <code>ServletContext</code>
-     * supports username password validation, and when, at the time of the
-     * call to login, the identity of the caller of the request had
-     * not been established (i.e, all of <code>getUserPrincipal</code>,
-     * <code>getRemoteUser</code>, and <code>getAuthType</code> return null),
-     * and when validation of the provided credentials is successful.
-     * Otherwise, this method throws a <code>ServletException</code> as
-     * described below.
+     * @param username ユーザーのログイン識別子に対応する<code>String</code>の値
      *
-     * <p>When this method returns without throwing an exception, it must
-     * have established non-null values as the values returned by
-     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>, and
-     * <code>getAuthType</code>.
+     * @param password 識別されたユーザーに対応するパスワードの<code>String</code>
      *
-     * @param username The <code>String</code> value corresponding to
-     * the login identifier of the user.
-     *
-     * @param password The password <code>String</code> corresponding
-     * to the identified user.
-     *
-     * @exception	ServletException    if the configured login mechanism
-     *                                      does not support username
-     *                                      password authentication, or if a
-     *                                      non-null caller identity had
-     *                                      already been established (prior
-     *                                      to the call to login), or if
-     *                                      validation of the provided
-     *                                      username and password fails.
+     * @exception	ServletException    設定されたログインメカニズムがユーザ名とパスワードの認証をサポートしていない場合、
+     *                                  またはnull以外の呼び出し元認証情報が(ログインの前に)すでに設定されている場合、
+     *                                  または指定されたユーザ名とパスワードの検証に失敗した場合
      *
      * @since Servlet 3.0
      */
@@ -566,11 +552,9 @@ public interface HttpServletRequest extends ServletRequest {
 	throws ServletException;
 
     /**
-     * Establish <code>null</code> as the value returned when
-     * <code>getUserPrincipal</code>, <code>getRemoteUser</code>,
-     * and <code>getAuthType</code> is called on the request.
+     * リクエストで<code>getUserPrincipal</code>、<code>getRemoteUser</code>、<code>getAuthType</code>が呼び出されたときに返される値として<code>null</code>を設定します。
      *
-     * @exception ServletException if logout fails
+     * @exception ServletException ログアウトに失敗した
      *
      * @since Servlet 3.0
      */
