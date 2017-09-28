@@ -417,41 +417,24 @@ public interface HttpServletRequest extends ServletRequest {
     public StringBuffer getRequestURL();
 
     /**
-     * Returns the part of this request's URL that calls
-     * the servlet. This path starts with a "/" character
-     * and includes either the servlet name or a path to
-     * the servlet, but does not include any extra path
-     * information or a query string. Same as the value of
-     * the CGI variable SCRIPT_NAME.
-     *
-     * <p>This method will return an empty string ("") if the
-     * servlet used to process this request was matched using
-     * the "/*" pattern.
-     *
-     * @return		a <code>String</code> containing
-     *			the name or path of the servlet being
-     *			called, as specified in the request URL,
-     *			decoded, or an empty string if the servlet
-     *			used to process the request is matched
-     *			using the "/*" pattern.
+     * サーブレットを呼び出すこのリクエストのURLの一部を返します。このパスは"/"文字で始まりサーブレット名またはサーブレットへのパスを含みますが、余分なパス情報やクエリ文字列は含まれません。
+     * CGIの変数SCRIPT_NAMEの値と同じです。
+     * 
+     * <p>このメソッドはこのリクエストの処理に使用されたサーブレットが "/*"パターンを使用して一致した場合は空の文字列（""）を返します。
+     * 
+     * <p>訳注：CGIはサーブレットが生まれる前にあったウェブアプリケーションを作るための仕組みです。現在はほぼ使われていません。
+     * 
+     * @return		リクエストURLで指定されている呼び出されるサーブレットの名前またはパスを含む<code>String</code>がデコードされたもの、リクエストの処理に使用されたサーブレットが"/*"パターンを使用して一致した場合は空の文字列
      */
     public String getServletPath();
 
     /**
-     * Returns the current <code>HttpSession</code>
-     * associated with this request or, if there is no
-     * current session and <code>create</code> is true, returns
-     * a new session.
-     *
-     * <p>If <code>create</code> is <code>false</code>
-     * and the request has no valid <code>HttpSession</code>,
-     * this method returns <code>null</code>.
-     *
-     * <p>To make sure the session is properly maintained,
-     * you must call this method before
-     * the response is committed. If the container is using cookies
-     * to maintain session integrity and is asked to create a new session
-     * when the response is committed, an IllegalStateException is thrown.
+     * このリクエストに関連付けられている現在の<code>HttpSession</code>を返します。現在のセッションがなく<code>create</code>がtrueの場合は新しいセッションを返します。
+     * 
+     * <p><code>create</code>が<code>false</code>で、リクエストに有効な<code>HttpSession</code>がない場合、このメソッドは<code>null</code>を返します。
+     * 
+     * <p>セッションが正しく維持されていることを確認するにはレスポンスがコミットされる前にこのメソッドを呼び出す必要があります。
+     * コンテナがセッションの整合性を維持するためにクッキーを使用しており、レスポンスがコミットされた後に新しいセッションを作成するよう要求された場合はIllegalStateExceptionが投げられます。
      *
      * @param create	<code>true</code> to create
      *			a new session for this request if necessary;
@@ -468,11 +451,9 @@ public interface HttpServletRequest extends ServletRequest {
     public HttpSession getSession(boolean create);
 
     /**
-     * Returns the current session associated with this request,
-     * or if the request does not have a session, creates one.
+     * このリクエストに関連付けられている現在のセッションを返します。リクエストがセッションを持たない場合はセッションを作成します。
      *
-     * @return		the <code>HttpSession</code> associated
-     *			with this request
+     * @return		このリクエストに関連付けられている<code>HttpSession</code>
      *
      * @see	#getSession(boolean)
      */
