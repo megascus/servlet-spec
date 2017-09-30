@@ -71,22 +71,21 @@ import java.util.Locale;
  * 文字データを送るには{@link #getWriter}が返す<code>PrintWriter</code>オブジェクトを使用してください。
  * バイナリとテキストデータを混在させる、例えば、マルチパートのレスポンスを作成するのであれば<code>ServletOutputStream</code>を使用して文字列の部分は手動で管理します。
  * 
- * <p>The charset for the MIME body response can be specified explicitly
- * using any of the following techniques: per request, per web-app (using
- * {@link ServletContext#setRequestCharacterEncoding}, deployment descriptor),
- * and per container (for all web applications deployed in that container, 
- * using vendor specific configuration).
- * If multiple of the preceding techniques have been employed, the priority is
- * the order listed.
- * For per request, the charset for the response can be specified explicitly
- * using the {@link #setCharacterEncoding} and {@link #setContentType} methods,
- * or implicitly using the {@link #setLocale} method.
- * Explicit specifications take precedence over implicit specifications.
- * If no charset is explicitly specified, ISO-8859-1 will be used.
- * The <code>setCharacterEncoding</code>,
- * <code>setContentType</code>, or <code>setLocale</code> method must
- * be called before <code>getWriter</code> and before committing
- * the response for the character encoding to be used.
+ * <p>レスポンスのMIMEボディの文字コードは以下のような設定で指定することができます。
+ * <ul>
+ * <li>リクエスト毎
+ * <li>ウェブアプリケーション毎({@link ServletContext#setRequestCharacterEncoding}やデプロイメントディスクリプタを使用)
+ * <li>コンテナ毎(ベンダー固有の設定を使用してコンテナにデプロイされたすべてのアプリケーションに適用)
+ * </ul>
+ * 先に述べられた設定のうち複数が使用された場合、プライオリティは記述された順序どおりです。
+ * 
+ * リクエストごとに、レスポンスの文字コードは{@link #setCharacterEncoding}および{@link #setContentType} メソッドを使用して明示的に指定するか、
+ * 暗黙的に{@link #setLocale}メソッドを使用して指定できます。
+ * 明示的(explicit)な指定が暗黙(implicit)の指定よりも優先されます。
+ * 文字セットが明示的に指定されていない場合はISO-8859-1が使用されます。
+ *  
+ * <code>setCharacterEncoding</code>や<code>setContentType</code>、<code>setLocale</code>メソッドは
+ * <code>getWriter</code>を呼び出す前かつ文字エンコーディングが使用されるレスポンスをコミットする前にs呼び出す必要があります。
  * 
  * <p>MIMEの詳細情報については、<a href="http://www.ietf.org/rfc/rfc2045.txt">RFC 2045</a>などのインターネットRFCを参照してください。
  * SMTPやHTTPなどのプロトコルでMIMEのプロファイルを定義しており、これらの標準はまだ進化し続けています。
