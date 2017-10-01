@@ -98,27 +98,21 @@ import java.util.Locale;
 public interface ServletResponse {
     
     /**
-     * Returns the name of the character encoding (MIME charset)
-     * used for the body sent in this response.
-     * The following methods for specifying the response character encoding are
-     * consulted, in decreasing order of priority: per request, perweb-app
-     * (using {@link ServletContext#setResponseCharacterEncoding}, deployment
-     * descriptor), and per container (for all web applications deployed in
-     * that container, using vendor specific configuration).
-     * The first one of these methods that yields a result is returned.
-     * Per-request, the charset for the response can be specified explicitly
-     * using the {@link setCharacterEncoding} and {@link setContentType}
-     * methods, or implicitly using the setLocale(java.util.Locale) method.
-     * Explicit specifications take precedence over implicit specifications.
-     * Calls made to these methods after <code>getWriter</code> has been
-     * called or after the response has been committed have no
-     * effect on the character encoding. If no character encoding
-     * has been specified, <code>ISO-8859-1</code> is returned.
-     * <p>See RFC 2047 (http://www.ietf.org/rfc/rfc2047.txt)
-     * for more information about character encoding and MIME.
+     * このレスポンスで送信されるボディに使用されている文字エンコーディング（MIME文字セット）の名前を返します。
+     * レスポンスの文字エンコーディングは以下のような方法の降順で指定することができます。
+     * <ul>
+     * <li>リクエスト毎
+     * <li>ウェブアプリケーション毎({@link ServletContext#setRequestCharacterEncoding}やデプロイメントディスクリプタを使用)
+     * <li>コンテナ毎(ベンダー固有の設定を使用してコンテナにデプロイされたすべてのアプリケーションに適用)
+     * </ul>
+     * これらのメソッドのうち最初の結果が返されます。
+     * リクエストごとに、レスポンスの文字セットは{@link setCharacterEncoding} および{@link setContentType}メソッドを使用して明示的に指定することも、
+     * {@link setLocale}メソッドを暗黙的に使用して明示的に指定することもできます。明示的な指定は暗黙の指定よりも優先されます。
+     * <code>getWriter</code>が呼び出された後もしくはレスポンスがコミットされた後にこれらの方法が呼び出されても文字エンコーディングには影響しません。
+     * 文字エンコーディングが指定されていない場合は<code>ISO-8859-1</code>が返されます。
+     * <p>MIMEと文字エンコーディングの詳細情報については、<a href="http://www.ietf.org/rfc/rfc2047.txt">RFC 2047</a>を参照してください。
      *
-     * @return a <code>String</code> specifying the name of
-     * the character encoding, for example, <code>UTF-8</code>
+     * @return <code>UTF-8</code>など、文字エンコーディングの名前を示す<code>String</code>
      */
     public String getCharacterEncoding();
     
