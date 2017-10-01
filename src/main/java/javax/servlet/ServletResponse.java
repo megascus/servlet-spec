@@ -112,13 +112,13 @@ public interface ServletResponse {
      * 文字エンコーディングが指定されていない場合は<code>ISO-8859-1</code>が返されます。
      * <p>MIMEと文字エンコーディングの詳細情報については、<a href="http://www.ietf.org/rfc/rfc2047.txt">RFC 2047</a>を参照してください。
      *
-     * @return <code>UTF-8</code>など、文字エンコーディングの名前を示す<code>String</code>
+     * @return 文字エンコーディングの名前を示す<code>String</code>、例として<code>UTF-8</code>
      */
     public String getCharacterEncoding();
     
     /**
-     * Returns the content type used for the MIME body
-     * sent in this response. The content type proper must
+     * レスポンスの中で送られるMIMEボディに使用されるコンテンツタイプを返します。
+     * The content type proper must
      * have been specified using {@link #setContentType}
      * before the response is committed. If no content type
      * has been specified, this method returns null.
