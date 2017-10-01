@@ -149,10 +149,9 @@ public interface ServletResponse {
      * be called to write the body, not both, except when {@link #reset}
      * has been called.
      *
-     * @return a {@link ServletOutputStream} for writing binary data 
+     * @return バイナリデータを書き出すための{@link ServletOutputStream} 
      *
-     * @exception IllegalStateException if the <code>getWriter</code> method
-     * has been called on this response
+     * @exception IllegalStateException このレスポンスで<code>getWriter</code>メソッドがすでに呼び出されている場合
      *
      * @exception IOException I/Oエラーが発生した
      *
@@ -177,16 +176,11 @@ public interface ServletResponse {
      * to write the body, not both, except when {@link #reset}
      * has been called.
      * 
-     * @return a <code>PrintWriter</code> object that 
-     * can return character data to the client 
+     * @return 文字データをクライアントに返すことができる <code>PrintWriter</code>オブジェクト
      *
-     * @exception java.io.UnsupportedEncodingException
-     * if the character encoding returned
-     * by <code>getCharacterEncoding</code> cannot be used
+     * @exception java.io.UnsupportedEncodingException <code>getCharacterEncoding</code>から返された文字エンコーディングが使用できない文字エンコーディングだった
      *
-     * @exception IllegalStateException
-     * if the <code>getOutputStream</code>
-     * method has already been called for this response object
+     * @exception IllegalStateException このレスポンスで<code>getOutputStream</code>メソッドがすでに呼び出されている場合
      *
      * @exception IOException I/Oエラーが発生した
      *
@@ -223,8 +217,7 @@ public interface ServletResponse {
      * specify a content type; however, it is still used to encode text
      * written via the servlet response's writer.
      *
-     * @param charset a String specifying only the character set
-     * defined by IANA Character Sets
+     * @param charset IANA 定義の文字セットを示す文字列
      * (http://www.iana.org/assignments/character-sets)
      *
      * @see #setContentType
@@ -302,7 +295,7 @@ public interface ServletResponse {
      * been committed, this method throws an 
      * <code>IllegalStateException</code>.
      *
-     * @param size the preferred buffer size
+     * @param size 好ましいバッファーサイズ
      *
      * @exception IllegalStateException コンテンツがすでに書き込まれた後にこのメソッドが呼び出された
      *
@@ -317,7 +310,7 @@ public interface ServletResponse {
      * Returns the actual buffer size used for the response.  If no buffering
      * is used, this method returns 0.
      *
-     * @return the actual buffer size used
+     * @return 実際に使用されているバッファーサイズ
      *
      * @see #setBufferSize
      * @see #flushBuffer
@@ -358,12 +351,10 @@ public interface ServletResponse {
     public void resetBuffer();
     
     /**
-     * Returns a boolean indicating if the response has been
-     * committed.  A committed response has already had its status 
-     * code and headers written.
+     * レスポンスがすでにコミットされているかどうかを示すbooleanを返します。
+     * コミットされたレスポンスはステータスコード及びにヘッダーがすでに書き込まれています。
      *
-     * @return  a boolean indicating if the response has been
-     * committed
+     * @return  レスポンスがすでにコミットされているかどうかを示すboolean
      *
      * @see #setBufferSize
      * @see #getBufferSize
