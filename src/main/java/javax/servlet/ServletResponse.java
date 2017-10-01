@@ -130,8 +130,7 @@ public interface ServletResponse {
      * If no character encoding has been specified, the
      * charset parameter is omitted.
      *
-     * @return a <code>String</code> specifying the content type,
-     * for example, <code>text/html; charset=UTF-8</code>, or null
+     * @return コンテンツタイプを示す<code>String</code>、例として<code>text/html; charset=UTF-8</code>、もしくはnull
      *
      * @since Servlet 2.4
      */
@@ -155,7 +154,7 @@ public interface ServletResponse {
      * @exception IllegalStateException if the <code>getWriter</code> method
      * has been called on this response
      *
-     * @exception IOException if an input or output exception occurred
+     * @exception IOException I/Oエラーが発生した
      *
      * @see #getWriter
      * @see #reset
@@ -189,8 +188,7 @@ public interface ServletResponse {
      * if the <code>getOutputStream</code>
      * method has already been called for this response object
      *
-     * @exception IOException
-     * if an input or output exception occurred
+     * @exception IOException I/Oエラーが発生した
      *
      * @see #getOutputStream
      * @see #setCharacterEncoding
@@ -275,8 +273,7 @@ public interface ServletResponse {
      * the protocol provides a way for doing so. In the case of HTTP,
      * the <code>Content-Type</code> header is used.
      *
-     * @param type a <code>String</code> specifying the MIME 
-     * type of the content
+     * @param type コンテンツのMIMEタイプを示す<code>String</code>
      *
      * @see #setLocale
      * @see #setCharacterEncoding
@@ -307,8 +304,7 @@ public interface ServletResponse {
      *
      * @param size the preferred buffer size
      *
-     * @exception IllegalStateException if this method is called after
-     * content has been written
+     * @exception IllegalStateException コンテンツがすでに書き込まれた後にこのメソッドが呼び出された
      *
      * @see 		#getBufferSize
      * @see 		#flushBuffer
@@ -340,8 +336,7 @@ public interface ServletResponse {
      * @see #isCommitted
      * @see #reset
 
-     * @throws IOException if the act of flushing the buffer cannot be
-     * completed.
+     * @throws IOException バッファーを完全にフラッシュすることができなかった
      *
      */
     public void flushBuffer() throws IOException;
@@ -390,8 +385,7 @@ public interface ServletResponse {
      * If the response has been committed, this method throws an 
      * <code>IllegalStateException</code>.
      *
-     * @exception IllegalStateException  if the response has already been
-     * committed
+     * @exception IllegalStateException レスポンスがすでにコミットされていた
      *
      * @see #setBufferSize
      * @see #getBufferSize
@@ -430,7 +424,7 @@ public interface ServletResponse {
      * specify a content type; however, it is still used to encode text
      * written via the servlet response's writer.
      * 
-     * @param loc the locale of the response
+     * @param loc レスポンスのロケール
      *
      * @see #getLocale
      * @see #setContentType
@@ -445,7 +439,7 @@ public interface ServletResponse {
      * have no effect. If no locale has been specified,
      * the container's default locale is returned.
      *
-     * @return the Locale for this response.
+     * @return このレスポンスのロケール
      * 
      * @see #setLocale
      */
