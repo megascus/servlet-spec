@@ -224,7 +224,7 @@ public interface ServletResponse {
      * このメソッドはレスポンスがコミットされた後に呼び出しても何も行いません。
      * このメソッドは<code>getWriter</code>が呼び出された後もしくはレスポンスがコミットされた後に呼び出しても文字エンコーディングの設定を行いません。
      * <p>コンテナはプロトコルが提供している方法でサーブレットレスポンスのwriterに使用されている文字エンコーディングをクライアントに送信する必要があります。
-     * HTTPの場合は文字エンコーディングはテキストのメディアタイプにおいて<code>Content-Type</code>ヘッダーの一部分として伝えられます。.
+     * HTTPの場合は文字エンコーディングはテキストのメディアタイプにおいて<code>Content-Type</code>ヘッダーの一部分として伝えられます。
      *
      * @param type コンテンツのMIMEタイプを示す<code>String</code>
      *
@@ -239,21 +239,16 @@ public interface ServletResponse {
     
 
     /**
-     * Sets the preferred buffer size for the body of the response.  
-     * The servlet container will use a buffer at least as large as 
-     * the size requested.  The actual buffer size used can be found
-     * using <code>getBufferSize</code>.
+     * レスポンスボディの優先バッファサイズを設定します。
+     * サーブレットコンテナは最低でも要求されたサイズ以上のバッファを使用します。
+     * 使用される実際のバッファサイズは、 <code>getBufferSize</code>を使用して取得することができます。
      *
-     * <p>A larger buffer allows more content to be written before anything is
-     * actually sent, thus providing the servlet with more time to set
-     * appropriate status codes and headers.  A smaller buffer decreases 
-     * server memory load and allows the client to start receiving data more
-     * quickly.
+     * <p>バッファを大きくすると実際に何かが送信される前に多くのコンテンツを書き込むことができ、
+     * サーブレットに適切なステータスコードとヘッダーを設定できる期間が長くなります。
+     * バッファを小さくするとサーバーのメモリー負荷が減少し、クライアントはデータの受信をより素早く開始できます
      *
-     * <p>This method must be called before any response body content is
-     * written; if content has been written or the response object has
-     * been committed, this method throws an 
-     * <code>IllegalStateException</code>.
+     * <p>このメソッドは、レスポンスボディの内容が書き込まれる前に呼び出される必要があります。
+     * コンテンツが書き込まれている場合、またはレスポンスオブジェクトがコミットされている場合、このメソッドは<code>IllegalStateException</code>を投げます。
      *
      * @param size 好ましいバッファーサイズ
      *
@@ -267,8 +262,8 @@ public interface ServletResponse {
     public void setBufferSize(int size);
    
     /**
-     * Returns the actual buffer size used for the response.  If no buffering
-     * is used, this method returns 0.
+     * レスポンスに使用される実際のバッファサイズを返します。
+     * バッファリングを使用しない場合、このメソッドは0を返します。
      *
      * @return 実際に使用されているバッファーサイズ
      *
