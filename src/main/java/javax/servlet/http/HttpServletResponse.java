@@ -105,9 +105,9 @@ public interface HttpServletResponse extends ServletResponse {
      * 
      * <p>URLが相対的な場合、常に現在のHttpServletRequestから相対的になります。
      *
-     * @param	url	エンコードされるURLthe url to be encoded.
+     * @param	url	エンコードされるURL
      * @return		エンコードが必要な場合はエンコードされたURL、そうでない場合は変更されていないURL
-     * @exception IllegalArgumentException URLが不正だった
+     * @exception IllegalArgumentException URLが不正な場合
      */
     public String encodeURL(String url);
 
@@ -128,13 +128,11 @@ public interface HttpServletResponse extends ServletResponse {
      * rewriting cannot be used with browsers which do not support
      * cookies.
      *
-     * <p>If the URL is relative, it is always relative to the current
-     * HttpServletRequest.
+     * <p>URLが相対的な場合、常に現在のHttpServletRequestから相対的になります。
      *
-     * @param	url	the url to be encoded.
-     * @return		the encoded URL if encoding is needed;
-     * 			the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
+     * @param	url	エンコードされるURL
+     * @return		エンコードが必要な場合はエンコードされたURL、そうでない場合は変更されていないURL
+     * @exception IllegalArgumentException URLが不正な場合
      *
      * @see #sendRedirect
      * @see #encodeUrl
@@ -142,24 +140,21 @@ public interface HttpServletResponse extends ServletResponse {
     public String encodeRedirectURL(String url);
 
     /**
-     * @deprecated	As of version 2.1, use encodeURL(String url) instead
+     * @deprecated	Version 2.1から {@link #encodeURL(String)}に置き換えられました。
      *
-     * @param	url	the url to be encoded.
-     * @return		the encoded URL if encoding is needed; 
-     * 			the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
+     * @param	url	エンコードされるURL
+     * @return		エンコードが必要な場合はエンコードされたURL、そうでない場合は変更されていないURL
+     * @exception IllegalArgumentException URLが不正な場合
      */
     @Deprecated
     public String encodeUrl(String url);
     
     /**
-     * @deprecated	As of version 2.1, use 
-     *			encodeRedirectURL(String url) instead
+     * @deprecated	Version 2.1から {@link #encodeRedirectURL(String)}に置き換えられました。
      *
-     * @param	url	the url to be encoded.
-     * @return		the encoded URL if encoding is needed; 
-     * 			the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
+     * @param	url	エンコードされるURL
+     * @return		エンコードが必要な場合はエンコードされたURL、そうでない場合は変更されていないURL
+     * @exception IllegalArgumentException URLが不正な場合
      */
     @Deprecated
     public String encodeRedirectUrl(String url);
