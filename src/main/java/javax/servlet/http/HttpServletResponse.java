@@ -65,15 +65,11 @@ import java.util.function.Supplier;
 import javax.servlet.ServletResponse;
 
 /**
+ * {@link ServletResponse}インターフェースを拡張して、レスポンスを送信する時に使用するHTTP固有の機能を提供します。
+ * たとえば、HTTPヘッダーやCookieにアクセスするためのメソッドを持ちます。
  *
- * Extends the {@link ServletResponse} interface to provide HTTP-specific
- * functionality in sending a response.  For example, it has methods
- * to access HTTP headers and cookies.
- *
- * <p>The servlet container creates an <code>HttpServletResponse</code> object
- * and passes it as an argument to the servlet's service methods
- * (<code>doGet</code>, <code>doPost</code>, etc).
- *
+ * <p>サーブレットコンテナは<code>HttpServletResponse</code>のオブジェクトを作成し、
+ * サーブレットのserviceメソッド(<code>doGet</code>、<code>doPost</code>など)に引数として渡します。
  * 
  * @author	Various
  *
