@@ -153,20 +153,13 @@ public interface ServletResponse {
     public ServletOutputStream getOutputStream() throws IOException;
     
     /**
-     * Returns a <code>PrintWriter</code> object that
-     * can send character text to the client.
-     * The <code>PrintWriter</code> uses the character
-     * encoding returned by {@link #getCharacterEncoding}.
-     * If the response's character encoding has not been
-     * specified as described in <code>getCharacterEncoding</code>
-     * (i.e., the method just returns the default value 
-     * <code>ISO-8859-1</code>), <code>getWriter</code>
-     * updates it to <code>ISO-8859-1</code>.
-     * <p>Calling flush() on the <code>PrintWriter</code>
-     * commits the response.
-     * <p>Either this method or {@link #getOutputStream} may be called
-     * to write the body, not both, except when {@link #reset}
-     * has been called.
+     * 文字のテキストをクライアントに送信することが出来る<code>PrintWriter</code>のオブジェクトを返します。
+     * この<code>PrintWriter</code>は{@link #getCharacterEncoding}から返される文字エンコーディングを使用します。
+     * <code>getCharacterEncoding</code>で取得されるレスポンスの文字エンコーディングが指定されていない(つまり、メソッドがデフォルト値<code>ISO-8859-1</code>を返す)場合、
+     * <code>getWriter<code>の文字エンコーディングを<code>ISO-8859-1</code>に更新します。
+     * <p>{@link PrintWriter#flush()}を呼び出すことでレスポンスをコミットします。
+     * このメソッドか{@link #getOutputStream}はどちらかのみを呼び出すことが出来ます。
+     * {@link #reset}メソッドが呼び出されてない限り両方を呼び出すことは出来ません。
      * 
      * @return 文字データをクライアントに返すことができる <code>PrintWriter</code>オブジェクト
      *
