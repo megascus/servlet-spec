@@ -96,25 +96,18 @@ public interface HttpServletResponse extends ServletResponse {
     public boolean containsHeader(String name);
 
     /**
-     * Encodes the specified URL by including the session ID,
-     * or, if encoding is not needed, returns the URL unchanged.
-     * The implementation of this method includes the logic to
-     * determine whether the session ID needs to be encoded in the URL.
-     * For example, if the browser supports cookies, or session
-     * tracking is turned off, URL encoding is unnecessary.
+     * 指定されたURLをセッションIDを含めてエンコードします。エンコードが不要な場合はそのままURLを返します。
+     * このメソッドの実装にはセッションIDをURLにエンコードする必要があるかどうかを判断するロジックが含まれています。
+     * たとえば、ブラウザがCookieをサポートしている場合やセッショントラッキングがオフの場合はURLエンコーディングは不要です。
      * 
-     * <p>For robust session tracking, all URLs emitted by a servlet 
-     * should be run through this
-     * method.  Otherwise, URL rewriting cannot be used with browsers
-     * which do not support cookies.
+     * <p>堅牢なセッショントラッキングのためにはサーブレットが発行するすべてのURLをこのメソッドに通す必要があります。
+     * 一方で、CookieをサポートしていないブラウザではURLの書き換えを使用できません。
+     * 
+     * <p>URLが相対的な場合、常に現在のHttpServletRequestから相対的になります。
      *
-     * <p>If the URL is relative, it is always relative to the current
-     * HttpServletRequest.
-     *
-     * @param	url	the url to be encoded.
-     * @return		the encoded URL if encoding is needed;
-     * 			the unchanged URL otherwise.
-     * @exception IllegalArgumentException if the url is not valid
+     * @param	url	エンコードされるURLthe url to be encoded.
+     * @return		エンコードが必要な場合はエンコードされたURL、そうでない場合は変更されていないURL
+     * @exception IllegalArgumentException URLが不正だった
      */
     public String encodeURL(String url);
 
