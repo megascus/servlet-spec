@@ -213,13 +213,10 @@ public interface HttpServletResponse extends ServletResponse {
     public void sendRedirect(String location) throws IOException;
     
     /**
-     * 
-     * Sets a response header with the given name and
-     * date-value.  The date is specified in terms of
-     * milliseconds since the epoch.  If the header had already
-     * been set, the new value overwrites the previous one.  The
-     * <code>containsHeader</code> method can be used to test for the
-     * presence of a header before setting its value.
+     * 指定された名前と日付値を持つレスポンスヘッダーを設定します。
+     * 日付はエポックからのミリ秒単位で指定します。
+     * ヘッダーがすでに設定されている場合は新しい値が前の値を上書きします。 
+     * 値を設定する前にヘッダーの有無を確認するために<code>containsHeader</code>メソッドを使用できます。
      * 
      * @param	name	ヘッダーに値を設定する名前
      * @param	date	割り当てられる日付値
@@ -230,11 +227,9 @@ public interface HttpServletResponse extends ServletResponse {
     public void setDateHeader(String name, long date);
     
     /**
-     * 
-     * Adds a response header with the given name and
-     * date-value.  The date is specified in terms of
-     * milliseconds since the epoch.  This method allows response headers 
-     * to have multiple values.
+     * 指定された名前と日付値を持つレスポンスヘッダーを設定します。
+     * 日付はエポックからのミリ秒単位で指定します。
+     * このメソッドはレスポンスヘッダーに複数の値を持たせることができます。
      * 
      * @param	name	ヘッダーに値を設定する名前
      * @param	date	追加される日付値
@@ -244,12 +239,9 @@ public interface HttpServletResponse extends ServletResponse {
     public void addDateHeader(String name, long date);
     
     /**
-     *
-     * Sets a response header with the given name and value.
-     * If the header had already been set, the new value overwrites the
-     * previous one.  The <code>containsHeader</code> method can be
-     * used to test for the presence of a header before setting its
-     * value.
+     * 指定された名前と値を持つレスポンスヘッダーを設定します。
+     * ヘッダーがすでに設定されている場合は新しい値が前の値を上書きします。 
+     * 値を設定する前にヘッダーの有無を確認するために<code>containsHeader</code>メソッドを使用できます。
      * 
      * @param	name	ヘッダーの名前
      * @param	value	ヘッダーに追加する値、8bit文字列(octed string)の場合は RFC2047に従ってエンコードされている必要がある
@@ -261,8 +253,8 @@ public interface HttpServletResponse extends ServletResponse {
     public void setHeader(String name, String value);
     
     /**
-     * Adds a response header with the given name and value.
-     * This method allows response headers to have multiple values.
+     * 指定された名前と値を持つレスポンスヘッダーを設定します。
+     * このメソッドはレスポンスヘッダーに複数の値を持たせることができます。
      * 
      * @param	name	ヘッダーの名前
      * @param	value	ヘッダーに追加する値、8bit文字列(octed string)の場合は RFC2047に従ってエンコードされている必要がある
@@ -273,11 +265,9 @@ public interface HttpServletResponse extends ServletResponse {
     public void addHeader(String name, String value);
 
     /**
-     * Sets a response header with the given name and
-     * integer value.  If the header had already been set, the new value
-     * overwrites the previous one.  The <code>containsHeader</code>
-     * method can be used to test for the presence of a header before
-     * setting its value.
+     * 指定された名前と整数値を持つレスポンスヘッダーを設定します。
+     * ヘッダーがすでに設定されている場合は新しい値が前の値を上書きします。 
+     * 値を設定する前にヘッダーの有無を確認するために<code>containsHeader</code>メソッドを使用できます。
      *
      * @param	name	ヘッダーの名前
      * @param	value	割り当てられる整数
@@ -288,9 +278,8 @@ public interface HttpServletResponse extends ServletResponse {
     public void setIntHeader(String name, int value);
 
     /**
-     * Adds a response header with the given name and
-     * integer value.  This method allows response headers to have multiple
-     * values.
+     * 指定された名前と整数値を持つレスポンスヘッダーを設定します。
+     * このメソッドはレスポンスヘッダーに複数の値を持たせることができます。
      *
      * @param	name	ヘッダーの名前
      * @param	value	割り当てられる整数
