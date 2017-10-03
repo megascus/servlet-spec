@@ -79,22 +79,19 @@ import javax.servlet.ServletResponse;
 public interface HttpServletResponse extends ServletResponse {
 
     /**
-     * Adds the specified cookie to the response.  This method can be called
-     * multiple times to set more than one cookie.
+     * 指定されたCookieをレスポンスに追加します。このメソッドを複数回呼び出すことで複数のCookieを設定できます。
+
      *
-     * @param cookie the Cookie to return to the client
+     * @param cookie クライアントに返されるCookie
      *
      */
     public void addCookie(Cookie cookie);
 
     /**
-     * Returns a boolean indicating whether the named response header 
-     * has already been set.
+     * 名前付きレスポンスヘッダーがすでに設定されているかどうかを示すbooleanを返します。
      * 
-     * @param	name	the header name
-     * @return		<code>true</code> if the named response header 
-     *			has already been set; 
-     * 			<code>false</code> otherwise
+     * @param	name	ヘッダー名
+     * @return		名前つきレスポンスヘッダーがすでに設定されている場合は<code>true</code>、そうでない場合は<code>false</code>
      */
     public boolean containsHeader(String name);
 
