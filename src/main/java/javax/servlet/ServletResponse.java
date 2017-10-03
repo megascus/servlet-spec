@@ -275,9 +275,9 @@ public interface ServletResponse {
     public int getBufferSize();
     
     /**
-     * Forces any content in the buffer to be written to the client.  A call
-     * to this method automatically commits the response, meaning the status 
-     * code and headers will be written.
+     * バッファ内のすべてのコンテンツを強制的にクライアントに書き出します。
+     * このメソッドを呼び出すと自動的にレスポンスがコミットされます。
+     * つまりステータスコードとヘッダーが書き込まれます。
      *
      * @see #setBufferSize
      * @see #getBufferSize
@@ -290,10 +290,8 @@ public interface ServletResponse {
     public void flushBuffer() throws IOException;
     
     /**
-     * Clears the content of the underlying buffer in the response without
-     * clearing headers or status code. If the 
-     * response has been committed, this method throws an 
-     * <code>IllegalStateException</code>.
+     * ヘッダーやステータスコードをクリアせずにレスポンスのバッファの内容をクリアします。
+     * レスポンスがすでにコミットされている場合、このメソッドは<code>IllegalStateException</code>を投げます。
      *
      * @see #setBufferSize
      * @see #getBufferSize
