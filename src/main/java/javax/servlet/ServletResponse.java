@@ -318,16 +318,12 @@ public interface ServletResponse {
     public boolean isCommitted();
     
     /**
-     * Clears any data that exists in the buffer as well as the status code,
-     * headers.  The state of calling {@link #getWriter} or
-     * {@link #getOutputStream} is also cleared.  It is legal, for instance,
-     * to call {@link #getWriter}, {@link #reset} and then
-     * {@link #getOutputStream}.  If {@link #getWriter} or
-     * {@link #getOutputStream} have been called before this method,
-     * then the corrresponding returned Writer or OutputStream will be
-     * staled and the behavior of using the stale object is undefined.
-     * If the response has been committed, this method throws an 
-     * <code>IllegalStateException</code>.
+     * バッファに存在するすべてのデータとステータスコード、ヘッダーをクリアします。
+     * {@link #getWriter}や{@link #getOutputStream}を呼び出した状態もクリアされます。
+     * 例えば、{@link #getWriter}、{@link #reset}、{@link #getOutputStream}の順で呼び出すことは適正な方法です。
+     * このメソッドの前に{@link #getWriter}や{@link #getOutputStream}が呼び出されていた場合、
+     * 対応する返されたWriterまたはOutputStreamは古いオブジェクトとなり、このオブジェクトを使用する動作は未定義です。
+     * レスポンスがコミットされている場合、このメソッドは<code>IllegalStateException</code>を投げます。
      *
      * @exception IllegalStateException レスポンスがすでにコミットされていた
      *
