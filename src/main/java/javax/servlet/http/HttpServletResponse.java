@@ -154,55 +154,39 @@ public interface HttpServletResponse extends ServletResponse {
     public String encodeRedirectUrl(String url);
 
     /**
-     * <p>Sends an error response to the client using the specified
-     * status and clears the buffer.  The server defaults to creating
-     * the response to look like an HTML-formatted server error page
-     * containing the specified message, setting the content type to
-     * "text/html".  The caller is <strong>not</strong> responsible for
-     * escaping or re-encoding the message to ensure it is safe with
-     * respect to the current response encoding and content type.  This
-     * aspect of safety is the responsibility of the container, as it is
-     * generating the error page containing the message.  The server
-     * will preserve cookies and may clear or update any headers needed
-     * to serve the error page as a valid response.</p>
+     * 指定されたステータスを使用してエラーレスポンスをクライアントに送信し、バッファをクリアします。
+     * サーバーはデフォルトでは指定されたメッセージを含むHTML形式のように見えるサーバーエラーページでコンテンツの種類を"text/html"に設定したレスポンスを作成しします。
+     * 呼び出し元は現在のレスポンスのエンコーディングとコンテンツタイプに対して安全であることを確認するために
+     * メッセージをエスケープまたは再エンコードする<strong>責任を負いません</strong>。
+     * コンテナがメッセージを含むエラーページを生成しているため、この安全面はコンテナの責任です。
+     * サーバーはクッキーを保持し、有効なレスポンスとしてエラーページを提供するのに必要なヘッダーをクリアまたは更新します。</p>
      *
-     * <p>If an error-page declaration has been made for the web
-     * application corresponding to the status code passed in, it will
-     * be served back in preference to the suggested msg parameter and
-     * the msg parameter will be ignored.</p>
+     * <p>ウェブアプリケーションで渡されたステータスコードに対応するエラーページの宣言が行われていた場合、
+     * 提案されたmsgパラメータより優先的にそれが返され、msgパラメータは無視されるでしょう。</p>
      *
-     * <p>If the response has already been committed, this method throws 
-     * an IllegalStateException.
-     * After using this method, the response should be considered
-     * to be committed and should not be written to.
+     * <p>レスポンスがすでにコミットされていた場合、このメソッドはIllegalStateExceptionを投げます。
+     * このメソッドを使用した後はレスポンスははコミットされたものとみなされるべきであり、書き込まれるべきでもありません。
      *
-     * @param	sc	the error status code
-     * @param	msg	the descriptive message
-     * @exception	IOException	If an input or output exception occurs
-     * @exception	IllegalStateException	If the response was committed
+     * @param	sc	エラーステータスコード
+     * @param	msg	説明のメッセージ
+     * @exception	IOException	I/Oエラーが発生した
+     * @exception	IllegalStateException	このメソッドが呼び出される前にレスポンスがコミットされていた
      */
     public void sendError(int sc, String msg) throws IOException;
 
     /**
-     * Sends an error response to the client using the specified status
-     * code and clears the buffer.
+     * 指定されたステータスを使用してエラーレスポンスをクライアントに送信し、バッファをクリアします。
      * 
-     * The server will preserve cookies and may clear or
-     * update any headers needed to serve the error page as a valid response.
+     * サーバーはクッキーを保持し、有効なレスポンスとしてエラーページを提供するのに必要なヘッダーをクリアまたは更新します。
      *
-     * If an error-page declaration has been made for the web application
-     * corresponding to the status code passed in, it will be served back
-     * the error page
+     * ウェブアプリケーションで渡されたステータスコードに対応するエラーページの宣言が行われていた場合、エラーページが返されるでしょう。
      * 
-     * <p>If the response has already been committed, this method throws 
-     * an IllegalStateException.
-     * After using this method, the response should be considered
-     * to be committed and should not be written to.
+     * <p>レスポンスがすでにコミットされていた場合、このメソッドはIllegalStateExceptionを投げます。
+     * このメソッドを使用した後はレスポンスははコミットされたものとみなされるべきであり、書き込まれるべきでもありません。
      *
-     * @param	sc	the error status code
-     * @exception	IOException	If an input or output exception occurs
-     * @exception	IllegalStateException	If the response was committed
-     *						before this method call
+     * @param	sc	エラーステータスコード
+     * @exception	IOException	I/Oエラーが発生した
+     * @exception	IllegalStateException	このメソッドが呼び出される前にレスポンスがコミットされていた
      */
     public void sendError(int sc) throws IOException;
 
