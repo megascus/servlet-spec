@@ -118,17 +118,11 @@ public interface ServletResponse {
     
     /**
      * レスポンスの中で送られるMIMEボディに使用されるコンテンツタイプを返します。
-     * The content type proper must
-     * have been specified using {@link #setContentType}
-     * before the response is committed. If no content type
-     * has been specified, this method returns null.
-     * If a content type has been specified, and a
-     * character encoding has been explicitly or implicitly
-     * specified as described in {@link #getCharacterEncoding}
-     * or {@link #getWriter} has been called,
-     * the charset parameter is included in the string returned.
-     * If no character encoding has been specified, the
-     * charset parameter is omitted.
+     * レスポンスがコミットされる前に{@link #setContentType}を使用して適切なコンテンツタイプが指定されていなければいけません。
+     * コンテンツタイプが指定されていない場合、このメソッドはnullを返します。
+     * コンテンツタイプが指定されており、文字エンコーディングが明示的または{@link #getCharacterEncoding}や{@link #getWriter}が呼び出され暗黙的に指定されている場合は、
+     * 返された文字列にcharsetパラメータが含まれます。
+     * 文字エンコーディングが指定されていない場合、charsetパラメータは省略されます。
      *
      * @return コンテンツタイプを示す<code>String</code>、例として<code>text/html; charset=UTF-8</code>、もしくはnull
      *
