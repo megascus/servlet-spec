@@ -360,7 +360,7 @@ public interface HttpServletResponse extends ServletResponse {
      * <p>Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges.
      * Other status codes are treated as container specific.
      *
-     * @param	sc	the status code
+     * @param	sc	ステータスコード
      *
      * @see #sendError
      */
@@ -375,16 +375,16 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * Sets the status code and message for this response.
      * 
-     * @param	sc	the status code
-     * @param	sm	the status message
+     * @param	sc	ステータスコード
+     * @param	sm	ステータスのメッセージ
      */
     @Deprecated
     public void setStatus(int sc, String sm);
 
     /**
-     * Gets the current status code of this response.
+     * このレスポンスの現在のステータスコードを取得します。
      *
-     * @return the current status code of this response
+     * @return このレスポンスの現在のステータスコード
      *
      * @since Servlet 3.0
      */
@@ -485,10 +485,9 @@ public interface HttpServletResponse extends ServletResponse {
     }
 
     /**
-     * Gets the supplier of trailer headers.
+     * トレイラーヘッダーのサプライやを取得します。
      *
-     * @implSpec
-     * The default implememtation return null.
+     * @implSpec デフォルト実装ではnullを返します。
      *
      * @return <code>Supplier</code> of trailer headers
      * 
