@@ -191,31 +191,24 @@ public interface HttpServletResponse extends ServletResponse {
     public void sendError(int sc) throws IOException;
 
     /**
-     * Sends a temporary redirect response to the client using the
-     * specified redirect location URL and clears the buffer. The buffer will
-     * be replaced with the data set by this method. Calling this method sets the
-     * status code to {@link #SC_FOUND} 302 (Found).
-     * This method can accept relative URLs;the servlet container must convert
-     * the relative URL to an absolute URL
-     * before sending the response to the client. If the location is relative 
-     * without a leading '/' the container interprets it as relative to
-     * the current request URI. If the location is relative with a leading
-     * '/' the container interprets it as relative to the servlet container root.
-     * If the location is relative with two leading '/' the container interprets
-     * it as a network-path reference (see
+     * 指定されたリダイレクト先のURLを使用してクライアントに一時的なリダイレクトレスポンスを送信し、バッファをクリアします。 
+     * バッファはこのメソッドで設定されたデータに置き換えられます。 
+     * このメソッドを呼び出すと、ステータスコードが{@link #SC_FOUND} 302 (Found)に設定されます。 
+     * このメソッドは相対URLを受け入れることができ、サーブレットコンテナは相対URLを絶対URLに変換してからクライアントにレスポンスを送信するべきです。
+     * 先頭に'/'のない相対的なロケーションである場合、コンテナは現在のリクエストURIとの相対的なURLとして解釈します。
+     * 先頭に '/'のある相対的なロケーションである場合、コンテナはサーブレットコンテナのルートからの相対的なURLとして解釈します。
+     * 先頭に'/'が二つある相対的なロケーションである場合、コンテナはそれをネットワークパス参照として解釈します。(
      * <a href="http://www.ietf.org/rfc/rfc3986.txt">
-     * RFC 3986: Uniform Resource Identifier (URI): Generic Syntax</a>, section 4.2
-     * &quot;Relative Reference&quot;).
+     * RFC 3986: Uniform Resource Identifier (URI): 一般的構文</a>, section 4.2
+     * &quot;相対的参照&quot;を参照してください)
+     * 指定されたリダイレクト先のURLを使用してクライアントに一時的なリダイレクトレスポンスを送信し、バッファをクリアします。 
      *
-     * <p>If the response has already been committed, this method throws 
-     * an IllegalStateException.
-     * After using this method, the response should be considered
-     * to be committed and should not be written to.
+     * <p>レスポンスがすでにコミットされていた場合、このメソッドはIllegalStateExceptionを投げます。
+     * このメソッドを使用した後はレスポンスははコミットされたものとみなされるべきであり、書き込まれるべきでもありません。
      *
-     * @param		location	the redirect location URL
-     * @exception	IOException	If an input or output exception occurs
-     * @exception	IllegalStateException	If the response was committed or
-     *              if a partial URL is given and cannot be converted into a valid URL
+     * @param		location	リダイレクト先のURL
+     * @exception	IOException	I/Oエラーが発生した
+     * @exception	IllegalStateException	このメソッドが呼び出される前にレスポンスがコミットされていた
      */
     public void sendRedirect(String location) throws IOException;
     
@@ -228,8 +221,8 @@ public interface HttpServletResponse extends ServletResponse {
      * <code>containsHeader</code> method can be used to test for the
      * presence of a header before setting its value.
      * 
-     * @param	name	the name of the header to set
-     * @param	date	the assigned date value
+     * @param	name	ヘッダーに値を設定する名前
+     * @param	date	割り当てられる日付値
      * 
      * @see #containsHeader
      * @see #addDateHeader
@@ -243,8 +236,8 @@ public interface HttpServletResponse extends ServletResponse {
      * milliseconds since the epoch.  This method allows response headers 
      * to have multiple values.
      * 
-     * @param	name	the name of the header to set
-     * @param	date	the additional date value
+     * @param	name	ヘッダーに値を設定する名前
+     * @param	date	追加される日付値
      * 
      * @see #setDateHeader
      */
@@ -258,9 +251,8 @@ public interface HttpServletResponse extends ServletResponse {
      * used to test for the presence of a header before setting its
      * value.
      * 
-     * @param	name	the name of the header
-     * @param	value	the header value  If it contains octet string,
-     *		it should be encoded according to RFC 2047
+     * @param	name	ヘッダーの名前
+     * @param	value	ヘッダーに追加する値、8bit文字列(octed string)の場合は RFC2047に従ってエンコードされている必要がある
      *		(http://www.ietf.org/rfc/rfc2047.txt)
      *
      * @see #containsHeader
@@ -272,10 +264,8 @@ public interface HttpServletResponse extends ServletResponse {
      * Adds a response header with the given name and value.
      * This method allows response headers to have multiple values.
      * 
-     * @param	name	the name of the header
-     * @param	value	the additional header value   If it contains
-     *		octet string, it should be encoded
-     *		according to RFC 2047
+     * @param	name	ヘッダーの名前
+     * @param	value	ヘッダーに追加する値、8bit文字列(octed string)の場合は RFC2047に従ってエンコードされている必要がある
      *		(http://www.ietf.org/rfc/rfc2047.txt)
      *
      * @see #setHeader
@@ -289,8 +279,8 @@ public interface HttpServletResponse extends ServletResponse {
      * method can be used to test for the presence of a header before
      * setting its value.
      *
-     * @param	name	the name of the header
-     * @param	value	the assigned integer value
+     * @param	name	ヘッダーの名前
+     * @param	value	割り当てられる整数
      *
      * @see #containsHeader
      * @see #addIntHeader
@@ -302,8 +292,8 @@ public interface HttpServletResponse extends ServletResponse {
      * integer value.  This method allows response headers to have multiple
      * values.
      *
-     * @param	name	the name of the header
-     * @param	value	the assigned integer value
+     * @param	name	ヘッダーの名前
+     * @param	value	割り当てられる整数
      *
      * @see #setIntHeader
      */
