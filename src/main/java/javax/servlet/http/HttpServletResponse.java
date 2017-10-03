@@ -96,12 +96,12 @@ public interface HttpServletResponse extends ServletResponse {
     public boolean containsHeader(String name);
 
     /**
-     * 指定されたURLをセッションIDを含めてエンコードします。エンコードが不要な場合はそのままURLを返します。
+     * 指定されたURLをセッションIDを含めてエンコードします。エンコードが不要な場合はURLをそのまま返します。
      * このメソッドの実装にはセッションIDをURLにエンコードする必要があるかどうかを判断するロジックが含まれています。
      * たとえば、ブラウザがCookieをサポートしている場合やセッショントラッキングがオフの場合はURLエンコーディングは不要です。
      * 
      * <p>堅牢なセッショントラッキングのためにはサーブレットが発行するすべてのURLをこのメソッドに通す必要があります。
-     * 一方で、CookieをサポートしていないブラウザではURLの書き換えを使用できません。
+     * そうしなければCookieをサポートしていないブラウザではURLリライティングを使用できません。
      * 
      * <p>URLが相対的な場合、常に現在のHttpServletRequestから相対的になります。
      *
@@ -112,21 +112,15 @@ public interface HttpServletResponse extends ServletResponse {
     public String encodeURL(String url);
 
     /**
-     * Encodes the specified URL for use in the
-     * <code>sendRedirect</code> method or, if encoding is not needed,
-     * returns the URL unchanged.  The implementation of this method
-     * includes the logic to determine whether the session ID
-     * needs to be encoded in the URL.  For example, if the browser supports
-     * cookies, or session tracking is turned off, URL encoding is
-     * unnecessary.  Because the rules for making this determination can
-     * differ from those used to decide whether to
-     * encode a normal link, this method is separated from the
-     * <code>encodeURL</code> method.
+     * 指定されたURLを{@link #sendRedirect(String)}メソッドで使用するためにエンコードします。
+     * エンコードが不要な場合はURLをそのまま返します。
+     * このメソッドの実装にはセッションIDをURLにエンコードする必要があるかどうかを判断するロジックが含まれています。
+     * たとえば、ブラウザがCookieをサポートしている場合やセッショントラッキングがオフの場合はURLエンコーディングは不要です。
+     * この決定を行うためのルールは通常のリンクをエンコードするかどうかを決めるために使用されるルールとは異なる可能性があるため、
+     * このメソッドは{@link #encodeURL(String)}メソッドから切り離されています。
      * 
-     * <p>All URLs sent to the <code>HttpServletResponse.sendRedirect</code>
-     * method should be run through this method.  Otherwise, URL
-     * rewriting cannot be used with browsers which do not support
-     * cookies.
+     * <p><code>HttpServletResponse.sendRedirect</code>メソッドに送信されるすべてのURLをこのメソッドに通す必要があります。
+     * そうしなければCookieをサポートしていないブラウザではURLリライティングを使用できません。
      *
      * <p>URLが相対的な場合、常に現在のHttpServletRequestから相対的になります。
      *
