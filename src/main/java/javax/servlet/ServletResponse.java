@@ -176,31 +176,20 @@ public interface ServletResponse {
     public PrintWriter getWriter() throws IOException;
     
     /**
-     * Sets the character encoding (MIME charset) of the response
-     * being sent to the client, for example, to UTF-8.
-     * If the response character encoding has already been set by the
-     * {@link ServletContext#setResponseCharacterEncoding},
-     * deployment descriptor, or using the setContentType() or setLocale()
-     * methods, the value set in this method overrides any of those values.
-     * Calling {@link #setContentType} with the <code>String</code>
-     * of <code>text/html</code> and calling
-     * this method with the <code>String</code> of <code>UTF-8</code>
-     * is equivalent with calling
-     * <code>setContentType</code> with the <code>String</code> of
-     * <code>text/html; charset=UTF-8</code>.
-     * <p>This method can be called repeatedly to change the character
-     * encoding.
-     * This method has no effect if it is called after
-     * <code>getWriter</code> has been
-     * called or after the response has been committed.
-     * <p>Containers must communicate the character encoding used for
-     * the servlet response's writer to the client if the protocol
-     * provides a way for doing so. In the case of HTTP, the character
-     * encoding is communicated as part of the <code>Content-Type</code>
-     * header for text media types. Note that the character encoding
-     * cannot be communicated via HTTP headers if the servlet does not
-     * specify a content type; however, it is still used to encode text
-     * written via the servlet response's writer.
+     * クライアントに送られるレスポンスの文字エンコーディング(MIME charset)を、例えばUTF-8に設定します。
+     * もし文字エンコーディングがすでに{@link ServletContext#setResponseCharacterEncoding()}やデプロイメントディスクリプタや
+     * {@link #setContentType()}メソッドや{@link #setLocale(Locale)}メソッドで設定されている場合、
+     * このメソッドはそれらの値を上書きします。
+     * {@link #setContentType}を<code>text/html</code>という<code>String</code>で呼び出し
+     * このメソッドを<code>UTF-8</code>という<code>String</code>で呼び出すことは、
+     * {@link #setContentType}を<code>text/html; charset=UTF-8</code>という<code>String</code>で呼び出すことと同等です。
+     * <p>このメソッドは文字エンコーディングを変更するために繰り返し呼び出すことが出来ます。
+     * このメソッドは<code>getWriter</code>が呼び出された後もしくはレスポンスがコミットされた後に呼び出しても何も行いません。
+     * <p>
+     * <p>コンテナはプロトコルが提供している方法でサーブレットレスポンスのwriterに使用されている文字エンコーディングをクライアントに送信する必要があります。
+     * HTTPの場合は文字エンコーディングはテキストのメディアタイプにおいて<code>Content-Type</code>ヘッダーの一部分として伝えられます。
+     * サーブレットでコンテンツタイプが指定されていない場合、文字エンコーディングはHTTPヘッダーを介して伝えられないことに注意してください。 
+     * しかしながらサーブレットレスポンスのwriterを使用して書き込まれたテキストをエンコードするために使用されています。
      *
      * @param charset IANA 定義の文字セットを示す文字列
      * (http://www.iana.org/assignments/character-sets)
@@ -213,20 +202,16 @@ public interface ServletResponse {
     public void setCharacterEncoding(String charset);
     
     /**
-     * Sets the length of the content body in the response
-     * In HTTP servlets, this method sets the HTTP Content-Length header.
+     * レスポンス内のコンテンツ本文の長さを設定します。HTTPサーブレットではHTTP Content-Lengthヘッダーを設定します。
      *
-     * @param len an integer specifying the length of the 
-     * content being returned to the client; sets the Content-Length header
+     * @param len クライアントに返されるコンテンツの長さを指定するinteger、Content-Lengthヘッダーを設定する
      */
     public void setContentLength(int len);
     
     /**
-     * Sets the length of the content body in the response
-     * In HTTP servlets, this method sets the HTTP Content-Length header.
+     * レスポンス内のコンテンツ本文の長さを設定します。HTTPサーブレットではHTTP Content-Lengthヘッダーを設定します。
      *
-     * @param len a long specifying the length of the 
-     * content being returned to the client; sets the Content-Length header
+     * @param len クライアントに返されるコンテンツの長さを指定するlong、Content-Lengthヘッダーを設定する
      *
      * @since Servlet 3.1
      */
