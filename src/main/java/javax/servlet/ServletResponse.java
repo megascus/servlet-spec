@@ -185,7 +185,6 @@ public interface ServletResponse {
      * {@link #setContentType}を<code>text/html; charset=UTF-8</code>という<code>String</code>で呼び出すことと同等です。
      * <p>このメソッドは文字エンコーディングを変更するために繰り返し呼び出すことが出来ます。
      * このメソッドは<code>getWriter</code>が呼び出された後もしくはレスポンスがコミットされた後に呼び出しても何も行いません。
-     * <p>
      * <p>コンテナはプロトコルが提供している方法でサーブレットレスポンスのwriterに使用されている文字エンコーディングをクライアントに送信する必要があります。
      * HTTPの場合は文字エンコーディングはテキストのメディアタイプにおいて<code>Content-Type</code>ヘッダーの一部分として伝えられます。
      * サーブレットでコンテンツタイプが指定されていない場合、文字エンコーディングはHTTPヘッダーを介して伝えられないことに注意してください。 
@@ -218,23 +217,14 @@ public interface ServletResponse {
     public void setContentLengthLong(long len);
 
     /**
-     * Sets the content type of the response being sent to
-     * the client, if the response has not been committed yet.
-     * The given content type may include a character encoding
-     * specification, for example, <code>text/html;charset=UTF-8</code>.
-     * The response's character encoding is only set from the given
-     * content type if this method is called before <code>getWriter</code>
-     * is called.
-     * <p>This method may be called repeatedly to change content type and
-     * character encoding.
-     * This method has no effect if called after the response
-     * has been committed. It does not set the response's character
-     * encoding if it is called after <code>getWriter</code>
-     * has been called or after the response has been committed.
-     * <p>Containers must communicate the content type and the character
-     * encoding used for the servlet response's writer to the client if
-     * the protocol provides a way for doing so. In the case of HTTP,
-     * the <code>Content-Type</code> header is used.
+     * クライアントに送られるコンテンツタイプをレスポンスがまだコミットされていない場合に設定します。
+     * コンテンツタイプには文字エンコーディングの指定を含めることが出来ます。例えば、<code>text/html;charset=UTF-8</code>です。
+     * レスポンスの文字エンコーディングは<code>getWriter</code>が呼び出される前にこのメソッドが呼び出された場合にのみ指定されたコンテンツタイプから設定されます。
+     * <p>このメソッドはコンテンツタイプと文字エンコーディングを変更するために繰り返し呼び出されることがあります。
+     * このメソッドはレスポンスがコミットされた後に呼び出しても何も行いません。
+     * このメソッドは<code>getWriter</code>が呼び出された後もしくはレスポンスがコミットされた後に呼び出しても文字エンコーディングの設定を行いません。
+     * <p>コンテナはプロトコルが提供している方法でサーブレットレスポンスのwriterに使用されている文字エンコーディングをクライアントに送信する必要があります。
+     * HTTPの場合は文字エンコーディングはテキストのメディアタイプにおいて<code>Content-Type</code>ヘッダーの一部分として伝えられます。.
      *
      * @param type コンテンツのMIMEタイプを示す<code>String</code>
      *
