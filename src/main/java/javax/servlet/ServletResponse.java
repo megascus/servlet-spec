@@ -133,15 +133,13 @@ public interface ServletResponse {
     
 
     /**
-     * Returns a {@link ServletOutputStream} suitable for writing binary 
-     * data in the response. The servlet container does not encode the
-     * binary data.  
+     * レスポンスのバイナリデータを書き出すのに適した{@link ServletOutputStream}を返します。
+     * サーブレットコンテナはバイナリデータをエンコードしません。
      *
-     * <p> Calling flush() on the ServletOutputStream commits the response.
+     * <p>{@link ServletOutputStream#flush()}を呼び出すことでレスポンスをコミットします。
      *
-     * Either this method or {@link #getWriter} may 
-     * be called to write the body, not both, except when {@link #reset}
-     * has been called.
+     * このメソッドか{@link #getWriter}はどちらかのみを呼び出すことが出来ます。
+     * {@link #reset}メソッドが呼び出されてない限り両方を呼び出すことは出来ません。
      *
      * @return バイナリデータを書き出すための{@link ServletOutputStream} 
      *
