@@ -335,20 +335,15 @@ public interface ServletResponse {
     public void reset();
     
     /**
-     * Sets the locale of the response, if the response has not been
-     * committed yet. It also sets the response's character encoding
-     * appropriately for the locale, if the character encoding has not
-     * been explicitly set using {@link #setContentType} or
-     * {@link #setCharacterEncoding}, <code>getWriter</code> hasn't
-     * been called yet, and the response hasn't been committed yet.
-     * If the deployment descriptor contains a 
-     * <code>locale-encoding-mapping-list</code> element, and that
-     * element provides a mapping for the given locale, that mapping
-     * is used. Otherwise, the mapping from locale to character
-     * encoding is container dependent.
-     * <p>This method may be called repeatedly to change locale and
-     * character encoding. The method has no effect if called after the
-     * response has been committed. It does not set the response's
+     * レスポンスがまたコミットされてない場合にレスポンスにロケールを設定します。
+     * また、{@link #setContentType}や{@link #setCharacterEncoding}を使用して文字エンコーディングが明示的に設定されておらず、
+     * <code>getWriter</code>がまだ呼び出されていない場合かつレスポンスがまだコミットされてない場合にレスポンスの文字エンコーディングをロケールから適切に設定します。
+     * デプロイメントディスクリプタに<code>locale-encoding-mapping-list</code>要素が含まれ、
+     * 与えられたロケールに対して文字エンコーディングへのマッピングが用意されている場合はそれが使用されます。
+     * そうでない場合はロケールから文字文字エンコーディングへのマッピングはコンテナに依存します。
+     * <p>このメソッドは文字エンコーディングを変更するために繰り返し呼び出されることがあります。
+     * このメソッドはレスポンスがコミットされた後に呼び出しても何も行いません。
+     * It does not set the response's
      * character encoding if it is called after {@link #setContentType}
      * has been called with a charset specification, after
      * {@link #setCharacterEncoding} has been called, after
@@ -373,11 +368,9 @@ public interface ServletResponse {
     public void setLocale(Locale loc);
     
     /**
-     * Returns the locale specified for this response
-     * using the {@link #setLocale} method. Calls made to
-     * <code>setLocale</code> after the response is committed
-     * have no effect. If no locale has been specified,
-     * the container's default locale is returned.
+     * {@link #setLocale}メソッドを使用してこのレスポンスに指定されたロケールを返します。
+     * レスポンスがコミットされた後に<code>setLocale</code>に対して行われた呼び出しは何も行いません。
+     * ロケールが指定されていない場合、コンテナのデフォルトのロケールが返されます。
      *
      * @return このレスポンスのロケール
      * 
