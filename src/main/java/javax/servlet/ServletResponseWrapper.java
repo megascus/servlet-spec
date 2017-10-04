@@ -63,11 +63,9 @@ import java.io.PrintWriter;
 import java.util.Locale;
 
 /**
- * 
- * Provides a convenient implementation of the ServletResponse interface that
- * can be subclassed by developers wishing to adapt the response from a Servlet.
- * This class implements the Wrapper or Decorator pattern. Methods default to
- * calling through to the wrapped response object.
+ *  サーブレットにレスポンスを適合させたい開発者がサブクラス化できるServletResponseインタフェースの便利な実装を提供します。
+ * このクラスはWrapperもしくはDecoratorパターンを実装します。
+ * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。
  * 
  * @author Various
  * @since Servlet 2.3
@@ -79,11 +77,11 @@ import java.util.Locale;
 public class ServletResponseWrapper implements ServletResponse {
 	private ServletResponse response;
 	/**
-	* Creates a ServletResponse adaptor wrapping the given response object.
-	* @throws java.lang.IllegalArgumentException if the response is null.
-        * @param response the {@link ServletResponse} to be wrapped
-        *
-	*/
+     * 指定されたレスポンスオブジェクトをラップするServletResponseアダプタを作成します。
+	 * @throws java.lang.IllegalArgumentException responseがnull
+     * @param response ラップされた{@link ServletResponse}
+     *
+	 */
 
 
 	public ServletResponseWrapper(ServletResponse response) {
@@ -94,9 +92,9 @@ public class ServletResponseWrapper implements ServletResponse {
 	}
 
 	/**
-	* Return the wrapped ServletResponse object.
+	* ラップされたServletResponseのオブジェクトを返します。
         *
-        * @return the wrapped {@link ServletResponse}
+        * @return ラップされた{@link ServletResponse}
 	*/
 
 	public ServletResponse getResponse() {
@@ -105,10 +103,10 @@ public class ServletResponseWrapper implements ServletResponse {
 	
 	
 	/**
-	* Sets the response being wrapped. 
-	* @throws java.lang.IllegalArgumentException if the response is null.
+	* ラップされているレスポンスを設定します。
+	* @throws java.lang.IllegalArgumentException responseがnull
         *
-        * @param response the {@link ServletResponse} to be installed 
+        * @param response 取り付けられる {@link ServletResponse}
 	*/
 	
 	public void setResponse(ServletResponse response) {
@@ -119,8 +117,7 @@ public class ServletResponseWrapper implements ServletResponse {
 	}
 
     /**
-     * The default behavior of this method is to call setCharacterEncoding(String charset)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetCharacterEncoding(String charset)を呼び出すことです。
      *
      * @since Servlet 2.4
      */
@@ -130,8 +127,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
 
     /**
-     * The default behavior of this method is to return getCharacterEncoding()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのgetCharacterEncoding()を返すことです。
      */
 
     public String getCharacterEncoding() {
@@ -140,8 +136,7 @@ public class ServletResponseWrapper implements ServletResponse {
     
     
 	  /**
-     * The default behavior of this method is to return getOutputStream()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのgetOutputStream()を返すことです。
      */
 
     public ServletOutputStream getOutputStream() throws IOException {
@@ -149,8 +144,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }  
       
      /**
-     * The default behavior of this method is to return getWriter()
-     * on the wrapped response object.
+     *  このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのgetWriter()を返すことです。
      */
 
 
@@ -159,8 +153,7 @@ public class ServletResponseWrapper implements ServletResponse {
 	}
     
     /**
-     * The default behavior of this method is to call setContentLength(int len)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetContentLength(int len)を呼び出すことです。
      */
 
     public void setContentLength(int len) {
@@ -168,8 +161,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
 
     /**
-     * The default behavior of this method is to call setContentLengthLong(long len)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetContentLengthLong(long len)を呼び出すことです。
      */
 
     public void setContentLengthLong(long len) {
@@ -177,8 +169,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
 
     /**
-     * The default behavior of this method is to call setContentType(String type)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetContentType(String type)を呼び出すことです。
      */
 
     public void setContentType(String type) {
@@ -186,8 +177,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
 
     /**
-     * The default behavior of this method is to return getContentType()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのgetContentType()を返すことです。
      *
      * @since Servlet 2.4
      */
@@ -197,24 +187,21 @@ public class ServletResponseWrapper implements ServletResponse {
     }
     
     /**
-     * The default behavior of this method is to call setBufferSize(int size)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetBufferSize(int size)を呼び出すことです。
      */
     public void setBufferSize(int size) {
 	this.response.setBufferSize(size);
     }
     
     /**
-     * The default behavior of this method is to return getBufferSize()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのgetBufferSize()を返すことです。
      */
     public int getBufferSize() {
 	return this.response.getBufferSize();
     }
 
     /**
-     * The default behavior of this method is to call flushBuffer()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのflushBuffer()を呼び出すことです。
      */
 
     public void flushBuffer() throws IOException {
@@ -222,16 +209,14 @@ public class ServletResponseWrapper implements ServletResponse {
     }
     
     /**
-     * The default behavior of this method is to return isCommitted()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのisCommitted()を返すことです。
      */
     public boolean isCommitted() {
 	return this.response.isCommitted();
     }
 
     /**
-     * The default behavior of this method is to call reset()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのreset()を呼び出すことです。
      */
 
     public void reset() {
@@ -239,8 +224,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
     
     /**
-     * The default behavior of this method is to call resetBuffer()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのresetBuffer()を呼び出すことです。
      */
      
     public void resetBuffer() {
@@ -248,8 +232,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
     
     /**
-     * The default behavior of this method is to call setLocale(Locale loc)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetLocale(Locale loc)を呼び出すことです。
      */
 
     public void setLocale(Locale loc) {
@@ -257,8 +240,7 @@ public class ServletResponseWrapper implements ServletResponse {
     }
     
     /**
-     * The default behavior of this method is to return getLocale()
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのgetLocale()を返すことです。
      */
     public Locale getLocale() {
 	return this.response.getLocale();
@@ -266,13 +248,11 @@ public class ServletResponseWrapper implements ServletResponse {
 
 
     /**
-     * Checks (recursively) if this ServletResponseWrapper wraps the given
-     * {@link ServletResponse} instance.
+     * このServletResponseWrapperが与えられた{@link ServletResponse}のインスタンスをラップしているかどうかを(再帰的に)チェックします。
      *
-     * @param wrapped the ServletResponse instance to search for
+     * @param wrapped 探すServletResponseのインスタンス
      *
-     * @return true if this ServletResponseWrapper wraps the
-     * given ServletResponse instance, false otherwise
+     * @return 与えられたServletResponseのインスタンスをServletResponseWrapperがラップしているならtrue、そうでないならfalse
      *
      * @since Servlet 3.0
      */
@@ -288,17 +268,13 @@ public class ServletResponseWrapper implements ServletResponse {
 
 
     /**
-     * Checks (recursively) if this ServletResponseWrapper wraps a
-     * {@link ServletResponse} of the given class type.
+     * このServletResponseWrapperが与えられたClassの型の{@link ServletResponse} をラップしているかどうかを(再帰的に)チェックします。
      *
-     * @param wrappedType the ServletResponse class type to
-     * search for
+     * @param wrappedType 探すServletResponseのclassの型
      *
-     * @return true if this ServletResponseWrapper wraps a
-     * ServletResponse of the given class type, false otherwise
+     * @return 与えられたClassの型の{@link ServletResponse}をServletResponseWrapperがラップしているならtrue、そうでないならfalse
      *
-     * @throws IllegalArgumentException if the given class does not
-     * implement {@link ServletResponse}
+     * @throws IllegalArgumentException 与えられたclassが{@link ServletResponse}を実装していない場合
      *
      * @since Servlet 3.0
      */
