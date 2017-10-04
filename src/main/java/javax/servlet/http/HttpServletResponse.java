@@ -428,7 +428,7 @@ public interface HttpServletResponse extends ServletResponse {
     }
 
     /**
-     * トレイラーヘッダーのサプライやを取得します。
+     * トレイラーヘッダーのサプライヤを取得します。
      *
      * @implSpec デフォルト実装ではnullを返します。
      *
