@@ -67,8 +67,7 @@ import java.util.Map;
 
 /**
  * サーブレットにリクエストを適合させたい開発者がサブクラス化できるServletRequestインタフェースの便利な実装を提供します。
- * 
- * <p>このクラスはWrapperもしくはDecoratorパターンを実装します。
+ * このクラスはWrapperもしくはDecoratorパターンを実装します。
  * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。
  *
  * @see javax.servlet.ServletRequest
