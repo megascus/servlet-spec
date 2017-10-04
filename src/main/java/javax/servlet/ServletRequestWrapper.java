@@ -66,10 +66,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Provides a convenient implementation of the ServletRequest interface that
- * can be subclassed by developers wishing to adapt the request to a Servlet.
- * This class implements the Wrapper or Decorator pattern. Methods default to
- * calling through to the wrapped request object.
+ * サーブレットにリクエストを適合させたい開発者がサブクラス化できるServletRequestインタフェースの便利な実装を提供します。
+ * このクラスはWrapperもしくはDecoratorパターンを実装します。
+ * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。
  *
  * @see javax.servlet.ServletRequest
  *
@@ -81,10 +80,10 @@ public class ServletRequestWrapper implements ServletRequest {
     private ServletRequest request;
 
     /**
-     * Creates a ServletRequest adaptor wrapping the given request object. 
-     * @throws java.lang.IllegalArgumentException if the request is null
+     * 指定されたリクエストオブジェクトをラップするServletRequestアダプタを作成します。
+     * @throws java.lang.IllegalArgumentException requestがnull
      *
-     * @param request the {@link ServletRequest} to be wrapped
+     * @param request ラップされた{@link ServletRequest}
      */
     public ServletRequestWrapper(ServletRequest request) {
         if (request == null) {
@@ -95,9 +94,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Return the wrapped request object.
-     *
-     * @return the wrapped {@link ServletRequest}
+     * ラップされたリクエストオブジェクトを返します。
+     * 
+     * @return ラップされた{@link ServletRequest}
      */
     public ServletRequest getRequest() {
         return this.request;
