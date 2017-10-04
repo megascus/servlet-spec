@@ -178,14 +178,16 @@ public interface ServletResponse {
     
     /**
      * クライアントに送られるレスポンスの文字エンコーディング(MIME charset)を、例えばUTF-8に設定します。
-     * もし文字エンコーディングがすでに{@link ServletContext#setResponseCharacterEncoding()}やデプロイメントディスクリプタや
-     * {@link #setContentType()}メソッドや{@link #setLocale(Locale)}メソッドで設定されている場合、
+     * もし文字エンコーディングがすでに{@link ServletContext#setResponseCharacterEncoding(String)}やデプロイメントディスクリプタや
+     * {@link #setContentType(String)}メソッドや{@link #setLocale(Locale)}メソッドで設定されている場合、
      * このメソッドはそれらの値を上書きします。
      * {@link #setContentType}を<code>text/html</code>という<code>String</code>で呼び出し
      * このメソッドを<code>UTF-8</code>という<code>String</code>で呼び出すことは、
      * {@link #setContentType}を<code>text/html; charset=UTF-8</code>という<code>String</code>で呼び出すことと同等です。
+     * 
      * <p>このメソッドは文字エンコーディングを変更するために繰り返し呼び出すことが出来ます。
      * このメソッドは<code>getWriter</code>が呼び出された後もしくはレスポンスがコミットされた後に呼び出しても何も行いません。
+     * 
      * <p>プロトコルが文字エンコーディングをクライアントに送信する方法を提供している場合、
      * コンテナはサーブレットレスポンスのwriterに使用されている文字エンコーディングをクライアントに送信する必要があります。
      * HTTPの場合は文字エンコーディングはテキストのメディアタイプにおいて<code>Content-Type</code>ヘッダーの一部分として伝えられます。
@@ -222,9 +224,11 @@ public interface ServletResponse {
      * クライアントに送られるコンテンツタイプをレスポンスがまだコミットされていない場合に設定します。
      * コンテンツタイプには文字エンコーディングの指定を含めることが出来ます。例えば、<code>text/html;charset=UTF-8</code>です。
      * レスポンスの文字エンコーディングは<code>getWriter</code>が呼び出される前にこのメソッドが呼び出された場合にのみ指定されたコンテンツタイプから設定されます。
+     * 
      * <p>このメソッドはコンテンツタイプと文字エンコーディングを変更するために繰り返し呼び出されることがあります。
      * このメソッドはレスポンスがコミットされた後に呼び出しても何も行いません。
      * このメソッドは<code>getWriter</code>が呼び出された後もしくはレスポンスがコミットされた後に呼び出しても文字エンコーディングの設定を行いません。
+     * 
      * <p>プロトコルが文字エンコーディングをクライアントに送信する方法を提供している場合、
      * コンテナはサーブレットレスポンスのwriterに使用されている文字エンコーディングをクライアントに送信する必要があります。
      * HTTPの場合は文字エンコーディングはテキストのメディアタイプにおいて<code>Content-Type</code>ヘッダーの一部分として伝えられます。
