@@ -156,7 +156,8 @@ public interface ServletResponse {
      * 文字のテキストをクライアントに送信することが出来る<code>PrintWriter</code>のオブジェクトを返します。
      * この<code>PrintWriter</code>は{@link #getCharacterEncoding}から返される文字エンコーディングを使用します。
      * <code>getCharacterEncoding</code>で取得されるレスポンスの文字エンコーディングが指定されていない(つまり、メソッドがデフォルト値<code>ISO-8859-1</code>を返す)場合、
-     * <code>getWriter<code>の文字エンコーディングを<code>ISO-8859-1</code>に更新します。
+     * <code>getWriter</code>の文字エンコーディングを<code>ISO-8859-1</code>に更新します。
+     * 
      * <p>{@link PrintWriter#flush()}を呼び出すことでレスポンスをコミットします。
      * このメソッドか{@link #getOutputStream}はどちらかのみを呼び出すことが出来ます。
      * {@link #reset}メソッドが呼び出されてない限り両方を呼び出すことは出来ません。
