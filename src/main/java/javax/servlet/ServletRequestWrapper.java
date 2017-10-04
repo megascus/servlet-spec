@@ -377,11 +377,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Gets the servlet context to which the wrapped servlet request was last
-     * dispatched.
+     * ラップされたサーブレットリクエストが最後にディスパッチされたサーブレットコンテキストを取得します。
      *
-     * @return the servlet context to which the wrapped servlet request was
-     * last dispatched
+     * @return ラップされたサーブレットリクエストが最後にディスパッチされたサーブレットコンテキスト
      *
      * @since Servlet 3.0
      */
@@ -391,19 +389,13 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to invoke
-     * {@link ServletRequest#startAsync} on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトの{@link ServletRequest#startAsync}を実行することです。
      *
-     * @return the (re)initialized AsyncContext
+     * @return (再)初期化されたAsyncContext
      * 
-     * @throws IllegalStateException if the request is within the scope of
-     * a filter or servlet that does not support asynchronous operations
-     * (that is, {@link #isAsyncSupported} returns false),
-     * or if this method is called again without any asynchronous dispatch
-     * (resulting from one of the {@link AsyncContext#dispatch} methods),
-     * is called outside the scope of any such dispatch, or is called again
-     * within the scope of the same dispatch, or if the response has
-     * already been closed
+     * @throws IllegalStateException このリクエストが非同期操作をサポートしないフィルタまたはサーブレットのスコープ内にある場合({@link #isAsyncSupported}がfalseを返す場合)、
+     * またはこのメソッドが非同期ディスパッチ({@link AsyncContext#dispatch}メソッドの一つで行われる)なしで再度呼び出されディスパッチの範囲外で呼び出された場合、
+     * または同じディスパッチの範囲内で再度呼び出された場合、またはレスポンスがすでに閉じられている場合
      *
      * @see ServletRequest#startAsync
      *
@@ -415,25 +407,16 @@ public class ServletRequestWrapper implements ServletRequest {
     
 
     /**
-     * The default behavior of this method is to invoke
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトの{@link ServletRequest#startAsync(ServletRequest, ServletResponse)}を実行することです。
      *
-     * @param servletRequest the ServletRequest used to initialize the
-     * AsyncContext
-     * @param servletResponse the ServletResponse used to initialize the
-     * AsyncContext
+     * @param servletRequest AsyncContextの初期化に使用するServletRequest
+     * @param servletResponse AsyncContextの初期化に使用するServletResponse
      *
-     * @return the (re)initialized AsyncContext
+     * @return (再)初期化されたAsyncContext
      *
-     * @throws IllegalStateException if the request is within the scope of
-     * a filter or servlet that does not support asynchronous operations
-     * (that is, {@link #isAsyncSupported} returns false),
-     * or if this method is called again without any asynchronous dispatch
-     * (resulting from one of the {@link AsyncContext#dispatch} methods),
-     * is called outside the scope of any such dispatch, or is called again
-     * within the scope of the same dispatch, or if the response has
-     * already been closed
+     * @throws IllegalStateException このリクエストが非同期操作をサポートしないフィルタまたはサーブレットのスコープ内にある場合({@link #isAsyncSupported}がfalseを返す場合)、
+     * またはこのメソッドが非同期ディスパッチ({@link AsyncContext#dispatch}メソッドの一つで行われる)なしで再度呼び出されディスパッチの範囲外で呼び出された場合、
+     * または同じディスパッチの範囲内で再度呼び出された場合、またはレスポンスがすでに閉じられている場合
      *
      * @see ServletRequest#startAsync(ServletRequest, ServletResponse)
      *
@@ -447,10 +430,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Checks if the wrapped request has been put into asynchronous mode.
+     * ラップされたリクエストが非同期モードになっているかどうかをチェックします。
      *
-     * @return true if this request has been put into asynchronous mode,
-     * false otherwise
+     * @return ラップされたリクエストが非同期モードになっているならtrue、そうでないならfalse
      *
      * @see ServletRequest#isAsyncStarted
      *
@@ -462,10 +444,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Checks if the wrapped request supports asynchronous operation.
+     * ラップされたリクエストが非同期操作をサポートしているかどうかをチェックします。
      *
-     * @return true if this request supports asynchronous operation, false
-     * otherwise
+     * @return ラップされたリクエストが非同期操作をサポートしているならtrue、そうでないならfalse
      *
      * @see ServletRequest#isAsyncSupported
      *
@@ -477,19 +458,11 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Gets the AsyncContext that was created or reinitialized by the
-     * most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on the wrapped
-     * request.
+     * ラップされたリクエストで{@link #startAsync}または{@link #startAsync(ServletRequest,ServletResponse)}の最新の呼び出しによって作成または再初期化されたAsyncContextを取得します。
      *
-     * @return the AsyncContext that was created or reinitialized by the
-     * most recent invocation of {@link #startAsync} or
-     * {@link #startAsync(ServletRequest,ServletResponse)} on
-     * the wrapped request 
+     * @return ラップされたリクエストで{@link #startAsync}または{@link #startAsync(ServletRequest,ServletResponse)}の最新の呼び出しによって作成または再初期化されたAsyncContext
      *
-     * @throws IllegalStateException if this request has not been put 
-     * into asynchronous mode, i.e., if neither {@link #startAsync} nor
-     * {@link #startAsync(ServletRequest,ServletResponse)} has been called
+     * @throws IllegalStateException このリクエストが非同期モードになっていない場合、つまり{@link #startAsync}も{@link #startAsync(ServletRequest,ServletResponse)}も呼び出されていない場合
      *
      * @see ServletRequest#getAsyncContext
      *
@@ -501,13 +474,11 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Checks (recursively) if this ServletRequestWrapper wraps the given
-     * {@link ServletRequest} instance.
+     * このServletRequestWrapperが与えられた{@link ServletRequest}のインスタンスをラップしているかどうかを(再帰的に)チェックします。
      *
-     * @param wrapped the ServletRequest instance to search for
+     * @param wrapped 探すServletRequestのインスタンス
      *
-     * @return true if this ServletRequestWrapper wraps the
-     * given ServletRequest instance, false otherwise
+     * @return 与えられたServletRequestのインスタンスをServletRequestWrapperがラップしているならtrue、そうでないならfalse
      *
      * @since Servlet 3.0
      */
@@ -523,17 +494,13 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Checks (recursively) if this ServletRequestWrapper wraps a
-     * {@link ServletRequest} of the given class type.
+     * このServletRequestWrapperが与えられたClassの型の{@link ServletRequest}をラップしているかどうかを(再帰的に)チェックします。
      *
-     * @param wrappedType the ServletRequest class type to
-     * search for
+     * @param wrappedType 探すServletRequestのclassの型
      *
-     * @return true if this ServletRequestWrapper wraps a
-     * ServletRequest of the given class type, false otherwise
+     * @return 与えられたClassの型の{@link ServletRequest}をServletRequestWrapperがラップしているならtrue、そうでないならfalse
      *
-     * @throws IllegalArgumentException if the given class does not
-     * implement {@link ServletRequest}
+     * @throws IllegalArgumentException 与えられたclassが{@link ServletRequest}を実装していない場合
      *
      * @since Servlet 3.0
      */
@@ -554,9 +521,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Gets the dispatcher type of the wrapped request.
+     * ラップされたリクエストのdispatcher typeを取得します。
      *
-     * @return the dispatcher type of the wrapped request
+     * @return ラップされたリクエストのdispatcher type
      * 
      * @see ServletRequest#getDispatcherType
      *
