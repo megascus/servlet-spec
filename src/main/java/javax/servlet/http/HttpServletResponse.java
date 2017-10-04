@@ -311,12 +311,11 @@ public interface HttpServletResponse extends ServletResponse {
   
 
     /**
-     * @deprecated As of version 2.1, due to ambiguous meaning of the 
-     * message parameter. To set a status code 
-     * use <code>setStatus(int)</code>, to send an error with a description
-     * use <code>sendError(int, String)</code>.
-     *
-     * Sets the status code and message for this response.
+     * このレスポンスのステータスコードとメッセージを設定します。
+     * 
+     * @deprecated Version 2.1 からメッセージパラメータのあいまいな意味のために非推奨になりました。
+     * ステータスコードを設定するためには<code>setStatus(int)</code>を使用してください。
+     * エラーと一緒に説明文を送るためには<code>sendError(int, String)</code>を使用してください。
      * 
      * @param	sc	ステータスコード
      * @param	sm	ステータスのメッセージ
