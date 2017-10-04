@@ -426,150 +426,123 @@ public interface HttpServletResponse extends ServletResponse {
      */
 
     /**
-     * Status code (100) indicating the client can continue.
+     * クライアントが処理を続行できることを示すステータスコード。 (100)
      */
     public static final int SC_CONTINUE = 100;
 
     /**
-     * Status code (101) indicating the server is switching protocols
-     * according to Upgrade header.
+     * サーバーがUpgradeヘッダーに従ってプロトコルを切り替えることを示すステータスコード。 (101)
      */
     public static final int SC_SWITCHING_PROTOCOLS = 101;
 
     /**
-     * Status code (200) indicating the request succeeded normally.
+     *　リクエストが正常に成功したことを示すステータスコード。 (200)
      */
     public static final int SC_OK = 200;
 
     /**
-     * Status code (201) indicating the request succeeded and created
-     * a new resource on the server.
+     * リクエストが成功し、サーバー上に新しいリソースを作成したことを示すステータスコード。 (201)
      */
     public static final int SC_CREATED = 201;
 
     /**
-     * Status code (202) indicating that a request was accepted for
-     * processing, but was not completed.
+     * リクエストが処理のために受け入れられたが完了していないことを示すステータスコード。 (202)
      */
     public static final int SC_ACCEPTED = 202;
 
     /**
-     * Status code (203) indicating that the meta information presented
-     * by the client did not originate from the server.
+     * クライアントによって提示されたメタ情報がサーバーから発信されていなかったことを示すステータスコード。(203) 
      */
     public static final int SC_NON_AUTHORITATIVE_INFORMATION = 203;
 
     /**
-     * Status code (204) indicating that the request succeeded but that
-     * there was no new information to return.
+     * リクエストが成功したが、返されるべき新しい情報が存在しないことを示すステータスコード。 (204)
      */
     public static final int SC_NO_CONTENT = 204;
 
     /**
-     * Status code (205) indicating that the agent <em>SHOULD</em> reset
-     * the document view which caused the request to be sent.
+     * エージェントがリクエストの送信を引き起こしたドキュメントビューをリセットする<em>必要がある</em>ことを示すステータスコード。 (205)
      */
     public static final int SC_RESET_CONTENT = 205;
 
     /**
-     * Status code (206) indicating that the server has fulfilled
-     * the partial GET request for the resource.
+     * サーバがリソースに対する部分的なGETリクエストを満たしたことを示すステータスコード。 (206)
      */
     public static final int SC_PARTIAL_CONTENT = 206;
 
     /**
-     * Status code (300) indicating that the requested resource
-     * corresponds to any one of a set of representations, each with
-     * its own specific location.
+     * リクエストされたリソースが、それぞれがそれ自身の特定の位置を有する1組の表現のうちの任意の1つに対応することを示すステータスコード。 (300) 
      */
     public static final int SC_MULTIPLE_CHOICES = 300;
 
     /**
-     * Status code (301) indicating that the resource has permanently
-     * moved to a new location, and that future references should use a
-     * new URI with their requests.
+     * リソースが新しい場所に永続的に移動し、将来の参照ではリクエストに新しいURIを使用する必要があることを示すステータスコード。 (301)
      */
     public static final int SC_MOVED_PERMANENTLY = 301;
 
     /**
-     * Status code (302) indicating that the resource has temporarily
-     * moved to another location, but that future references should
-     * still use the original URI to access the resource.
-     *
-     * This definition is being retained for backwards compatibility.
-     * SC_FOUND is now the preferred definition.
+     * リソースが一時的に別の場所に移動したが、将来の参照でも元のURIを使用してリソースにアクセスする必要があることを示すステータスコード。 (302)
+     * 
+     * 下位互換性のためにこの定義は保持されています。
+     * 今では{@link #SC_FOUND}が優先定義になっています。
      */
     public static final int SC_MOVED_TEMPORARILY = 302;
 
     /**
-    * Status code (302) indicating that the resource reside
-    * temporarily under a different URI. Since the redirection might
-    * be altered on occasion, the client should continue to use the
-    * Request-URI for future requests.(HTTP/1.1) To represent the
-    * status code (302), it is recommended to use this variable.
-    */
+     * リソースが一時的に異なるURIの下に存在することを示すステータスコード。(302)。
+     * 時々リダイレクトが変更される可能性があるため、クライアントは今後のリクエストでも同じリクエストURIを引き続き使用する必要があります。(HTTP/1.1)
+     * 302のステータスコードを送るためにはこの変数を使用することをお勧めします。
+     */
     public static final int SC_FOUND = 302;
 
     /**
-     * Status code (303) indicating that the response to the request
-     * can be found under a different URI.
+     * リクエストに対するレスポンスが異なるURIの下で見つけられることを示すステータスコード。 (303)
      */
     public static final int SC_SEE_OTHER = 303;
 
     /**
-     * Status code (304) indicating that a conditional GET operation
-     * found that the resource was available and not modified.
+     * 条件付きのGET操作が、リソースが利用可能であるが変更されていないことを検出したことを示すステータスコード。 (304)
      */
     public static final int SC_NOT_MODIFIED = 304;
 
     /**
-     * Status code (305) indicating that the requested resource
-     * <em>MUST</em> be accessed through the proxy given by the
-     * <code><em>Location</em></code> field.
+     * <code><em>Location</em></code>フィールドによって与えられたプロキシを介してリクエストされたリソースにアクセス<em>しなければならない</em> ことを示すステータスコード。 (305)
      */
     public static final int SC_USE_PROXY = 305;
 
-     /**
-     * Status code (307) indicating that the requested resource 
-     * resides temporarily under a different URI. The temporary URI
-     * <em>SHOULD</em> be given by the <code><em>Location</em></code> 
-     * field in the response.
+    /**
+     * リクエストされたリソースが一時的に異なるURIの下に存在することを示すステータスコード。 (307)
+     * 一時URIは、レスポンスのLocationフィールドで指定する<em>必要があります</em> 。
      */
     public static final int SC_TEMPORARY_REDIRECT = 307;
 
     /**
-     * Status code (400) indicating the request sent by the client was
-     * syntactically incorrect.
+     * クライアントから送信されたリクエストが構文的に正しくないことを示すステータスコード。 (400)
      */
     public static final int SC_BAD_REQUEST = 400;
 
     /**
-     * Status code (401) indicating that the request requires HTTP
-     * authentication.
+     * リクエストがHTTP認証を要求することを示すステータスコード。 (401)
      */
     public static final int SC_UNAUTHORIZED = 401;
 
     /**
-     * Status code (402) reserved for future use.
+     * 将来の使用のために予約されたステータスコード。 (402)
      */
     public static final int SC_PAYMENT_REQUIRED = 402;
 
     /**
-     * Status code (403) indicating the server understood the request
-     * but refused to fulfill it.
+     * サーバーがリクエストを理解したがそれを実行することを拒否したことを示すステータスコード。 (403)
      */
     public static final int SC_FORBIDDEN = 403;
 
     /**
-     * Status code (404) indicating that the requested resource is not
-     * available.
+     * リクエストされたリソースが利用可能でないことを示すステータスコード。 (404)
      */
     public static final int SC_NOT_FOUND = 404;
 
     /**
-     * Status code (405) indicating that the method specified in the
-     * <code><em>Request-Line</em></code> is not allowed for the resource
-     * identified by the <code><em>Request-URI</em></code>.
+     * <code><em>Request-Line</em></code>で指定されたメソッドが<code><em>Request-URI</em></code>によって識別されるリソースで許可されていないことを示すステータスコード。 (405)
      */
     public static final int SC_METHOD_NOT_ALLOWED = 405;
 
