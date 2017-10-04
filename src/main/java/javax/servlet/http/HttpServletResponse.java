@@ -289,22 +289,20 @@ public interface HttpServletResponse extends ServletResponse {
     public void addIntHeader(String name, int value);
 
     /**
-     * Sets the status code for this response. 
-     *
-     * <p>This method is used to set the return status code when there is
-     * no error (for example, for the SC_OK or SC_MOVED_TEMPORARILY status
-     * codes).
-     *
-     * <p>If this method is used to set an error code, then the container's
-     * error page mechanism will not be triggered. If there is an error and
-     * the caller wishes to invoke an error page defined in the web
-     * application, then {@link #sendError} must be used instead.
-     *
-     * <p>This method preserves any cookies and other response headers. 
-     *
-     * <p>Valid status codes are those in the 2XX, 3XX, 4XX, and 5XX ranges.
-     * Other status codes are treated as container specific.
-     *
+     * レスポンスにステータスコードを設定します。
+     * 
+     * <p>このメソッドは、エラーがない場合のリターンステータスコード(たとえば、{@link #SC_OK}や{@link #SC_MOVED_TEMPORARILY}ステータスコードの場合)
+     * を設定するために使用されます。
+     * 
+     * <p>このメソッドを使用してエラーコードを設定してもコンテナのエラーページメカニズムは実行されないでしょう。
+     * エラーがあり、呼び出し側がウェブアプリケーションで定義されたエラーページを呼び出したい場合は、
+     * 代わりに{@link #sendError} を使用する必要があります。
+     * 
+     * <p>このメソッドはすべてのCookieとその他のレスポンスヘッダーをそのまま保持します。
+     * 
+     * <p>有効なステータスコードは、2XX、3XX、4XX、5XXの範囲のコードです。
+     * それ以外のステータスコードはコンテナ固有のものとして扱われます。
+     * 
      * @param	sc	ステータスコード
      *
      * @see #sendError
