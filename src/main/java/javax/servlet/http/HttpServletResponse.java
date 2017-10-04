@@ -617,35 +617,27 @@ public interface HttpServletResponse extends ServletResponse {
     public static final int SC_INTERNAL_SERVER_ERROR = 500;
 
     /**
-     * Status code (501) indicating the HTTP server does not support
-     * the functionality needed to fulfill the request.
+     * HTTPサーバーがリクエストを完了するために必要な機能をサポートしていないことを示すステータスコード。 (501)
      */
     public static final int SC_NOT_IMPLEMENTED = 501;
 
     /**
-     * Status code (502) indicating that the HTTP server received an
-     * invalid response from a server it consulted when acting as a
-     * proxy or gateway.
+     * HTTPサーバーがプロキシまたはゲートウェイとして動作している時に参照したサーバーから不正なレスポンスを受信したことを示すステータスコード。(502) 
      */
     public static final int SC_BAD_GATEWAY = 502;
 
     /**
-     * Status code (503) indicating that the HTTP server is
-     * temporarily overloaded, and unable to handle the request.
+     * HTTPサーバーが一時的にオーバーロードされ、リクエストを処理できないことを示すステータスコード。 (503)
      */
     public static final int SC_SERVICE_UNAVAILABLE = 503;
 
     /**
-     * Status code (504) indicating that the server did not receive
-     * a timely response from the upstream server while acting as
-     * a gateway or proxy.
+     * サーバがゲートウェイまたはプロキシとして動作している間にアップストリームサーバーから時間に間に合ったレスポンスを受信しなかったことを示すステータスコード。 (504)
      */
     public static final int SC_GATEWAY_TIMEOUT = 504;
 
     /**
-     * Status code (505) indicating that the server does not support
-     * or refuses to support the HTTP protocol version that was used
-     * in the request message.
+     * サーバーがリクエストメッセージで使用されたHTTPプロトコルのバージョンをサポートしていないかサポートすることを拒否したことを示すステータスコード。 (505)
      */
     public static final int SC_HTTP_VERSION_NOT_SUPPORTED = 505;
 }
