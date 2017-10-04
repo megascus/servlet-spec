@@ -574,42 +574,35 @@ public interface HttpServletResponse extends ServletResponse {
     public static final int SC_GONE = 410;
 
     /**
-     * Status code (411) indicating that the request cannot be handled
-     * without a defined <code><em>Content-Length</em></code>.
+     * <code><em>Content-Length</em></code>が定義されていないためリクエストを処理できないことを示すステータスコード。 (411)
      */
     public static final int SC_LENGTH_REQUIRED = 411;
 
     /**
-     * Status code (412) indicating that the precondition given in one
-     * or more of the request-header fields evaluated to false when it
-     * was tested on the server.
+     * リクエストヘッダーフィールドの1つ以上で与えられた前提条件がサーバ上でテストされたときにfalseと評価されたことを示すステータスコード。 (412)
      */
     public static final int SC_PRECONDITION_FAILED = 412;
 
     /**
-     * Status code (413) indicating that the server is refusing to process
-     * the request because the request entity is larger than the server is
-     * willing or able to process.
+     * リクエストエンティティがサーバーが処理できる量よりも大きいため、
+     * サーバーがリクエストの処理を拒否していることを示すステータスコード。 (413)
      */
     public static final int SC_REQUEST_ENTITY_TOO_LARGE = 413;
 
     /**
-     * Status code (414) indicating that the server is refusing to service
-     * the request because the <code><em>Request-URI</em></code> is longer
-     * than the server is willing to interpret.
+     * <code><em>Request-URI</em></code>がサーバーが解釈できる長さよりも長いため、
+     * サーバーがリクエストの処理を拒否していることを示すステータスコード。 (414)
      */
     public static final int SC_REQUEST_URI_TOO_LONG = 414;
 
     /**
-     * Status code (415) indicating that the server is refusing to service
-     * the request because the entity of the request is in a format not
-     * supported by the requested resource for the requested method.
+     * リクエストのエンティティが、リクエストされたリソースへのリクエストされたメソッドでサポートされていないフォーマットのため、
+     * サーバーがリクエストの処理を拒否していることを示すステータスコード。 (415)
      */
     public static final int SC_UNSUPPORTED_MEDIA_TYPE = 415;
 
     /**
-     * Status code (416) indicating that the server cannot serve the
-     * requested byte range.
+     * サーバが要求されたバイト範囲を提供できないことを示すステータスコード。 (416)
      */
     public static final int SC_REQUESTED_RANGE_NOT_SATISFIABLE = 416;
 
