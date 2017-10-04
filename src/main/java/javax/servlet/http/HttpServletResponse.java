@@ -342,9 +342,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @param name 値を返されるレスポンスヘッダーの名前
      *
-     * @return the value of the response header with the given name,
-     * or <tt>null</tt> if no header with the given name has been set
-     * on this response
+     * @return 与えられた名前のレスポンスヘッダーの値、このレスポンスのヘッダーに与えられた名前で値が設定されてない場合は<tt>null</tt>
      *
      * @since Servlet 3.0
      */
