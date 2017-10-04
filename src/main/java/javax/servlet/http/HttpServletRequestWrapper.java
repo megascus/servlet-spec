@@ -64,12 +64,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequestWrapper;
 
 /**
- * Provides a convenient implementation of the HttpServletRequest interface
- * that can be subclassed by developers wishing to adapt the request to a
- * Servlet.
- *
- * <p>This class implements the Wrapper or Decorator pattern. Methods default
- * to calling through to the wrapped request object.
+ * サーブレットにリクエストを適合させたい開発者がサブクラス化できるHttpServletRequestインタフェースの便利な実装を提供します。
+ * 
+ * <p>このクラスはWrapperもしくはDecoratorパターンを実装します。
+ * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。
  * 
  * @see javax.servlet.http.HttpServletRequest
  * @since Servlet 2.3
@@ -79,10 +77,11 @@ import javax.servlet.ServletRequestWrapper;
 public class HttpServletRequestWrapper extends ServletRequestWrapper implements HttpServletRequest {
 
     /** 
-     * Constructs a request object wrapping the given request.
-     * @throws java.lang.IllegalArgumentException if the request is null
+     * 与えられたリクエストをラップしてリクエストオブジェクトを生成します。
+     * 
+     * @throws java.lang.IllegalArgumentException requestがnull
      
-     * @param request the {@link HttpServletRequest} to be wrapped.
+     * @param request ラップされた{@link HttpServletRequest}
      */
     public HttpServletRequestWrapper(HttpServletRequest request) {
         super(request);
@@ -93,8 +92,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return getAuthType()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetAuthType()を返すことです。
      */
     @Override
     public String getAuthType() {
@@ -102,8 +100,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
    
     /**
-     * The default behavior of this method is to return getCookies()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetCookies()を返すことです。
      */
     @Override
     public Cookie[] getCookies() {
@@ -111,8 +108,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return getDateHeader(String name)
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetDateHeader(String name)を返すことです。
      */
     @Override
     public long getDateHeader(String name) {
@@ -120,8 +116,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
                 
     /**
-     * The default behavior of this method is to return getHeader(String name)
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetHeader(String name)を返すことです。
      */
     @Override
     public String getHeader(String name) {
@@ -129,8 +124,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getHeaders(String name)
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetHeaders(String name)を返すことです。
      */
     @Override
     public Enumeration<String> getHeaders(String name) {
@@ -138,8 +132,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }  
 
     /**
-     * The default behavior of this method is to return getHeaderNames()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetHeaderNames()を返すことです。
      */
     @Override
     public Enumeration<String> getHeaderNames() {
@@ -147,8 +140,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return
-     * getIntHeader(String name) on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトの getIntHeader(String name)を返すことです。
      */
     @Override
      public int getIntHeader(String name) {
@@ -156,8 +148,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * <p>The default behavior of this method is to
-     * return getServletMapping() on the wrapped request object.</p>
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetServletMapping()を返すことです。
      */
      @Override
      public HttpServletMapping getHttpServletMapping() {
@@ -165,8 +156,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return getMethod()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetMethod()を返すことです。
      */
     @Override
     public String getMethod() {
@@ -174,8 +164,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getPathInfo()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetPathInfo()を返すことです。
      */
     @Override
     public String getPathInfo() {
@@ -183,8 +172,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return getPathTranslated()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetPathTranslated()を返すことです。
      */
     @Override
     public String getPathTranslated() {
@@ -192,8 +180,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return getContextPath()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetContextPath()を返すことです。
      */
     @Override
     public String getContextPath() {
@@ -201,8 +188,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getQueryString()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetQueryString()を返すことです。
      */
     @Override
     public String getQueryString() {
@@ -210,8 +196,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getRemoteUser()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRemoteUser()を返すことです。
      */
     @Override
     public String getRemoteUser() {
@@ -219,8 +204,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return isUserInRole(String role)
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisUserInRole(String role)を返すことです。
      */
     @Override
     public boolean isUserInRole(String role) {
@@ -228,8 +212,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getUserPrincipal()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetUserPrincipal()を返すことです。
      */
     @Override
     public java.security.Principal getUserPrincipal() {
@@ -237,8 +220,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getRequestedSessionId()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRequestedSessionId()を返すことです。
      */
     @Override
     public String getRequestedSessionId() {
@@ -246,8 +228,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getRequestURI()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRequestURI()を返すことです。
      */
     @Override
     public String getRequestURI() {
@@ -255,8 +236,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return getRequestURL()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRequestURL()を返すことです。
      */
     @Override
     public StringBuffer getRequestURL() {
@@ -264,8 +244,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
         
     /**
-     * The default behavior of this method is to return getServletPath()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetServletPath()を返すことです。
      */
     @Override
     public String getServletPath() {
@@ -273,8 +252,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getSession(boolean create)
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetSession(boolean create)を返すことです。
      */
     @Override
     public HttpSession getSession(boolean create) {
@@ -282,8 +260,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return getSession()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetSession()を返すことです。
      */
     @Override
     public HttpSession getSession() {
@@ -291,8 +268,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return changeSessionId()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのchangeSessionId()を返すことです。
      *
      * @since Servlet 3.1
      */
@@ -302,8 +278,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return isRequestedSessionIdValid()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisRequestedSessionIdValid()を返すことです。
      */ 
     @Override
     public boolean isRequestedSessionIdValid() {
@@ -311,8 +286,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
      
     /**
-     * The default behavior of this method is to return isRequestedSessionIdFromCookie()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisRequestedSessionIdFromCookie()を返すことです。
      */
     @Override
     public boolean isRequestedSessionIdFromCookie() {
@@ -320,8 +294,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
     
     /**
-     * The default behavior of this method is to return isRequestedSessionIdFromURL()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisRequestedSessionIdFromURL()を返すことです。
      */ 
     @Override
     public boolean isRequestedSessionIdFromURL() {
@@ -329,8 +302,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to return isRequestedSessionIdFromUrl()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisRequestedSessionIdFromUrl()を返すことです。
      *
      * @deprecated  As of Version 4.0 of the Java Servlet API,
      *              use {@link #isRequestedSessionIdFromURL} instead.
@@ -342,8 +314,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call authenticate on the
-     * wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのauthenticateを呼び出すことです。
      *
      * @since Servlet 3.0
      */
@@ -354,6 +325,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのloginを呼び出すことです。
      * The default behavior of this method is to call login on the wrapped
      * request object.
      *
@@ -366,8 +338,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call login on the wrapped
-     * request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのlogoutを呼び出すことです。
      *
      * @since Servlet 3.0
      */
@@ -377,11 +348,9 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call getParts on the wrapped
-     * request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetPartsを呼び出すことです。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>HttpServletRequestWrapper</code>.
+     * <p>返された<code>Collection</code>へのいかなる変更もこの<code>HttpServletRequestWrapper</code>に影響を与えてはいけません。
      *
      * @since Servlet 3.0
      */
@@ -391,8 +360,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call getPart on the wrapped
-     * request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetPartを呼び出すことです。
      *
      * @since Servlet 3.0
      */
@@ -403,8 +371,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * Create an instance of <code>HttpUpgradeHandler</code> for a given
-     * class and uses it for the http protocol upgrade processing.
+     * 指定されたクラスで<code>HttpUpgradeHandler</code>のインスタンスを作成し、httpプロトコルのアップグレードプロセスに使用します。
      *
      * @since Servlet 3.1
      */
@@ -415,8 +382,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call newPushBuilder on the
-     * wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのnewPushBuilderを呼び出すことです。
      *
      * @since Servlet 4.0
      */
@@ -426,8 +392,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call getTrailerFields on the
-     * wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetTrailerFieldsを呼び出すことです。
      *
      * @since Servlet 4.0
      */
@@ -437,8 +402,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     }
 
     /**
-     * The default behavior of this method is to call isTrailerFieldsReady on the
-     * wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisTrailerFieldsReadyを呼び出すことです。
      *
      * @since Servlet 4.0
      */
