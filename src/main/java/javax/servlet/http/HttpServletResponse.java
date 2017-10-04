@@ -607,14 +607,12 @@ public interface HttpServletResponse extends ServletResponse {
     public static final int SC_REQUESTED_RANGE_NOT_SATISFIABLE = 416;
 
     /**
-     * Status code (417) indicating that the server could not meet the
-     * expectation given in the Expect request header.
+     * サーバーがExpetリクエストヘッダーで指定された期待値を満たすことができなかったことを示すステータスコード。 (417)
      */
     public static final int SC_EXPECTATION_FAILED = 417;
 
     /**
-     * Status code (500) indicating an error inside the HTTP server
-     * which prevented it from fulfilling the request.
+     * リクエストを完了できなかったHTTPサーバー内のエラーを示すステータスコード。(500)
      */
     public static final int SC_INTERNAL_SERVER_ERROR = 500;
 
