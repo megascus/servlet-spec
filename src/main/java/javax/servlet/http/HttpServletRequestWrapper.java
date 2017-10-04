@@ -304,8 +304,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
     /**
      * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisRequestedSessionIdFromUrl()を返すことです。
      *
-     * @deprecated  As of Version 4.0 of the Java Servlet API,
-     *              use {@link #isRequestedSessionIdFromURL} instead.
+     * @deprecated  Java Servlet API　の Version 4.0 からは代わりに {@link #isRequestedSessionIdFromURL} を使用してください
      */
     @Deprecated
     @Override
