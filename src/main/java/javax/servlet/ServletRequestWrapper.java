@@ -104,11 +104,11 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * Sets the request object being wrapped. 
+     * ラップされているリクエストオブジェクトを設定します。
      *
-     * @param request the {@link ServletRequest} to be installed
+     * @param request 取り付けられる {@link ServletRequest}
      *
-     * @throws java.lang.IllegalArgumentException if the request is null.
+     * @throws java.lang.IllegalArgumentException requestがnull
      * 
      */
     public void setRequest(ServletRequest request) {
@@ -120,8 +120,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to call getAttribute(String name)
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetAttribute(String name)を呼び出すことです。
      */
     public Object getAttribute(String name) {
         return this.request.getAttribute(name);
@@ -129,8 +128,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getAttributeNames()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetAttributeNames()を返すことです。
      */
     public Enumeration<String> getAttributeNames() {
         return this.request.getAttributeNames();
@@ -138,8 +136,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getCharacterEncoding()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetCharacterEncoding()を返すことです。
      */
     public String getCharacterEncoding() {
         return this.request.getCharacterEncoding();
@@ -147,6 +144,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトに文字エンコーディングを設定することです。
      * The default behavior of this method is to set the character encoding
      * on the wrapped request object.
      */
@@ -157,16 +155,14 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getContentLength()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetContentLength()を返すことです。
      */
     public int getContentLength() {
         return this.request.getContentLength();
     }
 
     /**
-     * The default behavior of this method is to return getContentLengthLong()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetContentLengthLong()を返すことです。
      *
      * @since Servlet 3.1
      */
@@ -176,8 +172,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getContentType()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetContentType()を返すことです。
      */
     public String getContentType() {
         return this.request.getContentType();
@@ -185,8 +180,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getInputStream()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetInputStream()を返すことです。
      */
     public ServletInputStream getInputStream() throws IOException {
         return this.request.getInputStream();
