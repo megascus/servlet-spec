@@ -379,34 +379,28 @@ public interface HttpServletResponse extends ServletResponse {
     public Collection<String> getHeaderNames();
 
     /**
-     * Sets the supplier of trailer headers.
+     * トレイラーヘッダーのサプライヤを設定します。
      *
-     * <p>The trailer header field value is defined as a comma-separated list
-     * (see Section 3.2.2 and Section 4.1.2 of RFC 7230).</p>
+     * <p>トレイラーヘッダーのフィールドの値はカンマで区切られたリストとして定義されています。
+     * (RFC 7230のセクション3.2.2とセクション4.1.2を参照してください。)</p>
+     * 
+     * <p>サプライヤはレスポンスの内容を完了させるスレッド/コールの範囲内で呼び出されます。
+     * 通常、これはOutputStreamまたはWriterのclose()を呼び出す任意のスレッドになるでしょう。</p>
      *
-     * <p>The supplier will be called within the scope of whatever thread/call
-     * causes the response content to be completed. Typically this will
-     * be any thread calling close() on the output stream or writer.</p>
+     * <p>RFC 7230のセクション4.1.2の規定に違反して実行されるトレーラーは無視されます。</p>
+     * 
+     * <p>RFCでは、提供されたマップの"トレイラー"レスポンスヘッダーのコンマで区切られたリストの値に含まれるすべてのキーの名前を要求しています。
+     * アプリケーションにはこの要件が満たされていることを保証する責任があります。
+     * これを怠ると相互運用性が損なわれる可能性があります。</p>
      *
-     * <p>The trailers that run afoul of the provisions of section 4.1.2 of
-     * RFC 7230 are ignored.</p>
+     * @implSpec 
+     *         デフォルト実装では何も行いません。
      *
-     * <p>The RFC requires the name of every key that is to be in the
-     * supplied Map is included in the comma separated list that is the value
-     * of the "Trailer" response header.  The application is responsible for
-     * ensuring this requirement is met.  Failure to do so may lead to
-     * interoperability failures.</p>
+     * @param supplier トレイラーヘッダーのサプライヤ
      *
-     * @implSpec
-     * The default implementation is a no-op.
-     *
-     * @param supplier the supplier of trailer headers
-     *
-     * @exception IllegalStateException if it is invoked after the response has
-     *         has been committed,
-     *         or the trailer is not supported in the request, for instance,
-     *         the underlying protocol is HTTP 1.0, or the response is not
-     *         in chunked encoding in HTTP 1.1.
+     * @exception IllegalStateException レスポンスがコミットされた後に呼び出された、
+     *         もしくはプロトコルがHTTP 1.0であったりプロトコルがHTTP 1.1であってもチャンクエンコーディングでない場合など、
+     *         リクエストがトレーラーフィールドをサポートしていなかった
      *
      * @since Servlet 4.0
      */
