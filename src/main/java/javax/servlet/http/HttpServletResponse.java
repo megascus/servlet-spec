@@ -547,36 +547,29 @@ public interface HttpServletResponse extends ServletResponse {
     public static final int SC_METHOD_NOT_ALLOWED = 405;
 
     /**
-     * Status code (406) indicating that the resource identified by the
-     * request is only capable of generating response entities which have
-     * content characteristics not acceptable according to the accept
-     * headers sent in the request.
+     * リクエストによって識別されたリソースが、リクエストで送信されたacceptヘッダーに従って許容できないコンテンツ特性を有する
+     * レスポンスエンティティを生成することしかできないことを示すステータスコード。 (406)
      */
     public static final int SC_NOT_ACCEPTABLE = 406;
 
     /**
-     * Status code (407) indicating that the client <em>MUST</em> first
-     * authenticate itself with the proxy.
+     * クライアントが最初にプロキシで認証されなければならないことを示すステータスコード。 (407)
      */
     public static final int SC_PROXY_AUTHENTICATION_REQUIRED = 407;
 
     /**
-     * Status code (408) indicating that the client did not produce a
-     * request within the time that the server was prepared to wait.
+     * サーバーが待機する準備ができた時間内にクライアントがリクエストを生成しなかったことを示すステータスコード。 (408)
      */
     public static final int SC_REQUEST_TIMEOUT = 408;
 
     /**
-     * Status code (409) indicating that the request could not be
-     * completed due to a conflict with the current state of the
-     * resource.
+     * リソースの現在の状態との競合のためにリクエストを完了できなかったことを示すステータスコード。 (409)
      */
     public static final int SC_CONFLICT = 409;
 
     /**
-     * Status code (410) indicating that the resource is no longer
-     * available at the server and no forwarding address is known.
-     * This condition <em>SHOULD</em> be considered permanent.
+     * リソースがもはやサーバーで利用可能でなく、転送先アドレスがわからないことを示すステータスコード。 (410)
+     * この状態は永久的であると考えられる<em>必要がある</em>。
      */
     public static final int SC_GONE = 410;
 
