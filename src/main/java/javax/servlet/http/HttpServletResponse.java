@@ -333,17 +333,14 @@ public interface HttpServletResponse extends ServletResponse {
     public int getStatus();
 
     /**
-     * Gets the value of the response header with the given name.
+     * 指定された名前でレスポンスヘッダーの値を取得します。
      * 
-     * <p>If a response header with the given name exists and contains
-     * multiple values, the value that was added first will be returned.
+     * 指定された名前のレスポンスヘッダーが存在し複数の値が含まれている場合は最初に追加した値が返されます。
+     * 
+     * このメソッドは{@link #setHeader}、{@link #addHeader}、{@link #setDateHeader}、
+     * {@link #addDateHeader}、{@link #setIntHeader}、{@link #addIntHeader}を介して設定または追加されたもののみをレスポンスヘッダーとしてみなします。
      *
-     * <p>This method considers only response headers set or added via
-     * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
-     * {@link #addDateHeader}, {@link #setIntHeader}, or
-     * {@link #addIntHeader}, respectively.
-     *
-     * @param name the name of the response header whose value to return
+     * @param name 値を返されるレスポンスヘッダーの名前
      *
      * @return the value of the response header with the given name,
      * or <tt>null</tt> if no header with the given name has been set
@@ -354,38 +351,30 @@ public interface HttpServletResponse extends ServletResponse {
     public String getHeader(String name); 
 
     /**
-     * Gets the values of the response header with the given name.
+     * 指定された名前でレスポンスヘッダーの値を取得します。
      *
-     * <p>This method considers only response headers set or added via
-     * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
-     * {@link #addDateHeader}, {@link #setIntHeader}, or
-     * {@link #addIntHeader}, respectively.
+     * このメソッドは{@link #setHeader}、{@link #addHeader}、{@link #setDateHeader}、
+     * {@link #addDateHeader}、{@link #setIntHeader}、{@link #addIntHeader}を介して設定または追加されたもののみをレスポンスヘッダーとしてみなします。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>HttpServletResponse</code>.
+     * <p><code>Collection</code>に対するいかなる変更も<code>HttpServletResponse</code>に影響を与えてはいけません。
      *
-     * @param name the name of the response header whose values to return
+     * @param name 値を返されるレスポンスヘッダーの名前
      *
-     * @return a (possibly empty) <code>Collection</code> of the values
-     * of the response header with the given name
+     * @return 与えられた名前のレスポンスヘッダーの値の(空の可能性がある)<code>Collection</code>
      *
      * @since Servlet 3.0
      */			
     public Collection<String> getHeaders(String name); 
     
     /**
-     * Gets the names of the headers of this response.
+     * このレスポンスのヘッダーの名前の一覧を取得します。
      *
-     * <p>This method considers only response headers set or added via
-     * {@link #setHeader}, {@link #addHeader}, {@link #setDateHeader},
-     * {@link #addDateHeader}, {@link #setIntHeader}, or
-     * {@link #addIntHeader}, respectively.
+     * このメソッドは{@link #setHeader}、{@link #addHeader}、{@link #setDateHeader}、
+     * {@link #addDateHeader}、{@link #setIntHeader}、{@link #addIntHeader}を介して設定または追加されたもののみをレスポンスヘッダーとしてみなします。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>HttpServletResponse</code>.
+     * <p><code>Collection</code>に対するいかなる変更も<code>HttpServletResponse</code>に影響を与えてはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the names
-     * of the headers of this response
+     * @return レスポンスヘッダーの名前の(空の可能性がある)<code>Collection</code>
      *
      * @since Servlet 3.0
      */
