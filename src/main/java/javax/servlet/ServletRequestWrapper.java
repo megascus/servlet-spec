@@ -188,8 +188,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * getParameter(String name) on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetParameter(String name)を返すことです。
      */
     public String getParameter(String name) {
         return this.request.getParameter(name);
@@ -197,8 +196,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getParameterMap()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetParameterMap()を返すことです。
      */
     public Map<String, String[]> getParameterMap() {
         return this.request.getParameterMap();
@@ -206,8 +204,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getParameterNames()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetParameterNames()を返すことです。
      */
     public Enumeration<String> getParameterNames() {
         return this.request.getParameterNames();
@@ -215,8 +212,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * getParameterValues(String name) on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetParameterValues(String name)を返すことです。
      */
     public String[] getParameterValues(String name) {
         return this.request.getParameterValues(name);
@@ -224,8 +220,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getProtocol()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetProtocol()を返すことです。
      */
     public String getProtocol() {
         return this.request.getProtocol();
@@ -233,8 +228,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getScheme()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetScheme()を返すことです。
      */
     public String getScheme() {
         return this.request.getScheme();
@@ -242,8 +236,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getServerName()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetServerName()を返すことです。
      */
     public String getServerName() {
         return this.request.getServerName();
@@ -251,8 +244,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getServerPort()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetServerPort()を返すことです。
      */
     public int getServerPort() {
         return this.request.getServerPort();
@@ -260,8 +252,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getReader()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetReader()を返すことです。
      */
     public BufferedReader getReader() throws IOException {
         return this.request.getReader();
@@ -269,8 +260,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getRemoteAddr()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRemoteAddr()を返すことです。
      */
     public String getRemoteAddr() {
         return this.request.getRemoteAddr();
@@ -278,8 +268,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getRemoteHost()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRemoteHost()を返すことです。
      */
     public String getRemoteHost() {
         return this.request.getRemoteHost();
@@ -287,8 +276,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * setAttribute(String name, Object o) on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのsetAttribute(String name, Object o)を返すことです。
      */
     public void setAttribute(String name, Object o) {
         this.request.setAttribute(name, o);
@@ -296,6 +284,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのremoveAttribute(String name)を呼び出すことです。
      * The default behavior of this method is to call
      * removeAttribute(String name) on the wrapped request object.
      */
@@ -305,8 +294,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getLocale()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetLocale()を返すことです。
      */
     public Locale getLocale() {
         return this.request.getLocale();
@@ -314,8 +302,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return getLocales()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetLocales()を返すことです。
      */
     public Enumeration<Locale> getLocales() {
         return this.request.getLocales();
@@ -323,8 +310,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return isSecure()
-     * on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのisSecure()を返すことです。
      */
     public boolean isSecure() {
         return this.request.isSecure();
@@ -332,8 +318,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * getRequestDispatcher(String path) on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRequestDispatcher(String path)を返すことです。
      */
     public RequestDispatcher getRequestDispatcher(String path) {
         return this.request.getRequestDispatcher(path);
@@ -341,11 +326,9 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * getRealPath(String path) on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRealPath(String path)を返すことです。
      *
-     * @deprecated As of Version 2.1 of the Java Servlet API,
-     * use {@link ServletContext#getRealPath} instead
+     * @deprecated Java Servlet API Version 2.1から{@link ServletContext#getRealPath}を代わりに使用してください。
      */
     @Deprecated
     public String getRealPath(String path) {
@@ -354,8 +337,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
     
     /**
-     * The default behavior of this method is to return
-     * getRemotePort() on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetRemotePort()を返すことです。
      *
      * @since Servlet 2.4
      */    
@@ -365,8 +347,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * getLocalName() on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetLocalName()を返すことです。
      *
      * @since Servlet 2.4
      */
@@ -376,8 +357,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * getLocalAddr() on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetLocalAddr()を返すことです。
      *
      * @since Servlet 2.4
      */       
@@ -387,8 +367,7 @@ public class ServletRequestWrapper implements ServletRequest {
 
 
     /**
-     * The default behavior of this method is to return
-     * getLocalPort() on the wrapped request object.
+     * このメソッドのデフォルトの動作はラップされたリクエストオブジェクトのgetLocalPort()を返すことです。
      *
      * @since Servlet 2.4
      */
