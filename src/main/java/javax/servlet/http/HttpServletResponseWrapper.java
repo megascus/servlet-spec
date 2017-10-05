@@ -65,11 +65,9 @@ import java.util.function.Supplier;
 import javax.servlet.ServletResponseWrapper;
 
 /**
- * 
- * Provides a convenient implementation of the HttpServletResponse interface that
- * can be subclassed by developers wishing to adapt the response from a Servlet.
- * This class implements the Wrapper or Decorator pattern. Methods default to
- * calling through to the wrapped response object.
+ * サーブレットにレスポンスを適合させたい開発者がサブクラス化できるHttpServletResponseインタフェースの便利な実装を提供します。
+ * このクラスはWrapperもしくはDecoratorパターンを実装します。
+ * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。
  * 
  * @author Various
  * @since Servlet 2.3
@@ -80,10 +78,10 @@ import javax.servlet.ServletResponseWrapper;
 public class HttpServletResponseWrapper extends ServletResponseWrapper implements HttpServletResponse {
 
     /** 
-     * Constructs a response adaptor wrapping the given response.
-     * @throws java.lang.IllegalArgumentException if the response is null
+     * 指定されたレスポンスオブジェクトをラップするレスポンスアダプタを作成します。
+     * @throws java.lang.IllegalArgumentException responseがnull
      *
-     * @param response the {@link HttpServletResponse} to be wrapped.
+     * @param response ラップされる{@link HttpServletResponse}
      */
     public HttpServletResponseWrapper(HttpServletResponse response) {
         super(response);
@@ -94,8 +92,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call addCookie(Cookie cookie)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのaddCookie(Cookie cookie)を呼び出すことです。
      */
     @Override
     public void addCookie(Cookie cookie) {
@@ -103,8 +100,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call containsHeader(String name)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのcontainsHeader(String name)を呼び出すことです。
      */
     @Override
     public boolean containsHeader(String name) {
@@ -112,8 +108,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call encodeURL(String url)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのencodeURL(String url)を呼び出すことです。
      */
     @Override
     public String encodeURL(String url) {
@@ -121,8 +116,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to return encodeRedirectURL(String url)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのencodeRedirectURL(String url)を返すことです。
      */
     @Override
     public String encodeRedirectURL(String url) {
@@ -130,8 +124,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call encodeUrl(String url)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのencodeUrl(String url)を呼び出すことです。
      *
      * @deprecated As of version 2.1, use {@link #encodeURL(String url)}
      * instead
@@ -143,8 +136,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to return
-     * encodeRedirectUrl(String url) on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのencodeRedirectUrl(String url)を返すことです。
      *
      * @deprecated As of version 2.1, use 
      * {@link #encodeRedirectURL(String url)} instead
@@ -156,8 +148,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call sendError(int sc, String msg)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsendError(int sc, String msg)を呼び出すことです。
      */
     @Override
     public void sendError(int sc, String msg) throws IOException {
@@ -165,8 +156,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call sendError(int sc)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsendError(int sc)を呼び出すことです。
      */
     @Override
     public void sendError(int sc) throws IOException {
@@ -174,8 +164,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to return sendRedirect(String location)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsendRedirect(String location)を返すことです。
      */
     @Override
     public void sendRedirect(String location) throws IOException {
@@ -183,8 +172,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call setDateHeader(String name, long date)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetDateHeader(String name, long date)を呼び出すことです。
      */
     @Override
     public void setDateHeader(String name, long date) {
@@ -192,8 +180,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call addDateHeader(String name, long date)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのaddDateHeader(String name, long date)を呼び出すことです。
      */
     @Override
     public void addDateHeader(String name, long date) {
@@ -201,8 +188,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to return setHeader(String name, String value)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetHeader(String name, String value)を返すことです。
      */
     @Override
     public void setHeader(String name, String value) {
@@ -210,8 +196,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to return addHeader(String name, String value)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのaddHeader(String name, String value)を返すことです。
      */
     @Override
     public void addHeader(String name, String value) {
@@ -219,8 +204,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call setIntHeader(String name, int value)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetIntHeader(String name, int value)を呼び出すことです。
      */
     @Override
     public void setIntHeader(String name, int value) {
@@ -228,8 +212,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call addIntHeader(String name, int value)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのaddIntHeader(String name, int value)を呼び出すことです。
      */
     @Override
     public void addIntHeader(String name, int value) {
@@ -237,8 +220,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behavior of this method is to call setStatus(int sc)
-     * on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetStatus(int sc)を呼び出すことです。
      */
     @Override
     public void setStatus(int sc) {
@@ -246,8 +228,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
     
     /**
-     * The default behavior of this method is to call
-     * setStatus(int sc, String sm) on the wrapped response object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetStatus(int sc, String sm)を呼び出すことです。
      *
      * @deprecated As of version 2.1, due to ambiguous meaning of the 
      * message parameter. To set a status code 
@@ -261,9 +242,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call
-     * {@link HttpServletResponse#getStatus} on the wrapped response
-     * object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getStatus}を呼び出すことです。
      *
      * @return the current status code of the wrapped response
      */
@@ -273,9 +252,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call
-     * {@link HttpServletResponse#getHeader} on the wrapped response
-     * object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getHeader}を呼び出すことです。
      *
      * @param name the name of the response header whose value to return
      *
@@ -291,9 +268,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call
-     * {@link HttpServletResponse#getHeaders} on the wrapped response
-     * object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getHeaders} を呼び出すことです。
      *
      * <p>Any changes to the returned <code>Collection</code> must not 
      * affect this <code>HttpServletResponseWrapper</code>.
@@ -311,9 +286,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call
-     * {@link HttpServletResponse#getHeaderNames} on the wrapped response
-     * object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getHeaderNames}を呼び出すことです。
      *
      * <p>Any changes to the returned <code>Collection</code> must not 
      * affect this <code>HttpServletResponseWrapper</code>.
@@ -329,9 +302,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call
-     * {@link HttpServletResponse#setTrailerFields} on the wrapped response
-     * object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#setTrailerFields}を呼び出すことです。
      *
      * @param supplier of trailer headers
      *
@@ -343,9 +314,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     }
 
     /**
-     * The default behaviour of this method is to call
-     * {@link HttpServletResponse#getTrailerFields} on the wrapped response
-     * object.
+     * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getTrailerFields}を呼び出すことです。
      *
      * @return supplier of trailer headers
      *

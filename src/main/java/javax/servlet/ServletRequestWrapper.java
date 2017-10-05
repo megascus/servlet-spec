@@ -83,7 +83,7 @@ public class ServletRequestWrapper implements ServletRequest {
      * 指定されたリクエストオブジェクトをラップするServletRequestアダプタを作成します。
      * @throws java.lang.IllegalArgumentException requestがnull
      *
-     * @param request ラップされた{@link ServletRequest}
+     * @param request ラップされる{@link ServletRequest}
      */
     public ServletRequestWrapper(ServletRequest request) {
         if (request == null) {

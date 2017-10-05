@@ -81,7 +81,7 @@ public class HttpServletRequestWrapper extends ServletRequestWrapper implements 
      * 
      * @throws java.lang.IllegalArgumentException requestがnull
      
-     * @param request ラップされた{@link HttpServletRequest}
+     * @param request ラップされる{@link HttpServletRequest}
      */
     public HttpServletRequestWrapper(HttpServletRequest request) {
         super(request);
