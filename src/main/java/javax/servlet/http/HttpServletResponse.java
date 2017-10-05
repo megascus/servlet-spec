@@ -314,8 +314,8 @@ public interface HttpServletResponse extends ServletResponse {
      * このレスポンスのステータスコードとメッセージを設定します。
      * 
      * @deprecated Version 2.1 からメッセージパラメータのあいまいな意味のために非推奨になりました。
-     * ステータスコードを設定するためには<code>setStatus(int)</code>を使用してください。
-     * エラーと一緒に説明文を送るためには<code>sendError(int, String)</code>を使用してください。
+     * ステータスコードを設定するためには{@link #setStatus(int)}を使用してください。
+     * エラーと一緒に説明文を送るためには{@link #sendError(int, String)}を使用してください。
      * 
      * @param	sc	ステータスコード
      * @param	sm	ステータスのメッセージ
@@ -412,7 +412,7 @@ public interface HttpServletResponse extends ServletResponse {
      *
      * @implSpec デフォルト実装ではnullを返します。
      *
-     * @return <code>Supplier</code> of trailer headers
+     * @return トレイラーヘッダーの<code>Supplier</code>
      * 
      * @since Servlet 4.0
      */

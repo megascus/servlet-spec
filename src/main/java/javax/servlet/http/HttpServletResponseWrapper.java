@@ -126,8 +126,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのencodeUrl(String url)を呼び出すことです。
      *
-     * @deprecated As of version 2.1, use {@link #encodeURL(String url)}
-     * instead
+     * @deprecated Version 2.1からは代わりに{@link #encodeURL(String url)}を使用してください
      */
     @Deprecated
     @Override
@@ -138,8 +137,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのencodeRedirectUrl(String url)を返すことです。
      *
-     * @deprecated As of version 2.1, use 
-     * {@link #encodeRedirectURL(String url)} instead
+     * @deprecated Version 2.1からは代わりに {@link #encodeRedirectURL(String url)}を使用してください
      */
     @Deprecated
     @Override
@@ -229,11 +227,10 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトのsetStatus(int sc, String sm)を呼び出すことです。
-     *
-     * @deprecated As of version 2.1, due to ambiguous meaning of the 
-     * message parameter. To set a status code 
-     * use {@link #setStatus(int)}, to send an error with a description
-     * use {@link #sendError(int, String)}
+     * 
+     * @deprecated Version 2.1 からメッセージパラメータのあいまいな意味のために非推奨になりました。
+     * ステータスコードを設定するためには{@link #setStatus(int)}を使用してください。
+     * エラーと一緒に説明文を送るためには{@link #sendError(int, String)}を使用してください。
      */
     @Deprecated
     @Override
@@ -244,7 +241,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getStatus}を呼び出すことです。
      *
-     * @return the current status code of the wrapped response
+     * @return このラップされたレスポンスの現在のステータスコード
      */
     @Override
     public int getStatus() {
@@ -254,11 +251,9 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getHeader}を呼び出すことです。
      *
-     * @param name the name of the response header whose value to return
+     * @param name 値を返されるレスポンスヘッダーの名前
      *
-     * @return the value of the response header with the given name,
-     * or <tt>null</tt> if no header with the given name has been set
-     * on the wrapped response
+     * @return 与えられた名前のレスポンスヘッダーの値、このレスポンスのヘッダーに与えられた名前で値が設定されてない場合は<tt>null</tt>
      *
      * @since Servlet 3.0
      */
@@ -270,13 +265,11 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getHeaders} を呼び出すことです。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>HttpServletResponseWrapper</code>.
+     * <p><code>Collection</code>に対するいかなる変更も<code>HttpServletResponse</code>に影響を与えてはいけません。
      *
-     * @param name the name of the response header whose values to return
+     * @param name 値を返されるレスポンスヘッダーの名前
      *
-     * @return a (possibly empty) <code>Collection</code> of the values
-     * of the response header with the given name
+     * @return 与えられた名前のレスポンスヘッダーの値の(空の可能性がある)<code>Collection</code>
      *
      * @since Servlet 3.0
      */                        
@@ -288,11 +281,9 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getHeaderNames}を呼び出すことです。
      *
-     * <p>Any changes to the returned <code>Collection</code> must not 
-     * affect this <code>HttpServletResponseWrapper</code>.
+     * <p><code>Collection</code>に対するいかなる変更も<code>HttpServletResponse</code>に影響を与えてはいけません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the names
-     * of the response headers
+     * @return レスポンスヘッダーの名前の(空の可能性がある)<code>Collection</code>
      *
      * @since Servlet 3.0
      */
@@ -304,7 +295,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#setTrailerFields}を呼び出すことです。
      *
-     * @param supplier of trailer headers
+     * @param supplier トレイラーヘッダーのサプライヤ
      *
      * @since Servlet 4.0
      */
@@ -316,7 +307,7 @@ public class HttpServletResponseWrapper extends ServletResponseWrapper implement
     /**
      * このメソッドのデフォルトの動作はラップされたレスポンスオブジェクトの{@link HttpServletResponse#getTrailerFields}を呼び出すことです。
      *
-     * @return supplier of trailer headers
+     * @return トレイラーヘッダーのサプライヤ
      *
      * @since Servlet 4.0
      */
