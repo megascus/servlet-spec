@@ -60,8 +60,7 @@ package javax.servlet;
 
 
 /**
- * Defines a general exception a servlet can throw when it
- * encounters difficulty.
+ * サーブレットが問題に遭遇した場合に投げられる一般的な例外を定義します。
  *
  * @author 	Various
  */
@@ -76,7 +75,7 @@ public class ServletException extends Exception {
 
 
     /**
-     * Constructs a new servlet exception.
+     * 新しいServletExceptionを生成します。
      *
      */
 
@@ -89,13 +88,10 @@ public class ServletException extends Exception {
     
 
     /**
-     * Constructs a new servlet exception with the
-     * specified message. The message can be written 
-     * to the server log and/or displayed for the user. 
+     * 指定されたメッセージで新しいServletExceptionを生成します。
+     * メッセージはサーバーログに書き出されるかユーザーに表示されます。
      *
-     * @param message 		a <code>String</code> 
-     *				specifying the text of 
-     *				the exception message
+     * @param message 		Exceptionのメッセージのテキストを示す<code>String</code> 
      *
      */
 
@@ -108,19 +104,12 @@ public class ServletException extends Exception {
     
 
     /**
-     * Constructs a new servlet exception when the servlet 
-     * needs to throw an exception and include a message 
-     * about the "root cause" exception that interfered with its 
-     * normal operation, including a description message.
+     * サーブレットが例外を投げる必要があるときに通常の操作を妨害した"根本原因"の例外と説明メッセージを含めて新しいServletExceptionを生成します。
      *
      *
-     * @param message 		a <code>String</code> containing 
-     *				the text of the exception message
+     * @param message 		例外のメッセージのテキストを含む<code>String</code>
      *
-     * @param rootCause		the <code>Throwable</code> exception 
-     *				that interfered with the servlet's
-     *				normal operation, making this servlet
-     *				exception necessary
+     * @param rootCause		ServletExceptionを作るのに必要な通常の操作を妨害した<code>Throwable</code>
      *
      */
     
@@ -134,22 +123,13 @@ public class ServletException extends Exception {
 
 
     /**
-     * Constructs a new servlet exception when the servlet 
-     * needs to throw an exception and include a message
-     * about the "root cause" exception that interfered with its
-     * normal operation.  The exception's message is based on the localized
-     * message of the underlying exception.
+     * サーブレットが例外を投げる必要があるときに通常の操作を妨害した"根本原因"の例外を含めて新しいServletExceptionを生成します。
+     * この例外のメッセージは元となる例外のローカライズされたメッセージがベースとなります。
+     * 
+     * <p>このメソッドは<code>Throwable</code>の<code>getLocalizedMessage</code>を呼び出し、ローカライズされた例外のメッセージを取得します。
+     * <code>ServletException</code>のサブクラスではこのメソッドをオーバーライドして特定のロケール用にデザインされた例外のメッセージを作ることができます。
      *
-     * <p>This method calls the <code>getLocalizedMessage</code> method
-     * on the <code>Throwable</code> exception to get a localized exception
-     * message. When subclassing <code>ServletException</code>, 
-     * this method can be overridden to create an exception message 
-     * designed for a specific locale.
-     *
-     * @param rootCause 	the <code>Throwable</code> exception
-     * 				that interfered with the servlet's
-     *				normal operation, making the servlet exception
-     *				necessary
+     * @param rootCause 	ServletExceptionを作るのに必要な通常の操作を妨害した<code>Throwable</code>
      *
      */
 
@@ -163,11 +143,10 @@ public class ServletException extends Exception {
  
     
     /**
-     * Returns the exception that caused this servlet exception.
+     * このServletExceptionの原因となった<code>Throwable</code> 
      *
      *
-     * @return			the <code>Throwable</code> 
-     *				that caused this servlet exception
+     * @return			このServletExceptionの原因となった<code>Throwable</code> 
      *
      */
     
