@@ -43,40 +43,22 @@ package javax.servlet;
 import java.util.Set;
 
 /**
- * Interface which allows a library/runtime to be notified of a web
- * application's startup phase and perform any required programmatic
- * registration of servlets, filters, and listeners in response to it.
- *
- * <p>Implementations of this interface may be annotated with
- * {@link javax.servlet.annotation.HandlesTypes HandlesTypes}, in order to
- * receive (at their {@link #onStartup} method) the Set of application
- * classes that implement, extend, or have been annotated with the class
- * types specified by the annotation.
+ * Webアプリケーションの起動フェーズがライブラリ/ランタイムに通知され、それに応じてサーブレットやフィルター、リスナーの必要とするプログラマティックな登録を実行するためのインタフェースです。
  * 
- * <p>If an implementation of this interface does not use <tt>HandlesTypes</tt>
- * annotation, or none of the application classes match the ones specified
- * by the annotation, the container must pass a <tt>null</tt> Set of classes
- * to {@link #onStartup}.
- *
- * <p>When examining the classes of an application to see if they match
- * any of the criteria specified by the <tt>HandlesTypes</tt> annotation
- * of a <tt>ServletContainerInitializer</tt>, the container may run into
- * classloading problems if any of the application's optional JAR
- * files are missing. Because the container is not in a position to decide
- * whether these types of classloading failures will prevent
- * the application from working correctly, it must ignore them,
- * while at the same time providing a configuration option that would
- * log them. 
- *
- * <p>Implementations of this interface must be declared by a JAR file
- * resource located inside the <tt>META-INF/services</tt> directory and
- * named for the fully qualified class name of this interface, and will be 
- * discovered using the runtime's service provider lookup mechanism
- * or a container specific mechanism that is semantically equivalent to
- * it. In either case, <tt>ServletContainerInitializer</tt> services from web
- * fragment JAR files excluded from an absolute ordering must be ignored,
- * and the order in which these services are discovered must follow the
- * application's classloading delegation model.
+ * <p>このインタフェースの実装には{@link javax.servlet.annotation.HandlesTypes HandlesTypes}アノテーションを付けることができ、
+ * アノテーションによって指定されたクラスタイプを実装、拡張、またはアノテーションをつけられたアプリケーションクラスのSetを({@link #onStartup(Set, ServletContext)}メソッドで)受け取るために使用します。
+ * 
+ * <p>このインタフェースの実装が<tt>HandlesTypes</tt>アノテーションを使用しない場合、またはアプリケーション内のクラスのどれもがアノテーションで指定されたものと一致しない場合は
+ * コンテナはクラスのSetとして<tt>null</tt>を{@link #onStartup(Set, ServletContext)}に渡します。
+ * 
+ * <p>アプリケーションのクラスを調べて<tt>ServletContainerInitializer</tt>の<tt>HandlesTypes</tt>アノテーションで指定された基準と一致するかどうかを確認するときに、
+ * コンテナはアプリケーションのオプショナルなJARファイルが見つからない場合にクラスローディングの問題に遭遇する可能性があります。 
+ * コンテナはこれらのタイプのクラスローディングの失敗がアプリケーションの正常な動作を妨げるかどうかを判断する立場にないため、それらを無視する必要があると同時にログを記録するような設定オプションを提供します。
+ * 
+ * <p>このインタフェースの実装はJARファイル内の<tt>META-INF/services</tt>ディレクトリにあるこのインタフェースの完全修飾クラス名の名前が付けられたリソースによって宣言され、
+ * ランタイムのサービスプロバイダルックアップメカニズムまたはそれと意味的に同等のコンテナ固有のメカニズムを使用して検出されます。
+ * どちらの場合でも、絶対順序から除外されたWebフラグメントJARファイルの<tt>ServletContainerInitializer</tt>サービスは無視する必要があり、
+ * これらのサービスが検出される順序はアプリケーションのクラスローダー委譲モデルに従う必要があります。
  *
  * @see javax.servlet.annotation.HandlesTypes
  *
@@ -85,30 +67,19 @@ import java.util.Set;
 public interface ServletContainerInitializer {
 
     /**
-     * Notifies this <tt>ServletContainerInitializer</tt> of the startup
-     * of the application represented by the given <tt>ServletContext</tt>.
+     * 与えられた<tt>ServletContext</tt>が表すアプリケーションの起動をこの<tt>ServletContainerInitializer</tt>に通知します。
+     * 
+     * <p>この<tt>ServletContainerInitializer</tt>がアプリケーションの<tt>WEB-INF/lib</tt>内のJARファイルに入っているならば、
+     * この<tt>onStartup</tt>メソッドは含まれているアプリケーションの起動中に1回だけ実行されるでしょう。
+     * この<tt>ServletContainerInitializer</tt>が<tt>WEB-INF/lib</tt>ディレクトリ以外のJARファイルに入っているが、
+     * 上記のように引き続き発見可能であるならば、この<tt>onStartup</tt> はアプリケーションが起動するたびに実行されるでしょう。
      *
-     * <p>If this <tt>ServletContainerInitializer</tt> is bundled in a JAR
-     * file inside the <tt>WEB-INF/lib</tt> directory of an application,
-     * its <tt>onStartup</tt> method will be invoked only once during the
-     * startup of the bundling application. If this
-     * <tt>ServletContainerInitializer</tt> is bundled inside a JAR file
-     * outside of any <tt>WEB-INF/lib</tt> directory, but still
-     * discoverable as described above, its <tt>onStartup</tt> method
-     * will be invoked every time an application is started.
+     * @param c {@link javax.servlet.annotation.HandlesTypes HandlesTypes}アノテーションで指定されたクラス型を拡張もしくは実装、またはアノテーションのつけられたアプリケーション内のクラスのSet、
+     * 一致するものがない、またはこの<tt>ServletContainerInitializer</tt>に{@link javax.servlet.annotation.HandlesTypes HandlesTypes}アノテーションが付けられていない場合はnull
      *
-     * @param c the Set of application classes that extend, implement, or
-     * have been annotated with the class types specified by the 
-     * {@link javax.servlet.annotation.HandlesTypes HandlesTypes} annotation,
-     * or <tt>null</tt> if there are no matches, or this
-     * <tt>ServletContainerInitializer</tt> has not been annotated with
-     * <tt>HandlesTypes</tt>
+     * @param ctx 起動中に<tt>c</tt>に含まれるクラスが見つかったウェブアプリケーションの<tt>ServletContext</tt>
      *
-     * @param ctx the <tt>ServletContext</tt> of the web application that
-     * is being started and in which the classes contained in <tt>c</tt>
-     * were found
-     *
-     * @throws ServletException if an error has occurred
+     * @throws ServletException エラーが発生した場合
      */
     public void onStartup(Set<Class<?>> c, ServletContext ctx)
         throws ServletException; 
