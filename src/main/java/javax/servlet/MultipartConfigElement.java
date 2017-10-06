@@ -43,7 +43,7 @@ package javax.servlet;
 import javax.servlet.annotation.MultipartConfig;
 
 /**
- * Java Class represntation of an {@link MultipartConfig} annotation value.
+ * {@link MultipartConfig}アノテーションの値を表現したJavaのクラスです。
  *
  * @since Servlet 3.0
  */
@@ -55,9 +55,9 @@ public class MultipartConfigElement {
     private int fileSizeThreshold;
 
     /**
-     * Constructs an instance with defaults for all but location.
+     * ロケーション以外の値をデフォルト値でインスタンスを生成します。
      *
-     * @param location defualts to "" if values is null.
+     * @param location 値がnullの場合はデフォルト値として""
      */
     public MultipartConfigElement(String location) {
         if (location == null) {
@@ -71,14 +71,12 @@ public class MultipartConfigElement {
     }
 
     /**
-     * Constructs an instance with all values specified.
+     * すべての値を指定してインスタンスを生成します。
      *
-     * @param location the directory location where files will be stored
-     * @param maxFileSize the maximum size allowed for uploaded files
-     * @param maxRequestSize the maximum size allowed for
-     * multipart/form-data requests
-     * @param fileSizeThreshold the size threshold after which files will
-     * be written to disk
+     * @param location ファイルが保存されるディレクトリの場所
+     * @param maxFileSize アップロードされたファイルが許可される最大のサイズ
+     * @param maxRequestSize <tt>multipart/form-data</tt>のリクエストに許可される最大のサイズ
+     * @param fileSizeThreshold 超えたときにファイルがディスクに書き込まれるようになるサイズのしきい値
      */
     public MultipartConfigElement(String location, long maxFileSize,
             long maxRequestSize, int fileSizeThreshold) {
@@ -93,9 +91,9 @@ public class MultipartConfigElement {
     }
 
     /**
-     * Constructs an instance from a {@link MultipartConfig} annotation value.
+     * {@link MultipartConfig}アノテーションの値でインスタンスを生成します。
      *
-     * @param annotation the annotation value
+     * @param annotation アノテーションの値
      */
     public MultipartConfigElement(MultipartConfig annotation) {
         this.location = annotation.location();
@@ -105,36 +103,36 @@ public class MultipartConfigElement {
     }
 
     /**
-     * Gets the directory location where files will be stored.
+     * ファイルが保存されるディレクトリの場所を取得します。
      *
-     * @return the directory location where files will be stored
+     * @return ファイルが保存されるディレクトリの場所
      */
     public String getLocation() {
         return this.location;
     }
 
     /**
-     * Gets the maximum size allowed for uploaded files.
+     * アップロードされたファイルが許可される最大のサイズを取得します。
      *
-     * @return the maximum size allowed for uploaded files
+     * @return アップロードされたファイルが許可される最大のサイズ
      */
     public long getMaxFileSize() {
         return this.maxFileSize;
     }
 
     /**
-     * Gets the maximum size allowed for multipart/form-data requests.
+     * <tt>multipart/form-data</tt>のリクエストに許可される最大のサイズを取得します。
      *
-     * @return the maximum size allowed for multipart/form-data requests
+     * @return <tt>multipart/form-data</tt>のリクエストに許可される最大のサイズ
      */
     public long getMaxRequestSize() {
         return this.maxRequestSize;
     }
 
     /**
-     * Gets the size threshold after which files will be written to disk.
-     *
-     * @return the size threshold after which files will be written to disk
+     * 超えたときにファイルがディスクに書き込まれるようになるサイズのしきい値を取得します。
+     * 
+     * @return 超えたときにファイルがディスクに書き込まれるようになるサイズのしきい値
      */
     public int getFileSizeThreshold() {
         return this.fileSizeThreshold;

@@ -85,9 +85,9 @@ public @interface MultipartConfig {
     long maxRequestSize() default -1L;
 
     /**
-     * ファイルがディスクに書き込まれるようになるまでのサイズのしきい値です。
+     * 超えたときにファイルがディスクに書き込まれるようになるサイズのしきい値です。
      *
-     * @return ファイルがディスクに書き込まれるようになるまでのサイズのしきい値
+     * @return 超えたときにファイルがディスクに書き込まれるようになるサイズのしきい値
      */
     int fileSizeThreshold() default 0;
 }
