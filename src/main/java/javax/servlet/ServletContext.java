@@ -328,25 +328,17 @@ public interface ServletContext {
 
 
     /**
-     * Returns a {@link RequestDispatcher} object that acts
-     * as a wrapper for the named servlet.
+     * 指定された名前のサーブレットのラッパーとして動作する{@link RequestDispatcher}オブジェクトを返します。
      *
-     * <p>Servlets (and JSP pages also) may be given names via server
-     * administration or via a web application deployment descriptor.
-     * A servlet instance can determine its name using
-     * {@link ServletConfig#getServletName}.
+     * <p>サーブレット(およびJSPページ)にはサーバー管理やウェブアプリケーションのデプロイメントディスクリプタを使用して名前を付けることができます。 
+     * サーブレットのインスタンスは{@link ServletConfig#getServletName}を使用してその名前を取得できます。
      *
-     * <p>This method returns <code>null</code> if the
-     * <code>ServletContext</code>
-     * cannot return a <code>RequestDispatcher</code> for any reason.
+     * <p>このメソッドは<code>ServletContext</code>が何らかの理由で<code>RequestDispatcher</code>を返せなかった場合は<code>null</code>を返します。
      *
-     * @param name 	a <code>String</code> specifying the name
-     *			of a servlet to wrap
+     * @param name 	ラップするサーブレットの名前を示す<code>String</code>
      *
-     * @return 		a <code>RequestDispatcher</code> object
-     *			that acts as a wrapper for the named servlet,
-     *			or <code>null</code> if the <code>ServletContext</code>
-     *			cannot return a <code>RequestDispatcher</code>
+     * @return 		指定された名前のサーブレットのラッパーとして動作する<code>RequestDispatcher</code>オブジェクト、
+     *              <code>ServletContext</code>が<code>RequestDispatcher</code>を返せなかった場合は<code>null</code>
      *
      * @see 		RequestDispatcher
      * @see 		ServletContext#getContext
