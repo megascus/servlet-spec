@@ -395,44 +395,35 @@ public interface ServletContext {
 
 
     /**
+     * 指定されたメッセージをログファイルに書き込みます、通常はイベントログです。
+     * ログファイルの名前と書式はサーブレットコンテナによって固有のものです。
      *
-     * Writes the specified message to a servlet log file, usually
-     * an event log. The name and type of the servlet log file is
-     * specific to the servlet container.
-     *
-     * @param msg 	a <code>String</code> specifying the
-     *			message to be written to the log file
+     * @param msg 	ログファイルに書き込まれるメッセージを示す<code>String</code>
      */
     public void log(String msg);
 
 
     /**
-     * @deprecated	As of Java Servlet API 2.1, use
+     * @deprecated	Java Servlet API 2.1から代わりに
      * 			{@link #log(String message, Throwable throwable)}
-     *			instead.
+     *			を使用してください
      *
-     * <p>This method was originally defined to write an
-     * exception's stack trace and an explanatory error message
-     * to the servlet log file.
+     * <p>このメソッドはもともとは例外のスタックトレースと例外の説明文をサーブレットのログファイルに書き込むために定義されていました。
      *
-     * @param exception the <code>Exception</code> error
-     * @param msg a <code>String</code> that describes the exception
+     * @param exception <code>Exception</code> エラー
+     * @param msg 例外を説明する<code>String</code>
      */
     @Deprecated
     public void log(Exception exception, String msg);
 
 
     /**
-     * Writes an explanatory message and a stack trace
-     * for a given <code>Throwable</code> exception
-     * to the servlet log file. The name and type of the servlet log
-     * file is specific to the servlet container, usually an event log.
+     * サーブレットのログファイルに与えられた<code>Throwable</code>に対する説明文とスタックトレースを書き込みます。
+     * ログファイルの名前と書式はサーブレットコンテナによって固有のものですが、通常はイベントログです。
      *
-     * @param message 		a <code>String</code> that
-     *				describes the error or exception
+     * @param message 		エラーや例外を説明する<code>String</code>
      *
-     * @param throwable 	the <code>Throwable</code> error
-     *				or exception
+     * @param throwable 	エラーは例外の<code>Throwable</code>
      */
     public void log(String message, Throwable throwable);
 
