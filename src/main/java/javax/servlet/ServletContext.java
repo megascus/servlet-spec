@@ -429,56 +429,39 @@ public interface ServletContext {
 
 
     /**
-     * Gets the <i>real</i> path corresponding to the given
-     * <i>virtual</i> path.
+     * 与えられた<i>仮想の</i>パスに対応する<i>実際の</i>パスを返します。
      *
-     * <p>For example, if <tt>path</tt> is equal to <tt>/index.html</tt>,
-     * this method will return the absolute file path on the server's
-     * filesystem to which a request of the form
-     * <tt>http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/index.html</tt>
-     * would be mapped, where <tt>&lt;contextPath&gt;</tt> corresponds to the
-     * context path of this ServletContext.
+     * <p>例えば、<tt>path</tt>がリクエストからの形式が<tt>http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/index.html</tt>
+     * (<tt>&lt;contextPath&gt;</tt>はこのServletContextに対応するコンテキストパス)にマップされている<tt>/index.html</tt>と等しいとき、
+     * このメソッドはサーバーのファイルシステムの絶対ファイルパスを返すでしょう。
      *
-     * <p>The real path returned will be in a form
-     * appropriate to the computer and operating system on
-     * which the servlet container is running, including the
-     * proper path separators.
+     * <p>返される実際のパスは適切なパス区切り文字を含め、
+     * サーブレットコンテナが実行されているコンピュータとオペレーティングシステムに適した形式になります。
+     * 
+     * <p>アプリケーションの<tt>/WEB-INF/lib</tt>ディレクトリ内にバンドルされるJARファイル内の<tt>/META-INF/resources</tt>
+     * に含まれるリソースはコンテナが含まれるJARファイルをアンパックしたときにのみ考慮される必要があります。
+     * その場合は、パスとしてアンパックされた位置が返されるべきです。
      *
-     * <p>Resources inside the <tt>/META-INF/resources</tt>
-     * directories of JAR files bundled in the application's
-     * <tt>/WEB-INF/lib</tt> directory must be considered only if the
-     * container has unpacked them from their containing JAR file, in
-     * which case the path to the unpacked location must be returned.
+     * <p>サーブレットコンテナが与えられた与えられた<i>仮想の</i>パスを<i>実際の</i>パスに変換できなかった場合は<code>null</code>を返します。
      *
-     * <p>This method returns <code>null</code> if the servlet container
-     * is unable to translate the given <i>virtual</i> path to a
-     * <i>real</i> path.
+     * @param path <i>実際の</i>パスに変換する<i>仮想の</i>パス
      *
-     * @param path the <i>virtual</i> path to be translated to a
-     * <i>real</i> path
-     *
-     * @return the <i>real</i> path, or <tt>null</tt> if the
-     * translation cannot be performed
+     * @return <i>実際の</i>パス、変換が動作しない場合は<tt>null</tt>
      */
     public String getRealPath(String path);
 
 
     /**
-     * Returns the name and version of the servlet container on which
-     * the servlet is running.
+     * サーブレットが動作しているサーブレットコンテナの名前とバージョンを返します。
      *
-     * <p>The form of the returned string is
-     * <i>servername</i>/<i>versionnumber</i>.
-     * For example, the JavaServer Web Development Kit may return the string
-     * <code>JavaServer Web Dev Kit/1.0</code>.
+     * <p>返される文字列の形式は<i>servername</i>/<i>versionnumber</i>です。
+     * 例えば、JavaServer Web Development Kitは<code>JavaServer Web Dev Kit/1.0</code>を返します。
      *
-     * <p>The servlet container may return other optional information
-     * after the primary string in parentheses, for example,
-     * <code>JavaServer Web Dev Kit/1.0 (JDK 1.1.6; Windows NT 4.0 x86)</code>.
+     * <p>サーブレットコンテナはプライマリ文字列の後ろのカッコ内に<code>JavaServer Web Dev Kit/1.0 (JDK 1.1.6; Windows NT 4.0 x86)</code>
+     * のように追加の情報を出力するかもしれません。
      *
      *
-     * @return 		a <code>String</code> containing at least the
-     *			servlet container name and version number
+     * @return 		最低でもサーブレットコンテナの名前とバージョン番号が含まれる<code>String</code>
      */
     public String getServerInfo();
 
