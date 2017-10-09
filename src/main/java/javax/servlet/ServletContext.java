@@ -308,30 +308,18 @@ public interface ServletContext {
 
 
     /**
+     * 指定されたパスにあるリソースのラッパーとして機能する{@link RequestDispatcher}のオブジェクトを返します。 
+     * <code>RequestDispatcher</code>オブジェクトを使用することでリクエストを別のリソースに転送したり、リソースをレスポンスに含めることができます。
+     * リソースは動的なものでも静的なものでもかまいません。
+     * 
+     * <p>指定されたパス名は<tt>/</tt>で始まる必要があり、現在のコンテキストルートからの相対パスとして解釈されます。
+     * 
+     * <p>このメソッドは<code>ServletContext</code>が<code>RequestDispatcher</code>を返せなかった場合は<code>null</code>を返します。
      *
-     * Returns a {@link RequestDispatcher} object that acts
-     * as a wrapper for the resource located at the given path.
-     * A <code>RequestDispatcher</code> object can be used to forward
-     * a request to the resource or to include the resource in a response.
-     * The resource can be dynamic or static.
+     * @param path 	リソースのパス名を示す<code>String</code>
      *
-     * <p>The pathname must begin with a <tt>/</tt> and is interpreted as
-     * relative to the current context root.  Use <code>getContext</code>
-     * to obtain a <code>RequestDispatcher</code> for resources in foreign
-     * contexts.
-     *
-     * <p>This method returns <code>null</code> if the
-     * <code>ServletContext</code> cannot return a
-     * <code>RequestDispatcher</code>.
-     *
-     * @param path 	a <code>String</code> specifying the pathname
-     *			to the resource
-     *
-     * @return 		a <code>RequestDispatcher</code> object
-     *			that acts as a wrapper for the resource
-     *			at the specified path, or <code>null</code> if
-     *			the <code>ServletContext</code> cannot return
-     *			a <code>RequestDispatcher</code>
+     * @return 		指定されたパスにあるリソースのラッパーとして機能する<code>RequestDispatcher</code>のオブジェクト、
+     *              <code>ServletContext</code>が<code>RequestDispatcher</code>を返せなかった場合は<code>null</code>
      *
      * @see 		RequestDispatcher
      * @see 		ServletContext#getContext
