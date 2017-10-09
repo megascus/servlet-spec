@@ -252,52 +252,35 @@ public interface ServletContext {
 
 
     /**
-     * Returns a URL to the resource that is mapped to the given path.
+     * 与えられたパスにマップされたリソースへのURLを返します。
      *
-     * <p>The path must begin with a <tt>/</tt> and is interpreted
-     * as relative to the current context root,
-     * or relative to the <tt>/META-INF/resources</tt> directory
-     * of a JAR file inside the web application's <tt>/WEB-INF/lib</tt>
-     * directory.
-     * This method will first search the document root of the
-     * web application for the requested resource, before searching
-     * any of the JAR files inside <tt>/WEB-INF/lib</tt>.
-     * The order in which the JAR files inside <tt>/WEB-INF/lib</tt>
-     * are searched is undefined.
+     * <p>パスは<tt>/</tt>で始まり、現在のコンテキストルートからの相対パスとして解決できるか
+     * ウェブアプリケーションの<tt>/WEB-INF/lib</tt>ディレクトリ内のJARファイルの<tt>/META-INF/resources</tt>ディレクトリからの相対パス
+     * である必要があります。
+     * このメソッドはリクエストされたリソースを探すのに、最初にウェブアプリケーションのドキュメントルートを参照します。
+     * 次に<tt>/WEB-INF/lib</tt>の中のJARファイルの中身を参照します。
+     * <tt>/WEB-INF/lib</tt>の中のJARファイルを探す順番は未定義です。
+     * 
+     * <p>このメソッドを使用するとサーブレットコンテナは任意のソースからサーブレットでリソースを使用できるようになります。
+     * リソースは、ローカルやリモートのファイルシステム、データベース、<code>.war</code>ファイル内に配置できます。
      *
-     * <p>This method allows the servlet container to make a resource
-     * available to servlets from any source. Resources
-     * can be located on a local or remote
-     * file system, in a database, or in a <code>.war</code> file.
+     * <p>サーブレットコンテナはリソースにアクセスするために必要なURLハンドラや<code>URLConnection</code>オブジェクトを実装する必要があります。
      *
-     * <p>The servlet container must implement the URL handlers
-     * and <code>URLConnection</code> objects that are necessary
-     * to access the resource.
+     * <p>このメソッドはパスにリソースがマップされていない場合は<code>null</code>を返します。
      *
-     * <p>This method returns <code>null</code>
-     * if no resource is mapped to the pathname.
+     * <p>一部のコンテナではURLクラスのメソッドを使用することでこのメ​​ソッドから返されたURLに書き込むことができます。
      *
-     * <p>Some containers may allow writing to the URL returned by
-     * this method using the methods of the URL class.
+     * <p>リソースの内容が直接返されるため、<code>.jsp</code>ページを要求するとJSPのソースコードが返されることに注意してください。
+     * 実行結果をインクルードするには代わりに<code>RequestDispatcher</code>を使用します。
      *
-     * <p>The resource content is returned directly, so be aware that
-     * requesting a <code>.jsp</code> page returns the JSP source code.
-     * Use a <code>RequestDispatcher</code> instead to include results of
-     * an execution.
+     * <p>このメソッドはクラスローダーをベースにリソースを探す<code>java.lang.Class.getResource</code>とは目的が違います。
+     * このメソッドはクラスローダーを使用しません。
      *
-     * <p>This method has a different purpose than
-     * <code>java.lang.Class.getResource</code>,
-     * which looks up resources based on a class loader. This
-     * method does not use class loaders.
+     * @param path リソースのパスを示す<code>String</code>
      *
-     * @param path a <code>String</code> specifying
-     * the path to the resource
+     * @return パスの位置のリソース、そのパスにリソースが存在しない場合は<code>null</code>
      *
-     * @return the resource located at the named path,
-     * or <code>null</code> if there is no resource at that path
-     *
-     * @exception MalformedURLException if the pathname is not given in
-     * the correct form
+     * @exception MalformedURLException パスが正しい形式でなかった
      */
     public URL getResource(String path) throws MalformedURLException;
 
