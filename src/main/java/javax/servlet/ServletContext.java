@@ -208,22 +208,18 @@ public interface ServletContext {
 
 
     /**
-     * Returns a directory-like listing of all the paths to resources
-     * within the web application whose longest sub-path matches the
-     * supplied path argument.
+     * 最も長いサブパスが指定された引数のパスと一致するウェブアプリケーション内のリソースへのディレクトリに似た形式ですべてのパスのリストを返します。
+
      *
-     * <p>Paths indicating subdirectory paths end with a <tt>/</tt>.
+     * <p>サブディレクトリパスを示すパスは<tt>/</tt>で終わります。
      *
-     * <p>The returned paths are all relative to the root of the web
-     * application, or relative to the <tt>/META-INF/resources</tt>
-     * directory of a JAR file inside the web application's
-     * <tt>/WEB-INF/lib</tt> directory, and have a leading <tt>/</tt>.
+     * <p>返されるパスは<tt>/</tt>から始まる、ウェブアプリケーションのルートからの相対パス、
+     * もしくはウェブアプリケーションの<tt>/WEB-INF/lib</tt>ディレクトリ内のJARファイルの<tt>/META-INF/resources</tt>ディレクトリからの相対パスです。
      *
-     * <p>The returned set is not backed by the {@code ServletContext} object,
-     * so changes in the returned set are not reflected in the
-     * {@code ServletContext} object, and vice-versa.</p>
+     * <p>返されたSetは{@code ServletContext}オブジェクトによって追跡されないため、
+     * 返されたSetの変更は{@code ServletContext}オブジェクトに反映されず、その逆もそうです。</p>
      *
-     * <p>For example, for a web application containing:
+     * <p>例として、ウェブアプリケーションが以下のとおりファイルを含むとします。
      *
      * <pre>{@code
      *   /welcome.html
@@ -237,15 +233,16 @@ public interface ServletContext {
      *   /WEB-INF/lib/catalog.jar!/META-INF/resources/catalog/moreOffers/books.html
      * }</pre>
      *
-     * <tt>getResourcePaths("/")</tt> would return
-     * <tt>{"/welcome.html", "/catalog/", "/customer/", "/WEB-INF/"}</tt>,
-     * and <tt>getResourcePaths("/catalog/")</tt> would return
+     * <tt>getResourcePaths("/")</tt>は
+     * <tt>{"/welcome.html", "/catalog/", "/customer/", "/WEB-INF/"}</tt>を返し、
+     * <tt>getResourcePaths("/catalog/")</tt>は
      * <tt>{"/catalog/index.html", "/catalog/products.html",
-     * "/catalog/offers/", "/catalog/moreOffers/"}</tt>.
+     * "/catalog/offers/", "/catalog/moreOffers/"}</tt>を返すでしょう。
      *
-     * @param path the partial path used to match the resources,
-     * which must start with a <tt>/</tt>
-     * @return a Set containing the directory listing, or null if there
+     * @param path <tt>/</tt>から始まる必要のあるマッチしたリソースで使用されている部分的なパス
+     * 
+     * @return ディレクトリ内を一覧化したものを含むSet、ウェうアプリケーション内に指定されたパスで始まるリソースが存在しない場合はnull
+     * a Set containing the directory listing, or null if there
      * are no resources in the web application whose path
      * begins with the supplied path.
      *
