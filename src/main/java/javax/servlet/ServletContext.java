@@ -69,25 +69,17 @@ import java.util.Set;
 import javax.servlet.descriptor.JspConfigDescriptor;
 
 /**
- * Defines a set of methods that a servlet uses to communicate with its
- * servlet container, for example, to get the MIME type of a file,
- * dispatch requests, or write to a log file.
- *
- * <p>There is one context per "web application" per Java Virtual Machine.  (A
- * "web application" is a collection of servlets and content installed under a
- * specific subset of the server's URL namespace such as <code>/catalog</code>
- * and possibly installed via a <code>.war</code> file.)
- *
- * <p>In the case of a web
- * application marked "distributed" in its deployment descriptor, there will
- * be one context instance for each virtual machine.  In this situation, the
- * context cannot be used as a location to share global information (because
- * the information won't be truly global).  Use an external resource like
- * a database instead.
- *
- * <p>The <code>ServletContext</code> object is contained within
- * the {@link ServletConfig} object, which the Web server provides the
- * servlet when the servlet is initialized.
+ * サーブレットがサーブレットコンテナと通信するために使用する一連のメソッドを定義します。
+ * 例として、ファイルのMIMEタイプを取得したり、要求をディスパッチしたり、ログファイルに書き込んだりすることができます。
+ * 
+ * <p>Java仮想マシンごとの"ウェブアプリケーション"ごとに1つのコンテキストがあります。
+ * ("ウェブアプリケーション"は、<code>/catalog</code>などのようにサーバーのURL名前空間の特定のサブセットの下に<code>.war</code>ファイル経由でインストールことができるサーブレットとコンテンツの集合です。)
+ * 
+ * <p>デプロイメントディスクリプタに"distributed"とつけられたウェブアプリケーションの場合は、各仮想マシンごとに1つのコンテキストインスタンスが存在します。
+ * この状況では、グローバルな情報を共有するための場所として<code>ServletContext</code>を使用することはできません（その情報は真にグローバルではない方が良いため）。
+ * 代わりにデータベースのような外部リソースを使用してください。
+ * 
+ * <p><code>ServletContext</code>オブジェクトは{@link ServletConfig}オブジェクト内に含まれており、サーブレットが初期化されたときにウェブサーバーがそれらを提供します。
  *
  * @author 	Various
  *
@@ -98,47 +90,34 @@ import javax.servlet.descriptor.JspConfigDescriptor;
 public interface ServletContext {
 
     /**
-     * The name of the <tt>ServletContext</tt> attribute which stores
-     * the private temporary directory (of type <tt>java.io.File</tt>)
-     * provided by the servlet container for the <tt>ServletContext</tt>
+     * <tt>ServletContext</tt>のためにサーブレットコンテナによって提供される(<tt>java.io.File</tt>e型の)プライベートテンポラリディレクトリを格納する<tt>ServletContext</tt>の属性の名です。
      */
     public static final String TEMPDIR = "javax.servlet.context.tempdir";
 
 
     /**
-     * The name of the <code>ServletContext</code> attribute whose value
-     * (of type <code>java.util.List&lt;java.lang.String&gt;</code>) contains
-     * the list of names of JAR files in <code>WEB-INF/lib</code> ordered by
-     * their web fragment names (with possible exclusions if
-     * <code>&lt;absolute-ordering&gt;</code> without any
-     * <code>&lt;others/&gt;</code> is being used), or null if no
-     * absolute or relative ordering has been specified
+     * ウェブフラグメント名で順序付けられた(なし<code>&lt;others/&gt;</code>が使用されていない<code>&lt;absolute-ordering&gt;</code>の場合は除外されることがある)
+     * <code>WEB-INF/lib</code>内のJARファイルの名前のリストを含む(<code>java.util.List&lt;java.lang.String&gt;</code>型の)JARファイルの名前のリストを持つ<code>ServletContext</code>の属性の名前です。
+     * 絶対順序または相対順序が指定されていない場合はnullです。
      */
     public static final String ORDERED_LIBS =
         "javax.servlet.context.orderedLibs";
 
 
     /**
-     * Returns the context path of the web application.
+     * このウェブアプリケーションのコンテキストパスを返します。
      *
-     * <p>The context path is the portion of the request URI that is used
-     * to select the context of the request. The context path always comes
-     * first in a request URI. If this context is the "root" context
-     * rooted at the base of the Web server's URL name space, this path
-     * will be an empty string. Otherwise, if the context is not rooted at
-     * the root of the server's name space, the path starts with a /
-     * character but does not end with a / character.
+     * <p>コンテキストパスはリクエストのコンテキストを選択するために使用されるリクエストURIの一部分です。
+     * コンテキストパスは、常にリクエストURIの最初に来ます。
+     * このコンテキストがWebサーバーのURL名前空間の基底にマッピングされる"ルート"コンテキストの場合このパスは空の文字列になります。
+     * それ以外の場合、コンテキストがサーバーの名前空間の基底にマッピングされていない場合、パスは"/"で始まりますが"/"で終わることはありません。
+     * 
+     * <p>サーブレットコンテナは一つのコンテキストを複数のコンテキストパスにて一致させることができます。
+     * このような場合、{@link javax.servlet.http.HttpServletRequest#getContextPath()}はリクエストによって使用される実際のコンテキストパスを返し、
+     * このメソッドによって返されるパスとは異なる場合があります。
+     * このメソッドによって返されるコンテキストパスはアプリケーションのプライマリもしくは優先コンテキストパスと見なす必要があります。
      *
-     * <p>It is possible that a servlet container may match a context by
-     * more than one context path. In such cases the
-     * {@link javax.servlet.http.HttpServletRequest#getContextPath()}
-     * will return the actual context path used by the request and it may
-     * differ from the path returned by this method.
-     * The context path returned by this method should be considered as the
-     * prime or preferred context path of the application.
-     *
-     * @return The context path of the web application, or "" for the
-     * root context
+     * @return ウェブアプリケーションのコンテキスパス、ルートコンテキストの場合は""
      *
      * @see javax.servlet.http.HttpServletRequest#getContextPath()
      *
@@ -148,25 +127,18 @@ public interface ServletContext {
 
 
     /**
-     * Returns a <code>ServletContext</code> object that
-     * corresponds to a specified URL on the server.
+     * サーバー上の指定されたURLに対応する<code>ServletContext</code>オブジェクトを返します。
+     * 
+     * <p>このメソッドは、サーブレットがサーバーのさまざまな部分のコンテキストにアクセスできるようにし、
+     * 必要に応じてコンテキストから{@link RequestDispatcher}オブジェクトを取得できるようにします。
+     * 与えられたパスは<tt>/</tt>で始まる必要があり、
+     * サーバーのドキュメントルートからの相対パスとして解釈され、
+     * このコンテナでホストされている他のWebアプリケーションのコンテキストルートと照合されます。
+     * 
+     * <p>セキュリティを意識した環境ではサーブレットコンテナは指定されたURLに対して<code>null</code>を返すことがあります。
      *
-     * <p>This method allows servlets to gain
-     * access to the context for various parts of the server, and as
-     * needed obtain {@link RequestDispatcher} objects from the context.
-     * The given path must be begin with <tt>/</tt>, is interpreted relative
-     * to the server's document root and is matched against the context
-     * roots of other web applications hosted on this container.
-     *
-     * <p>In a security conscious environment, the servlet container may
-     * return <code>null</code> for a given URL.
-     *
-     * @param uripath 	a <code>String</code> specifying the context path of
-     *			another web application in the container.
-     * @return		the <code>ServletContext</code> object that
-     *			corresponds to the named URL, or null if either
-			none exists or the container wishes to restrict
-     * 			this access.
+     * @param uripath 	このコンテナ内のほかのウェブアプリケーションのコンテキストパスを示す<code>String</code>
+     * @return		URLの名前に対応する<code>ServletContext</code>のオブジェクト、存在しないかコンテナがアクセス制限を臨んだ場合はnull
      *
      * @see 		RequestDispatcher
      */
@@ -174,9 +146,8 @@ public interface ServletContext {
 
 
     /**
-     * Returns the major version of the Servlet API that this
-     * servlet container supports. All implementations that comply
-     * with Version 4.0 must have this method return the integer 4.
+     * このサーブレットコンテナがサポートするServlet APIのメジャーバージョンを返します。
+     * バージョン4.0に準拠するすべての実装でこのメソッドは4を返す必要があります。
      *
      * @return 4
      */
@@ -184,9 +155,8 @@ public interface ServletContext {
 
 
     /**
-     * Returns the minor version of the Servlet API that this
-     * servlet container supports. All implementations that comply
-     * with Version 4.0 must have this method return the integer 0.
+     * このサーブレットコンテナがサポートするServlet APIのマイナーバージョンを返します。
+     * バージョン4.0に準拠するすべての実装でこのメソッドは0を返す必要があります。
      *
      * @return 0
      */
@@ -194,21 +164,15 @@ public interface ServletContext {
 
 
     /**
-     * Gets the major version of the Servlet specification that the
-     * application represented by this ServletContext is based on.
+     * このServletContextが表すアプリケーションが基づいているServlet仕様のメジャーバージョンを取得します。
+     * 
+     * <p>返される値はサーブレットコンテナがサポートするサーブレット仕様のメジャーバージョンを返す{@link #getMajorVersion}とは異なる場合があります。
      *
-     * <p>The value returned may be different from {@link #getMajorVersion},
-     * which returns the major version of the Servlet specification
-     * supported by the Servlet container.
+     * @return このServletContextが表すアプリケーションが基づいているServlet仕様のメジャーバージョン
      *
-     * @return the major version of the Servlet specification that the
-     * application represented by this ServletContext is based on
-     *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -216,21 +180,15 @@ public interface ServletContext {
 
 
     /**
-     * Gets the minor version of the Servlet specification that the
-     * application represented by this ServletContext is based on.
+     * このServletContextが表すアプリケーションが基づいているServlet仕様のマイナーバージョンを取得します。
+     * 
+     * <p>返される値はサーブレットコンテナがサポートするサーブレット仕様のマイナーバージョンを返す{@link #getMinorVersion}とは異なる場合があります。
      *
-     * <p>The value returned may be different from {@link #getMinorVersion},
-     * which returns the minor version of the Servlet specification
-     * supported by the Servlet container.
+     * @return このServletContextが表すアプリケーションが基づいているServlet仕様のマイナーバージョン
      *
-     * @return the minor version of the Servlet specification that the
-     * application represented by this ServletContext is based on
-     *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -238,15 +196,13 @@ public interface ServletContext {
 
 
     /**
-     * Returns the MIME type of the specified file, or <code>null</code> if
-     * the MIME type is not known. The MIME type is determined
-     * by the configuration of the servlet container, and may be specified
-     * in a web application deployment descriptor. Common MIME
-     * types include <code>text/html</code> and <code>image/gif</code>.
+     * 指定されたファイルのMIMEタイプを返します。MIMEタイプが不明な場合はnullを返します。
+     * MIMEタイプはサーブレットコンテナの設定とアプリケーションのデプロイメントディスクリプタでの指定で決められます。
+     * 一般的なMIMEタイプとしては<code>text/html</code>や<code>image/gif</code>を含みます。
      *
-     * @param file a <code>String</code> specifying the name of a file
+     * @param file ファイルの名前を示す<code>String</code>
      *
-     * @return a <code>String</code> specifying the file's MIME type
+     * @return ファイルのMIMEタイプを示す<code>String</code>
      */
     public String getMimeType(String file);
 
