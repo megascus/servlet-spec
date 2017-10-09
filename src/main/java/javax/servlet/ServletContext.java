@@ -286,36 +286,23 @@ public interface ServletContext {
 
 
     /**
-     * Returns the resource located at the named path as
-     * an <code>InputStream</code> object.
+     * パスの所在地のリソースを<code>InputStream</code>オブジェクトとして返します。
      *
-     * <p>The data in the <code>InputStream</code> can be
-     * of any type or length. The path must be specified according
-     * to the rules given in <code>getResource</code>.
-     * This method returns <code>null</code> if no resource exists at
-     * the specified path.
+     * <p><code>InputStream</code>内のデータはどのようなタイプでも長さでもできます。
+     * パスは<code>getResource</code>と同じルールに従って指定される必要があります。
+     * このメソッドは指定されたパスにリソースが存在しない場合は<code>null</code>を返します。
      *
-     * <p>Meta-information such as content length and content type
-     * that is available via <code>getResource</code>
-     * method is lost when using this method.
+     * <p><code>getResource</code>メソッドで使用可能なコンテンツタイプやコンテンツの長さなどのようなメタ情報はこのメソッドを使用すると失われます。
      *
-     * <p>The servlet container must implement the URL handlers
-     * and <code>URLConnection</code> objects necessary to access
-     * the resource.
+     * <p>サーブレットコンテナはリソースにアクセスするために必要なURLハンドラや<code>URLConnection</code>オブジェクトを実装する必要があります。
      *
-     * <p>This method is different from
-     * <code>java.lang.Class.getResourceAsStream</code>,
-     * which uses a class loader. This method allows servlet containers
-     * to make a resource available
-     * to a servlet from any location, without using a class loader.
+     * <p>このメソッドはクラスローダーを使用する<code>java.lang.Class.getResourceAsStream</code>とは違います。
+     * このメソッドはサーブレットコンテナにクラスローダーを使用せずに任意の場所からサーブレットでリソースを利用できるようにします。
      *
      *
-     * @param path 	a <code>String</code> specifying the path
-     *			to the resource
+     * @param path 	リソースのパスを示す<code>String</code>
      *
-     * @return 		the <code>InputStream</code> returned to the
-     *			servlet, or <code>null</code> if no resource
-     *			exists at the specified path
+     * @return 		サーブレットに返す<code>InputStream</code>、指定されたパスにリソースが存在しない場合は<code>null</code>
      */
     public InputStream getResourceAsStream(String path);
 
