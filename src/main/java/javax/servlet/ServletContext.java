@@ -348,55 +348,47 @@ public interface ServletContext {
 
 
     /**
-     * @deprecated	As of Java Servlet API 2.1, with no direct replacement.
+     * @deprecated	Java Servlet API 2.1以降での直接の代替手段はありません。
      *
-     * <p>This method was originally defined to retrieve a servlet
-     * from a <code>ServletContext</code>. In this version, this method
-     * always returns <code>null</code> and remains only to preserve
-     * binary compatibility. This method will be permanently removed
-     * in a future version of the Java Servlet API.
+     * <p>このメソッドはもともとは<code>ServletContext</code>からサーブレットを受け取るために定義されていました。
+     * このバージョンでは、このメソッドは必ず<code>null</code>を返し、バイナリ互換性のためにのみ残されています。
+     * このメソッドはJava Servlet APIの未来のバージョンでは完全に削除される予定です。
      *
-     * <p>In lieu of this method, servlets can share information using the
+     * <p>このメソッドの代わりに、サーブレットは<code>ServletContext</code>クラスを利用して情報を共有し、
+     * 一般的なサーブレットでないクラスのメソッドを呼び出すことで共有したビジネスロジックを実行できます。
+     * In lieu of this method, servlets can share information using the
      * <code>ServletContext</code> class and can perform shared business logic
      * by invoking methods on common non-servlet classes.
      *
-     * @param name the servlet name
-     * @return the {@code javax.servlet.Servlet Servlet} with the given name
-     * @throws ServletException if an exception has occurred that interfaces
-     *                          with servlet's normal operation
+     * @param name サーブレットの名前
+     * @return 与えられた名前の {@code javax.servlet.Servlet Servlet}
+     * @throws ServletException サーブレットの通常の処理で例外が発生した
      */
     @Deprecated
     public Servlet getServlet(String name) throws ServletException;
 
 
     /**
-     * @deprecated	As of Java Servlet API 2.0, with no replacement.
+     * @deprecated	Java Servlet API 2.0以降での代替手段はありません。
      *
-     * <p>This method was originally defined to return an
-     * <code>Enumeration</code> of all the servlets known to this servlet
-     * context.
-     * In this version, this method always returns an empty enumeration and
-     * remains only to preserve binary compatibility. This method
-     * will be permanently removed in a future version of the Java
-     * Servlet API.
+     * <p>このメソッドはもともとは<code>ServletContext</code>に登録されたすべてのサーブレットの<code>Enumeration</code>を返すものとして定義されていました。
+     * このバージョンでは、このメソッドは必ず空の<code>Enumeration</code>を返し、バイナリ互換性のためにのみ残されています。
+     * このメソッドはJava Servlet APIの未来のバージョンでは完全に削除される予定です。
      *
-     * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet}
+     * @return {@code javax.servlet.Servlet Servlet}の<code>Enumeration</code>
      */
     @Deprecated
     public Enumeration<Servlet> getServlets();
 
 
     /**
-     * @deprecated	As of Java Servlet API 2.1, with no replacement.
+     * @deprecated	Java Servlet API 2.1以降での代替手段はありません。
      *
-     * <p>This method was originally defined to return an
-     * <code>Enumeration</code>
-     * of all the servlet names known to this context. In this version,
-     * this method always returns an empty <code>Enumeration</code> and
-     * remains only to preserve binary compatibility. This method will
-     * be permanently removed in a future version of the Java Servlet API.
+     * <p>このメソッドはもともとは<code>ServletContext</code>に登録されたすべてのサーブレット名前の<code>Enumeration</code>を返すものとして定義されていました。
+     * このバージョンでは、このメソッドは必ず空の<code>Enumeration</code>を返し、バイナリ互換性のためにのみ残されています。
+     * このメソッドはJava Servlet APIの未来のバージョンでは完全に削除される予定です。
      *
-     * @return an <code>Enumeration</code> of {@code javax.servlet.Servlet Servlet} names
+     * @return {@code javax.servlet.Servlet Servlet}の名前の<code>Enumeration</code>
      */
     @Deprecated
     public Enumeration<String> getServletNames();
