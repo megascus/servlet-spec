@@ -1443,11 +1443,9 @@ public interface ServletContext {
 
 
     /**
-     * Gets the session timeout in minutes that are supported by default for
-     * this <tt>ServletContext</tt>.
+     * この<tt>ServletContext</tt>でデフォルトでサポートするセッションがタイムアウトするまでの分を取得します。
      *
-     * @return the session timeout in minutes that are supported by default for
-     * this <tt>ServletContext</tt>
+     * @return この<tt>ServletContext</tt>でデフォルトでサポートするセッションがタイムアウトするまでの分
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -1459,9 +1457,9 @@ public interface ServletContext {
 
 
     /**
-     * Sets the session timeout in minutes for this ServletContext.
+     * このServletContextにセッションがタイムアウトするまでの分を設定します。
      *
-     * @param sessionTimeout session timeout in minutes
+     * @param sessionTimeout セッションがタイムアウトする分
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -1475,14 +1473,10 @@ public interface ServletContext {
 
 
     /**
-     * Gets the request character encoding that are supported by default for
-     * this <tt>ServletContext</tt>. This method returns null if no request
-     * encoding character encoding has been specified in deployment descriptor
-     * or container specific configuration (for all web applications in the
-     * container).
+     * この<tt>ServletContext</tt>でデフォルトでサポートするレスポンスの文字エンコーディングを取得します。
+     * このメソッドはデプロイメントディスクリプタやコンテナ固有の(コンテナ上のすべてのアプリケーション向けの)設定でリクエストの文字エンコーディングが指定されていない場合はnullを返します。
      *
-     * @return the request character encoding that are supported by default for
-     * this <tt>ServletContext</tt>
+     * @returnこの<tt>ServletContext</tt>でデフォルトでサポートするリクエストの文字エンコーディング
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -1510,14 +1504,10 @@ public interface ServletContext {
 
 
     /**
-     * Gets the response character encoding that are supported by default for
-     * this <tt>ServletContext</tt>. This method returns null if no response
-     * encoding character encoding has been specified in deployment descriptor
-     * or container specific configuration (for all web applications in the
-     * container).
+     * この<tt>ServletContext</tt>でデフォルトでサポートするレスポンスの文字エンコーディングを取得します。
+     * このメソッドはデプロイメントディスクリプタやコンテナ固有の(コンテナ上のすべてのアプリケーション向けの)設定でレスポンスの文字エンコーディングが指定されていない場合はnullを返します。
      *
-     * @return the request character encoding that are supported by default for
-     * this <tt>ServletContext</tt>
+     * @return この<tt>ServletContext</tt>でデフォルトでサポートするレスポンスの文字エンコーディング
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
