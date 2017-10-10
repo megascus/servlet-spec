@@ -1394,22 +1394,18 @@ public interface ServletContext {
 
 
     /**
-     * Declares role names that are tested using <code>isUserInRole</code>.
+     * <code>isUserInRole</code>での検証に使用されるロール名を定義します。
      *
-     * <p>Roles that are implicitly declared as a result of their use within
-     * the {@link ServletRegistration.Dynamic#setServletSecurity
-     * setServletSecurity} or {@link ServletRegistration.Dynamic#setRunAsRole
-     * setRunAsRole} methods of the {@link ServletRegistration} interface need
-     * not be declared.
+     * <p>{@link ServletRegistration}の{@link ServletRegistration.Dynamic#setServletSecurity setServletSecurity}メソッドや、
+     * {@link ServletRegistration.Dynamic#setRunAsRole setRunAsRole}メソッドの呼び出しの結果、暗黙的に定義されているロールを定義する必要はありません。
      *
-     * @param roleNames the role names being declared
+     * @param roleNames 定義されるロール名
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
      * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
-     * @throws IllegalArgumentException if any of the argument roleNames is
-     * null or the empty string
+     * @throws IllegalArgumentException 引数のロール名のいずれかがnullかからの文字列だった
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
