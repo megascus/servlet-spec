@@ -628,17 +628,14 @@ public interface ServletContext {
      * ServletContext already contains a complete ServletRegistration for
      * a servlet with the given <tt>servletName</tt>
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
      * @throws IllegalArgumentException if <code>servletName</code> is null
      * or an empty String
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -668,14 +665,11 @@ public interface ServletContext {
      * instance has already been registered with this or another
      * ServletContext in the same container
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @throws IllegalArgumentException if the given servlet instance
      * implements {@link SingleThreadModel}, or <code>servletName</code> is null
@@ -718,17 +712,14 @@ public interface ServletContext {
      * ServletContext already contains a complete ServletRegistration for
      * the given <tt>servletName</tt>
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
      * @throws IllegalArgumentException if <code>servletName</code> is null
      * or an empty String
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -756,17 +747,14 @@ public interface ServletContext {
      * ServletContext already contains a complete ServletRegistration for
      * a servlet with the given <tt>servletName</tt>
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
      * @throws IllegalArgumentException if <code>servletName</code> is null
      * or an empty String
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 4.0
      */
@@ -803,11 +791,9 @@ public interface ServletContext {
      * @throws ServletException if the given <tt>clazz</tt> fails to be
      * instantiated
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -823,11 +809,9 @@ public interface ServletContext {
      * servlet with the given <tt>servletName</tt>, or null if no
      * ServletRegistration exists under that name
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @param servletName the name of a servlet
      * @since Servlet 3.0
@@ -853,11 +837,9 @@ public interface ServletContext {
      * objects corresponding to all servlets currently registered with this
      * ServletContext
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -893,17 +875,14 @@ public interface ServletContext {
      * ServletContext already contains a complete FilterRegistration for
      * a filter with the given <tt>filterName</tt>
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
      * @throws IllegalArgumentException if <code>filterName</code> is null or
      * an empty String
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -933,17 +912,14 @@ public interface ServletContext {
      * instance has already been registered with this or another
      * ServletContext in the same container
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
      * @throws IllegalArgumentException if <code>filterName</code> is null or
      * an empty String
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -977,17 +953,14 @@ public interface ServletContext {
      * ServletContext already contains a complete FilterRegistration for a
      * filter with the given <tt>filterName</tt>
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
      * @throws IllegalArgumentException if <code>filterName</code> is null or
      * an empty String
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1018,11 +991,9 @@ public interface ServletContext {
      * @throws ServletException if the given <tt>clazz</tt> fails to be
      * instantiated
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1039,11 +1010,9 @@ public interface ServletContext {
      * filter with the given <tt>filterName</tt>, or null if no
      * FilterRegistration exists under that name
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1067,11 +1036,9 @@ public interface ServletContext {
      * objects corresponding to all filters currently registered with this
      * ServletContext
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1090,11 +1057,9 @@ public interface ServletContext {
      * various properties of the session tracking cookies created on
      * behalf of this <tt>ServletContext</tt> may be configured
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1112,14 +1077,11 @@ public interface ServletContext {
      * @param sessionTrackingModes the set of session tracking modes to
      * become effective for this <tt>ServletContext</tt>
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @throws IllegalArgumentException if <tt>sessionTrackingModes</tt>
      * specifies a combination of <tt>SessionTrackingMode.SSL</tt> with a
@@ -1143,11 +1105,9 @@ public interface ServletContext {
      * @return set of the session tracking modes supported by default for
      * this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1168,11 +1128,9 @@ public interface ServletContext {
      * @return set of the session tracking modes in effect for this
      * <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1224,14 +1182,11 @@ public interface ServletContext {
      * {@link ServletContextListener} and this ServletContext was not
      * passed to {@link ServletContainerInitializer#onStartup}
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1273,14 +1228,11 @@ public interface ServletContext {
      * of {@link ServletContextListener} and this ServletContext was not
      * passed to {@link ServletContainerInitializer#onStartup}
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1327,14 +1279,11 @@ public interface ServletContext {
      * {@link ServletContextListener} and this ServletContext was not passed
      * to {@link ServletContainerInitializer#onStartup}
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -1374,11 +1323,9 @@ public interface ServletContext {
      * @throws ServletException if the given <tt>clazz</tt> fails to be
      * instantiated
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @throws IllegalArgumentException if the specified EventListener class
      * does not implement any of the
@@ -1409,11 +1356,9 @@ public interface ServletContext {
      * represented by this ServletContext, or null if no such configuration
      * exists
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @see javax.servlet.descriptor.JspConfigDescriptor
      *
@@ -1436,11 +1381,9 @@ public interface ServletContext {
      * @return the class loader of the web application represented by this
      * ServletContext
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @throws SecurityException if a security manager denies access to
      * the requested class loader
@@ -1461,17 +1404,14 @@ public interface ServletContext {
      *
      * @param roleNames the role names being declared
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @throws IllegalArgumentException if any of the argument roleNames is
      * null or the empty string
      *
-     * @throws IllegalStateException if the ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
      * @since Servlet 3.0
      */
@@ -1493,11 +1433,9 @@ public interface ServletContext {
      * @return a <code>String</code> containing the configuration name of the
      * logical host on which the servlet context is deployed.
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.1
      */
@@ -1511,11 +1449,9 @@ public interface ServletContext {
      * @return the session timeout in minutes that are supported by default for
      * this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 4.0
      */
@@ -1527,14 +1463,11 @@ public interface ServletContext {
      *
      * @param sessionTimeout session timeout in minutes
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 4.0
      */
@@ -1551,11 +1484,9 @@ public interface ServletContext {
      * @return the request character encoding that are supported by default for
      * this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 4.0
      */
@@ -1563,18 +1494,15 @@ public interface ServletContext {
 
 
     /**
-     * Sets the request character encoding for this ServletContext.
+     * このServletContextにリクエストの文字エンコーディングを設定します。
      *
-     * @param encoding request character encoding
+     * @param encoding リクエストの文字エンコーディング
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 4.0
      */
@@ -1591,11 +1519,9 @@ public interface ServletContext {
      * @return the request character encoding that are supported by default for
      * this <tt>ServletContext</tt>
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 4.0
      */
@@ -1603,18 +1529,15 @@ public interface ServletContext {
 
 
     /**
-     * Sets the response character encoding for this ServletContext.
+     * このServletContextにレスポンスの文字エンコーディングを設定します。
      *
-     * @param encoding response character encoding
+     * @param encoding レスポンスの文字エンコーディング
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 4.0
      */
