@@ -1368,25 +1368,20 @@ public interface ServletContext {
 
 
     /**
-     * Gets the class loader of the web application represented by this
-     * ServletContext.
+     * このサーブレットコンテキストに対応するウェブアプリケーションのクラスローダーを取得します。
      *
-     * <p>If a security manager exists, and the caller's class loader
-     * is not the same as, or an ancestor of the requested class loader,
-     * then the security manager's <code>checkPermission</code> method is
-     * called with a <code>RuntimePermission("getClassLoader")</code>
-     * permission to check whether access to the requested class loader
-     * should be granted.
+     * <p>セキュリティマネージャが存在し、
+     * 呼び出し元のクラスローダーが要求されたクラスローダーと同じか継承元でない場合、
+     * セキュリティマネージャの<code>checkPermission</code>メソッドは<code>RuntimePermission("getClassLoader")</code>のパーミッションで
+     * クラスローダーへのアクセス権が付与されているかどうかチェックをするために呼び出されます。
      *
-     * @return the class loader of the web application represented by this
-     * ServletContext
+     * @return このサーブレットコンテキストに対応するウェブアプリケーションのクラスローダー
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
      * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
-     * @throws SecurityException if a security manager denies access to
-     * the requested class loader
+     * @throws SecurityException セキュリティマネージャーがクラスローダーへのアクセスのリクエストを拒否した
      *
      * @since Servlet 3.0
      */
