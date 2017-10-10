@@ -1345,16 +1345,9 @@ public interface ServletContext {
 
 
     /**
-     * Gets the <code>&lt;jsp-config&gt;</code> related configuration
-     * that was aggregated from the <code>web.xml</code> and
-     * <code>web-fragment.xml</code> descriptor files of the web application
-     * represented by this ServletContext.
+     * このServletContextに対応するウェブアプリケーションの<code>web.xml</code>と<code>web-fragment.xml</code>ディスクリプターファイルから集約された<code>&lt;jsp-config&gt;</code>に関連する設定を取得します。
      *
-     * @return the <code>&lt;jsp-config&gt;</code> related configuration
-     * that was aggregated from the <code>web.xml</code> and
-     * <code>web-fragment.xml</code> descriptor files of the web application
-     * represented by this ServletContext, or null if no such configuration
-     * exists
+     * @return このServletContextに対応するウェブアプリケーションの<code>web.xml</code>と<code>web-fragment.xml</code>ディスクリプターファイルから集約された<code>&lt;jsp-config&gt;</code>に関連する設定、そのような設定が存在しない場合はnull
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
