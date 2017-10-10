@@ -1162,19 +1162,13 @@ public interface ServletContext {
      * with the specified class name to ensure that it implements one of
      * the required interfaces.
      *
-     * <p>If the class with the given name implements a listener interface
-     * whose invocation order corresponds to the declaration order (i.e.,
-     * if it implements {@link ServletRequestListener},
-     * {@link ServletContextListener}, or
-     * {@link javax.servlet.http.HttpSessionListener}),
-     * then the new listener will be added to the end of the ordered list of
-     * listeners of that interface.
-     *
-     * <p>This method supports resource injection if the class with the
-     * given <tt>className</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
-     *
+     * <p>与えられた名前のクラスが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
+     * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
+     * 
+     * <p>このメソッドは与えられた<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
+     * 
      * @param className the fully qualified class name of the listener
      *
      * @throws IllegalArgumentException if the class with the given name
@@ -1206,18 +1200,12 @@ public interface ServletContext {
      * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
-     * <p>If this ServletContext was passed to
-     * {@link ServletContainerInitializer#onStartup}, then the given
-     * listener may also be an instance of {@link ServletContextListener},
-     * in addition to the interfaces listed above.
+     * <p>このServletContext{@link ServletContainerInitializer#onStartup}に渡されている場合、
+     * 与えられたリスナーは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
-     * <p>If the given listener is an instance of a listener interface whose
-     * invocation order corresponds to the declaration order (i.e., if it
-     * is an instance of {@link ServletRequestListener},
-     * {@link ServletContextListener}, or
-     * {@link javax.servlet.http.HttpSessionListener}),
-     * then the listener will be added to the end of the ordered list of
-     * listeners of that interface.
+     * <p>与えられたリスナーが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
+     * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      *
      * @param <T> 追加されるEventListenerのクラス
      * @param t 追加されるリスナー
@@ -1251,21 +1239,14 @@ public interface ServletContext {
      * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
-     * <p>If this ServletContext was passed to
-     * {@link ServletContainerInitializer#onStartup}, then the given
-     * <tt>listenerClass</tt> may also implement
-     * {@link ServletContextListener}, in addition to the interfaces listed
-     * above.
+     * <p>このServletContext{@link ServletContainerInitializer#onStartup}に渡されている場合、
+     * 与えられた<tt>listenerClass</tt>は先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
-     * <p>If the given <tt>listenerClass</tt> implements a listener
-     * interface whose invocation order corresponds to the declaration order
-     * (i.e., if it implements {@link ServletRequestListener},
-     * {@link ServletContextListener}, or
-     * {@link javax.servlet.http.HttpSessionListener}),
-     * then the new listener will be added to the end of the ordered list
-     * of listeners of that interface.
+     * <p>与えられた<tt>listenerClass</tt>が呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
+     * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      * 
-     * このメソッドは指定された<tt>listenerClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは与えられた<tt>listenerClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      * 
      * @param listenerClass インスタンス化されるリスナークラス
@@ -1304,7 +1285,7 @@ public interface ServletContext {
      * 
      * <p>与えられたEventListenerクラスはインスタンス化に使用するための引数を持たないコンストラクタが定義されている必要があります。
      * 
-     * <p>このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは与えられた<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param <T> 作成されるEventListenerのクラス
