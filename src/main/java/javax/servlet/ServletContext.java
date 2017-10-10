@@ -1171,10 +1171,8 @@ public interface ServletContext {
      * 
      * @param className the fully qualified class name of the listener
      *
-     * @throws IllegalArgumentException if the class with the given name
-     * does not implement any of the above interfaces, or if it implements
-     * {@link ServletContextListener} and this ServletContext was not
-     * passed to {@link ServletContainerInitializer#onStartup}
+     * @throws IllegalArgumentException 与えられた名前のクラスが先のインターフェースを全く実装していない、
+     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に与えられた名前のクラスが{@link ServletContextListener}を実装していない
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -1210,10 +1208,8 @@ public interface ServletContext {
      * @param <T> 追加されるEventListenerのクラス
      * @param t 追加されるリスナー
      *
-     * @throws IllegalArgumentException if the given listener is not
-     * an instance of any of the above interfaces, or if it is an instance
-     * of {@link ServletContextListener} and this ServletContext was not
-     * passed to {@link ServletContainerInitializer#onStartup}
+     * @throws IllegalArgumentException 与えられたリスナーが先のインターフェースを全く実装していない、
+     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に与えられたリスナーが{@link ServletContextListener}を実装していない
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -1251,10 +1247,8 @@ public interface ServletContext {
      * 
      * @param listenerClass インスタンス化されるリスナークラス
      *
-     * @throws IllegalArgumentException if the given <tt>listenerClass</tt>
-     * does not implement any of the above interfaces, or if it implements
-     * {@link ServletContextListener} and this ServletContext was not passed
-     * to {@link ServletContainerInitializer#onStartup}
+     * @throws IllegalArgumentException 与えられた<tt>listenerClass</tt>が先のインターフェースを全く実装していない、
+     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に与えられた<tt>listenerClass</tt>が{@link ServletContextListener}を実装していない
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
