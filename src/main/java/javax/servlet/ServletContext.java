@@ -484,14 +484,10 @@ public interface ServletContext {
 
 
     /**
-     * Returns the names of the context's initialization parameters as an
-     * <code>Enumeration</code> of <code>String</code> objects, or an
-     * empty <code>Enumeration</code> if the context has no initialization
-     * parameters.
+     * コンテキストの初期化パラメーターの名前を<code>String</code>オブジェクトの<code>Enumeration</code>として返します。
+     * コンテキストに初期化パラメーターがない場合は空の<code>Enumeration</code>を返します。
      *
-     * @return 		an <code>Enumeration</code> of <code>String</code>
-     *                  objects containing the names of the context's
-     *                  initialization parameters
+     * @return 		コンテキストの初期化パラメーターの名前を含む<code>String</code>オブジェクトの<code>Enumeration</code>
      *
      * @see ServletConfig#getInitParameter
      */
@@ -499,27 +495,21 @@ public interface ServletContext {
 
 
     /**
-     * Sets the context initialization parameter with the given name and
-     * value on this ServletContext.
+     * このServletContextのコンテキスト初期化パラメーターの値を与えられた名前で設定します。
      *
-     * @param name the name of the context initialization parameter to set
-     * @param value the value of the context initialization parameter to set
+     * @param name 設定するコンテキスト初期化パラメーターの名前
+     * @param value 設定するコンテキスト初期化パラメーターの値
      *
-     * @return true if the context initialization parameter with the given
-     * name and value was set successfully on this ServletContext, and false
-     * if it was not set because this ServletContext already contains a
-     * context initialization parameter with a matching name
+     * @return このServletContextのコンテキスト初期化パラメーターを与えられた名前と値で正常に設定できた場合はtrue、
+     *         ServletContextにすでに指定された名前で値がすでに存在していた場合は設定できずfalse
      *
-     * @throws IllegalStateException if this ServletContext has already
-     * been initialized
+     * @throws IllegalStateException このServletContextが初期化完了していた場合
      *
-     * @throws NullPointerException if the name parameter is {@code null}
+     * @throws NullPointerException パラメーターの名前が{@code null}
      *
-     * @throws UnsupportedOperationException if this ServletContext was
-     * passed to the {@link ServletContextListener#contextInitialized} method
-     * of a {@link ServletContextListener} that was neither declared in
-     * <code>web.xml</code> or <code>web-fragment.xml</code>, nor annotated
-     * with {@link javax.servlet.annotation.WebListener}
+     * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
+     * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
+     * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
      * @since Servlet 3.0
      */
@@ -527,49 +517,35 @@ public interface ServletContext {
 
 
     /**
-     * Returns the servlet container attribute with the given name, or
-     * <code>null</code> if there is no attribute by that name.
+     * 与えられた名前のサーブレットコンテナの属性を返します。属性が存在しない場合は<code>null</code>を返します。
      *
-     * <p>An attribute allows a servlet container to give the
-     * servlet additional information not
-     * already provided by this interface. See your
-     * server documentation for information about its attributes.
-     * A list of supported attributes can be retrieved using
-     * <code>getAttributeNames</code>.
+     * <p>属性を使用することでサーブレットコンテナはこのインタフェースによってまだ提供されていない追加情報をサーブレットに与えることができます。
+     * 属性の情報についてはサーバーのドキュメントを参照してください。
+     * サポートされている属性の一覧は<code>getAttributeNames</code>を使用して取得できます。
      *
-     * <p>The attribute is returned as a <code>java.lang.Object</code>
-     * or some subclass.
+     * <p>属性は<code>java.lang.Object</code>か、そのサブクラスとして返されます。
      *
-     * <p>Attribute names should follow the same convention as package
-     * names. The Java Servlet API specification reserves names
-     * matching <code>java.*</code>, <code>javax.*</code>,
-     * and <code>sun.*</code>.
+     * <p>属性名は、パッケージ名と同じ規則に従う必要があります。
+     * Java Servlet API specificationでは<code>java.*</code>、<code>javax.*</code>、<code>sun.*</code>と一致する名前を予約しています。
      *
-     * @param name 	a <code>String</code> specifying the name
-     *			of the attribute
+     * @param name 	属性の名前を指定する<code>String</code>
      *
-     * @return an <code>Object</code> containing the value of the
-     *			attribute, or <code>null</code> if no attribute
-     *			exists matching the given name.
+     * @return 属性の値を含む<code>Object</code>、指定された名前と一致する属性が存在しない場合はnull
      *
      * @see 		ServletContext#getAttributeNames
      *
-     * @throws NullPointerException if the argument {@code name} is
-     * {@code null}
+     * @throws NullPointerException 引数の{@code name}が{@code null}
      *
      */
     public Object getAttribute(String name);
 
 
     /**
-     * Returns an <code>Enumeration</code> containing the
-     * attribute names available within this ServletContext.
+     * このServletContextで使用可能な属性の名前の含まれた<code>Enumeration</code>を返します。
      *
-     * <p>Use the {@link #getAttribute} method with an attribute name
-     * to get the value of an attribute.
+     * <p>属性の名前から値を取得するためには{@link #getAttribute}メソッドを使用してください。
      *
-     * @return 		an <code>Enumeration</code> of attribute
-     *			names
+     * @return 		属性の名前の<code>Enumeration</code>
      *
      * @see		#getAttribute
      */
