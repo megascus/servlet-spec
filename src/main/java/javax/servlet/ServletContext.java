@@ -1291,52 +1291,46 @@ public interface ServletContext {
 
 
     /**
-     * Instantiates the given EventListener class.
+     * 与えられたEventListenerクラスをインスタンス化します。
      *
-     * <p>The specified EventListener class must implement at least one of
-     * the {@link ServletContextListener},
-     * {@link ServletContextAttributeListener},
-     * {@link ServletRequestListener},
-     * {@link ServletRequestAttributeListener},
-     * {@link javax.servlet.http.HttpSessionAttributeListener},
-     * {@link javax.servlet.http.HttpSessionIdListener}, or
+     * <p>指定したEventListenerのクラスは
+     * {@link ServletContextListener}、
+     * {@link ServletContextAttributeListener}、
+     * {@link ServletRequestListener}、
+     * {@link ServletRequestAttributeListener}、
+     * {@link javax.servlet.http.HttpSessionAttributeListener}、
+     * {@link javax.servlet.http.HttpSessionIdListener}、
      * {@link javax.servlet.http.HttpSessionListener}
-     * interfaces.
+     * のインターフェースのうち最低でも一つ実装する必要があります。
      *
-     * <p>The returned EventListener instance may be further customized
-     * before it is registered with this ServletContext via a call to
-     * {@link #addListener(EventListener)}.
+     * <p>返されたEventListenerインスタンスは{@link #addListener(EventListener)}の呼び出しによってこのServletContextに登録される前に、
+     * 詳細なカスタマイズがされている可能性があります
+     * 
+     * <p>与えられたEventListenerクラスはインスタンス化に使用するための引数を持たないコンストラクタが定義されている必要があります。
+     * 
+     * このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
-     * <p>The given EventListener class must define a zero argument
-     * constructor, which is used to instantiate it.
+     * @param <T> 作成されるEventListenerのクラス
+     * @param clazz インスタンス化されるEventListenerクラス
      *
-     * <p>This method supports resource injection if the given
-     * <tt>clazz</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
+     * @return 新しいEventListenerのインスタンス
      *
-     * @param <T> the class of the EventListener to create
-     * @param clazz the EventListener class to instantiate
-     *
-     * @return the new EventListener instance
-     *
-     * @throws ServletException if the given <tt>clazz</tt> fails to be
-     * instantiated
+     * @throws ServletException 与えられた<tt>clazz</tt>のインスタンス化に失敗した
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
      * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
-     * @throws IllegalArgumentException if the specified EventListener class
-     * does not implement any of the
-     * {@link ServletContextListener},
-     * {@link ServletContextAttributeListener},
-     * {@link ServletRequestListener},
-     * {@link ServletRequestAttributeListener},
-     * {@link javax.servlet.http.HttpSessionAttributeListener},
-     * {@link javax.servlet.http.HttpSessionIdListener}, or
+     * @throws IllegalArgumentException 指定したEventListenerのクラスが
+     * {@link ServletContextListener}、
+     * {@link ServletContextAttributeListener}、
+     * {@link ServletRequestListener}、
+     * {@link ServletRequestAttributeListener}、
+     * {@link javax.servlet.http.HttpSessionAttributeListener}、
+     * {@link javax.servlet.http.HttpSessionIdListener}、
      * {@link javax.servlet.http.HttpSessionListener}
-     * interfaces.
+     * のいずれのインターフェースも実装していなかった場合
      *
      * @since Servlet 3.0
      */
