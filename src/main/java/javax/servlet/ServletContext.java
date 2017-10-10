@@ -553,54 +553,41 @@ public interface ServletContext {
 
 
     /**
-     * Binds an object to a given attribute name in this ServletContext. If
-     * the name specified is already used for an attribute, this
-     * method will replace the attribute with the new to the new attribute.
-     * <p>If listeners are configured on the <code>ServletContext</code> the
-     * container notifies them accordingly.
-     * <p>
-     * If a null value is passed, the effect is the same as calling
-     * <code>removeAttribute()</code>.
+     * このServletContextに与えられた属性の名前でオブジェクトを設定します。
+     * もし指定された名前がすでに属性として使用されている場合は、このメソッドは新しい属性として置き換えます。
+     * <p><code>ServletContext</code>にリスナーが設定されている場合、コンテナはリスナーに応じてそれらを通知します。
+
+     * <p>もし値としてnullが渡された場合、<code>removeAttribute()</code>を呼び出した場合と同じ効果を及ぼします。
      *
-     * <p>Attribute names should follow the same convention as package
-     * names. The Java Servlet API specification reserves names
-     * matching <code>java.*</code>, <code>javax.*</code>, and
-     * <code>sun.*</code>.
+     * <p>属性名は、パッケージ名と同じ規則に従う必要があります。
+     * Java Servlet API specificationでは<code>java.*</code>、<code>javax.*</code>、<code>sun.*</code>と一致する名前を予約しています。
      *
-     * @param name 	a <code>String</code> specifying the name
-     *			of the attribute
+     * @param name 	属性の名前を指定する<code>String</code>
      *
-     * @param object 	an <code>Object</code> representing the
-     *			attribute to be bound
+     * @param object 	属性に設定する値を表す<code>Object</code>
      *
-     * @throws NullPointerException if the name parameter is {@code null}
+     * @throws NullPointerException パラメーター名が{@code null}
      *
      */
     public void setAttribute(String name, Object object);
 
 
     /**
-     * Removes the attribute with the given name from
-     * this ServletContext. After removal, subsequent calls to
-     * {@link #getAttribute} to retrieve the attribute's value
-     * will return <code>null</code>.
+     * このServletContextから与えられた名前の属性を取り除きます。
+     * 取り除かれた後、続いて{@link #getAttribute}を呼び出して属性の値を取得しようとすると<code>null</code>を返すでしょう。
      *
-     * <p>If listeners are configured on the <code>ServletContext</code> the
-     * container notifies them accordingly.
+     * <p><code>ServletContext</code>にリスナーが設定されている場合、コンテナはリスナーに応じてそれらを通知します。
      *
-     * @param name	a <code>String</code> specifying the name
-     * 			of the attribute to be removed
+     * @param name	取り除かれる属性の名前を指定する<code>String</code>
      */
     public void removeAttribute(String name);
 
 
     /**
-     * Returns the name of this web application corresponding to this
-     * ServletContext as specified in the deployment descriptor for this
-     * web application by the display-name element.
+     * ウェブアプリケーションのデプロイメントディスクリプタのdisplay-name要素で指定されているこのServletContext
+     * に対応するこのウェブアプリケーションの名前を返します。
      *
-     * @return The name of the web application or null if no name has been
-     * declared in the deployment descriptor.
+     * @return このウェブアプリケーションの名前、デプロイメントディスクリプタで宣言されてない場合はnull
      *
      * @since Servlet 2.3
      */
