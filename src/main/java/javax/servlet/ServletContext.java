@@ -1067,15 +1067,11 @@ public interface ServletContext {
 
 
     /**
-     * Sets the session tracking modes that are to become effective for this
-     * <tt>ServletContext</tt>.
+     * この<tt>ServletContext</tt>で有効になるセッション追跡方法を設定します。
      *
-     * <p>The given <tt>sessionTrackingModes</tt> replaces any
-     * session tracking modes set by a previous invocation of this
-     * method on this <tt>ServletContext</tt>.
+     * <p>与えられた<tt>sessionTrackingModes</tt>はこの<tt>ServletContext</tt>のこのメソッドの以前の呼び出しによって設定されたセッション追跡モードを置き換えます。
      *
-     * @param sessionTrackingModes the set of session tracking modes to
-     * become effective for this <tt>ServletContext</tt>
+     * @param sessionTrackingModes この<tt>ServletContext</tt>で有効になるセッション追跡方法
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -1083,11 +1079,8 @@ public interface ServletContext {
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
      * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
-     * @throws IllegalArgumentException if <tt>sessionTrackingModes</tt>
-     * specifies a combination of <tt>SessionTrackingMode.SSL</tt> with a
-     * session tracking mode other than <tt>SessionTrackingMode.SSL</tt>,
-     * or if <tt>sessionTrackingModes</tt> specifies a session tracking mode
-     * that is not supported by the servlet container
+     * @throws IllegalArgumentException <tt>sessionTrackingModes</tt>で<tt>SessionTrackingMode.SSL</tt>が<tt>SessionTrackingMode.SSL</tt>以外のセッション追跡方法と組み合わせて指定された、
+     * サーブレットコンテナでサポートされていないセッション追跡方法を<tt>sessionTrackingModes</tt>で指定した
      *
      * @since Servlet 3.0
      */
@@ -1095,15 +1088,12 @@ public interface ServletContext {
 
 
     /**
-     * Gets the session tracking modes that are supported by default for this
-     * <tt>ServletContext</tt>.
+     * この<tt>ServletContext</tt>でデフォルトでサポートされるセッション追跡方法を取得します。
      *
-     * <p>The returned set is not backed by the {@code ServletContext} object,
-     * so changes in the returned set are not reflected in the
-     * {@code ServletContext} object, and vice-versa.</p>
+     * <p>{@code ServletContext}オブジェクトによって返されたSetは{@code ServletContext}への参照を持っていないので変更は{@code ServletContext}へ影響を与えません。
+     * 逆もそうです。</p>
      *
-     * @return set of the session tracking modes supported by default for
-     * this <tt>ServletContext</tt>
+     * @return この<tt>ServletContext</tt>でデフォルトでサポートされるセッション追跡方法
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -1115,18 +1105,14 @@ public interface ServletContext {
 
 
     /**
-     * Gets the session tracking modes that are in effect for this
-     * <tt>ServletContext</tt>.
+     * この<tt>ServletContext</tt>で有効なセッション追跡方法を取得します。
+     * 
+     * 有効なセッション追跡方法は{@link #setSessionTrackingModes setSessionTrackingModes}で提供されています。
+     * 
+     * <p>{@code ServletContext}オブジェクトによって返されたSetは{@code ServletContext}への参照を持っていないので変更は{@code ServletContext}へ影響を与えません。
+     * 逆もそうです。</p>
      *
-     * <p>The session tracking modes in effect are those provided to
-     * {@link #setSessionTrackingModes setSessionTrackingModes}.
-     *
-     * <p>The returned set is not backed by the {@code ServletContext} object,
-     * so changes in the returned set are not reflected in the
-     * {@code ServletContext} object, and vice-versa.</p>
-     *
-     * @return set of the session tracking modes in effect for this
-     * <tt>ServletContext</tt>
+     * @return この<tt>ServletContext</tt>で有効なセッション追跡方法
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -1138,12 +1124,10 @@ public interface ServletContext {
 
 
     /**
-     * Adds the listener with the given class name to this ServletContext.
+     * このServletContextに与えられたクラスの名前のリスナーを追加します。
      *
-     * <p>The class with the given name will be loaded using the
-     * classloader associated with the application represented by this
-     * ServletContext, and must implement one or more of the following
-     * interfaces:
+     * <p>与えられた名前のクラスはこのサーブレットコンテキストに対応するウェブアプリケーションのクラスローダーからロードされ、
+     * 以下のインターフェースのうち一つ以上を実装する必要があります。
      * <ul>
      * <li>{@link ServletContextAttributeListener}
      * <li>{@link ServletRequestListener}
@@ -1153,14 +1137,10 @@ public interface ServletContext {
      * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
-     * <p>If this ServletContext was passed to
-     * {@link ServletContainerInitializer#onStartup}, then the class with
-     * the given name may also implement {@link ServletContextListener},
-     * in addition to the interfaces listed above.
+     * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
+     * 与えられた名前のクラスは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
-     * <p>As part of this method call, the container must load the class
-     * with the specified class name to ensure that it implements one of
-     * the required interfaces.
+     * <p>このメソッド呼び出しの一環として、コンテナは指定されたクラス名を持つ必要なインターフェイスの1つが実装されていることを保証されたクラスをロードする必要があります。
      *
      * <p>与えられた名前のクラスが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
      * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
@@ -1198,7 +1178,7 @@ public interface ServletContext {
      * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
-     * <p>このServletContext{@link ServletContainerInitializer#onStartup}に渡されている場合、
+     * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
      * 与えられたリスナーは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
      * <p>与えられたリスナーが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
@@ -1235,7 +1215,7 @@ public interface ServletContext {
      * <li>{@link javax.servlet.http.HttpSessionListener}
      * </ul>
      *
-     * <p>このServletContext{@link ServletContainerInitializer#onStartup}に渡されている場合、
+     * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
      * 与えられた<tt>listenerClass</tt>は先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
      * <p>与えられた<tt>listenerClass</tt>が呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
