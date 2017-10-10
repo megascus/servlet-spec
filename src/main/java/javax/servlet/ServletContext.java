@@ -1403,7 +1403,7 @@ public interface ServletContext {
      * この<tt>ServletContext</tt>でデフォルトでサポートするレスポンスの文字エンコーディングを取得します。
      * このメソッドはデプロイメントディスクリプタやコンテナ固有の(コンテナ上のすべてのアプリケーション向けの)設定でリクエストの文字エンコーディングが指定されていない場合はnullを返します。
      *
-     * @returnこの<tt>ServletContext</tt>でデフォルトでサポートするリクエストの文字エンコーディング
+     * @return この<tt>ServletContext</tt>でデフォルトでサポートするリクエストの文字エンコーディング
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
