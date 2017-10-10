@@ -1046,16 +1046,12 @@ public interface ServletContext {
 
 
     /**
-     * Gets the {@link SessionCookieConfig} object through which various
-     * properties of the session tracking cookies created on behalf of this
-     * <tt>ServletContext</tt> may be configured.
+     * この<tt>ServletContext</tt>のために作成されるセッション追跡Cookieのさまざまなプロパティを設定する事ができる{@link SessionCookieConfig}オブジェクトを取得します。
      *
-     * <p>Repeated invocations of this method will return the same
-     * <tt>SessionCookieConfig</tt> instance.
+     * <p>このメソッドを繰り返し読んだ場合、<tt>SessionCookieConfig</tt>の同じインスタンスが返されます。
      *
-     * @return the <tt>SessionCookieConfig</tt> object through which
-     * various properties of the session tracking cookies created on
-     * behalf of this <tt>ServletContext</tt> may be configured
+     * @return この<tt>ServletContext</tt>のために作成されるセッション追跡Cookieのさまざまなプロパティを設定する事ができる{@link SessionCookieConfig}オブジェクトを取得します。
+
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
