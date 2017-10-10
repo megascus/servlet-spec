@@ -467,24 +467,16 @@ public interface ServletContext {
 
 
     /**
-     * Returns a <code>String</code> containing the value of the named
-     * context-wide initialization parameter, or <code>null</code> if
-     * the parameter does not exist.
+     * 指定されたコンテキスト全体のための初期化パラメーターの値を含む<code>String</code> を返します。パラメーターが存在しない場合はnullを返します。
+     * 
+     * <p>このメソッドは、ウェブアプリケーション全体に有用な設定情報を利用可能にすることができます。
+     * たとえば、ウェブマスターの電子メールアドレスまたは重要なデータを保持するシステムの名前を提供することができます。
      *
-     * <p>This method can make available configuration information useful
-     * to an entire web application.  For example, it can provide a
-     * webmaster's email address or the name of a system that holds
-     * critical data.
+     * @param	name	値が要求されているパラメーターの名前を含む<code>String</code>
      *
-     * @param	name	a <code>String</code> containing the name of the
-     *                  parameter whose value is requested
+     * @return コンテキストの初期化パラメーターの値を含む<code>String</code>。コンテキストの初期化パラメーターが存在しない場合は<code>null</code>
      *
-     * @return a <code>String</code> containing the value of the
-     * context's initialization parameter, or <code>null</code> if the
-     * context's initialization parameter does not exist.
-     *
-     * @throws NullPointerException if the argument {@code name} is
-     * {@code null}
+     * @throws NullPointerException 引数の{@code name}が{@code null}
      *
      * @see ServletConfig#getInitParameter
      */
