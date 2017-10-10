@@ -1194,10 +1194,9 @@ public interface ServletContext {
 
 
     /**
-     * Adds the given listener to this ServletContext.
+     * 与えられたリスナーをこのServletContextに追加します。
      *
-     * <p>The given listener must be an instance of one or more of the
-     * following interfaces:
+     * <p>与えられたリスナーは以下のインターフェースのうち一つ以上を実装する必要があります。
      * <ul>
      * <li>{@link ServletContextAttributeListener}
      * <li>{@link ServletRequestListener}
@@ -1220,8 +1219,8 @@ public interface ServletContext {
      * then the listener will be added to the end of the ordered list of
      * listeners of that interface.
      *
-     * @param <T> the class of the EventListener to add
-     * @param t the listener to be added
+     * @param <T> 追加されるEventListenerのクラス
+     * @param t 追加されるリスナー
      *
      * @throws IllegalArgumentException if the given listener is not
      * an instance of any of the above interfaces, or if it is an instance
@@ -1240,10 +1239,9 @@ public interface ServletContext {
 
 
     /**
-     * Adds a listener of the given class type to this ServletContext.
+     * 与えられたクラスの型のリスナーをこのServletContextに追加します。
      *
-     * <p>The given <tt>listenerClass</tt> must implement one or more of the
-     * following interfaces:
+     * <p>与えられた<tt>listenerClass</tt>は以下のインターフェースのうち一つ以上を実装する必要があります。
      * <ul>
      * <li>{@link ServletContextAttributeListener}
      * <li>{@link ServletRequestListener}
@@ -1266,13 +1264,11 @@ public interface ServletContext {
      * {@link javax.servlet.http.HttpSessionListener}),
      * then the new listener will be added to the end of the ordered list
      * of listeners of that interface.
-     *
-     * <p>This method supports resource injection if the given
-     * <tt>listenerClass</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
-     *
-     * @param listenerClass the listener class to be instantiated
+     * 
+     * このメソッドは指定された<tt>listenerClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
+     * 
+     * @param listenerClass インスタンス化されるリスナークラス
      *
      * @throws IllegalArgumentException if the given <tt>listenerClass</tt>
      * does not implement any of the above interfaces, or if it implements
@@ -1303,12 +1299,12 @@ public interface ServletContext {
      * {@link javax.servlet.http.HttpSessionListener}
      * のインターフェースのうち最低でも一つ実装する必要があります。
      *
-     * <p>返されたEventListenerインスタンスは{@link #addListener(EventListener)}の呼び出しによってこのServletContextに登録される前に、
-     * 詳細なカスタマイズがされている可能性があります
+     * <p>返されたEventListenerインスタンスは{@link #addListener(EventListener)}の呼び出しによってこのServletContextに登録する前に、
+     * 詳細なカスタマイズをすることができます。
      * 
      * <p>与えられたEventListenerクラスはインスタンス化に使用するための引数を持たないコンストラクタが定義されている必要があります。
      * 
-     * このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param <T> 作成されるEventListenerのクラス
