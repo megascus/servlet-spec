@@ -1415,19 +1415,17 @@ public interface ServletContext {
 
 
     /**
-     * Returns the configuration name of the logical host on which the
-     * ServletContext is deployed.
+     * ServletContextがデプロイされている論理ホストの設定名を返します。
+     * 
+     * サーブレットコンテナは複数の論理ホストをサポートすることができます。
+     * このメソッドでは論理ホスト上に配置されているすべてのサーブレットコンテキストに同じ名前を返され、
+     * このメソッドによって返された名前は論理ホストごとに安定してまったく別であり、、
+     * サーバー構成情報と論理ホストの関連付けに使用するのに適しています。
+     * 返される値は、論理ホストのネットワークアドレスまたはホスト名と同等であることが要求されて<B>いません</B>。
      *
-     * Servlet containers may support multiple logical hosts. This method must
-     * return the same name for all the servlet contexts deployed on a logical
-     * host, and the name returned by this method must be distinct, stable per
-     * logical host, and suitable for use in associating server configuration
-     * information with the logical host. The returned value is NOT expected
-     * or required to be equivalent to a network address or hostname of the
-     * logical host.
+     * The returned value is NOT expected or required to be equivalent to a network address or hostname of the logical host.
      *
-     * @return a <code>String</code> containing the configuration name of the
-     * logical host on which the servlet context is deployed.
+     * @return ServletContextがデプロイされている論理ホストの設定名を含む <code>String</code>
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
