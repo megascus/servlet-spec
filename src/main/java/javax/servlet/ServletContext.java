@@ -633,26 +633,19 @@ public interface ServletContext {
 
 
     /**
-     * Registers the given servlet instance with this ServletContext
-     * under the given <tt>servletName</tt>.
+     * 与えられたサーブレットのインスタンスをこのServletContextに与えられた<tt>servletName</tt>の下で登録します。
      *
-     * <p>The registered servlet may be further configured via the returned
-     * {@link ServletRegistration} object.
+     * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
+     * 
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための予備的なServletRegistrationをすでに含んでいた場合、
+     * ServletRegistrationは(与えられたサーブレットのインスタンスを与えられた<tt>className</tt>で割り当てることで)完了し、返します。
      *
-     * <p>If this ServletContext already contains a preliminary
-     * ServletRegistration for a servlet with the given <tt>servletName</tt>,
-     * it will be completed (by assigning the class name of the given servlet
-     * instance to it) and returned.
+     * @param servletName サーブレットの名前
+     * @param servlet 登録するサーブレットのインスタンス
      *
-     * @param servletName the name of the servlet
-     * @param servlet the servlet instance to register
-     *
-     * @return a ServletRegistration object that may be used to further
-     * configure the given servlet, or <tt>null</tt> if this
-     * ServletContext already contains a complete ServletRegistration for a
-     * servlet with the given <tt>servletName</tt> or if the same servlet
-     * instance has already been registered with this or another
-     * ServletContext in the same container
+     * @return 与えられたサーブレットを詳細に設定するために使用されるServletRegistrationのオブジェクト、
+     * ServletContextが与えられた<tt>servletName</tt>のサーブレットのための完了したServletRegistrationを含んでいる場合や
+     * 同じサーブレットのインスタンスがこのServletContextや同じコンテナのほかのServletContextにすでに含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -660,9 +653,7 @@ public interface ServletContext {
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
      * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
-     * @throws IllegalArgumentException if the given servlet instance
-     * implements {@link SingleThreadModel}, or <code>servletName</code> is null
-     * or an empty String
+     * @throws IllegalArgumentException 与えられたサーブレットのインスタンスが{@link SingleThreadModel}を実装しているか、<code>servletName</code>がnullもしくは空の文字列
      *
      * @since Servlet 3.0
      */
