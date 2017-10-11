@@ -131,7 +131,7 @@ public interface ServletContext {
      * 
      * <p>このメソッドは、サーブレットがサーバーのさまざまな部分のコンテキストにアクセスできるようにし、
      * 必要に応じてコンテキストから{@link RequestDispatcher}オブジェクトを取得できるようにします。
-     * 与えられたパスは<tt>/</tt>で始まる必要があり、
+     * 指定されたパスは<tt>/</tt>で始まる必要があり、
      * サーバーのドキュメントルートからの相対パスとして解釈され、
      * このコンテナでホストされている他のWebアプリケーションのコンテキストルートと照合されます。
      * 
@@ -252,7 +252,7 @@ public interface ServletContext {
 
 
     /**
-     * 与えられたパスにマップされたリソースへのURLを返します。
+     * 指定されたパスにマップされたリソースへのURLを返します。
      *
      * <p>パスは<tt>/</tt>で始まり、現在のコンテキストルートからの相対パスとして解決できるか
      * ウェブアプリケーションの<tt>/WEB-INF/lib</tt>ディレクトリ内のJARファイルの<tt>/META-INF/resources</tt>ディレクトリからの相対パス
@@ -361,7 +361,7 @@ public interface ServletContext {
      * by invoking methods on common non-servlet classes.
      *
      * @param name サーブレットの名前
-     * @return 与えられた名前の {@code javax.servlet.Servlet Servlet}
+     * @return 指定された名前の {@code javax.servlet.Servlet Servlet}
      * @throws ServletException サーブレットの通常の処理で例外が発生した
      */
     @Deprecated
@@ -418,7 +418,7 @@ public interface ServletContext {
 
 
     /**
-     * サーブレットのログファイルに与えられた<code>Throwable</code>に対する説明文とスタックトレースを書き込みます。
+     * サーブレットのログファイルに指定された<code>Throwable</code>に対する説明文とスタックトレースを書き込みます。
      * ログファイルの名前と書式はサーブレットコンテナによって固有のものですが、通常はイベントログです。
      *
      * @param message 		エラーや例外を説明する<code>String</code>
@@ -429,7 +429,7 @@ public interface ServletContext {
 
 
     /**
-     * 与えられた<i>仮想の</i>パスに対応する<i>実際の</i>パスを返します。
+     * 指定された<i>仮想の</i>パスに対応する<i>実際の</i>パスを返します。
      *
      * <p>例えば、<tt>path</tt>がリクエストからの形式が<tt>http://&lt;host&gt;:&lt;port&gt;/&lt;contextPath&gt;/index.html</tt>
      * (<tt>&lt;contextPath&gt;</tt>はこのServletContextに対応するコンテキストパス)にマップされている<tt>/index.html</tt>と等しいとき、
@@ -442,7 +442,7 @@ public interface ServletContext {
      * に含まれるリソースはコンテナが含まれるJARファイルをアンパックしたときにのみ考慮される必要があります。
      * その場合は、パスとしてアンパックされた位置が返されるべきです。
      *
-     * <p>サーブレットコンテナが与えられた与えられた<i>仮想の</i>パスを<i>実際の</i>パスに変換できなかった場合は<code>null</code>を返します。
+     * <p>サーブレットコンテナが指定された指定された<i>仮想の</i>パスを<i>実際の</i>パスに変換できなかった場合は<code>null</code>を返します。
      *
      * @param path <i>実際の</i>パスに変換する<i>仮想の</i>パス
      *
@@ -495,12 +495,12 @@ public interface ServletContext {
 
 
     /**
-     * このServletContextのコンテキスト初期化パラメーターの値を与えられた名前で設定します。
+     * このServletContextのコンテキスト初期化パラメーターの値を指定された名前で設定します。
      *
      * @param name 設定するコンテキスト初期化パラメーターの名前
      * @param value 設定するコンテキスト初期化パラメーターの値
      *
-     * @return このServletContextのコンテキスト初期化パラメーターを与えられた名前と値で正常に設定できた場合はtrue、
+     * @return このServletContextのコンテキスト初期化パラメーターを指定された名前と値で正常に設定できた場合はtrue、
      *         ServletContextにすでに指定された名前で値がすでに存在していた場合は設定できずfalse
      *
      * @throws IllegalStateException このServletContextが初期化完了していた場合
@@ -517,7 +517,7 @@ public interface ServletContext {
 
 
     /**
-     * 与えられた名前のサーブレットコンテナの属性を返します。属性が存在しない場合は<code>null</code>を返します。
+     * 指定された名前のサーブレットコンテナの属性を返します。属性が存在しない場合は<code>null</code>を返します。
      *
      * <p>属性を使用することでサーブレットコンテナはこのインタフェースによってまだ提供されていない追加情報をサーブレットに与えることができます。
      * 属性の情報についてはサーバーのドキュメントを参照してください。
@@ -553,7 +553,7 @@ public interface ServletContext {
 
 
     /**
-     * このServletContextに与えられた属性の名前でオブジェクトを設定します。
+     * このServletContextに指定された属性の名前でオブジェクトを設定します。
      * もし指定された名前がすでに属性として使用されている場合は、このメソッドは新しい属性として置き換えます。
      * <p><code>ServletContext</code>にリスナーが設定されている場合、コンテナはリスナーに応じてそれらを通知します。
 
@@ -573,7 +573,7 @@ public interface ServletContext {
 
 
     /**
-     * このServletContextから与えられた名前の属性を取り除きます。
+     * このServletContextから指定された名前の属性を取り除きます。
      * 取り除かれた後、続いて{@link #getAttribute}を呼び出して属性の値を取得しようとすると<code>null</code>を返すでしょう。
      *
      * <p><code>ServletContext</code>にリスナーが設定されている場合、コンテナはリスナーに応じてそれらを通知します。
@@ -601,22 +601,22 @@ public interface ServletContext {
      * 
      * <p>指定された<tt>className</tt>はこのサーブレットコンテキストに対応するウェブアプリケーションに関連付けられたクラスローダーを使用してロードされます。
      * 
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
-     * ServletRegistrationは(与えられた<tt>className</tt>を割り当てることで)完了し、返します。
+     * <p>ServletContextが指定された<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
+     * ServletRegistrationは(指定された<tt>className</tt>を割り当てることで)完了し、返します。
      *
-     * <p>このメソッドは与えられた<tt>className</tt>のクラスについている
+     * <p>このメソッドは指定された<tt>className</tt>のクラスについている
      * {@link javax.servlet.annotation.ServletSecurity}、
      * {@link javax.servlet.annotation.MultipartConfig}、
      * <tt>javax.annotation.security.RunAs</tt>、
      * <tt>javax.annotation.security.DeclareRoles</tt>アノテーションの情報を読み取り、処理します。
-     * 加えて、このメソッドは与えられた<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * 加えて、このメソッドは指定された<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      * 
      * @param servletName サーブレットの名前
      * @param className サーブレットの完全修飾クラス名(FQCN)
      *
      * @return 登録されたサーブレットを詳細に設定するためのServletRegistrationオブジェクト、
-     * ServletContextにすでに与えられた<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
+     * ServletContextにすでに指定された<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -633,18 +633,18 @@ public interface ServletContext {
 
 
     /**
-     * 与えられたサーブレットのインスタンスをこのServletContextに与えられた<tt>servletName</tt>の下で登録します。
+     * 指定されたサーブレットのインスタンスをこのServletContextに指定された<tt>servletName</tt>の下で登録します。
      *
      * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
      * 
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
-     * ServletRegistrationは(与えられたサーブレットのインスタンスを与えられた<tt>className</tt>で割り当てることで)完了し、返します。
+     * <p>ServletContextが指定された<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
+     * ServletRegistrationは(指定されたサーブレットのインスタンスを指定された<tt>className</tt>で割り当てることで)完了し、返します。
      *
      * @param servletName サーブレットの名前
      * @param servlet 登録するサーブレットのインスタンス
      *
-     * @return 与えられたサーブレットを詳細に設定するために使用されるServletRegistrationのオブジェクト、
-     * ServletContextが与えられた<tt>servletName</tt>のサーブレットのための完了したServletRegistrationを含んでいる場合や
+     * @return 指定されたサーブレットを詳細に設定するために使用されるServletRegistrationのオブジェクト、
+     * ServletContextが指定された<tt>servletName</tt>のサーブレットのための完了したServletRegistrationを含んでいる場合や
      * 同じサーブレットのインスタンスがこのServletContextや同じコンテナのほかのServletContextにすでに含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
@@ -653,7 +653,7 @@ public interface ServletContext {
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
      * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
-     * @throws IllegalArgumentException 与えられたサーブレットのインスタンスが{@link SingleThreadModel}を実装しているか、<code>servletName</code>がnullもしくは空の文字列
+     * @throws IllegalArgumentException 指定されたサーブレットのインスタンスが{@link SingleThreadModel}を実装しているか、<code>servletName</code>がnullもしくは空の文字列
      *
      * @since Servlet 3.0
      */
@@ -662,26 +662,26 @@ public interface ServletContext {
 
 
     /**
-     * 与えられた名前とクラスタイプをこのServletContextに追加します。
+     * 指定された名前とクラスタイプをこのServletContextに追加します。
      *
      * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
      *
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
-     * ServletRegistrationは(与えられた<tt>servletClass</tt>を<tt>className</tt>で割り当てることで)完了し、返します。
+     * <p>ServletContextが指定された<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
+     * ServletRegistrationは(指定された<tt>servletClass</tt>を<tt>className</tt>で割り当てることで)完了し、返します。
      *
-     * <p>このメソッドは与えられた<tt>servletClass</tt>についている
+     * <p>このメソッドは指定された<tt>servletClass</tt>についている
      * {@link javax.servlet.annotation.ServletSecurity}、
      * {@link javax.servlet.annotation.MultipartConfig}、
      * <tt>javax.annotation.security.RunAs</tt>、
      * <tt>javax.annotation.security.DeclareRoles</tt>アノテーションの情報を読み取り、処理します。
-     * 加えて、このメソッドは与えられた<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * 加えて、このメソッドは指定された<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param servletName サーブレットの名前
      * @param servletClass インスタンス化されるサーブレットのクラスオブジェクト
      *
      * @return 登録されたサーブレットを詳細に設定するためのServletRegistrationオブジェクト、
-     * ServletContextにすでに与えられた<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
+     * ServletContextにすでに指定された<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -698,18 +698,18 @@ public interface ServletContext {
 
 
     /**
-     * 与えられたJSPファイルのサーブレットをこのServletContextに追加します。
+     * 指定されたJSPファイルのサーブレットをこのServletContextに追加します。
      *
      * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
      *
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
-     * ServletRegistrationは(与えられた<tt>jspFile</tt>を割り当てることで)完了し、返します。
+     * <p>ServletContextが指定された<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
+     * ServletRegistrationは(指定された<tt>jspFile</tt>を割り当てることで)完了し、返します。
      *
      * @param servletName サーブレットの名前
      * @param jspFile "/"で始まるウェブアプリケーション内のJSPファイルのフルパス
      *
      * @return 登録されたサーブレットを詳細に設定するためのServletRegistrationオブジェクト、
-     * ServletContextにすでに与えられた<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
+     * ServletContextにすでに指定された<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -726,25 +726,25 @@ public interface ServletContext {
 
 
     /**
-     * 与えられたサーブレットクラスをインスタンス化します。
+     * 指定されたサーブレットクラスをインスタンス化します。
      *
      * <p>返されたサーブレットのインスタンスはServletContextの{@link #addServlet(String,Servlet)}を呼び出して登録する前に詳細なカスタマイズができます。
      *
-     * <p>与えられたサーブレットはインスタンス化するために使用される引数のないコンストラクタが定義されている必要があります。
+     * <p>指定されたサーブレットはインスタンス化するために使用される引数のないコンストラクタが定義されている必要があります。
      *
-     * <p>このメソッドは与えられた<tt>clazz</tt>についている
+     * <p>このメソッドは指定された<tt>clazz</tt>についている
      * {@link javax.servlet.annotation.ServletSecurity}、
      * {@link javax.servlet.annotation.MultipartConfig}、
      * <tt>javax.annotation.security.RunAs</tt>、
      * <tt>javax.annotation.security.DeclareRoles</tt>アノテーションの情報を読み取り、処理します。
-     * 加えて、このメソッドは与えられた<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * 加えて、このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      * @param <T> 作られるサーブレットのクラス
      * @param clazz インスタンス化されるサーブレットクラス
      *
      * @return 新しいサーブレットのインスタンス
      *
-     * @throws ServletException 与えられた<tt>clazz</tt>のインスタンス化に失敗した
+     * @throws ServletException 指定された<tt>clazz</tt>のインスタンス化に失敗した
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -757,9 +757,9 @@ public interface ServletContext {
 
 
     /**
-     * 与えられた<tt>servletName</tt>のサーブレットに関連するServletRegistrationを取得します。
+     * 指定された<tt>servletName</tt>のサーブレットに対応するServletRegistrationを取得します。
      *
-     * @return 与えられた<tt>servletName</tt>のサーブレットの(完了、もしくは準備段階の)ServletRegistration、
+     * @return 指定された<tt>servletName</tt>のサーブレットの(完了、もしくは準備段階の)ServletRegistration、
      * その名前の下でServletRegistrationが存在しない場合はnull
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
@@ -773,22 +773,14 @@ public interface ServletContext {
 
 
     /**
-     * Gets a (possibly empty) Map of the ServletRegistration
-     * objects (keyed by servlet name) corresponding to all servlets
-     * registered with this ServletContext.
+     * このServletContextに登録されているすべてのサーブレットに対応する(サーブレットの名前がキーで空の可能性のある)ServletRegistrationオブジェクトのMapを取得します。
      *
-     * <p>The returned Map includes the ServletRegistration objects
-     * corresponding to all declared and annotated servlets, as well as the
-     * ServletRegistration objects corresponding to all servlets that have
-     * been added via one of the <tt>addServlet</tt> and <tt>addJspFile</tt>
-     * methods.
+     * <p>返されたMapは設定ファイルで定義されたサーブレットやアノテーションが付けられたサーブレットに対応するServletRegistrationオブジェクトと同じように
+     * <tt>addServlet</tt>メソッドのいずれかや <tt>addJspFile</tt>メソッドで追加されたすべてに対応するすべてのServletRegistrationオブジェクトを含みます。
      *
-     * <p>If permitted, any changes to the returned Map must not affect this
-     * ServletContext.
+     * <p>許可されている場合、返されたMapへの変更はこのServletContextに影響してはなりません。
      *
-     * @return Map of the (complete and preliminary) ServletRegistration
-     * objects corresponding to all servlets currently registered with this
-     * ServletContext
+     * @return このServletContextに現在登録されているすべてのサーブレットに対応する(完了、もしくは準備段階の)ServletRegistrationオブジェクトのMap
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -800,36 +792,27 @@ public interface ServletContext {
 
 
     /**
-     * Adds the filter with the given name and class name to this servlet
-     * context.
+     * このServletContextに指定された名前とクラス名でフィルターを追加します。
+     * 
+     * <p>登録されたフィルターは返された{@link FilterRegistration}オブジェクトで詳細な設定を行うこともできます。
+     * 
+     * <p>指定された<tt>className</tt>はこのサーブレットコンテキストに対応するウェブアプリケーションに関連付けられたクラスローダーを使用してロードされます。
+
+     * <p>ServletContextが指定された<tt>filterName</tt>のフィルターのための準備段階のFilterRegistrationをすでに含んでいた場合、
+     * FilterRegistrationは(指定された<tt>className</tt>を割り当てることで)完了し、返します。
      *
-     * <p>The registered filter may be further configured via the returned
-     * {@link FilterRegistration} object.
-     *
-     * <p>The specified <tt>className</tt> will be loaded using the
-     * classloader associated with the application represented by this
-     * ServletContext.
-     *
-     * <p>If this ServletContext already contains a preliminary
-     * FilterRegistration for a filter with the given <tt>filterName</tt>,
-     * it will be completed (by assigning the given <tt>className</tt> to it)
-     * and returned.
-     *
-     * <p>このメソッドは与えられた<tt>className</tt>のクラスがマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは指定された<tt>className</tt>のクラスがマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      * 
-     * @param filterName the name of the filter
-     * @param className the fully qualified class name of the filter
+     * @param filterName フィルターの名前
+     * @param className フィルターの完全修飾クラス名(FQCN)
      *
-     * @return a FilterRegistration object that may be used to further
-     * configure the registered filter, or <tt>null</tt> if this
-     * ServletContext already contains a complete FilterRegistration for
-     * a filter with the given <tt>filterName</tt>
+     * @return 登録されたフィルターを詳細に設定するためのFilterRegistrationオブジェクト、
+     * ServletContextにすでに指定された<tt>filterName</tt>のフィルターのためのFilterRegistrationが完了したものが含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws IllegalArgumentException if <code>filterName</code> is null or
-     * an empty String
+     * @throws IllegalArgumentException <code>filterName</code>がnullもしくは空の文字列
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -890,7 +873,7 @@ public interface ServletContext {
      * it will be completed (by assigning the name of the given
      * <tt>filterClass</tt> to it) and returned.
      *
-     * <p>このメソッドは与えられた<tt>filterClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは指定された<tt>filterClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param filterName the name of the filter
@@ -927,7 +910,7 @@ public interface ServletContext {
      * <p>The given Filter class must define a zero argument constructor,
      * which is used to instantiate it.
      *
-     * <p>このメソッドは与えられた<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param <T> the class of the Filter to create
@@ -1012,7 +995,7 @@ public interface ServletContext {
     /**
      * この<tt>ServletContext</tt>で有効になるセッション追跡方法を設定します。
      *
-     * <p>与えられた<tt>sessionTrackingModes</tt>はこの<tt>ServletContext</tt>のこのメソッドの以前の呼び出しによって設定されたセッション追跡モードを置き換えます。
+     * <p>指定された<tt>sessionTrackingModes</tt>はこの<tt>ServletContext</tt>のこのメソッドの以前の呼び出しによって設定されたセッション追跡モードを置き換えます。
      *
      * @param sessionTrackingModes この<tt>ServletContext</tt>で有効になるセッション追跡方法
      *
@@ -1067,9 +1050,9 @@ public interface ServletContext {
 
 
     /**
-     * このServletContextに与えられたクラスの名前のリスナーを追加します。
+     * このServletContextに指定されたクラスの名前のリスナーを追加します。
      *
-     * <p>与えられた名前のクラスはこのサーブレットコンテキストに対応するウェブアプリケーションのクラスローダーからロードされ、
+     * <p>指定された名前のクラスはこのサーブレットコンテキストに対応するウェブアプリケーションのクラスローダーからロードされ、
      * 以下のインターフェースのうち一つ以上を実装する必要があります。
      * <ul>
      * <li>{@link ServletContextAttributeListener}
@@ -1081,21 +1064,21 @@ public interface ServletContext {
      * </ul>
      *
      * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
-     * 与えられた名前のクラスは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
+     * 指定された名前のクラスは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
      * <p>このメソッド呼び出しの一環として、コンテナは指定されたクラス名を持つ必要なインターフェイスの1つが実装されていることを保証されたクラスをロードする必要があります。
      *
-     * <p>与えられた名前のクラスが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * <p>指定された名前のクラスが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
      * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
      * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      * 
-     * <p>このメソッドは与えられた<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは指定された<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      * 
      * @param className the fully qualified class name of the listener
      *
-     * @throws IllegalArgumentException 与えられた名前のクラスが先のインターフェースを全く実装していない、
-     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に与えられた名前のクラスが{@link ServletContextListener}を実装していない
+     * @throws IllegalArgumentException 指定された名前のクラスが先のインターフェースを全く実装していない、
+     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に指定された名前のクラスが{@link ServletContextListener}を実装していない
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -1109,9 +1092,9 @@ public interface ServletContext {
 
 
     /**
-     * 与えられたリスナーをこのServletContextに追加します。
+     * 指定されたリスナーをこのServletContextに追加します。
      *
-     * <p>与えられたリスナーは以下のインターフェースのうち一つ以上を実装する必要があります。
+     * <p>指定されたリスナーは以下のインターフェースのうち一つ以上を実装する必要があります。
      * <ul>
      * <li>{@link ServletContextAttributeListener}
      * <li>{@link ServletRequestListener}
@@ -1122,17 +1105,17 @@ public interface ServletContext {
      * </ul>
      *
      * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
-     * 与えられたリスナーは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
+     * 指定されたリスナーは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
-     * <p>与えられたリスナーが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * <p>指定されたリスナーが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
      * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
      * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      *
      * @param <T> 追加されるEventListenerのクラス
      * @param t 追加されるリスナー
      *
-     * @throws IllegalArgumentException 与えられたリスナーが先のインターフェースを全く実装していない、
-     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に与えられたリスナーが{@link ServletContextListener}を実装していない
+     * @throws IllegalArgumentException 指定されたリスナーが先のインターフェースを全く実装していない、
+     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に指定されたリスナーが{@link ServletContextListener}を実装していない
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -1146,9 +1129,9 @@ public interface ServletContext {
 
 
     /**
-     * 与えられたクラスの型のリスナーをこのServletContextに追加します。
+     * 指定されたクラスの型のリスナーをこのServletContextに追加します。
      *
-     * <p>与えられた<tt>listenerClass</tt>は以下のインターフェースのうち一つ以上を実装する必要があります。
+     * <p>指定された<tt>listenerClass</tt>は以下のインターフェースのうち一つ以上を実装する必要があります。
      * <ul>
      * <li>{@link ServletContextAttributeListener}
      * <li>{@link ServletRequestListener}
@@ -1159,19 +1142,19 @@ public interface ServletContext {
      * </ul>
      *
      * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
-     * 与えられた<tt>listenerClass</tt>は先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
+     * 指定された<tt>listenerClass</tt>は先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
-     * <p>与えられた<tt>listenerClass</tt>が呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * <p>指定された<tt>listenerClass</tt>が呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
      * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
      * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      * 
-     * <p>このメソッドは与えられた<tt>listenerClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは指定された<tt>listenerClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      * 
      * @param listenerClass インスタンス化されるリスナークラス
      *
-     * @throws IllegalArgumentException 与えられた<tt>listenerClass</tt>が先のインターフェースを全く実装していない、
-     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に与えられた<tt>listenerClass</tt>が{@link ServletContextListener}を実装していない
+     * @throws IllegalArgumentException 指定された<tt>listenerClass</tt>が先のインターフェースを全く実装していない、
+     * ServletContextが{@link ServletContainerInitializer#onStartup}に渡された時に指定された<tt>listenerClass</tt>が{@link ServletContextListener}を実装していない
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
@@ -1185,7 +1168,7 @@ public interface ServletContext {
 
 
     /**
-     * 与えられたEventListenerクラスをインスタンス化します。
+     * 指定されたEventListenerクラスをインスタンス化します。
      *
      * <p>指定したEventListenerのクラスは
      * {@link ServletContextListener}、
@@ -1200,9 +1183,9 @@ public interface ServletContext {
      * <p>返されたEventListenerインスタンスは{@link #addListener(EventListener)}の呼び出しによってこのServletContextに登録する前に、
      * 詳細なカスタマイズをすることができます。
      * 
-     * <p>与えられたEventListenerクラスはインスタンス化に使用するための引数を持たないコンストラクタが定義されている必要があります。
+     * <p>指定されたEventListenerクラスはインスタンス化に使用するための引数を持たないコンストラクタが定義されている必要があります。
      * 
-     * <p>このメソッドは与えられた<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * <p>このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param <T> 作成されるEventListenerのクラス
@@ -1210,7 +1193,7 @@ public interface ServletContext {
      *
      * @return 新しいEventListenerのインスタンス
      *
-     * @throws ServletException 与えられた<tt>clazz</tt>のインスタンス化に失敗した
+     * @throws ServletException 指定された<tt>clazz</tt>のインスタンス化に失敗した
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
