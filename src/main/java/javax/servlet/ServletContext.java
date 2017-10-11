@@ -601,7 +601,7 @@ public interface ServletContext {
      * 
      * <p>指定された<tt>className</tt>はこのサーブレットコンテキストに対応するウェブアプリケーションに関連付けられたクラスローダーを使用してロードされます。
      * 
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための予備的なServletRegistrationをすでに含んでいた場合、
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
      * ServletRegistrationは(与えられた<tt>className</tt>を割り当てることで)完了し、返します。
      *
      * <p>このメソッドは与えられた<tt>className</tt>のクラスについている
@@ -637,7 +637,7 @@ public interface ServletContext {
      *
      * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
      * 
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための予備的なServletRegistrationをすでに含んでいた場合、
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
      * ServletRegistrationは(与えられたサーブレットのインスタンスを与えられた<tt>className</tt>で割り当てることで)完了し、返します。
      *
      * @param servletName サーブレットの名前
@@ -666,7 +666,7 @@ public interface ServletContext {
      *
      * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
      *
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための予備的なServletRegistrationをすでに含んでいた場合、
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
      * ServletRegistrationは(与えられた<tt>servletClass</tt>を<tt>className</tt>で割り当てることで)完了し、返します。
      *
      * <p>このメソッドは与えられた<tt>servletClass</tt>についている
@@ -702,7 +702,7 @@ public interface ServletContext {
      *
      * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
      *
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための予備的なServletRegistrationをすでに含んでいた場合、
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための準備段階のServletRegistrationをすでに含んでいた場合、
      * ServletRegistrationは(与えられた<tt>jspFile</tt>を割り当てることで)完了し、返します。
      *
      * @param servletName サーブレットの名前
@@ -759,7 +759,7 @@ public interface ServletContext {
     /**
      * 与えられた<tt>servletName</tt>のサーブレットに関連するServletRegistrationを取得します。
      *
-     * @return 与えられた<tt>servletName</tt>のサーブえっとの(完了、もしくは準備段階の)ServletRegistration、
+     * @return 与えられた<tt>servletName</tt>のサーブレットの(完了、もしくは準備段階の)ServletRegistration、
      * その名前の下でServletRegistrationが存在しない場合はnull
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
