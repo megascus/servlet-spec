@@ -595,31 +595,30 @@ public interface ServletContext {
 
 
     /**
-     * Adds the servlet with the given name and class name to this servlet
-     * context.
+     * このServletContextに指定された名前とクラス名でサーブレットを追加します。
+     * 
+     * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細な設定を行うこともできます。
+     * 
+     * <p>指定された<tt>className</tt>はこのサーブレットコンテキストに対応するウェブアプリケーションに関連付けられたクラスローダーを使用してロードされます。
+     * 
+     * これのServletContextが既に与えられたとサーブレットのための予備的ServletRegistration含まれている場合はservletNameを、それが（与えられた割り当てることによって完成されるクラス名をそれまで）と戻りました。
+     * 
      *
-     * <p>The registered servlet may be further configured via the returned
-     * {@link ServletRegistration} object.
-     *
-     * <p>The specified <tt>className</tt> will be loaded using the
-     * classloader associated with the application represented by this
-     * ServletContext.
-     *
-     * <p>If this ServletContext already contains a preliminary
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための前のServletRegistrationをすでに含んでいた場合、
+     * ServletRegistrationは(与えられた<tt>className</tt>を割り当てることで)完了し、返します。
+     * If this ServletContext already contains a preliminary
      * ServletRegistration for a servlet with the given <tt>servletName</tt>,
      * it will be completed (by assigning the given <tt>className</tt> to it)
      * and returned.
      *
-     * <p>This method introspects the class with the given <tt>className</tt>
-     * for the {@link javax.servlet.annotation.ServletSecurity},
-     * {@link javax.servlet.annotation.MultipartConfig},
-     * <tt>javax.annotation.security.RunAs</tt>, and
-     * <tt>javax.annotation.security.DeclareRoles</tt> annotations.
-     * In addition, this method supports resource injection if the
-     * class with the given <tt>className</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
-     *
+     * <p>このメソッドは与えられた<tt>className</tt>のクラスについている
+     * {@link javax.servlet.annotation.ServletSecurity}、
+     * {@link javax.servlet.annotation.MultipartConfig}、
+     * <tt>javax.annotation.security.RunAs</tt>、
+     * <tt>javax.annotation.security.DeclareRoles</tt>アノテーションの情報を読み取り、処理します。
+     * 加えて、このメソッドは与えられた<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
+     * 
      * @param servletName the name of the servlet
      * @param className the fully qualified class name of the servlet
      *
