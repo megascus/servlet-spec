@@ -662,40 +662,30 @@ public interface ServletContext {
 
 
     /**
-     * Adds the servlet with the given name and class type to this servlet
-     * context.
+     * 与えられた名前とクラスタイプをこのServletContextに追加します。
      *
-     * <p>The registered servlet may be further configured via the returned
-     * {@link ServletRegistration} object.
+     * <p>登録されたサーブレットは返された{@link ServletRegistration}オブジェクトで詳細に設定することができます。
      *
-     * <p>If this ServletContext already contains a preliminary
-     * ServletRegistration for a servlet with the given <tt>servletName</tt>,
-     * it will be completed (by assigning the name of the given
-     * <tt>servletClass</tt> to it) and returned.
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための予備的なServletRegistrationをすでに含んでいた場合、
+     * ServletRegistrationは(与えられた<tt>servletClass</tt>を<tt>className</tt>で割り当てることで)完了し、返します。
      *
-     * <p>This method introspects the given <tt>servletClass</tt> for
-     * the {@link javax.servlet.annotation.ServletSecurity},
-     * {@link javax.servlet.annotation.MultipartConfig},
-     * <tt>javax.annotation.security.RunAs</tt>, and
-     * <tt>javax.annotation.security.DeclareRoles</tt> annotations.
-     * In addition, this method supports resource injection if the
-     * given <tt>servletClass</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
+     * <p>このメソッドは与えられた<tt>servletClass</tt>についている
+     * {@link javax.servlet.annotation.ServletSecurity}、
+     * {@link javax.servlet.annotation.MultipartConfig}、
+     * <tt>javax.annotation.security.RunAs</tt>、
+     * <tt>javax.annotation.security.DeclareRoles</tt>アノテーションの情報を読み取り、処理します。
+     * 加えて、このメソッドは与えられた<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
-     * @param servletName the name of the servlet
-     * @param servletClass the class object from which the servlet will be
-     * instantiated
+     * @param servletName サーブレットの名前
+     * @param servletClass インスタンス化されるサーブレットのクラスオブジェクト
      *
-     * @return a ServletRegistration object that may be used to further
-     * configure the registered servlet, or <tt>null</tt> if this
-     * ServletContext already contains a complete ServletRegistration for
-     * the given <tt>servletName</tt>
+     * @return 登録されたサーブレットを詳細に設定するためのServletRegistrationオブジェクト、
+     * ServletContextにすでに与えられた<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws IllegalArgumentException if <code>servletName</code> is null
-     * or an empty String
+     * @throws IllegalArgumentException <code>servletName</code>がnullもしくは空の文字列
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
