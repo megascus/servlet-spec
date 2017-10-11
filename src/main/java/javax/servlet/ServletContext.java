@@ -862,33 +862,25 @@ public interface ServletContext {
 
 
     /**
-     * Adds the filter with the given name and class type to this servlet
-     * context.
+     * 指定された名前とクラスタイプをこのServletContextに追加します。
      *
-     * <p>The registered filter may be further configured via the returned
-     * {@link FilterRegistration} object.
+     * <p>登録されたフィルターは返された{@link FilterRegistration}オブジェクトで詳細に設定することができます。
      *
-     * <p>If this ServletContext already contains a preliminary
-     * FilterRegistration for a filter with the given <tt>filterName</tt>,
-     * it will be completed (by assigning the name of the given
-     * <tt>filterClass</tt> to it) and returned.
+     * <p>ServletContextが指定された<tt>filterClass</tt>のフィルターのための準備段階のFilterRegistrationをすでに含んでいた場合、
+     * FilterRegistrationは(指定された<tt>filterClass</tt>の名前で割り当てることで)完了し、返します。
      *
      * <p>このメソッドは指定された<tt>filterClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
-     * @param filterName the name of the filter
-     * @param filterClass the class object from which the filter will be
-     * instantiated
+     * @param filterName フィルターの名前
+     * @param filterClass インスタンス化されるフィルターのクラスオブジェクト
      *
-     * @return a FilterRegistration object that may be used to further
-     * configure the registered filter, or <tt>null</tt> if this
-     * ServletContext already contains a complete FilterRegistration for a
-     * filter with the given <tt>filterName</tt>
+     * @return 登録されたフィルターを詳細に設定するためのFilterRegistrationオブジェクト、
+     * ServletContextにすでに指定された<tt>filterName</tt>のフィルターのためのFilterRegistrationが完了したものが含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws IllegalArgumentException if <code>filterName</code> is null or
-     * an empty String
+     * @throws IllegalArgumentException <code>filterName</code>がnullもしくは空の文字列
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -901,25 +893,21 @@ public interface ServletContext {
 
 
     /**
-     * Instantiates the given Filter class.
+     * 指定されたフィルタークラスをインスタンス化します。
      *
-     * <p>The returned Filter instance may be further customized before it
-     * is registered with this ServletContext via a call to
-     * {@link #addFilter(String,Filter)}.
+     * <p>返されたフィルターのインスタンスはServletContextの{@link #addFilter(String,Filter)}を呼び出して登録する前に詳細なカスタマイズができます。
      *
-     * <p>The given Filter class must define a zero argument constructor,
-     * which is used to instantiate it.
+     * <p>指定されたフィルターはインスタンス化するために使用される引数のないコンストラクタが定義されている必要があります。
      *
      * <p>このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
-     * @param <T> the class of the Filter to create
-     * @param clazz the Filter class to instantiate
+     * @param <T> 作られるフィルターのクラス
+     * @param clazz インスタンス化されるフィルタークラス
      *
-     * @return the new Filter instance
+     * @return 新しいフィルターのインスタンス
      *
-     * @throws ServletException if the given <tt>clazz</tt> fails to be
-     * instantiated
+     * @throws ServletException 指定された<tt>clazz</tt>のインスタンス化に失敗した
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
