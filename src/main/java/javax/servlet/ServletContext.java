@@ -815,11 +815,9 @@ public interface ServletContext {
      * it will be completed (by assigning the given <tt>className</tt> to it)
      * and returned.
      *
-     * <p>This method supports resource injection if the class with the
-     * given <tt>className</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
-     *
+     * <p>このメソッドは与えられた<tt>className</tt>のクラスがマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
+     * 
      * @param filterName the name of the filter
      * @param className the fully qualified class name of the filter
      *
@@ -892,10 +890,8 @@ public interface ServletContext {
      * it will be completed (by assigning the name of the given
      * <tt>filterClass</tt> to it) and returned.
      *
-     * <p>This method supports resource injection if the given
-     * <tt>filterClass</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
+     * <p>このメソッドは与えられた<tt>filterClass</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param filterName the name of the filter
      * @param filterClass the class object from which the filter will be
@@ -931,10 +927,8 @@ public interface ServletContext {
      * <p>The given Filter class must define a zero argument constructor,
      * which is used to instantiate it.
      *
-     * <p>This method supports resource injection if the given
-     * <tt>clazz</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
+     * <p>このメソッドは与えられた<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      *
      * @param <T> the class of the Filter to create
      * @param clazz the Filter class to instantiate
