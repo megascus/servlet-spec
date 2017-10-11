@@ -757,18 +757,16 @@ public interface ServletContext {
 
 
     /**
-     * Gets the ServletRegistration corresponding to the servlet with the
-     * given <tt>servletName</tt>.
+     * 与えられた<tt>servletName</tt>のサーブレットに関連するServletRegistrationを取得します。
      *
-     * @return the (complete or preliminary) ServletRegistration for the
-     * servlet with the given <tt>servletName</tt>, or null if no
-     * ServletRegistration exists under that name
+     * @return 与えられた<tt>servletName</tt>のサーブえっとの(完了、もしくは準備段階の)ServletRegistration、
+     * その名前の下でServletRegistrationが存在しない場合はnull
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
      * {@link ServletContextListener#contextInitialized}メソッドに渡された場合
      *
-     * @param servletName the name of a servlet
+     * @param servletName サーブレットの名前
      * @since Servlet 3.0
      */
     public ServletRegistration getServletRegistration(String servletName);
