@@ -932,13 +932,11 @@ public interface ServletContext {
 
 
     /**
-     * Gets the FilterRegistration corresponding to the filter with the
-     * given <tt>filterName</tt>.
+     * 指定された<tt>filterName</tt>のフィルターに対応するFilterRegistrationを取得します。
      *
-     * @param filterName the name of a filter
-     * @return the (complete or preliminary) FilterRegistration for the
-     * filter with the given <tt>filterName</tt>, or null if no
-     * FilterRegistration exists under that name
+     * @param filterName フィルターの名雨
+     * @return 指定された<tt>filterName</tt>のフィルターの(完了、もしくは準備段階の)FilterRegistration、
+     * その名前の下でFilterRegistrationが存在しない場合はnull
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
@@ -950,21 +948,14 @@ public interface ServletContext {
 
 
     /**
-     * Gets a (possibly empty) Map of the FilterRegistration
-     * objects (keyed by filter name) corresponding to all filters
-     * registered with this ServletContext.
+     * このServletContextに登録されているすべてのフィルターに対応する(フィルターの名前がキーで空の可能性のある)FilterRegistrationオブジェクトのMapを取得します。
      *
-     * <p>The returned Map includes the FilterRegistration objects
-     * corresponding to all declared and annotated filters, as well as the
-     * FilterRegistration objects corresponding to all filters that have
-     * been added via one of the <tt>addFilter</tt> methods.
+     * <p>返されたMapは設定ファイルで定義されたフィルターやアノテーションが付けられたフィルターに対応するFilterRegistrationオブジェクトと同じように
+     * <tt>addFilter</tt>メソッドのいずれかで追加されたすべてに対応するすべてのFilterRegistrationオブジェクトを含みます。
      *
-     * <p>Any changes to the returned Map must not affect this
-     * ServletContext.
+     * <p>返されたMapへの変更はこのServletContextに影響してはなりません。
      *
-     * @return Map of the (complete and preliminary) FilterRegistration
-     * objects corresponding to all filters currently registered with this
-     * ServletContext
+     * @return このServletContextに現在登録されているすべてのフィルターに対応する(完了、もしくは準備段階の)FilterRegistrationオブジェクトのMap
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
