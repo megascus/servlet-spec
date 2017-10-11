@@ -601,15 +601,8 @@ public interface ServletContext {
      * 
      * <p>指定された<tt>className</tt>はこのサーブレットコンテキストに対応するウェブアプリケーションに関連付けられたクラスローダーを使用してロードされます。
      * 
-     * これのServletContextが既に与えられたとサーブレットのための予備的ServletRegistration含まれている場合はservletNameを、それが（与えられた割り当てることによって完成されるクラス名をそれまで）と戻りました。
-     * 
-     *
-     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための前のServletRegistrationをすでに含んでいた場合、
+     * <p>ServletContextが与えられた<tt>servletName</tt>のサーブレットのための予備的なServletRegistrationをすでに含んでいた場合、
      * ServletRegistrationは(与えられた<tt>className</tt>を割り当てることで)完了し、返します。
-     * If this ServletContext already contains a preliminary
-     * ServletRegistration for a servlet with the given <tt>servletName</tt>,
-     * it will be completed (by assigning the given <tt>className</tt> to it)
-     * and returned.
      *
      * <p>このメソッドは与えられた<tt>className</tt>のクラスについている
      * {@link javax.servlet.annotation.ServletSecurity}、
@@ -619,18 +612,15 @@ public interface ServletContext {
      * 加えて、このメソッドは与えられた<tt>className</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
      * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
      * 
-     * @param servletName the name of the servlet
-     * @param className the fully qualified class name of the servlet
+     * @param servletName サーブレットの名前
+     * @param className サーブレットの完全修飾クラス名(FQCN)
      *
-     * @return a ServletRegistration object that may be used to further
-     * configure the registered servlet, or <tt>null</tt> if this
-     * ServletContext already contains a complete ServletRegistration for
-     * a servlet with the given <tt>servletName</tt>
+     * @return 登録されたサーブレットを詳細に設定するためのServletRegistrationオブジェクト、
+     * ServletContextにすでに与えられた<tt>servletName</tt>のサーブレットのためのServletRegistrationが完了したものが含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws IllegalArgumentException if <code>servletName</code> is null
-     * or an empty String
+     * @throws IllegalArgumentException <code>servletName</code>がnullもしくは空の文字列
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
