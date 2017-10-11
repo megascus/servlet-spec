@@ -825,31 +825,23 @@ public interface ServletContext {
 
 
     /**
-     * Registers the given filter instance with this ServletContext
-     * under the given <tt>filterName</tt>.
+     * 指定されたフィルターのインスタンスをこのServletContextに指定された<tt>filterName</tt>の下で登録します。
      *
-     * <p>The registered filter may be further configured via the returned
-     * {@link FilterRegistration} object.
+     * <p>登録されたフィルターは返された{@link FilterRegistration}オブジェクトで詳細に設定することができます。
+     * 
+     * <p>ServletContextが指定された<tt>filterName</tt>のフィルターのための準備段階のFilterRegistrationをすでに含んでいた場合、
+     * FilterRegistrationは(指定されたフィルターのインスタンスを指定された<tt>className</tt>で割り当てることで)完了し、返します。
      *
-     * <p>If this ServletContext already contains a preliminary
-     * FilterRegistration for a filter with the given <tt>filterName</tt>,
-     * it will be completed (by assigning the class name of the given filter
-     * instance to it) and returned.
+     * @param filterName フィルターの名前
+     * @param filter 登録されるフィルターのインスタンス
      *
-     * @param filterName the name of the filter
-     * @param filter the filter instance to register
-     *
-     * @return a FilterRegistration object that may be used to further
-     * configure the given filter, or <tt>null</tt> if this
-     * ServletContext already contains a complete FilterRegistration for a
-     * filter with the given <tt>filterName</tt> or if the same filter
-     * instance has already been registered with this or another
-     * ServletContext in the same container
+     * @return 指定されたフィルターを詳細に設定するために使用されるFilterRegistrationのオブジェクト、
+     * ServletContextが指定された<tt>filterName</tt>のフィルターのための完了したFilterRegistrationを含んでいる場合や
+     * 同じフィルターのインスタンスがこのServletContextや同じコンテナのほかのServletContextにすでに含まれている場合は<tt>null</tt>
      *
      * @throws IllegalStateException このServletContextが初期化完了している場合
      *
-     * @throws IllegalArgumentException if <code>filterName</code> is null or
-     * an empty String
+     * @throws IllegalArgumentException <code>filterName</code>がnullもしくは空の文字列
      *
      * @throws UnsupportedOperationException このServletContextが<code>web.xml</code>や<code>web-fragment.xml</code>で宣言されておらず、
      * {@link javax.servlet.annotation.WebListener}アノテーションもついてない{@link ServletContextListener}の
