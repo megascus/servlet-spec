@@ -61,24 +61,18 @@ package javax.servlet;
 import java.util.EventListener;
 
 /**
- * Interface for receiving notification events about ServletRequest
- * attribute changes.
+ * ServletRequestの属性が変更された通知イベントを受け取るためのインターフェースです。
  *
- * <p>Notifications will be generated while the request
- * is within the scope of the web application. A ServletRequest
- * is defined as coming into scope of a web application when it
- * is about to enter the first servlet or filter of the web
- * application, and as going out of scope when it exits the last
- * servlet or the first filter in the chain.
+ * <p>リクエストはウェブアプリケーションのスコープ内にある間に通知が生成されます。
+ * ServletRequestはウェブアプリケーションの最初のサーブレットまたはフィルターに入るときにウェブアプリケーションのスコープに入り、
+ * 最後のサーブレットまたはチェーンの最初のフィルタを終了するときにスコープから外れると定義されます。
+ * <p>訳注：いわゆるリクエストスコープ
  *
- * <p>In order to receive these notification events, the implementation
- * class must be either declared in the deployment descriptor of the web
- * application, annotated with {@link javax.servlet.annotation.WebListener},
- * or registered via one of the addListener methods defined on
- * {@link ServletContext}.
+ * <p>これらの通知イベントを受け取るには、実装クラスをWebアプリケーションのデプロイメントディスクリプターで宣言するか、
+ * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
+ * {@link ServletContext}で定義されたaddListenerメソッドの1つを使用して登録する必要があります。
  *
- * <p>The order in which implementations of this interface are invoked is
- * unspecified.
+ * <p>このインタフェースの実装が呼び出される順序は定義されていません。
  *
  * @since Servlet 2.4
  */
@@ -86,41 +80,32 @@ import java.util.EventListener;
 public interface ServletRequestAttributeListener extends EventListener {
 
     /**
-     * Receives notification that an attribute has been added to the
-     * ServletRequest.
+     * ServletRequestに属性が追加された通知を受け取ります。
      *
-     * @param srae the ServletRequestAttributeEvent containing the 
-     * ServletRequest and the name and value of the attribute that was
-     * added
+     * @param srae 属性が追加されたServletRequestに追加で属性の名前と値を含んだServletRequestAttributeEvent
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何もしません
      */
     default public void attributeAdded(ServletRequestAttributeEvent srae) {}
 
     /**
-     * Receives notification that an attribute has been removed from the
-     * ServletRequest.
+     * ServletRequestから属性が削除された通知を受け取ります。
      *
-     * @param srae the ServletRequestAttributeEvent containing the 
-     * ServletRequest and the name and value of the attribute that was
-     * removed
+     * @param srae 属性が削除されたServletRequestに追加で属性の名前と値を含んだServletRequestAttributeEvent
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何もしません
      */
     default public void attributeRemoved(ServletRequestAttributeEvent srae) {}
 
     /**
-     * Receives notification that an attribute has been replaced on the
-     * ServletRequest.
+     * ServletRequestの属性が置き換えられた通知を受け取ります。
      *
-     * @param srae the ServletRequestAttributeEvent containing the 
-     * ServletRequest and the name and (old) value of the attribute
-     * that was replaced
+     * @param srae 属性が置き換えられたServletRequestに追加で属性の名前と古い値を含んだServletRequestAttributeEvent
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何もしません
      */
     default public void attributeReplaced(ServletRequestAttributeEvent srae) {}
 }
