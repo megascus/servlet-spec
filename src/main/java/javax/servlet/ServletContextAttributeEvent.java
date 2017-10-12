@@ -58,9 +58,8 @@
 
 package javax.servlet;
 
-/** 
- * Event class for notifications about changes to the attributes of
- * the ServletContext of a web application.
+/**
+ * ウェブアプリケーションのServletContextの属性が変更された通知のためのイベントクラスです。
  *
  * @see ServletContextAttributeListener
  *
@@ -75,12 +74,11 @@ public class ServletContextAttributeEvent extends ServletContextEvent {
     private Object value;
 
     /**
-     * Constructs a ServletContextAttributeEvent from the given 
-     * ServletContext, attribute name, and attribute value.
+     * 与えられたServletContextと属性名と属性の値でServletContextAttributeEventを生成します。
      *
-     * @param source the ServletContext whose attribute changed
-     * @param name the name of the ServletContext attribute that changed
-     * @param value the value of the ServletContext attribute that changed
+     * @param source 属性が変更されたServletContext
+     * @param name ServletContextの変更された属性の名前
+     * @param value ServletContextの変更された属性の値
      */
     public ServletContextAttributeEvent(ServletContext source,
             String name, Object value) {
@@ -90,23 +88,21 @@ public class ServletContextAttributeEvent extends ServletContextEvent {
     }
 	
     /**
-     * Gets the name of the ServletContext attribute that changed.
+     * ServletContextの変更された属性の名前を取得します。
      *
-     * @return the name of the ServletContext attribute that changed
+     * @return ServletContextの変更された属性の名前
      */
     public String getName() {
         return this.name;
     }
 	
     /**
-     * Gets the value of the ServletContext attribute that changed.
+     * ServletContextの変更された属性の値を取得します。
      *
-     * <p>If the attribute was added, this is the value of the attribute.
-     * If the attribute was removed, this is the value of the removed
-     * attribute. If the attribute was replaced, this is the old value of
-     * the attribute.
+     * <p>属性が追加された場合は属性の値です。属性が削除された場合は削除された値です。
+     * 属性が置き換えられた場合は属性の古い値です。
      *
-     * @return the value of the ServletContext attribute that changed
+     * @return ServletContextの変更された属性の値
      */
     public Object getValue() {
         return this.value;   
