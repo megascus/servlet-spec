@@ -61,19 +61,13 @@ package javax.servlet;
 import java.util.EventListener;
 
 /** 
- * Interface for receiving notification events about ServletContext
- * lifecycle changes.
+ * ServletContextのライフサイクルの変更イベントの通知を受け取るためのインターフェースです。
  *
- * <p>In order to receive these notification events, the implementation
- * class must be either declared in the deployment descriptor of the web
- * application, annotated with {@link javax.servlet.annotation.WebListener},
- * or registered via one of the addListener methods defined on
- * {@link ServletContext}.
- *
- * <p>Implementations of this interface are invoked at their
- * {@link #contextInitialized} method in the order in which they have been
- * declared, and at their {@link #contextDestroyed} method in reverse
- * order.
+ * <p>これらの通知イベントを受け取るには、実装クラスをウェブアプリケーションのデプロイメントディスクリプターで宣言するか、
+ * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
+ * {@link ServletContext}で定義されたaddListenerメソッドの1つを使って登録する必要があります。
+ * 
+ * <p>このインタフェースの実装は、{@link #contextInitialized}メソッドは宣言された順番で、{@link #contextDestroyed}はその逆の順番で呼び出されます。
  *
  * @see ServletContextEvent
  *
@@ -82,34 +76,27 @@ import java.util.EventListener;
 public interface ServletContextListener extends EventListener {
 
     /**
-     * Receives notification that the web application initialization
-     * process is starting.
+     * ウェブアプリケーションの初期化処理がスタートした通知を受け取ります。
      *
-     * <p>All ServletContextListeners are notified of context
-     * initialization before any filters or servlets in the web
-     * application are initialized.
+     * <p>ウェブアプリケーション内のフィルターやサーブレットが初期化される前にすべてのServletContextListenerはServletContextの初期化を通知されます。
      *
-     * @param sce the ServletContextEvent containing the ServletContext
-     * that is being initialized
+     * @param sce 初期化されているServletContextを含むServletContextEvent
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何もしません
      */
     default public void contextInitialized(ServletContextEvent sce) {}
 
     /**
-     * Receives notification that the ServletContext is about to be
-     * shut down.
+     * ServletContextがシャットダウンされようとしている通知を受け取ります。
      *
-     * <p>All servlets and filters will have been destroyed before any
-     * ServletContextListeners are notified of context
-     * destruction.
+     * <p>ServletContextListenerにServletContextの破棄が通知される前に、すべてのサーブレットとフィルタが破棄されます。
      *
      * @param sce the ServletContextEvent containing the ServletContext
      * that is being destroyed
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何もしません
      */
     default public void contextDestroyed(ServletContextEvent sce) {}
 }
