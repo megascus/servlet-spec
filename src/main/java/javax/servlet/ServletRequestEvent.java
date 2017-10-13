@@ -70,31 +70,32 @@ public class ServletRequestEvent extends java.util.EventObject {
 
     private final transient ServletRequest request;
 
-    /** Construct a ServletRequestEvent for the given ServletContext
-      * and ServletRequest.
-      *
-      * @param sc       the ServletContext of the web application.
-      * @param request  the ServletRequest that is sending the event.
-      */
+    /** 
+     * 与えられたServletContextとServletRequestのためのServletRequestEventを生成します。
+     *
+     * @param sc       ウェブアプリケーションのServletContext
+     * @param request  イベントを送っているServletRequest
+     */
     public ServletRequestEvent(ServletContext sc, ServletRequest request) {
         super(sc);
         this.request = request;
     }
 
     /**
-      * Returns the ServletRequest that is changing.
-
-      * @return the {@link ServletRequest} corresponding to this event.
-      */
+     * 変更されたServletRequestを返します。
+     * Returns the ServletRequest that is changing.
+     * 
+     * @return このイベントに関係する{@link ServletRequest}
+     */
     public ServletRequest getServletRequest () { 
         return this.request;
     }
 
     /**
-      * Returns the ServletContext of this web application.
-      *
-      * @return the {@link ServletContext} for this web application.
-      */
+     * このウェブアプリケーションのServletContextを返します。
+     *
+     * @return このウェブアプリケーションの{@link ServletContext}
+     */
     public ServletContext getServletContext () { 
         return (ServletContext) super.getSource();
     }

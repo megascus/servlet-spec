@@ -60,11 +60,10 @@ package javax.servlet;
 
 
     /** 
-      * This is the event class for notifications of changes to the 
-      * attributes of the servlet request in an application.
-      * @see ServletRequestAttributeListener
-      * @since Servlet 2.4
-      */
+     * ウェブアプリケーションのServletRequestの属性が変更された通知のためのイベントクラスです。
+     * @see ServletRequestAttributeListener
+     * @since Servlet 2.4
+     */
 
 public class ServletRequestAttributeEvent extends ServletRequestEvent { 
 
@@ -73,14 +72,13 @@ public class ServletRequestAttributeEvent extends ServletRequestEvent {
     private String name;
     private Object value;
 
-     /** Construct a ServletRequestAttributeEvent giving the servlet context
-      * of this web application, the ServletRequest whose attributes are
-      * changing and the name and value of the attribute.
+     /**
+      * 与えられたこのウェブアプリケーションのServletContext、属性が変更されたServletRequestとその属性の名前と値でServletRequestAttributeEventを生成します。
       *
-      * @param sc		the ServletContext that is sending the event.
-      * @param request		the ServletRequest that is sending the event.
-      * @param name		the name of the request attribute.
-      * @param value		the value of the request attribute.
+      * @param sc		イベントが送られているServletContext
+      * @param request		イベントが送られているServletRequest
+      * @param name		ServletRequestの属性の名前
+      * @param value		ServletRequestの属性の値
       */
     public ServletRequestAttributeEvent(ServletContext sc, ServletRequest request, String name, Object value) {
         super(sc, request);
@@ -89,23 +87,22 @@ public class ServletRequestAttributeEvent extends ServletRequestEvent {
     }
 
     /**
-      * Return the name of the attribute that changed on the ServletRequest.
+      * ServletRequestの変更された属性の名前を取得します。
       *
-      * @return		the name of the changed request attribute
+      * @return		ServletRequestの変更された属性の名前
       */
     public String getName() {
         return this.name;
     }
 
     /**
-      * Returns the value of the attribute that has been added, removed or 
-      * replaced. If the attribute was added, this is the value of the 
-      * attribute. If the attribute was removed, this is the value of the 
-      * removed attribute. If the attribute was replaced, this is the old 
-      * value of the attribute.
-      *
-      * @return		the value of the changed request attribute
-      */
+     * 属性の追加された、削除された、置き換えられた値を返します。
+     * 
+     * 属性が追加された場合は属性の値です。属性が削除された場合は削除された値です。
+     * 属性が置き換えられた場合は属性の古い値です。
+     *
+     * @return		ServletRequestの変更された属性の値
+     */
     public Object getValue() {
         return this.value;   
     }
