@@ -61,24 +61,16 @@ package javax.servlet;
 import java.util.EventListener;
 
 /**
- * Interface for receiving notification events about requests coming
- * into and going out of scope of a web application.
+ * ServletRequestがウェブアプリケーションのスコープに入ろうとしているのと外れようとしているのの通知イベントを受け取るためのインターフェースです。
  *
- * <p>A ServletRequest is defined as coming into scope of a web
- * application when it is about to enter the first servlet or filter
- * of the web application, and as going out of scope as it exits
- * the last servlet or the first filter in the chain.
+ * <p>ServletRequestはウェブアプリケーションの最初のサーブレットまたはフィルタに入るときにWebアプリケーションのスコープに入り、
+ * 最後のサーブレットまたはチェーン内の最初のフィルタを終了するときに範囲外になると定義されます。
  *
- * <p>In order to receive these notification events, the implementation
- * class must be either declared in the deployment descriptor of the web
- * application, annotated with {@link javax.servlet.annotation.WebListener}, 
- * or registered via one of the addListener methods defined on
- * {@link ServletContext}.
- *
- * <p>Implementations of this interface are invoked at their
- * {@link #requestInitialized} method in the order in which they have been
- * declared, and at their {@link #requestDestroyed} method in reverse
- * order.
+ * <p>これらの通知イベントを受け取るには、実装クラスをウェブアプリケーションのデプロイメントディスクリプターで宣言するか、
+ * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
+ * {@link ServletContext}で定義されたaddListenerメソッドの1つを使って登録する必要があります。
+ * 
+ * <p>このインタフェースの実装は、{@link #contextInitialized}メソッドは宣言された順番で、{@link #contextDestroyed}はその逆の順番で呼び出されます。
  *
  * @since Servlet 2.4
  */
@@ -86,26 +78,22 @@ import java.util.EventListener;
 public interface ServletRequestListener extends EventListener {
 
     /**
-     * Receives notification that a ServletRequest is about to go out
-     * of scope of the web application.
-     *
-     * @param sre the ServletRequestEvent containing the ServletRequest
-     * and the ServletContext representing the web application
+     * ServletRequestがウェブアプリケーションのスコープから外れようとしている通知を受け取ります。
+￥     *
+     * @param sre ServletRequestとこのウェブアプリケーションをあらわすServletContextの含まれたServletRequestEvent
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何もしません
      */
     default public void requestDestroyed(ServletRequestEvent sre) {}
 
     /**
-     * Receives notification that a ServletRequest is about to come
-     * into scope of the web application.
+     * ServletRequestがウェブアプリケーションのスコープに入ろうとしている通知を受け取ります。
      *
-     * @param sre the ServletRequestEvent containing the ServletRequest
-     * and the ServletContext representing the web application
+     * @param sre ServletRequestとこのウェブアプリケーションをあらわすServletContextの含まれたServletRequestEvent
      *
      * @implSpec
-     * The default implementation takes no action.
+     * デフォルト実装では何もしません
      */
     default public void requestInitialized(ServletRequestEvent sre) {}
 }
