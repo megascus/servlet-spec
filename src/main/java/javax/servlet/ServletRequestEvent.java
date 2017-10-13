@@ -58,8 +58,9 @@
 package javax.servlet;
 
 /** 
- * Events of this kind indicate lifecycle events for a ServletRequest.
- * The source of the event is the ServletContext of this web application.
+ * この種類のイベントはServletRequestのライフサイクルのイベントを示します。
+ * 
+ * イベントのソースはこのウェブアプリケーションのServletContextです。
  *
  * @see ServletRequestListener
  * @since Servlet 2.4
