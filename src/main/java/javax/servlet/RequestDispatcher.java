@@ -61,16 +61,11 @@ package javax.servlet;
 import java.io.IOException;
 
 /**
- * Defines an object that receives requests from the client
- * and sends them to any resource (such as a servlet, 
- * HTML file, or JSP file) on the server. The servlet
- * container creates the <code>RequestDispatcher</code> object,
- * which is used as a wrapper around a server resource located
- * at a particular path or given by a particular name.
- *
- * <p>This interface is intended to wrap servlets,
- * but a servlet container can create <code>RequestDispatcher</code>
- * objects to wrap any type of resource.
+ * クライアントからリクエストを受け取り、サーバー上の任意のリソース(サーブレット、HTMLファイル、JSPファイルなど)を送信するオブジェクトを定義します。
+ * サーブレットコンテナは特定のパスまたは特定の名前で指定されたサーバーリソースのラッパーとして使用されるcode>RequestDispatcher</code>オブジェクトを作成します。
+ * 
+ * <p>このインタフェースはサーブレットをラップするためのものですが、
+ * サーブレットコンテナは任意の種類のリソースをラップするための<code>RequestDispatcher</code>オブジェクトを作成できます。
  *
  * @author Various
  *
