@@ -62,7 +62,7 @@ import java.io.IOException;
 
 /**
  * クライアントからリクエストを受け取り、サーバー上の任意のリソース(サーブレット、HTMLファイル、JSPファイルなど)を送信するオブジェクトを定義します。
- * サーブレットコンテナは特定のパスまたは特定の名前で指定されたサーバーリソースのラッパーとして使用されるcode>RequestDispatcher</code>オブジェクトを作成します。
+ * サーブレットコンテナは特定のパスまたは特定の名前で指定されたサーバーリソースのラッパーとして使用される<code>RequestDispatcher</code>オブジェクトを作成します。
  * 
  * <p>このインタフェースはサーブレットをラップするためのものですが、
  * サーブレットコンテナは任意の種類のリソースをラップするための<code>RequestDispatcher</code>オブジェクトを作成できます。
@@ -77,16 +77,12 @@ import java.io.IOException;
 public interface RequestDispatcher {
 
     /**
-     * The name of the request attribute under which the original
-     * request URI is made available to the target of a 
-     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * The name of the request attribute under which the original request URI is made available to the target of a {@link #forward(ServletRequest,ServletResponse) forward}
      */
     static final String FORWARD_REQUEST_URI = "javax.servlet.forward.request_uri";
 
     /**
-     * The name of the request attribute under which the original
-     * context path is made available to the target of a 
-     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * The name of the request attribute under which the original context path is made available to the target of a {@link #forward(ServletRequest,ServletResponse) forward}
      */
     static final String FORWARD_CONTEXT_PATH = "javax.servlet.forward.context_path";
 
