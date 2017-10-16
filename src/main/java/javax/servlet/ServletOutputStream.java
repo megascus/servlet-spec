@@ -353,30 +353,27 @@ public abstract class ServletOutputStream extends OutputStream  {
     }
 
     /**
-     * This method can be used to determine if data can be written without blocking.
+     * このメソッドはブロックせずにデータを書き込むことができるかどうかを判断するために使用できます。
      *
-     * @return <code>true</code> if a write to this <code>ServletOutputStream</code>
-     *  will succeed, otherwise returns <code>false</code>.
+     * @return この<code>ServletOutputStream</code>に書き込めるときに<code>true</code>、そうでないときは<code>false</code>
      *
      *  @since Servlet 3.1
      */
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletOutputStream</code> to invoke the provided
-     * {@link WriteListener} when it is possible to write
+     * <code>ServletOutputStream</code>に<code>ServletOutputStream</code>が書き込むことができるときに提供された{@link WriteListener}を実行するように指示をします。
      *
      *
-     * @param writeListener the {@link WriteListener} that should be notified
-     *  when it's possible to write
+     * @param writeListener <code>ServletOutputStream</code>が書き込み可能な時に通知を受ける必要のある{@link WriteListener}
      *
-     * @exception IllegalStateException if one of the following conditions is true
+     * @exception IllegalStateException 以下の条件の一つがtrueの時
      * <ul>
-     * <li>the associated request is neither upgraded nor the async started
-     * <li>setWriteListener is called more than once within the scope of the same request.
+     * <li>関連するリクエストはアップグレードされず、非同期開始も開始されない
+     * <li>setWriteListenerが同じリクエストのスコープで2回以上呼び出される
      * </ul>
      *
-     * @throws NullPointerException if writeListener is null
+     * @throws NullPointerException writeListenerがnull
      *
      * @since Servlet 3.1
      */
