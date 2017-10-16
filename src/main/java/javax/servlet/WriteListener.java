@@ -51,8 +51,8 @@ import java.util.EventListener;
 public interface WriteListener extends EventListener {
 
     /**
-     * WriteListenerのインスタンスが{@link ServletOutputStream}に登録されている場合、データが書き込み可能になった初回にこのメソッドはコンテナによって呼び出されます。
-     * つまり、{@link javax.servlet.ServletOutputStream#isReady()}メソッドが<code>false</code>を返した後に書き込みオペレーションが可能になった場合のみコンテナからメソッドが呼び出されます。　
+     * WriteListenerのインスタンスが{@link ServletOutputStream}に登録されている時に、データが初めて書き込み可能になった時にこのメソッドはコンテナによって呼び出されます。
+     * つまり、{@link javax.servlet.ServletOutputStream#isReady()}メソッドが<code>false</code>を返しており、その後に書き込みオペレーションが可能になった場合のみコンテナからメソッドが呼び出されます。　
      *
      * @throws IOException 処理中にI/O関連のエラーが発生した場合
      */
