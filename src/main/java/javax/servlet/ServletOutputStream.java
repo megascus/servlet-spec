@@ -94,7 +94,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      * 復帰改行(CRFL)を使用せずにクライアントに<code>String</code>を書き込みます。
      *
      *
-     * @param s                       the <code>String</code> to send to the client
+     * @param s                       クライアントに送る<code>String</code>
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -126,12 +126,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
-     * Writes a <code>boolean</code> value to the client,
-     * with no carriage return-line feed (CRLF) 
-     * character at the end.
+     * 復帰改行(CRFL)を文字の最後に使用せずにクライアントに<code>boolean</code>を書き込みます。
      *
-     * @param b                       the <code>boolean</code> value 
-     *                                to send to the client
+     * @param b                       クライアントに送る<code>boolean</code>
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -150,11 +147,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
-     * Writes a character to the client,
-     * with no carriage return-line feed (CRLF) 
-     * at the end.
+     * 復帰改行(CRFL)を最後に使用せずにクライアントに文字を書き込みます。
      *
-     * @param c                       the character to send to the client
+     * @param c                       クライアントに送る文字
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -168,12 +163,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
+     * 復帰改行(CRFL)を最後に使用せずにクライアントにintを書き込みます。
      *
-     * Writes an int to the client,
-     * with no carriage return-line feed (CRLF) 
-     * at the end.
-     *
-     * @param i                       the int to send to the client
+     * @param i                       クライアントに送るint
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -187,12 +179,10 @@ public abstract class ServletOutputStream extends OutputStream  {
 
  
     /**
-     * 
-     * Writes a <code>long</code> value to the client,
-     * with no carriage return-line feed (CRLF) at the end.
+     * 復帰改行(CRFL)を最後に使用せずにクライアントに<code>long</code>値を書き込みます。
+
      *
-     * @param l                       the <code>long</code> value 
-     *                                to send to the client
+     * @param l                       クライアントに送る<code>long</code>値
      *
      * @exception IOException         I/O例外が発生した
      * 
@@ -205,12 +195,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
+     * 復帰改行(CRFL)を最後に使用せずにクライアントに<code>float</code>値を書き込みます。
      *
-     * Writes a <code>float</code> value to the client,
-     * with no carriage return-line feed (CRLF) at the end.
-     *
-     * @param f                       the <code>float</code> value
-     *                                to send to the client
+     * @param f                       クライアントに送る<code>float</code>値
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -224,12 +211,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
-     *
-     * Writes a <code>double</code> value to the client,
-     * with no carriage return-line feed (CRLF) at the end.
+     * 復帰改行(CRFL)を最後に使用せずにクライアントに<code>double</code>値を書き込みます。
      * 
-     * @param d                       the <code>double</code> value
-     *                                to send to the client
+     * @param d                       クライアントに送る<code>double</code>値
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -242,10 +226,7 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
-     * Writes a carriage return-line feed (CRLF)
-     * to the client.
-     *
-     *
+     * クライアントに復帰改行(CRFL)を書き込みます。
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -258,11 +239,10 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
-     * Writes a <code>String</code> to the client, 
-     * followed by a carriage return-line feed (CRLF).
+     * クライアントに<code>String</code>を書き込み、続けて復帰改行(CRFL)を書き込みます。
      *
      *
-     * @param s                       the <code>String</code> to write to the client
+     * @param s                       クライアントに書き込む<code>String</code>
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -277,14 +257,10 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
-     *
-     * Writes a <code>boolean</code> value to the client, 
-     * followed by a 
-     * carriage return-line feed (CRLF).
+     * クライアントに<code>boolean</code>値を書き込み、続けて復帰改行(CRFL)を書き込みます。
      *
      *
-     * @param b                       the <code>boolean</code> value 
-     *                                to write to the client
+     * @param b                        クライアントに書き込む<code>boolean</code>値
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -298,11 +274,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
+     * クライアントに文字を書き込み、続けて復帰改行(CRFL)を書き込みます。
      *
-     * Writes a character to the client, followed by a carriage
-     * return-line feed (CRLF).
-     *
-     * @param c                       the character to write to the client
+     * @param c                        クライアントに書き込む文字
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -316,12 +290,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
+     * クライアントに整数を書き込み、続けて復帰改行(CRFL)を書き込みます。
      *
-     * Writes an int to the client, followed by a 
-     * carriage return-line feed (CRLF) character.
-     *
-     *
-     * @param i                       the int to write to the client
+     * @param i                       クライアントに書き込む整数
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -335,12 +306,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**  
+     * クライアントに<code>long</code>値を書き込み、続けて復帰改行(CRFL)を書き込みます。
      *
-     * Writes a <code>long</code> value to the client, followed by a 
-     * carriage return-line feed (CRLF).
-     *
-     *
-     * @param l                       the <code>long</code> value to write to the client
+     * @param l                       クライアントに書き込む<code>long</code>値
      *
      * @exception IOException         I/O例外が発生した
      *
@@ -354,16 +322,12 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
-     *
-     * Writes a <code>float</code> value to the client, 
-     * followed by a carriage return-line feed (CRLF).
-     *
-     * @param f                       the <code>float</code> value 
-     *                                to write to the client
+     * クライアントに<code>float</code>値を書き込み、続けて復帰改行(CRFL)を書き込みます。
+     * 
+     * @param f                       クライアントに書き込む<code>float</code>値
      *
      *
-     * @exception IOException         if an input or output exception 
-     *                                occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -375,13 +339,9 @@ public abstract class ServletOutputStream extends OutputStream  {
 
 
     /**
+     * クライアントに<code>double</code>値を書き込み、続けて復帰改行(CRFL)を書き込みます。
      *
-     * Writes a <code>double</code> value to the client, 
-     * followed by a carriage return-line feed (CRLF).
-     *
-     *
-     * @param d                       the <code>double</code> value
-     *                                to write to the client
+     * @param d                       クライアントに書き込む<code>double</code>値
      *
      * @exception IOException         I/O例外が発生した
      *
