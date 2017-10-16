@@ -170,45 +170,30 @@ public interface RequestDispatcher {
 
 
     /**
-     * Forwards a request from
-     * a servlet to another resource (servlet, JSP file, or
-     * HTML file) on the server. This method allows
-     * one servlet to do preliminary processing of
-     * a request and another resource to generate
-     * the response.
+     * サーブレットからのリクエストをサーバー上の別のリソース(サーブレット、JSPファイル、またはHTMLファイル)に転送します。
+     * このメソッドはあるサーブレットがリクエストの事前処理を行い、別のリソースがレスポンスを生成することを可能にします。
      *
-     * <p>For a <code>RequestDispatcher</code> obtained via 
-     * <code>getRequestDispatcher()</code>, the <code>ServletRequest</code> 
-     * object has its path elements and parameters adjusted to match
-     * the path of the target resource.
+     * <p><code>getRequestDispatcher()</code>で取得した<code>RequestDispatcher</code>に対して、
+     * <code>ServletRequest</code>オブジェクトはターゲットリソースのパスと一致するように調整されたパス要素とパラメーターを持ちます。
      *
-     * <p><code>forward</code> should be called before the response has been 
-     * committed to the client (before response body output has been flushed). 
-     * If the response already has been committed, this method throws
-     * an <code>IllegalStateException</code>.
-     * Uncommitted output in the response buffer is automatically cleared 
-     * before the forward.
+     * <p><code>forward</code>はレスポンスがクライアントにコミットされる前に(レスポンスボディの出力がフラッシュされる前に)呼び出される必要があります。
+     * レスポンスがすでにコミットされている場合、このメソッドは<code>IllegalStateException</code>を投げます。
+     * レスポンスバッファ内のコミットされていない出力は、転送の前に自動的にクリアされます。
      *
-     * <p>The request and response parameters must be either the same
-     * objects as were passed to the calling servlet's service method or be
-     * subclasses of the {@link ServletRequestWrapper} or
-     * {@link ServletResponseWrapper} classes
-     * that wrap them.
+     * <p>リクエストとレスポンスのパラメーターは呼び出し側サーブレットのサービスメソッドに渡されたものと同じオブジェクトであるか、
+     * それらをラップする{@link ServletRequestWrapper}クラスまたは{@link ServletResponseWrapper}クラスのサブクラスでなければなりません。
      *
-     * <p>This method sets the dispatcher type of the given request to
-     * <code>DispatcherType.FORWARD</code>.
+     * <p>このメソッドは与えられたリクエストのdispatcher typeに<code>DispatcherType.FORWARD</code>を設定します。
      *
-     * @param request a {@link ServletRequest} object that represents the
-     * request the client makes of the servlet
+     * @param request サーブレットのクライアントが作成したリクエストを表す {@link ServletRequest} オブジェクト
      *
-     * @param response a {@link ServletResponse} object that represents
-     * the response the servlet returns to the client
+     * @param response サーブレットがクライアントへ返すレスポンスを表す {@link ServletResponse} オブジェクト
      *
-     * @throws ServletException if the target resource throws this exception
+     * @throws ServletException ターゲットのリソースがこの例外を投げた
      *
-     * @throws IOException if the target resource throws this exception
+     * @throws IOException ターゲットのリソースがこの例外を投げた
      *
-     * @throws IllegalStateException if the response was already committed
+     * @throws IllegalStateException レスポンスがすでにコミットされている場合
      *
      * @see ServletRequest#getDispatcherType
      */
@@ -216,34 +201,23 @@ public interface RequestDispatcher {
         throws ServletException, IOException;
 
     /**
+     * レスポンスにリソース(サーブレット、JSPページ、HTMLファイル)の内容を含めます。本質的に、このメソッドはプログラムによるサーバーサイドインクルードを可能にします。
      *
-     * Includes the content of a resource (servlet, JSP page,
-     * HTML file) in the response. In essence, this method enables 
-     * programmatic server-side includes.
+     * <p>{@link ServletResponse}オブジェクトには呼び出し元から変更されないままのパス要素やパラメーターを持ちます。
+     * インクルードするサーブレットはレスポンスのステータスコードを変更したり、ヘッダーを設定することはできません。変更しようとする試みはすべて無視されます。
      *
-     * <p>The {@link ServletResponse} object has its path elements
-     * and parameters remain unchanged from the caller's. The included
-     * servlet cannot change the response status code or set headers;
-     * any attempt to make a change is ignored.
+     * <p>リクエストとレスポンスのパラメーターは呼び出し側サーブレットのサービスメソッドに渡されたものと同じオブジェクトであるか、
+     * それらをラップする{@link ServletRequestWrapper}クラスまたは{@link ServletResponseWrapper}クラスのサブクラスでなければなりません。
      *
-     * <p>The request and response parameters must be either the same
-     * objects as were passed to the calling servlet's service method or be
-     * subclasses of the {@link ServletRequestWrapper} or
-     * {@link ServletResponseWrapper} classes that wrap them.
+     * <p>このメソッドは与えられたリクエストのdispatcher typeに<code>DispatcherType.INCLUDE</code>を設定します。
      *
-     * <p>This method sets the dispatcher type of the given request to
-     * <code>DispatcherType.INCLUDE</code>.
+     * @param request クライアントのリクエストを含む {@link ServletRequest} オブジェクト
      *
-     * @param request a {@link ServletRequest} object that contains the
-     * client's request
+     * @param response サーブレットのレスポンスを含む {@link ServletResponse} オブジェクト
      *
-     * @param response a {@link ServletResponse} object that contains the
-     * servlet's response
+     * @throws ServletException インクルードしたリソースがこの例外を投げた
      *
-     * @throws ServletException if the included resource throws this
-     * exception
-     *
-     * @throws IOException if the included resource throws this exception
+     * @throws IOException インクルードしたリソースがこの例外を投げた
      *
      * @see ServletRequest#getDispatcherType
      */
