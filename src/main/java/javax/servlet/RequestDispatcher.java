@@ -77,123 +77,94 @@ import java.io.IOException;
 public interface RequestDispatcher {
 
     /**
-     * The name of the request attribute under which the original request URI is made available to the target of a {@link #forward(ServletRequest,ServletResponse) forward}
+     * {@link #forward(ServletRequest,ServletResponse) forward}を使用したときにオリジナルのリクエストURIが使用可能になるリクエストの属性の名前
      */
     static final String FORWARD_REQUEST_URI = "javax.servlet.forward.request_uri";
 
     /**
-     * The name of the request attribute under which the original context path is made available to the target of a {@link #forward(ServletRequest,ServletResponse) forward}
+     * {@link #forward(ServletRequest,ServletResponse) forward}を使用したときにオリジナルのコンテキストパスが使用可能になるリクエストの属性の名前
      */
     static final String FORWARD_CONTEXT_PATH = "javax.servlet.forward.context_path";
 
     /**
-     * The name of the request attribute under which the original
-     * {@link javax.servlet.http.HttpServletMapping} is made available
-     * to the target of a 
-     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * {@link #forward(ServletRequest,ServletResponse) forward}を使用したときにオリジナルの{@link javax.servlet.http.HttpServletMapping}が使用可能になるリクエストの属性の名前
      * 
      * @since 4.0
      */
     static final String FORWARD_MAPPING = "javax.servlet.forward.mapping";
 
     /**
-     * The name of the request attribute under which the original
-     * path info is made available to the target of a 
-     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * {@link #forward(ServletRequest,ServletResponse) forward}を使用したときにオリジナルのパス情報が使用可能になるリクエストの属性の名前
      */
     static final String FORWARD_PATH_INFO = "javax.servlet.forward.path_info";
 
     /**
-     * The name of the request attribute under which the original
-     * servlet path is made available to the target of a 
-     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * {@link #forward(ServletRequest,ServletResponse) forward}を使用したときにオリジナルのサーブレットパスが使用可能になるリクエストの属性の名前
      */
     static final String FORWARD_SERVLET_PATH = "javax.servlet.forward.servlet_path";
 
     /**
-     * The name of the request attribute under which the original
-     * query string is made available to the target of a 
-     * {@link #forward(ServletRequest,ServletResponse) forward}
+     * {@link #forward(ServletRequest,ServletResponse) forward}を使用したときにオリジナルのクエリー文字列が使用可能になるリクエストの属性の名前
      */
     static final String FORWARD_QUERY_STRING = "javax.servlet.forward.query_string";
 
     /**
-     * The name of the request attribute under which the request URI
-     * of the target of an {@link #include(ServletRequest,ServletResponse)
-     * include} is stored
+     * {@link #include(ServletRequest,ServletResponse) include}を使用したときにオリジナルのリクエストURIが使用可能になるリクエストの属性の名前
      */
     static final String INCLUDE_REQUEST_URI = "javax.servlet.include.request_uri";
 
     /**
-     * The name of the request attribute under which the context path
-     * of the target of an {@link #include(ServletRequest,ServletResponse)
-     * include} is stored
+     * {@link #include(ServletRequest,ServletResponse) include}を使用したときにオリジナルのコンテキストパスが使用可能になるリクエストの属性の名前
      */
     static final String INCLUDE_CONTEXT_PATH = "javax.servlet.include.context_path";
 
     /**
-     * The name of the request attribute under which the path info
-     * of the target of an {@link #include(ServletRequest,ServletResponse)
-     * include} is stored
+     * {@link #include(ServletRequest,ServletResponse) include}を使用したときにオリジナルのパス情報が使用可能になるリクエストの属性の名前
      */
     static final String INCLUDE_PATH_INFO = "javax.servlet.include.path_info";
 
     /**
-     * The name of the request attribute under which the
-     * {@link javax.servlet.http.HttpServletMapping}
-     * of the target of an {@link #include(ServletRequest,ServletResponse)
-     * include} is stored
+     * {@link #include(ServletRequest,ServletResponse) include}を使用したときにオリジナルの{@link javax.servlet.http.HttpServletMapping}が使用可能になるリクエストの属性の名前
      */
     static final String INCLUDE_MAPPING = "javax.servlet.include.mapping";
 
     /**
-     * The name of the request attribute under which the servlet path
-     * of the target of an {@link #include(ServletRequest,ServletResponse)
-     * include} is stored
+     * {@link #include(ServletRequest,ServletResponse) include}を使用したときにオリジナルのサーブレットパスが使用可能になるリクエストの属性の名前
      */
     static final String INCLUDE_SERVLET_PATH = "javax.servlet.include.servlet_path";
 
     /**
-     * The name of the request attribute under which the query string
-     * of the target of an {@link #include(ServletRequest,ServletResponse)
-     * include} is stored
+     * {@link #include(ServletRequest,ServletResponse) include}を使用したときにオリジナルのクエリー文字列が使用可能になるリクエストの属性の名前
      */
     static final String INCLUDE_QUERY_STRING = "javax.servlet.include.query_string";
 
     /**
-     * The name of the request attribute under which the exception object
-     * is propagated during an error dispatch
+     * エラーディスパッチのときに伝播されるExceptionオブジェクトが保存されるリクエストの属性の名前
      */
     public static final String ERROR_EXCEPTION = "javax.servlet.error.exception";
 
     /**
-     * The name of the request attribute under which the type of the
-     * exception object is propagated during an error dispatch
+     * エラーディスパッチのときに伝播されるExceptionオブジェクトの型が保存されるリクエストの属性の名前
      */
     public static final String ERROR_EXCEPTION_TYPE = "javax.servlet.error.exception_type";
 
     /**
-     * The name of the request attribute under which the exception message
-     * is propagated during an error dispatch
+     * エラーディスパッチのときに伝播されるExceptionのメッセージが保存されるリクエストの属性の名前
      */
     public static final String ERROR_MESSAGE = "javax.servlet.error.message";
 
     /**
-     * The name of the request attribute under which the request URI
-     * whose processing caused the error is propagated during an error
-     * dispatch
+     * エラーディスパッチのときに伝播されるエラーの原因となったリクエストURIが保存されるリクエストの属性の名前
      */
     public static final String ERROR_REQUEST_URI = "javax.servlet.error.request_uri";
 
     /**
-     * The name of the request attribute under which the name of the servlet
-     * in which the error occurred is propagated during an error dispatch
+     * エラーディスパッチのときに伝播されるエラーの原因となったサーブレットの名前が保存されるリクエストの属性の名前
      */
     public static final String ERROR_SERVLET_NAME = "javax.servlet.error.servlet_name";
 
     /**
-     * The name of the request attribute under which the response status
-     * is propagated during an error dispatch
+     * エラーディスパッチのときに伝播されるエラーの原因となったレスポンスのステータスコードが保存されるリクエストの属性の名前
      */
     public static final String ERROR_STATUS_CODE = "javax.servlet.error.status_code";
 
