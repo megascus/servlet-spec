@@ -62,21 +62,12 @@ import java.io.InputStream;
 import java.io.IOException;
 
 /**
+ * 一度に1行ずつデータを読み込む効率的なreadLineメソッドを含む、クライアントからのリクエストからバイナリデータを読み込むための入力ストリームを提供します。
+ * HTTP POSTやPUTなどのプロトコルでは、<code>ServletInputStream</code>オブジェクトを使用することでクライアントから送信されたデータを読み取ることができます。
  * 
- * Provides an input stream for reading binary data from a client
- * request, including an efficient <code>readLine</code> method
- * for reading data one line at a time. With some protocols, such
- * as HTTP POST and PUT, a <code>ServletInputStream</code>
- * object can be used to read data sent from the client.
- *
- * <p>A <code>ServletInputStream</code> object is normally retrieved via
- * the {@link ServletRequest#getInputStream} method.
- *
- *
- * <p>This is an abstract class that a servlet container implements.
- * Subclasses of this class
- * must implement the <code>java.io.InputStream.read()</code> method.
- *
+ * <p><code>ServletInputStream</code>オブジェクトは通常、{@link ServletRequest#getInputStream}メソッドを使用して取得されます。
+ * 
+ * <p>これはサーブレットコンテナが実装する抽象クラスです。このクラスのサブクラスでは<code>java.io.InputStream.read()</code>メソッドを実装する必要があります。
  *
  * @author 	Various
  *
@@ -89,7 +80,7 @@ public abstract class ServletInputStream extends InputStream {
 
 
     /**
-     * Does nothing, because this is an abstract class.
+     * これは抽象クラスなので何もしません。
      *
      */
 
@@ -99,29 +90,22 @@ public abstract class ServletInputStream extends InputStream {
   
     
     /**
+     * 入力ストリームを一度に1行読み込みます。
+     * オフセットから始めて一定のバイト数を読むか、改行文字に到達するまで配列にバイトを読み込みます。
      *
-     * Reads the input stream, one line at a time. Starting at an
-     * offset, reads bytes into an array, until it reads a certain number
-     * of bytes or reaches a newline character, which it reads into the
-     * array as well.
-     *
-     * <p>This method returns -1 if it reaches the end of the input
-     * stream before reading the maximum number of bytes.
+     * <p>このメソッドは最大バイト数を読み取る前に入力ストリームの終端に達した場合は-1を返します。
      *
      *
      *
-     * @param b 		an array of bytes into which data is read
+     * @param b 		データが読み込まれるバイトの配列
      *
-     * @param off 		an integer specifying the character at which
-     *				this method begins reading
+     * @param off 		このメソッドが読み込みを開始する文字を指定する整数
      *
-     * @param len		an integer specifying the maximum number of 
-     *				bytes to read
+     * @param len		読み込む最大バイト数を指定する整数
      *
-     * @return			an integer specifying the actual number of bytes 
-     *				read, or -1 if the end of the stream is reached
+     * @return			読み込まれた実際のバイト数を示す整数、ストリームの終端に達した場合は-1
      *
-     * @exception IOException	if an input or output exception has occurred
+     * @exception IOException	I/O例外が発生した
      *
      */
     public int readLine(byte[] b, int off, int len) throws IOException {
@@ -143,38 +127,32 @@ public abstract class ServletInputStream extends InputStream {
 
 
     /**
-     * Returns true when all the data from the stream has been read else
-     * it returns false.
+     * ストリームのすべてのデータが読み取られた場合はtrueを返し、そうでない場合はfalseを返します。
      *
-     * @return <code>true</code> when all data for this particular request
-     *  has been read, otherwise returns <code>false</code>.
+     * @return この特定の要求のすべてのデータが読み取られた場合は<code>true</code>、そうでない場合は<code>false</code>を返す
      *
      * @since Servlet 3.1
      */
     public abstract boolean isFinished();
 
     /**
-     * Returns true if data can be read without blocking else returns
-     * false.
+     * ブロッキングせずにデータを読み込むことができるときに<code>true</code>、そうでない場合は<code>false</code>を返す。
      *
-     * @return <code>true</code> if data can be obtained without blocking,
-     *  otherwise returns <code>false</code>.
+     * @return ブロッキングせずにデータを得ることができるときに<code>true</code>、そうでない場合は<code>false</code>を返す
      *
      * @since Servlet 3.1
      */
     public abstract boolean isReady();
 
     /**
-     * Instructs the <code>ServletInputStream</code> to invoke the provided
-     * {@link ReadListener} when it is possible to read
+     * <code>ServletInputStream</code>が読み込むことができるときに提供された{@link WriteListener}を実行するように<code>ServletInputStream</code>に指示をします。
      *
-     * @param readListener the {@link ReadListener} that should be notified
-     *  when it's possible to read.
+     * @param readListener <code>ServletInputStream</code>が読み込み可能な時に通知を受ける必要のある{@link ReadListener}
      *
-     * @exception IllegalStateException if one of the following conditions is true
+     * @exception IllegalStateException 以下の条件の一つがtrueの時
      * <ul>
-     * <li>the associated request is neither upgraded nor the async started
-     * <li>setReadListener is called more than once within the scope of the same request.
+     * <li>関連するリクエストはアップグレードされず、非同期開始も開始されない
+     * <li>setReadListenerが同じリクエストのスコープで2回以上呼び出される
      * </ul>
      *
      * @throws NullPointerException if readListener is null

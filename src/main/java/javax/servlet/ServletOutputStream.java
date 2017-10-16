@@ -362,7 +362,7 @@ public abstract class ServletOutputStream extends OutputStream  {
     public abstract boolean isReady();
 
     /**
-     * <code>ServletOutputStream</code>に<code>ServletOutputStream</code>が書き込むことができるときに提供された{@link WriteListener}を実行するように指示をします。
+     * <code>ServletOutputStream</code>が書き込むことができるときに提供された{@link WriteListener}を実行するように<code>ServletOutputStream</code>に指示をします。
      *
      *
      * @param writeListener <code>ServletOutputStream</code>が書き込み可能な時に通知を受ける必要のある{@link WriteListener}
