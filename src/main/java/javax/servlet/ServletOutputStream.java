@@ -65,15 +65,9 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 /**
- * Provides an output stream for sending binary data to the
- * client. A <code>ServletOutputStream</code> object is normally retrieved 
- * via the {@link ServletResponse#getOutputStream} method.
- *
- * <p>This is an abstract class that the servlet container implements.
- * Subclasses of this class
- * must implement the <code>java.io.OutputStream.write(int)</code>
- * method.
- *
+ * バイナリデータをクライアントに送信するための出力ストリームを提供します。<code>ServletOutputStream</code> オブジェクトは通常、{@link ServletResponse#getOutputStream}メソッドを使用して取得されます。
+ * 
+ * <p>これは、サーブレットコンテナが実装する抽象クラスです。 このクラスのサブクラスは<code>java.io.OutputStream.write(int)</code>メソッドを実装する必要があります。
  * 
  * @author         Various
  *
@@ -90,23 +84,19 @@ public abstract class ServletOutputStream extends OutputStream  {
 
     
     /**
-     *
-     * Does nothing, because this is an abstract class.
-     *
+     * これは抽象クラスなので何もしません。
      */
 
     protected ServletOutputStream() { }
 
 
     /**
-     * Writes a <code>String</code> to the client, 
-     * without a carriage return-line feed (CRLF) 
-     * character at the end.
+     * 復帰改行(CRFL)を使用せずにクライアントに<code>String</code>を書き込みます。
      *
      *
      * @param s                       the <code>String</code> to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -143,7 +133,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param b                       the <code>boolean</code> value 
      *                                to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -166,7 +156,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      * @param c                       the character to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -185,7 +175,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      * @param i                       the int to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */  
 
@@ -204,8 +194,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param l                       the <code>long</code> value 
      *                                to send to the client
      *
-     * @exception IOException         if an input or output exception 
-     *                                occurred
+     * @exception IOException         I/O例外が発生した
      * 
      */
 
@@ -223,7 +212,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param f                       the <code>float</code> value
      *                                to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      *
      */
@@ -242,7 +231,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param d                       the <code>double</code> value
      *                                to send to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -258,7 +247,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      *
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -275,7 +264,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      * @param s                       the <code>String</code> to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -297,7 +286,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param b                       the <code>boolean</code> value 
      *                                to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -315,7 +304,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      * @param c                       the character to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -334,7 +323,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      * @param i                       the int to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
@@ -353,7 +342,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      *
      * @param l                       the <code>long</code> value to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */  
 
@@ -394,7 +383,7 @@ public abstract class ServletOutputStream extends OutputStream  {
      * @param d                       the <code>double</code> value
      *                                to write to the client
      *
-     * @exception IOException         if an input or output exception occurred
+     * @exception IOException         I/O例外が発生した
      *
      */
 
