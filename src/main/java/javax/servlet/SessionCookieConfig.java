@@ -41,11 +41,9 @@
 package javax.servlet;
 
 /**
- * Class that may be used to configure various properties of cookies 
- * used for session tracking purposes.
+ * セッションの追跡に使用されるCookieのさまざまなプロパティを設定するために使用されるクラスです。
  *
- * <p>An instance of this class is acquired by a call to
- * {@link ServletContext#getSessionCookieConfig}.
+ * <p>このクラスのインスタンスは{@link ServletContext#getSessionCookieConfig}を呼び出すことで取得されます。
  *
  * @since Servlet 3.0
  */
@@ -64,9 +62,7 @@ public interface SessionCookieConfig {
      *
      * @param name the cookie name to use
      *
-     * @throws IllegalStateException if the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired has
-     * already been initialized
+     * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      */
     public void setName(String name);
 
@@ -95,9 +91,7 @@ public interface SessionCookieConfig {
      *
      * @param domain the cookie domain to use
      *
-     * @throws IllegalStateException if the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired has
-     * already been initialized
+     * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
      * @see javax.servlet.http.Cookie#setDomain(String)
      */
@@ -126,9 +120,7 @@ public interface SessionCookieConfig {
      *
      * @param path the cookie path to use
      *
-     * @throws IllegalStateException if the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired has
-     * already been initialized
+     * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
      * @see javax.servlet.http.Cookie#setPath(String)
      */
@@ -165,9 +157,7 @@ public interface SessionCookieConfig {
      * 
      * @param comment the cookie comment to use
      *
-     * @throws IllegalStateException if the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired has
-     * already been initialized
+     * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
      * @see javax.servlet.http.Cookie#setComment(String)
      * @see javax.servlet.http.Cookie#getVersion
@@ -206,9 +196,7 @@ public interface SessionCookieConfig {
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
      * was acquired shall be marked as <i>HttpOnly</i>, false otherwise
      *
-     * @throws IllegalStateException if the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired has
-     * already been initialized
+     * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
      * @see javax.servlet.http.Cookie#setHttpOnly(boolean)
      */
@@ -252,9 +240,7 @@ public interface SessionCookieConfig {
      * if they shall be marked as <i>secure</i> only if the request that
      * initiated the corresponding session was also secure
      *
-     * @throws IllegalStateException if the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired has
-     * already been initialized
+     * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
      * @see javax.servlet.http.Cookie#setSecure(boolean)
      * @see ServletRequest#isSecure()
@@ -294,9 +280,7 @@ public interface SessionCookieConfig {
      * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
      * was acquired.
      *
-     * @throws IllegalStateException if the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired has
-     * already been initialized
+     * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
      * @see javax.servlet.http.Cookie#setMaxAge
      */
