@@ -188,21 +188,14 @@ public interface SessionCookieConfig {
      * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
      * 作成されたセッショントラッキングCookieを<i>secure</i>としてマークもしくはアンマークします。
      *
-     * <p>One use case for marking a session tracking cookie as
-     * <tt>secure</tt>, even though the request that initiated the session
-     * came over HTTP, is to support a topology where the web container is
-     * front-ended by an SSL offloading load balancer.
-     * In this case, the traffic between the client and the load balancer
-     * will be over HTTPS, whereas the traffic between the load balancer
-     * and the web container will be over HTTP.  
+     * <p>セッショントラッキングCookieを<tt>secure</tt>としてマークする場合の1つの使用例は、
+     * セッションを開始したリクエストがHTTP経由で来た場合でも、WebコンテナのフロントエンドとしてSSLオフロードロードバランサが置かれている形態をサポートすることです。
+     * この場合はクライアントとロードバランサ間のトラフィックはHTTPS経由となりますが、ロードバランサとWebコンテナ間のトラフィックはHTTP経由となります。
      *
-     * @param secure true if the session tracking cookies created on
-     * behalf of the application represented by the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired shall be
-     * marked as <i>secure</i> even if the request that initiated the
-     * corresponding session is using plain HTTP instead of HTTPS, and false
-     * if they shall be marked as <i>secure</i> only if the request that
-     * initiated the corresponding session was also secure
+     * @param secure この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieが対応するセッションを開始したリクエストがHTTPSの代わりにプレーンHTTPを使用していても
+     * <i>secure</i>であるとマークされているならばtrue、対応するセッションを開始したリクエストがsecureであった場合にのみ
+     * <i>secure</i>としてマークされるならばfalse
      *
      * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
@@ -213,19 +206,14 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Checks if the session tracking cookies created on behalf of the
-     * application represented by the <tt>ServletContext</tt> from which
-     * this <tt>SessionCookieConfig</tt> was acquired will be marked as
-     * <i>secure</i> even if the request that initiated the corresponding
-     * session is using plain HTTP instead of HTTPS.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieが対応するセッションを開始したリクエストがHTTPSの代わりにプレーンHTTPを使用していても
+     * <i>secure</i>であるとマークされているかどうかチェックします。
      *
-     * @return true if the session tracking cookies created on behalf of the
-     * application represented by the <tt>ServletContext</tt> from which
-     * this <tt>SessionCookieConfig</tt> was acquired will be marked as
-     * <i>secure</i> even if the request that initiated the corresponding
-     * session is using plain HTTP instead of HTTPS, and false if they will
-     * be marked as <i>secure</i> only if the request that initiated the
-     * corresponding session was also secure
+     * @return この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieが対応するセッションを開始したリクエストがHTTPSの代わりにプレーンHTTPを使用していても
+     * <i>secure</i>であるとマークされているならばtrue、対応するセッションを開始したリクエストがsecureであった場合にのみ
+     * <i>secure</i>としてマークされるならばfalse
      *
      * @see javax.servlet.http.Cookie#getSecure()
      * @see ServletRequest#isSecure()
