@@ -50,17 +50,14 @@ package javax.servlet;
 public interface SessionCookieConfig {
 
     /**
-     * Sets the name that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられる名前を設定します。
+     * 
+     * <p>注：セッショントラッキングCookieの名前を変更すると、
+     * Cookie名がデフォルトの<tt>JSESSIONID</tt>であるとみなされている他の層(たとえば、ロードバランシングフロントエンド)
+     * が壊れる可能性があります。したがって、慎重に行う必要がります。
      *
-     * <p>NOTE: Changing the name of session tracking cookies may break
-     * other tiers (for example, a load balancing frontend) that assume
-     * the cookie name to be equal to the default <tt>JSESSIONID</tt>,
-     * and therefore should only be done cautiously.
-     *
-     * @param name the cookie name to use
+     * @param name 使われるCookieの名前
      *
      * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      */
@@ -68,15 +65,12 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Gets the name that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられる名前を取得します。
      *
-     * <p>By default, <tt>JSESSIONID</tt> will be used as the cookie name.
-     *
-     * @return the cookie name set via {@link #setName}, or
-     * <tt>null</tt> if {@link #setName} was never called
+     * <p>デフォルトでは<tt>JSESSIONID</tt>がCookie名として使用されます。
+     * 
+     * @return {@link #setName}で設定されたCookieの名前、{@link #setName}が呼び出されてない場合は<tt>null</tt>
      *
      * @see javax.servlet.http.Cookie#getName()
      */
@@ -84,12 +78,10 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Sets the domain name that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられるドメイン名を設定します。
      *
-     * @param domain the cookie domain to use
+     * @param domain 使用されるCookieのドメイン
      *
      * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
@@ -99,13 +91,10 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Gets the domain name that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられるドメイン名を取得します。
      *
-     * @return the cookie domain set via {@link #setDomain}, or
-     * <tt>null</tt> if {@link #setDomain} was never called
+     * @return {@link #setDomain}で設定されたCookieのドメイン、{@link #setDomain}が呼び出されてない場合は<tt>null</tt>
      *
      * @see javax.servlet.http.Cookie#getDomain()
      */
@@ -113,12 +102,10 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Sets the path that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられるパスを設定します。
      *
-     * @param path the cookie path to use
+     * @param path 使用されるCookieのパス
      *
      * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
@@ -128,17 +115,12 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Gets the path that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられるパスを取得します。
+     * 
+     * <p>デフォルトではこの<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>のコンテキストパスが使用されます。
      *
-     * <p>By default, the context path of the <tt>ServletContext</tt>
-     * from which this <tt>SessionCookieConfig</tt> was acquired will
-     * be used.
-     *
-     * @return the cookie path set via {@link #setPath}, or <tt>null</tt>
-     * if {@link #setPath} was never called
+     * @return {@link #setPath}で設定されたCookieのパス、{@link #setPath}が呼び出されてない場合は<tt>null</tt>
      *
      * @see javax.servlet.http.Cookie#getPath()
      */
@@ -146,16 +128,12 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Sets the comment that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられるコメントを設定します。
      *
-     * <p>As a side effect of this call, the session tracking cookies
-     * will be marked with a <code>Version</code> attribute equal to
-     * <code>1</code>.
+     * <p>このメソッドを呼び出すと副作用としてセッショントラッキングCookieの<code>Version</code>属性に<code>1</code>が設定されます。
      * 
-     * @param comment the cookie comment to use
+     * @param comment 使用されるCookieのコメント
      *
      * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
@@ -166,13 +144,10 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Gets the comment that will be assigned to any session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieに割り当てられるコメントを取得します。
      *
-     * @return the cookie comment set via {@link #setComment}, or
-     * <tt>null</tt> if {@link #setComment} was never called
+     * @return {@link #setComment}で設定されたCookieのコメント、{@link #setComment}が呼び出されてない場合は<tt>null</tt>
      *
      * @see javax.servlet.http.Cookie#getComment()
      */
