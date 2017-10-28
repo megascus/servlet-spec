@@ -155,21 +155,15 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Marks or unmarks the session tracking cookies created on behalf
-     * of the application represented by the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired as
-     * <i>HttpOnly</i>.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieを<i>HttpOnly</i>としてマークもしくはアンマークします。
      *
-     * <p>A cookie is marked as <tt>HttpOnly</tt> by adding the
-     * <tt>HttpOnly</tt> attribute to it. <i>HttpOnly</i> cookies are
-     * not supposed to be exposed to client-side scripting code, and may
-     * therefore help mitigate certain kinds of cross-site scripting
-     * attacks.
+     * <p>Cookieは<tt>HttpOnly</tt>属性を追加されることで<tt>HttpOnly</tt>としてマークされます。
+     * <i>HttpOnly</i>のクッキーはクライアント側のスクリプトコードに公開されないと規定されているため、
+     * 特定の種類のクロスサイトスクリプティング攻撃を緩和できます。
      *
-     * @param httpOnly true if the session tracking cookies created
-     * on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired shall be marked as <i>HttpOnly</i>, false otherwise
+     * @param httpOnly この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieを<i>HttpOnly</i>としてマークしたいのならばtrue、そうでないならfalse
      *
      * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
@@ -179,15 +173,11 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Checks if the session tracking cookies created on behalf of the
-     * application represented by the <tt>ServletContext</tt> from which
-     * this <tt>SessionCookieConfig</tt> was acquired will be marked as
-     * <i>HttpOnly</i>.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieを<i>HttpOnly</i>としてマークされているかチェックします。
      *
-     * @return true if the session tracking cookies created on behalf of
-     * the application represented by the <tt>ServletContext</tt> from
-     * which this <tt>SessionCookieConfig</tt> was acquired will be marked
-     * as <i>HttpOnly</i>, false otherwise
+     * @return この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieが<i>HttpOnly</i>としてマークされているのならばtrue、そうでないならfalse
      *
      * @see javax.servlet.http.Cookie#isHttpOnly()
      */
@@ -195,9 +185,8 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Marks or unmarks the session tracking cookies created on behalf of
-     * the application represented by the <tt>ServletContext</tt> from which
-     * this <tt>SessionCookieConfig</tt> was acquired as <i>secure</i>.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieを<i>secure</i>としてマークもしくはアンマークします。
      *
      * <p>One use case for marking a session tracking cookie as
      * <tt>secure</tt>, even though the request that initiated the session
@@ -245,15 +234,11 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Sets the lifetime (in seconds) for the session tracking cookies
-     * created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieにの生存期間(を秒数で)を設定します。
      *
-     * @param maxAge the lifetime (in seconds) of the session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * @param maxAge この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieの生存期間(の秒数)
      *
      * @throws IllegalStateException この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>がすでに初期化完了している場合
      *
@@ -263,17 +248,13 @@ public interface SessionCookieConfig {
 
 
     /**
-     * Gets the lifetime (in seconds) of the session tracking cookies
-     * created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired.
+     * この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieの生存期間(を秒数で)を取得します。
      *
-     * <p>By default, <tt>-1</tt> is returned.
+     * <p>デフォルトでは<tt>-1</tt>を返します。
      *
-     * @return the lifetime (in seconds) of the session tracking
-     * cookies created on behalf of the application represented by the
-     * <tt>ServletContext</tt> from which this <tt>SessionCookieConfig</tt>
-     * was acquired, or <tt>-1</tt> (the default)
+     * @return この<tt>SessionCookieConfig</tt>が取得された<tt>ServletContext</tt>によって表されるアプリケーションのために
+     * 作成されたセッショントラッキングCookieの生存期間(の秒数)、もしくは<tt>-1</tt>(デフォルト)
      *
      * @see javax.servlet.http.Cookie#getMaxAge
      */
