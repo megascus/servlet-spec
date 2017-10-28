@@ -94,24 +94,20 @@ public @interface ServletSecurity {
     }
 
     /**
-     * Get the {@link HttpConstraint} that defines the protection
-     * that is to be applied to all HTTP methods that are NOT represented in
-     * the array returned by <tt>httpMethodConstraints</tt>.
+     * <tt>httpMethodConstraints</tt>によって返された配列で<b>表されていない</b>
+     * すべてのHTTPメソッドに適用される保護を定義する{@link HttpConstraint}を取得します。
      *
-     * @return a <code>HttpConstraint</code> object.
+     * @return <code>HttpConstraint</code>オブジェクト
      */
     HttpConstraint value() default @HttpConstraint;
 
     /**
-     * Get the HTTP method specific constraints. Each
-     * {@link HttpMethodConstraint} names an HTTP protocol method
-     * and defines the protection to be applied to it.
+     * HTTPメソッド固有の制約を取得します。
+     * 各{@link HttpMethodConstraint}はHTTPプロトコルメソッドの名前を付け、それに適用される保護を定義します。
      *
-     * @return an array of {@link HttpMethodConstraint} elements each
-     * defining the protection to be applied to one HTTP protocol method. For
-     * any HTTP method name, there must be at most one corresponding element in
-     * the returned array. If the returned array is of zero length, it indicates
-     * that no HTTP method specific constraints are defined.
+     * @return 1つのHTTPプロトコルメソッドに適用される保護を定義する{@link HttpMethodConstraint}要素の配列。
+     * 任意のHTTPメソッド名に対して、返される配列内に対応する要素は最大でも1つである必要があります。
+     * 返される配列の長さがゼロの場合、HTTPメソッド固有の制約が定義されていないことを示します。
      */
 
   
