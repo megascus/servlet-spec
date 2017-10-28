@@ -62,33 +62,29 @@ import java.lang.annotation.RetentionPolicy;
 public @interface ServletSecurity {
 
     /**
-     * Defines the access semantic to be applied to an empty rolesAllowed array.
+     * 空のrolesAllowed配列に適用されるアクセスセマンティックを定義します。
      */
     enum EmptyRoleSemantic {
         /**
-         * access is to be permitted independent of authentication state and
-         * identity.
+         * アクセスは認証状態と身元から独立して許可されるべきです。
          */
         PERMIT,
         /**
-         * access is to be denied independent of authentication state and
-         * identity.
+         * アクセスは認証状態と身元とは無関係に拒否されます。
          */
         DENY
     }
 
     /**
-     * Defines the data protection requirements that must be satisfied by
-     * the transport
+     * トランスポート層によって満たされなければならないデータ保護要件を定義します。
      */
     enum TransportGuarantee {
         /**
-         * no protection of user data must be performed by the transport.
+         * ユーザーデータの保護をトランスポート層で実行する必要はありません。
          */
         NONE,
         /**
-         * All user data must be encrypted by the transport (typically
-         * using SSL/TLS).
+         * すべてのユーザーデータはトランスポート層で暗号化される必要があります。(通常はSSL/TLSを使用します)
          */
         CONFIDENTIAL
     }
