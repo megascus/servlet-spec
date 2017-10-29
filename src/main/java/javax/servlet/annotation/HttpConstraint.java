@@ -47,20 +47,14 @@ import javax.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
 import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 
 /**
- * This annotation is used within the {@link ServletSecurity} annotation to
- * represent the security constraints to be applied to all HTTP protocol
- * methods for which a corresponding {@link HttpMethodConstraint} element does
- * NOT occur within the {@link ServletSecurity} annotation.
- *
- * <p>For the special case where an <code>@HttpConstraint</code> that returns
- * all default values occurs in combination with at least one
- * {@link HttpMethodConstraint} that returns other than all default values, the
- * <code>@HttpConstraint</code> represents that no security constraint is to be
- * applied to any of the HTTP protocol methods to which a security constraint
- * would otherwise apply. This exception is made to ensure that such
- * potentially non-specific uses of <code>@HttpConstraint</code> do not yield
- * constraints that will explicitly establish unprotected access for such
- * methods; given that they would not otherwise be covered by a constraint.
+ * このアノテーションは{@link ServletSecurity}アノテーション内にて<b>存在しない</b>{@link HttpMethodConstraint}属性に対応する
+ * すべてのHTTPプロトコルのメソッドに適用されるセキュリティ制約を表すために{@link ServletSecurity}アノテーション内で使用されます。
+ * 
+ * <code>@HttpConstraint</code>がすべてデフォルトの値を生じさせるものを返し最低でも一つの{@link HttpMethodConstraint}がすべてのデフォルト値とは違う値を返す特殊な場合では、
+ * <code>@HttpConstraint</code>はセキュリティ制約が適用されるHTTPプロトコルのメソッドのいずれにも適用されるセキュリティ制約がないことを表します。
+ * この例外はこのような<code>@HttpConstraint</code>の仕様化されていない使用方法を行える可能性が
+ * そのようなメソッドに対する保護されていないアクセスを明示的に確立する制約をもたらさない事を保証するために作られました。　
+ * (制約によってカバーされるのとは異ならないだろうと仮定すれば)
  *
  * @since Servlet 3.0
  */
@@ -69,33 +63,27 @@ import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 public @interface HttpConstraint {
 
     /**
-     * The default authorization semantic.
-     * This value is insignificant when <code>rolesAllowed</code> returns a
-     * non-empty array, and should not be specified when a non-empty
-     * array is specified for <tt>rolesAllowed</tt>.
+     * デフォルトの認可セマンティックです。
+     * 
+     * この値は<code>rolesAllowed</code>が空でない配列を返すときは意味がないので、
+     * <tt>rolesAllowed</tt>に空でない配列が指定されているときは指定しないでください。
      *
-     * @return the {@link EmptyRoleSemantic} to be applied when
-     * <code>rolesAllowed</code> returns an empty (that is, zero-length) array.
+     * @return <code>rolesAllowed</code>が空の(長さがゼロの)配列を返すときに適用される{@link EmptyRoleSemantic}
      */
     EmptyRoleSemantic value() default EmptyRoleSemantic.PERMIT;
 
     /**
-     * The data protection requirements (i.e., whether or not SSL/TLS is
-     * required) that must be satisfied by the connections on which requests
-     * arrive.
+     * リクエストが到着する接続によって満たされなければならないデータ保護要件です。(つまり、SSL/TLSが必要かどうか)
      * 
-     * @return the {@link TransportGuarantee}
-     * indicating the data protection that must be provided by the connection.
+     * @return 接続によって提供されなければならないデータ保護方法を示す{@link TransportGuarantee}
      */
     TransportGuarantee transportGuarantee() default TransportGuarantee.NONE;
 
     /**
-     * The names of the authorized roles.
-     *
-     * Duplicate role names appearing in rolesAllowed are insignificant and
-     * may be discarded during runtime processing of the annotation. The String
-     * <tt>"*"</tt> has no special meaning as a role name (should it occur in
-     * rolesAllowed).
+     * 許可されたロールの名前です。
+     * 
+     * rolesAllowedに現れる重複したロール名に意味はなく、アノテーションの実行時処理中に破棄されることがあります。
+     * 文字列<tt>"*"</tt>はロール名として特別な意味を持ちません。(rolesAllowedで存在する必要があります)
      *
      * @return an array of zero or more role names. When the array contains
      * zero elements, its meaning depends on the <code>EmptyRoleSemantic</code>
