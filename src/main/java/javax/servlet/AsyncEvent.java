@@ -41,10 +41,8 @@
 package javax.servlet;
 
 /**
- * Event that gets fired when the asynchronous operation initiated on a 
- * ServletRequest (via a call to {@link ServletRequest#startAsync} or
- * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)})
- * has completed, timed out, or produced an error.
+ * ServletRequestで開始された非同期操作({@link ServletRequest#startAsync()} または{@link ServletRequest#startAsync(ServletRequest, ServletResponse)}の呼び出し)
+ * が完了した、もしくはタイムアウトした、エラーが発生したときに発生するイベントです。
  *
  * @since Servlet 3.0
  */
@@ -57,22 +55,20 @@ public class AsyncEvent {
 
 
     /**
-     * Constructs an AsyncEvent from the given AsyncContext.
+     * 与えられたAsyncContextからAsyncEventを生成します。
      *
-     * @param context the AsyncContex to be delivered with this AsyncEvent
+     * @param context このAsyncEventと共に配信されるAsyncContext
      */
     public AsyncEvent(AsyncContext context) {
         this(context, context.getRequest(), context.getResponse(), null);
     }
 
     /**
-     * Constructs an AsyncEvent from the given AsyncContext, ServletRequest,
-     * and ServletResponse.
+     * 与えられたAsyncContextとServletRequestとServletResponseからAsyncEventを生成します。
      *
-     * @param context the AsyncContex to be delivered with this AsyncEvent
-     * @param request the ServletRequest to be delivered with this AsyncEvent
-     * @param response the ServletResponse to be delivered with this
-     * AsyncEvent
+     * @param context このAsyncEventと共に配信されるAsyncContext
+     * @param request このAsyncEventと共に配信されるServletRequest
+     * @param response このAsyncEventと共に配信されるServletResponse
      */
     public AsyncEvent(AsyncContext context, ServletRequest request,
             ServletResponse response) {
@@ -80,24 +76,22 @@ public class AsyncEvent {
     }
 
     /**
-     * Constructs an AsyncEvent from the given AsyncContext and Throwable.
+     * 与えられたAsyncContextとThrowableからAsyncEventを生成します。
      *
-     * @param context the AsyncContex to be delivered with this AsyncEvent
-     * @param throwable the Throwable to be delivered with this AsyncEvent
+     * @param context このAsyncEventと共に配信されるAsyncContext
+     * @param throwable このAsyncEventと共に配信されるThrowable
      */
     public AsyncEvent(AsyncContext context, Throwable throwable) {
         this(context, context.getRequest(), context.getResponse(), throwable);
     }
 
     /**
-     * Constructs an AsyncEvent from the given AsyncContext, ServletRequest,
-     * ServletResponse, and Throwable.
+     * 与えられたAsyncContextとServletRequestとServletResponseとThrowableからAsyncEventを生成します。
      *
-     * @param context the AsyncContex to be delivered with this AsyncEvent
-     * @param request the ServletRequest to be delivered with this AsyncEvent
-     * @param response the ServletResponse to be delivered with this
-     * AsyncEvent
-     * @param throwable the Throwable to be delivered with this AsyncEvent
+     * @param context このAsyncEventと共に配信されるAsyncContext
+     * @param request このAsyncEventと共に配信されるServletRequest
+     * @param response このAsyncEventと共に配信されるServletResponse
+     * @param throwable このAsyncEventと共に配信されるThrowable
      */
     public AsyncEvent(AsyncContext context, ServletRequest request,
             ServletResponse response, Throwable throwable) {
@@ -108,55 +102,44 @@ public class AsyncEvent {
     }
 
     /**
-     * Gets the AsyncContext from this AsyncEvent.
+     * このAsyncEventからAsyncContextを取得します。
      *
-     * @return the AsyncContext that was used to initialize this AsyncEvent
+     * @return このAsyncEventの初期化に使用されたAsyncContext
      */
     public AsyncContext getAsyncContext() {
         return context;
     }
 
     /**
-     * Gets the ServletRequest from this AsyncEvent.
+     * このAsyncEventからServletRequestを取得します。
      *
-     * <p>If the AsyncListener to which this AsyncEvent is being delivered
-     * was added using {@link AsyncContext#addListener(AsyncListener,
-     * ServletRequest, ServletResponse)}, the returned ServletRequest
-     * will be the same as the one supplied to the above method.
-     * If the AsyncListener was added via
-     * {@link AsyncContext#addListener(AsyncListener)}, this method
-     * must return null.
+     * <p>このAsyncEventが配信されているAsyncListenerが{@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}を使用して追加された場合、
+     * 返されるServletRequestは上記のメソッドに提供されるServletRequestと同じになります。
+     * AsyncListenerが{@link AsyncContext#addListener(AsyncListener)}を使用して追加された場合、このメソッドはnullを返す必要があります。
      *
-     * @return the ServletRequest that was used to initialize this AsyncEvent,
-     * or null if this AsyncEvent was initialized without any ServletRequest
+     * @return このAsyncEventの初期化に使用されたServletRequest、ServletRequest無しでこのAsyncEventが初期化された場合はnull
      */
     public ServletRequest getSuppliedRequest() {
         return request;
     }
 
     /**
-     * Gets the ServletResponse from this AsyncEvent.
+     * このAsyncEventからServletResponseを取得します。
      *
-     * <p>If the AsyncListener to which this AsyncEvent is being delivered
-     * was added using {@link AsyncContext#addListener(AsyncListener,
-     * ServletRequest, ServletResponse)}, the returned ServletResponse
-     * will be the same as the one supplied to the above method.
-     * If the AsyncListener was added via
-     * {@link AsyncContext#addListener(AsyncListener)}, this method
-     * must return null.
+     * <p>このAsyncEventが配信されているAsyncListenerが{@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}を使用して追加された場合、
+     * 返されるServletResponseは上記のメソッドに提供されるServletResponseと同じになります。
+     * AsyncListenerが{@link AsyncContext#addListener(AsyncListener)}を使用して追加された場合、このメソッドはnullを返す必要があります。
      *
-     * @return the ServletResponse that was used to initialize this AsyncEvent,
-     * or null if this AsyncEvent was initialized without any ServletResponse
+     * @return このAsyncEventの初期化に使用されたServletResponse、ServletResponse無しでこのAsyncEventが初期化された場合はnull
      */
     public ServletResponse getSuppliedResponse() {
         return response;
     }
 
     /**
-     * Gets the Throwable from this AsyncEvent.
+     * このAsyncEventからThrowableを取得します。
      *
-     * @return the Throwable that was used to initialize this AsyncEvent,
-     * or null if this AsyncEvent was initialized without any Throwable
+     * @return このAsyncEventの初期化に使用されたThrowable、Throwable無しでこのAsyncEventが初期化された場合はnull
      */
     public Throwable getThrowable() {
         return throwable;
