@@ -85,7 +85,7 @@ public @interface HttpConstraint {
      * rolesAllowedに現れる重複したロール名に意味はなく、アノテーションの実行時処理中に破棄されることがあります。
      * 文字列<tt>"*"</tt>はロール名として特別な意味を持ちません。(rolesAllowedで存在する必要があります)
      *
-     * @return 0つ以上のロール名の配列。
+     * @return 0個以上のロール名の配列。
      * 配列に要素がゼロの場合、<code>value</code>メソッドによって返される<code>EmptyRoleSemantic</code>に依存することを意味します。
      * <code>value</code>が<tt>DENY</tt>を返し、<code>rolesAllowed</code>が長さゼロの配列を返す場合、
      * 認証状況と身元とは無関係にアクセスが拒否されます。

@@ -47,8 +47,7 @@ import javax.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
 import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 
 /**
- * This annotation is used within the {@link ServletSecurity} annotation to
- * represent security constraints on specific HTTP protocol messages.
+ * このアノテーションは{@link ServletSecurity}アノテーション内で特定のHTTPプロトコルのメッセージのセキュリティ制約を表すために使用されます。
  *
  * @since Servlet 3.0
  */
@@ -57,54 +56,42 @@ import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 public @interface HttpMethodConstraint {
 
     /**
-     * Http protocol method name
+     * HTTPプロトコルのメソッドの名前
      *
-     * @return the name of an HTTP protocol method. <code>value</code>
-     * may not be null, or the empty string, and must be a
-     * legitimate HTTP Method name as defined by RFC 2616.
+     * @return HTTPプロトコルのメソッドの名前、<code>value</code>はnullや空の文字列であってはならず、RFC 2616で定義されたHTTPメソッド名である必要がある
      */
     String value();
 
     /**
-     * The default authorization semantic.
-     * This value is insignificant when <code>rolesAllowed</code> returns a
-     * non-empty array, and should not be specified when a non-empty
-     * array is specified for <tt>rolesAllowed</tt>.
+     * デフォルトの認可セマンティックです。
+     * 
+     * この値は<code>rolesAllowed</code>が空でない配列を返すときは意味がないので、
+     * <tt>rolesAllowed</tt>に空でない配列が指定されているときは指定しないでください。
      *
-     * @return the {@link EmptyRoleSemantic} to be applied when
-     * <code>rolesAllowed</code> returns an empty (that is, zero-length) array.
+     * @return <code>rolesAllowed</code>が空の(長さがゼロの)配列を返すときに適用される{@link EmptyRoleSemantic}
      */
     EmptyRoleSemantic emptyRoleSemantic() default EmptyRoleSemantic.PERMIT;
 
     /**
-     * The data protection requirements (i.e., whether or not SSL/TLS is
-     * required) that must be satisfied by the connections on which requests
-     * arrive.
+     * リクエストが到着する接続によって満たされなければならないデータ保護要件です。(つまり、SSL/TLSが必要かどうか)
      *
-     * @return the {@link TransportGuarantee}
-     * indicating the data protection that must be provided by the connection.
+     * @return 接続によって提供されなければならないデータ保護方法を示す{@link TransportGuarantee}
      */
     TransportGuarantee transportGuarantee() default TransportGuarantee.NONE;
 
     /**
-     * The names of the authorized roles.
-     *
-     * Duplicate role names appearing in rolesAllowed are insignificant and
-     * may be discarded during runtime processing of the annotation. The String
-     * <tt>"*"</tt> has no special meaning as a role name (should it occur in
-     * rolesAllowed).
-     *
-     * @return an array of zero or more role names. When the array contains
-     * zero elements, its meaning depends on the value returned by
-     * <code>emptyRoleSemantic</code>. If <code>emptyRoleSemantic</code> returns
-     * <tt>DENY</tt>, and <code>rolesAllowed</code> returns a zero length array,
-     * access is to be denied independent of authentication state and identity.
-     * Conversely, if <code>emptyRoleSemantic</code> returns
-     * <code>PERMIT</code>, it indicates that access is to be allowed
-     * independent of authentication state and identity. When the array
-     * contains the names of one or more roles, it indicates that access is
-     * contingent on membership in at least one of the named roles (independent
-     * of the value returned by <code>emptyRoleSemantic</code>).
+     * 許可されたロールの名前です。
+     * 
+     * rolesAllowedに現れる重複したロール名に意味はなく、アノテーションの実行時処理中に破棄されることがあります。
+     * 文字列<tt>"*"</tt>はロール名として特別な意味を持ちません。(rolesAllowedで存在する必要があります)
+     * 
+     * @return 0個以上のロール名の配列。
+     * 配列に要素がゼロの場合、<code>emptyRoleSemantic</code>によって返される値に依存することを意味します。
+     * <code>emptyRoleSemantic</code>が<tt>DENY</tt>を返し、<code>rolesAllowed</code>が長さゼロの配列を返す場合、
+     * 認証状況と身元とは無関係にアクセスが拒否されます。
+     * 逆に、<code>emptyRoleSemantic</code>が<code>PERMIT</code>返す場合、認証状況と身元とは無関係にアクセスが許可されることを示します。
+     * 配列に1つ以上のロールの名前が含まれている場合、
+     * (code>EmptyRoleSemantic</code>によって返された値とは独立して)名前の付けられたロールの少なくとも1つのメンバーシップに依存してアクセスすることを示します。
      */
     String[] rolesAllowed() default {};
 }
