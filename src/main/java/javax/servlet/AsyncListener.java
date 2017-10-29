@@ -44,120 +44,75 @@ import java.io.IOException;
 import java.util.EventListener;
 
 /**
- * Listener that will be notified in the event that an asynchronous
- * operation initiated on a ServletRequest to which the listener had been 
- * added has completed, timed out, or resulted in an error.
+ * このリスナーが追加されたServletRequestで開始された非同期操作が完了した、タイムアウトした、エラーが発生した場合に通知されるリスナー。
  *
  * @since Servlet 3.0
  */
 public interface AsyncListener extends EventListener {
     
     /**
-     * Notifies this AsyncListener that an asynchronous operation
-     * has been completed.
+     * このAsyncListenerに非同期操作が完了したことを通知します。
      * 
-     * <p>The {@link AsyncContext} corresponding to the asynchronous
-     * operation that has been completed may be obtained by calling
-     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given
-     * <tt>event</tt>.
+     * <p>与えられたイベントで{@link AsyncEvent#getAsyncContext getAsyncContext}を呼び出すことで完了した非同期操作に対応する{@link AsyncContext}を取得できます。
      *
-     * <p>In addition, if this AsyncListener had been registered via a call
-     * to {@link AsyncContext#addListener(AsyncListener,
-     * ServletRequest, ServletResponse)}, the supplied ServletRequest and
-     * ServletResponse objects may be retrieved by calling
-     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
-     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse},
-     * respectively, on the given <tt>event</tt>.
+     * <p>さらに、このAsyncListenerが{@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}の呼び出しを使用して登録されている場合、
+     * 指定された<tt>event</tt>の{@link AsyncEvent#getSuppliedRequest getSuppliedRequest}および{@link AsyncEvent#getSuppliedResponse getSuppliedResponse}をそれぞれ呼び出すことによって、
+     * 供給されたServletRequestおよび供給されたServletResponseオブジェクトを取得できます。
      *
-     * @param event the AsyncEvent indicating that an asynchronous
-     * operation has been completed
+     * @param event 非同期操作が完了したことを示すAsyncEvent
      *
-     * @throws IOException if an I/O related error has occurred during the
-     * processing of the given AsyncEvent
+     * @throws IOException 指定されたAsyncEventの処理中にI/O関連のエラーが発生した場合
      */
     public void onComplete(AsyncEvent event) throws IOException;
 
 
     /**
-     * Notifies this AsyncListener that an asynchronous operation
-     * has timed out.
+     * このAsyncListenerに非同期操作がタイムアウトしたことを通知します。
      * 
-     * <p>The {@link AsyncContext} corresponding to the asynchronous
-     * operation that has timed out may be obtained by calling
-     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given
-     * <tt>event</tt>.
+     * <p>与えられたイベントで{@link AsyncEvent#getAsyncContext getAsyncContext}を呼び出すことでタイムアウトした非同期操作に対応する{@link AsyncContext}を取得できます。
      *
-     * <p>In addition, if this AsyncListener had been registered via a call
-     * to {@link AsyncContext#addListener(AsyncListener,
-     * ServletRequest, ServletResponse)}, the supplied ServletRequest and
-     * ServletResponse objects may be retrieved by calling
-     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
-     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse},
-     * respectively, on the given <tt>event</tt>.
+     * <p>さらに、このAsyncListenerが{@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}の呼び出しを使用して登録されている場合、
+     * 指定された<tt>event</tt>の{@link AsyncEvent#getSuppliedRequest getSuppliedRequest}および{@link AsyncEvent#getSuppliedResponse getSuppliedResponse}をそれぞれ呼び出すことによって、
+     * 供給されたServletRequestおよび供給されたServletResponseオブジェクトを取得できます。
      *
-     * @param event the AsyncEvent indicating that an asynchronous
-     * operation has timed out
+     * @param event 非同期操作がタイムアウトしたことを示すAsyncEvent
      *
-     * @throws IOException if an I/O related error has occurred during the
-     * processing of the given AsyncEvent
+     * @throws IOException 指定されたAsyncEventの処理中にI/O関連のエラーが発生した場合
      */
     public void onTimeout(AsyncEvent event) throws IOException;
 
 
     /**
-     * Notifies this AsyncListener that an asynchronous operation 
-     * has failed to complete.
+     * このAsyncListenerに非同期操作が完了する事に失敗したことを通知します。
      * 
-     * <p>The {@link AsyncContext} corresponding to the asynchronous
-     * operation that failed to complete may be obtained by calling
-     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given
-     * <tt>event</tt>.
+     * <p>与えられたイベントで{@link AsyncEvent#getAsyncContext getAsyncContext}を呼び出すことで完了する事に失敗した非同期操作に対応する{@link AsyncContext}を取得できます。
      * 
-     * <p>In addition, if this AsyncListener had been registered via a call
-     * to {@link AsyncContext#addListener(AsyncListener,
-     * ServletRequest, ServletResponse)}, the supplied ServletRequest and
-     * ServletResponse objects may be retrieved by calling
-     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
-     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse},
-     * respectively, on the given <tt>event</tt>.
+     * <p>さらに、このAsyncListenerが{@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}の呼び出しを使用して登録されている場合、
+     * 指定された<tt>event</tt>の{@link AsyncEvent#getSuppliedRequest getSuppliedRequest}および{@link AsyncEvent#getSuppliedResponse getSuppliedResponse}をそれぞれ呼び出すことによって、
+     * 供給されたServletRequestおよび供給されたServletResponseオブジェクトを取得できます。
      *
-     * @param event the AsyncEvent indicating that an asynchronous
-     * operation has failed to complete
+     * @param event 非同期操作の完了する事に失敗したことを示すAsyncEvent
      *
-     * @throws IOException if an I/O related error has occurred during the
-     * processing of the given AsyncEvent
+     * @throws IOException 指定されたAsyncEventの処理中にI/O関連のエラーが発生した場合
      */
     public void onError(AsyncEvent event) throws IOException;
 
 
     /**
-     * Notifies this AsyncListener that a new asynchronous cycle is being
-     * initiated via a call to one of the {@link ServletRequest#startAsync}
-     * methods.
+     * このAsyncListenerに{@link ServletRequest#startAsync}メソッドのうちの一つが使用されて新しい非同期サイクルが開始されたことを通知します。
      *
-     * <p>The {@link AsyncContext} corresponding to the asynchronous
-     * operation that is being reinitialized may be obtained by calling
-     * {@link AsyncEvent#getAsyncContext getAsyncContext} on the given
-     * <tt>event</tt>.
+     * <p>与えられたイベントで{@link AsyncEvent#getAsyncContext getAsyncContext}を呼び出すことで再初期化されている非同期操作に対応する{@link AsyncContext}を取得できます。
      * 
-     * <p>In addition, if this AsyncListener had been registered via a call
-     * to {@link AsyncContext#addListener(AsyncListener,
-     * ServletRequest, ServletResponse)}, the supplied ServletRequest and
-     * ServletResponse objects may be retrieved by calling
-     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
-     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse},
-     * respectively, on the given <tt>event</tt>.
+     * <p>さらに、このAsyncListenerが{@link AsyncContext#addListener(AsyncListener, ServletRequest, ServletResponse)}の呼び出しを使用して登録されている場合、
+     * 指定された<tt>event</tt>の{@link AsyncEvent#getSuppliedRequest getSuppliedRequest}および{@link AsyncEvent#getSuppliedResponse getSuppliedResponse}をそれぞれ呼び出すことによって、
+     * 供給されたServletRequestおよび供給されたServletResponseオブジェクトを取得できます。
      *
-     * <p>This AsyncListener will not receive any events related to the
-     * new asynchronous cycle unless it registers itself (via a call
-     * to {@link AsyncContext#addListener}) with the AsyncContext that
-     * is delivered as part of the given AsyncEvent.
+     * <p>このAsyncListenerは({@link AsyncContext#addListener}への呼び出しを使用して)与えられたAsyncEventの一部として配信されるAsyncContextでAsyncListener自身を登録しない限り、
+     * 新しい非同期サイクルに関連するイベントを受け取りません。
      *
-     * @param event the AsyncEvent indicating that a new asynchronous
-     * cycle is being initiated
+     * @param event 新しい非同期サイクルが開始されていることを示すAsyncEvent
      *
-     * @throws IOException if an I/O related error has occurred during the
-     * processing of the given AsyncEvent
+     * @throws IOException 指定されたAsyncEventの処理中にI/O関連のエラーが発生した場合
      */
     public void onStartAsync(AsyncEvent event) throws IOException;     
 
