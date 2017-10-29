@@ -85,17 +85,13 @@ public @interface HttpConstraint {
      * rolesAllowedに現れる重複したロール名に意味はなく、アノテーションの実行時処理中に破棄されることがあります。
      * 文字列<tt>"*"</tt>はロール名として特別な意味を持ちません。(rolesAllowedで存在する必要があります)
      *
-     * @return an array of zero or more role names. When the array contains
-     * zero elements, its meaning depends on the <code>EmptyRoleSemantic</code>
-     * returned by the <code>value</code> method. If <code>value</code> returns
-     * <tt>DENY</tt>, and <code>rolesAllowed</code> returns a zero length array,
-     * access is to be denied independent of authentication state and identity.
-     * Conversely, if <code>value</code> returns <code>PERMIT</code>, it
-     * indicates that access is to be allowed independent of authentication
-     * state and identity. When the array contains the names of one or more
-     * roles, it indicates that access is contingent on membership in at
-     * least one of the named roles (independent of the
-     * <code>EmptyRoleSemantic</code> returned by the <code>value</code> method).
+     * @return 0つ以上のロール名の配列。
+     * 配列に要素がゼロの場合、<code>value</code>メソッドによって返される<code>EmptyRoleSemantic</code>に依存することを意味します。
+     * <code>value</code>が<tt>DENY</tt>を返し、<code>rolesAllowed</code>が長さゼロの配列を返す場合、
+     * 認証状況と身元とは無関係にアクセスが拒否されます。
+     * 逆に、<code>value</code>が<code>PERMIT</code>返す場合、認証状況と身元とは無関係にアクセスが許可されることを示します。
+     * 配列に1つ以上のロールの名前が含まれている場合、
+     * (<code>value</code>メソッドによって返された<code>EmptyRoleSemantic</code>とは独立して)名前の付けられたロールの少なくとも1つのメンバーシップに依存してアクセスすることを示します。
      */
     String[] rolesAllowed() default {};
 }
