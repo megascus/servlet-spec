@@ -91,7 +91,7 @@ public @interface HttpMethodConstraint {
      * 認証状況と身元とは無関係にアクセスが拒否されます。
      * 逆に、<code>emptyRoleSemantic</code>が<code>PERMIT</code>返す場合、認証状況と身元とは無関係にアクセスが許可されることを示します。
      * 配列に1つ以上のロールの名前が含まれている場合、
-     * (code>EmptyRoleSemantic</code>によって返された値とは独立して)名前の付けられたロールの少なくとも1つのメンバーシップに依存してアクセスすることを示します。
+     * (<code>EmptyRoleSemantic</code>によって返された値とは独立して)名前の付けられたロールの少なくとも1つのメンバーシップに依存してアクセスすることを示します。
      */
     String[] rolesAllowed() default {};
 }
