@@ -52,12 +52,9 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
     private String methodName;
 
     /**
-     * Constructs an instance with default {@link HttpConstraintElement}
-     * value.
+     * デフォルトの{@link HttpConstraintElement}の値でインスタンスを生成します。
      *
-     * @param methodName the name of an HTTP protocol method. The name must
-     * not be null, or the empty string, and must be a legitimate HTTP
-     * Method name as defined by RFC 2616
+     * @param methodName HTTPプロトコルのメソッドの名前、<code>value</code>はnullや空の文字列であってはならず、RFC 2616で定義されたHTTPメソッド名である必要がある
      */
     public HttpMethodConstraintElement(String methodName) {
         if (methodName == null || methodName.length() == 0) {
@@ -66,15 +63,11 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
         this.methodName = methodName;
     }
     /**
-     * Constructs an instance with specified {@link HttpConstraintElement}
-     * value.
+     * 指定された{@link HttpConstraintElement}の値でインスタンスを生成します。
      *
-     * @param methodName the name of an HTTP protocol method. The name must
-     * not be null, or the empty string, and must be a legitimate HTTP
-     * Method name as defined by RFC 2616
+     * @param methodName HTTPプロトコルのメソッドの名前、<code>value</code>はnullや空の文字列であってはならず、RFC 2616で定義されたHTTPメソッド名である必要がある
      *
-     * @param constraint the HTTPconstraintElement value to assign to the
-     * named HTTP method
+     * @param constraint 名前を指定されたHTTPメソッドに割り当てられるHTTPconstraintElementの値
      */
     public HttpMethodConstraintElement(String methodName,
             HttpConstraintElement constraint) {
@@ -88,9 +81,9 @@ public class HttpMethodConstraintElement extends HttpConstraintElement {
     }
 
     /**
-     * Gets the HTTP method name.
+     * HTTPメソッドの名前を取得します。
      *
-     * @return the Http method name
+     * @return HTTPメソッドの名前
      */
     public String getMethodName() {
         return this.methodName;
