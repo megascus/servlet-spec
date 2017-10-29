@@ -55,9 +55,8 @@ public class ServletSecurityElement extends HttpConstraintElement {
     private Collection<HttpMethodConstraintElement> methodConstraints;
 
     /**
-     * Constructs an instance using the default
-     * <code>HttpConstraintElement</code> value as the default Constraint
-     * element and with no HTTP Method specific constraint elements.
+     * デフォルトの<code>HttpConstraintElement</code>の値をデフォルトの制約要素として使用し、
+     * HTTPメソッド固有の制約要素を使用しないでインスタンスを構築します。
      */
     public ServletSecurityElement() {
         methodConstraints = new HashSet<HttpMethodConstraintElement>();
@@ -65,12 +64,10 @@ public class ServletSecurityElement extends HttpConstraintElement {
     }
 
     /**
-     * Constructs an instance with a default Constraint element
-     * and with no HTTP Method specific constraint elements.
+     * デフォルトの制約要素を使用し、
+     * HTTPメソッド固有の制約要素を使用しないでインスタンスを構築します。
      *
-     * @param constraint the HttpConstraintElement to be
-     * applied to all HTTP methods other than those represented in the
-     * <tt>methodConstraints</tt>
+     * @param constraint <tt>methodConstraints</tt>で表されるもの以外のすべてのHTTPメソッドに適用されるHttpConstraintElement
      */
     public ServletSecurityElement(HttpConstraintElement constraint) {
         super(constraint.getEmptyRoleSemantic(),
@@ -81,16 +78,11 @@ public class ServletSecurityElement extends HttpConstraintElement {
     }
 
     /**
-     * Constructs an instance using the default
-     * <code>HttpConstraintElement</code> value as the default Constraint
-     * element and with a collection of HTTP Method specific constraint
-     * elements.
+     * デフォルトの<code>HttpConstraintElement</code>の値をデフォルトの制約要素としたものとHTTPメソッド固有の制約要素のコレクションを使用してインスタンスを構築します。
      *
-     * @param methodConstraints the collection of HTTP method specific
-     * constraint elements
+     * @param methodConstraints HTTPメソッド固有の制約要素のコレクション
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException 重複したメソッド名が検出された
      */
     public ServletSecurityElement(
             Collection<HttpMethodConstraintElement> methodConstraints) {
@@ -100,17 +92,12 @@ public class ServletSecurityElement extends HttpConstraintElement {
     }
 
     /**
-     * Constructs an instance with a default Constraint element
-     * and with a collection of HTTP Method specific constraint elements.
+     * デフォルトの制約要素とHTTPメソッド固有の制約要素のコレクションを使用してインスタンスを構築します。
      *
-     * @param constraint the HttpConstraintElement to be
-     * applied to all HTTP methods other than those represented in the
-     * <tt>methodConstraints</tt>
-     * @param methodConstraints the collection of HTTP method specific
-     * constraint elements.
+     * @param constraint <tt>methodConstraints</tt>で表されるもの以外のすべてのHTTPメソッドに適用されるHttpConstraintElement
+     * @param methodConstraints HTTPメソッド固有の制約要素のコレクション
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException 重複したメソッド名が検出された
      */
     public ServletSecurityElement(HttpConstraintElement constraint,
             Collection<HttpMethodConstraintElement> methodConstraints) {
@@ -123,12 +110,11 @@ public class ServletSecurityElement extends HttpConstraintElement {
     }
 
     /**
-     * Constructs an instance from a {@link ServletSecurity} annotation value.
+     * {@link ServletSecurity}アノテーションの値からインスタンスを生成します。
      *
-     * @param annotation the annotation value
+     * @param annotation アノテーションの値
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException 重複したメソッド名が検出された
      */
     public ServletSecurityElement(ServletSecurity annotation) {
         super(annotation.value().value(),
@@ -148,43 +134,35 @@ public class ServletSecurityElement extends HttpConstraintElement {
     }
 
     /**
-     * Gets the (possibly empty) collection of HTTP Method specific
-     * constraint elements.
+     * HTTPメソッド固有の制約要素の(空の可能性がある)コレクションを取得します。
+     * 
+     * <p>許可されている場合、返されたCollectionへの変更はこのServletSecurityElementに影響してはなりません。
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not
-     * affect this <code>ServletSecurityElement</code>.
-     *
-     *
-     * @return the (possibly empty) collection of HttpMethodConstraintElement
-     * objects
+     * @return HttpMethodConstraintElementオブジェクトの(空の可能性がある)Collection
      */
     public Collection<HttpMethodConstraintElement> getHttpMethodConstraints() {
         return Collections.unmodifiableCollection(methodConstraints);
     }
 
     /**
-     * Gets the set of HTTP method names named by the HttpMethodConstraints.
+     * HttpMethodConstraintsで指定されたHTTPメソッド名のSetを取得します。
      *
-     *  <p>If permitted, any changes to the returned <code>Collection</code> must not
-     * affect this <code>ServletSecurityElement</code>.
+     * <p>許可されている場合、返されたCollectionへの変更はこのServletSecurityElementに影響してはなりません。
      *
-
-     *
-     * @return the collection String method names
+     * @return メソッド名のStringのCollection
      */
     public Collection<String> getMethodNames() {
         return Collections.unmodifiableCollection(methodNames);
     }
 
     /**
-     * Checks for duplicate method names in methodConstraints.
+     * methodConstraintsの中のメソッド名に重複がないことを確認します。
      *
      * @param methodConstraints
      *
-     * @retrun Set of method names
+     * @return メソッドの名前のSet
      *
-     * @throws IllegalArgumentException if duplicate method names are
-     * detected
+     * @throws IllegalArgumentException 重複したメソッド名が検出された
      */
     private Collection<String> checkMethodNames(
             Collection<HttpMethodConstraintElement> methodConstraints) {
