@@ -46,7 +46,7 @@ import javax.servlet.annotation.ServletSecurity.EmptyRoleSemantic;
 import javax.servlet.annotation.ServletSecurity.TransportGuarantee;
 
 /**
- * Java Class representation of an {@link HttpConstraint} annotation value.
+ * {@link HttpConstraint}アノテーションの値を表現するJavaクラスです。
  *
  * @since Servlet 3.0
  */
@@ -57,29 +57,26 @@ public class HttpConstraintElement {
     private String[] rolesAllowed;
 
     /**
-     * Constructs a default HTTP constraint element
+     * デフォルトのHTTP制約属性を生成します。
      */
     public HttpConstraintElement() {
         this(EmptyRoleSemantic.PERMIT);
     }
 
     /**
-     * Convenience constructor to establish <tt>EmptyRoleSemantic.DENY</tt>
+     * <tt>EmptyRoleSemantic.DENY</tt>を確立するための簡便なコンストラクタです。
      *
-     * @param semantic should be EmptyRoleSemantic.DENY
+     * @param semantic EmptyRoleSemantic.DENY である必要があるセマンティック
      */
     public HttpConstraintElement(EmptyRoleSemantic semantic) {
         this(semantic, TransportGuarantee.NONE, new String[0]);
     }
 
     /**
-     * Constructor to establish non-empty getRolesAllowed and/or
-     * <tt>TransportGuarantee.CONFIDENTIAL</tt>.
+     * 空でないgetRolesAllowedと/もしくは<tt>TransportGuarantee.CONFIDENTIAL</tt>を確立するためのコンストラクタです。
      *
-     * @param guarantee <tt>TransportGuarantee.NONE</tt> or
-     * <tt>TransportGuarantee.CONFIDENTIAL</tt>
-     * @param roleNames the names of the roles that are to be
-     * allowed access
+     * @param guarantee <tt>TransportGuarantee.NONE</tt>もしくは<tt>TransportGuarantee.CONFIDENTIAL</tt>
+     * @param roleNames アクセスが許容されるロールの名前
      */
     public HttpConstraintElement(TransportGuarantee guarantee,
             String... roleNames) {
@@ -87,15 +84,11 @@ public class HttpConstraintElement {
     }
 
     /**
-     * Constructor to establish all of getEmptyRoleSemantic,
-     * getRolesAllowed, and getTransportGuarantee.
+     * getEmptyRoleSemanticとgetRolesAllowed、getTransportGuaranteeのすべてを確立するためのコンストラクタです。
      *
-     * @param semantic <tt>EmptyRoleSemantic.DENY</tt> or
-     * <tt>EmptyRoleSemantic.PERMIT</tt>
-     * @param guarantee <tt>TransportGuarantee.NONE</tt> or
-     * <tt>TransportGuarantee.CONFIDENTIAL</tt>
-     * @param roleNames the names of the roles that are to be allowed
-     * access, or missing if the semantic is <tt>EmptyRoleSemantic.DENY</tt>
+     * @param semantic <tt>EmptyRoleSemantic.DENY</tt>もしくは<tt>EmptyRoleSemantic.PERMIT</tt>
+     * @param guarantee <tt>TransportGuarantee.NONE</tt>もしくは<tt>TransportGuarantee.CONFIDENTIAL</tt>
+     * @param roleNames アクセスが許可されるロールの名前、そのセマンティックが存在しない場合は<tt>EmptyRoleSemantic.DENY</tt>
      */
     public HttpConstraintElement(EmptyRoleSemantic semantic,
             TransportGuarantee guarantee, String... roleNames) {
@@ -109,49 +102,39 @@ public class HttpConstraintElement {
     }
 
     /**
-     * Gets the default authorization semantic.
+     * デフォルトの認可セマンティックを取得します。
+     * 
+     * <p>この値は<code>getRolesAllowed</code>が空でない配列を返すときは意味がないので、
+     * <code>getRolesAllowed</code>に空でない配列が指定されているときは指定しないでください。
      *
-     * <p>This value is insignificant when <code>getRolesAllowed</code>
-     * returns a non-empty array, and should not be specified when a
-     * non-empty array is specified for <tt>getRolesAllowed</tt>.
-     *
-     * @return the {@link EmptyRoleSemantic} to be applied when
-     * <code>getRolesAllowed</code> returns an empty (that is, zero-length)
-     * array
+     * @return <code>getRolesAllowed</code>が空の(長さがゼロの)配列を返すときに適用される{@link EmptyRoleSemantic}
      */
     public EmptyRoleSemantic getEmptyRoleSemantic() {
         return this.emptyRoleSemantic;
     }
 
     /**
-     * Gets the data protection requirement (i.e., whether or not SSL/TLS is
-     * required) that must be satisfied by the transport connection.
+     * トランスポート層での接続で満たす必要のあるデータ保護要件(SSL/TLSが必要かどうか)を取得します。
      *
-     * @return the {@link TransportGuarantee} indicating the data
-     * protection that must be provided by the connection
+     * @return 接続で提供する必要のあるデータ保護を示す{@link TransportGuarantee}
      */
     public TransportGuarantee getTransportGuarantee() {
         return this.transportGuarantee;
     }
 
     /**
-     * Gets the names of the authorized roles.
+     * 権限のあるロールの名前を取得します。
      *
-     * <p>Duplicate role names appearing in getRolesAllowed are insignificant
-     * and may be discarded. The String <tt>"*"</tt> has no special meaning
-     * as a role name (should it occur in getRolesAllowed).
+     * <p>getRolesAllowedに現れる重複したロール名に意味はなく、破棄されることがあります。
+     * 文字列<tt>"*"</tt>はロール名として特別な意味を持ちません。(getRolesAllowedで存在する必要があります)
      *
-     * @return a (possibly empty) array of role names. When the
-     * array is empty, its meaning depends on the value of
-     * {@link #getEmptyRoleSemantic}. If its value is <tt>DENY</tt>,
-     * and <code>getRolesAllowed</code> returns an empty array,
-     * access is to be denied independent of authentication state and
-     * identity. Conversely, if its value is <code>PERMIT</code>, it
-     * indicates that access is to be allowed independent of authentication
-     * state and identity. When the array contains the names of one or
-     * more roles, it indicates that access is contingent on membership in at
-     * least one of the named roles (independent of the value of
-     * {@link #getEmptyRoleSemantic}).
+     * @return ロール名の(空の可能性がある)配列。
+     * 配列が空の場合、{@link #getEmptyRoleSemantic}によって返される値に依存することを意味します。
+     * その値が<tt>DENY</tt>で、<code>getRolesAllowed</code>が空の配列を返す場合、
+     * 認証状況と身元とは無関係にアクセスが拒否されます。
+     * 逆に、その値が<code>PERMIT</code>の場合、認証状況と身元とは無関係にアクセスが許可されることを示します。
+     * 配列に1つ以上のロールの名前が含まれている場合、
+     * ({@link #getEmptyRoleSemantic}の値とは独立して)名前の付けられたロールの少なくとも1つのメンバーシップに依存してアクセスすることを示します。
      */
     public String[] getRolesAllowed() {
         return copyStrings(this.rolesAllowed);

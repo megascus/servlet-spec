@@ -45,7 +45,7 @@ import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.annotation.ServletSecurity;
 
 /**
- * Java Class representation of a {@link ServletSecurity} annotation value.
+ * {@link ServletSecurity}アノテーションの値を表現するJavaクラスです。
  *
  * @since Servlet 3.0
  */

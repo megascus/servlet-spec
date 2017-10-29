@@ -80,7 +80,7 @@ public @interface HttpMethodConstraint {
     TransportGuarantee transportGuarantee() default TransportGuarantee.NONE;
 
     /**
-     * 許可されたロールの名前です。
+     * 権限のあるロールの名前です。
      * 
      * rolesAllowedに現れる重複したロール名に意味はなく、アノテーションの実行時処理中に破棄されることがあります。
      * 文字列<tt>"*"</tt>はロール名として特別な意味を持ちません。(rolesAllowedで存在する必要があります)

@@ -43,7 +43,7 @@ package javax.servlet;
 import javax.servlet.annotation.HttpMethodConstraint;
 
 /**
- * Java Class represntation of an {@link HttpMethodConstraint} annotation value.
+ * {@link HttpMethodConstraint}アノテーションの値を表現するJavaクラスです。
  *
  * @since Servlet 3.0
  */
