@@ -41,27 +41,16 @@
 package javax.servlet;
 
 /**
- * Class representing the execution context for an asynchronous operation
- * that was initiated on a ServletRequest.
- *
- * <p>An AsyncContext is created and initialized by a call to
- * {@link ServletRequest#startAsync()} or
- * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
- * Repeated invocations of these methods will return the same AsyncContext
- * instance, reinitialized as appropriate.
- *
- * <p>In the event that an asynchronous operation has timed out, the
- * container must run through these steps:
+ * ServletRequestで開始された非同期操作の実行コンテキストを表すクラスです。
+ * 
+ * <p>AsyncContextは{@link ServletRequest#startAsync()}または{@link ServletRequest#startAsync(ServletRequest, ServletResponse)}の呼び出しによって作成および初期化されます。
+ * これらのメソッドを繰り返し実行すると、同じAsyncContextインスタンスが返され、適切に再初期化されます。
+ * 
+ * <p>非同期操作がタイムアウトした場合、コンテナは次の手順を実行する必要があります。
  * <ol>
- * <li>Invoke, at their {@link AsyncListener#onTimeout onTimeout} method, all
- * {@link AsyncListener} instances registered with the ServletRequest
- * on which the asynchronous operation was initiated.</li>
- * <li>If none of the listeners called {@link #complete} or any of the
- * {@link #dispatch} methods, perform an error dispatch with a status code
- * equal to <tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>.</li>
- * <li>If no matching error page was found, or the error page did not call
- * {@link #complete} or any of the {@link #dispatch} methods, call
- * {@link #complete}.</li>
+ * <li>非同期操作が開始されたServletRequestに登録されているすべての{@link AsyncListener}インスタンスの{@link AsyncListener#onTimeout onTimeout}メソッドを実行します。</li>
+ * <li>すべてのリスナーが{@link #complete}メソッドやいかなる{@link #dispatch}メソッドも呼び出さなかった場合は<tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>に等しいステータスコードを持つエラーディスパッチを実行します。</li>
+ * <li>一致するエラーページが見つからなかった場合、またはエラーページが{@link #complete}やいかなる{@link #dispatch}メソッドも呼び出さなかった場合は{@link #complete}を呼び出します。</li>
  * </ol>
  *
  * @since Servlet 3.0
@@ -395,10 +384,7 @@ public interface AsyncContext {
      *
      * @param listener the AsyncListener to be registered
      * 
-     * @throws IllegalStateException if this method is called after
-     * the container-initiated dispatch, during which one of the
-     * {@link ServletRequest#startAsync} methods was called, has
-     * returned to the container
+     * @throws IllegalStateException このメソッドがコンテナが開始したディスパッチの後、{@link ServletRequest#startAsync}メソッドのうちの一つが呼び出された後の間、コンテナに返されるまでに呼ばれた場合
      */
     public void addListener(AsyncListener listener);
 
@@ -432,10 +418,7 @@ public interface AsyncContext {
      * @param servletResponse the ServletResponse that will be included
      * in the AsyncEvent
      *
-     * @throws IllegalStateException if this method is called after
-     * the container-initiated dispatch, during which one of the
-     * {@link ServletRequest#startAsync} methods was called, has
-     * returned to the container
+     * @throws IllegalStateException このメソッドがコンテナが開始したディスパッチの後、{@link ServletRequest#startAsync}メソッドのうちの一つが呼び出された後の間、コンテナに返されるまでに呼ばれた場合
      */
     public void addListener(AsyncListener listener,
                             ServletRequest servletRequest,
@@ -489,26 +472,21 @@ public interface AsyncContext {
      *
      * <p>The default value is <code>30000</code> ms.
      *
-     * @param timeout the timeout in milliseconds
+     * @param timeout ミリ秒単位のタイムアウト時間
      *
-     * @throws IllegalStateException if this method is called after
-     * the container-initiated dispatch, during which one of the
-     * {@link ServletRequest#startAsync} methods was called, has
-     * returned to the container
+     * @throws IllegalStateException このメソッドがコンテナが開始したディスパッチの後、{@link ServletRequest#startAsync}メソッドのうちの一つが呼び出された後の間、コンテナに返されるまでに呼ばれた場合
      */
     public void setTimeout(long timeout);
 
 
     /**
-     * Gets the timeout (in milliseconds) for this AsyncContext.
+     * このAsyncContextタイムアウト時間を(ミリ秒単位で)取得します。
      *
-     * <p>This method returns the container's default timeout for
-     * asynchronous operations, or the timeout value passed to the most
-     * recent invocation of {@link #setTimeout}.
+     * <p>このメソッドは、コンテナのデフォルトの非同期操作のタイムアウト値、または{@link #setTimeout}の直近の呼び出しに渡されたタイムアウト値を返します。
      *
-     * <p>A timeout value of zero or less indicates no timeout.
+     * <p>0以下のタイムアウト値はタイムアウトしないことを表します。
      *
-     * @return the timeout in milliseconds
+     * @return ミリ秒単位のタイムアウト時間
      */
     public long getTimeout();
 
