@@ -58,72 +58,52 @@ package javax.servlet;
 public interface AsyncContext {
 
     /**
-     * The name of the request attribute under which the original
-     * request URI is made available to the target of a
-     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     * {@link #dispatch(String)}や{@link #dispatch(ServletContext,String)}のターゲットで使用可能になるオリジナルのリクエストURIを持つリクエスト属性の名前 
      */
     static final String ASYNC_REQUEST_URI = "javax.servlet.async.request_uri";
 
     /**
-     * The name of the request attribute under which the original
-     * context path is made available to the target of a
-     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     * {@link #dispatch(String)}や{@link #dispatch(ServletContext,String)}のターゲットで使用可能になるオリジナルのコンテキストパスを持つリクエスト属性の名前
      */
     static final String ASYNC_CONTEXT_PATH = "javax.servlet.async.context_path";
 
     /**
-     * The name of the request attribute under which the original
-     * {@link javax.servlet.http.HttpServletMapping} is made available to the target of a
-     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     * {@link #dispatch(String)}や{@link #dispatch(ServletContext,String)}のターゲットで使用可能になるオリジナルの{@link javax.servlet.http.HttpServletMapping}を持つリクエスト属性の名前
      */
     static final String ASYNC_MAPPING = "javax.servlet.async.mapping";
 
     /**
-     * The name of the request attribute under which the original
-     * path info is made available to the target of a
-     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     * {@link #dispatch(String)}や{@link #dispatch(ServletContext,String)}のターゲットで使用可能になるオリジナルのパス情報を持つリクエスト属性の名前
      */
     static final String ASYNC_PATH_INFO = "javax.servlet.async.path_info";
 
     /**
-     * The name of the request attribute under which the original
-     * servlet path is made available to the target of a
-     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)}  
+     * {@link #dispatch(String)}や{@link #dispatch(ServletContext,String)}のターゲットで使用可能になるオリジナルのサーブレットパスを持つリクエスト属性の名前
      */
     static final String ASYNC_SERVLET_PATH = "javax.servlet.async.servlet_path";
 
     /**
-     * The name of the request attribute under which the original
-     * query string is made available to the target of a
-     * {@link #dispatch(String)} or {@link #dispatch(ServletContext,String)} 
+     * {@link #dispatch(String)}や{@link #dispatch(ServletContext,String)}のターゲットで使用可能になるオリジナルのクエリ文字列を持つリクエスト属性の名前
      */
     static final String ASYNC_QUERY_STRING = "javax.servlet.async.query_string";
 
 
     /**
-     * Gets the request that was used to initialize this AsyncContext
-     * by calling {@link ServletRequest#startAsync()} or
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
+     * {@link ServletRequest#startAsync()} や {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}の呼び出しによってこのAsyncContextの初期化に使用されたリクエストを取得します。
      *
-     * @return the request that was used to initialize this AsyncContext
+     * @return このAsyncContextの初期化に使用されたリクエスト
      *
-     * @exception IllegalStateException  if {@link #complete} or any of the
-     *                                  {@link #dispatch} methods has been
-     *                                  called in the asynchronous cycle
+     * @exception IllegalStateException  非同期サイクルによって{@link #complete}やいずれかの{@link #dispatch}メソッドが呼び出されていた場合
      */
     public ServletRequest getRequest();
 
 
     /**
-     * Gets the response that was used to initialize this AsyncContext
-     * by calling {@link ServletRequest#startAsync()} or
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}.
+     * {@link ServletRequest#startAsync()} や {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}の呼び出しによってこのAsyncContextの初期化に使用されたレスポンスを取得します。
      *
-     * @return the response that was used to initialize this AsyncContext
+     * @return このAsyncContextの初期化に使用されたレスポンス
      *
-     * @exception IllegalStateException  if {@link #complete} or any of the
-     *                                  {@link #dispatch} methods has been
-     *                                  called in the asynchronous cycle
+     * @exception IllegalStateException  非同期サイクルによって{@link #complete}やいずれかの{@link #dispatch}メソッドが呼び出されていた場合
      */
     public ServletResponse getResponse();
 
