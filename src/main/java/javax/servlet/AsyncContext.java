@@ -324,11 +324,10 @@ public interface AsyncContext {
 
 
     /**
-     * Causes the container to dispatch a thread, possibly from a managed
-     * thread pool, to run the specified <tt>Runnable</tt>. The container may
-     * propagate appropriate contextual information to the <tt>Runnable</tt>. 
+     * コンテナがおそらく管理されたスレッドプールから取得したスレッドにディスパッチして<tt>Runnable</tt>を実行させます。
+     * コンテナは適切なコンテキスト情報を<tt>Runnable</tt>に伝えることができます。
      *
-     * @param run the asynchronous handler
+     * @param run 非同期ハンドラ
      */
     public void start(Runnable run);
 
