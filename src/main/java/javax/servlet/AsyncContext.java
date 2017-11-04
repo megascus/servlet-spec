@@ -49,8 +49,8 @@ package javax.servlet;
  * <p>非同期操作がタイムアウトした場合、コンテナは次の手順を実行する必要があります。
  * <ol>
  * <li>非同期操作が開始されたServletRequestに登録されているすべての{@link AsyncListener}インスタンスの{@link AsyncListener#onTimeout onTimeout}メソッドを実行します。</li>
- * <li>すべてのリスナーが{@link #complete}メソッドやいかなる{@link #dispatch}メソッドも呼び出さなかった場合は<tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>に等しいステータスコードを持つエラーディスパッチを実行します。</li>
- * <li>一致するエラーページが見つからなかった場合、またはエラーページが{@link #complete}やいかなる{@link #dispatch}メソッドも呼び出さなかった場合は{@link #complete}を呼び出します。</li>
+ * <li>すべてのリスナーが{@link #complete}メソッドや、いかなる{@link #dispatch}メソッドも呼び出さなかった場合は<tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>に等しいステータスコードを持つエラーディスパッチを実行します。</li>
+ * <li>一致するエラーページが見つからなかった場合、またはエラーページが{@link #complete}や、いかなる{@link #dispatch}メソッドも呼び出さなかった場合は{@link #complete}を呼び出します。</li>
  * </ol>
  *
  * @since Servlet 3.0
@@ -109,30 +109,19 @@ public interface AsyncContext {
 
 
     /**
-     * Checks if this AsyncContext was initialized with the original or
-     * application-wrapped request and response objects.
+     * このAsyncContextがオリジナルのリクエストとレスポンスのオブジェクトか、アプリケーションでラップされたリクエストとレスポンスのオブジェクトかをチェックします。
      * 
-     * <p>This information may be used by filters invoked in the
-     * <i>outbound</i> direction, after a request was put into
-     * asynchronous mode, to determine whether any request and/or response
-     * wrappers that they added during their <i>inbound</i> invocation need
-     * to be preserved for the duration of the asynchronous operation, or may
-     * be released.
+     * <p>この情報は<i>アウトバウンド</i>方向で実行されたフィルターによって使用され、リクエストが非同期実行モードになった後に、
+     * それらの<i>インバウンド</i>呼び出しの間に追加したリクエストラッパーおよび/またはレスポンスラッパーが非同期操作の間、保持される必要があるか、または解放される必要があるかどうかを判別します。
      *
-     * @return true if this AsyncContext was initialized with the original
-     * request and response objects by calling
-     * {@link ServletRequest#startAsync()}, or if it was initialized by
-     * calling
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
-     * and neither the ServletRequest nor ServletResponse arguments 
-     * carried any application-provided wrappers; false otherwise
+     * @return AsyncContextが{@link ServletRequest#startAsync()}を呼び出してオリジナルのリクエストとレスポンスのオブジェクトで初期化されたか、
+     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}を呼び出してどちらの引数もアプリケーションが提供したラッパーを使用せずに初期化された場合はtrue、そうでない場合はfalse
      */
     public boolean hasOriginalRequestAndResponse();
 
 
     /**
-     * Dispatches the request and response objects of this AsyncContext
-     * to the servlet container.
+     * このAsyncContextのリクエストとレスポンスのオブジェクトをサーブレットコンテナにディスパッチします。
      * 
      * <p>If the asynchronous cycle was started with
      * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
@@ -406,51 +395,40 @@ public interface AsyncContext {
 
 
     /**
-     * Instantiates the given {@link AsyncListener} class.
+     * 与えられた{@link AsyncListener}クラスをインスタンス化します。
      *
-     * <p>The returned AsyncListener instance may be further customized
-     * before it is registered with this AsyncContext via a call to one of 
-     * the <code>addListener</code> methods.
+     * <p>返されたAsyncListenerのインスタンスは<code>addListener</code>メソッドのうちの一つを利用してこのAsyncContextに登録する前に、
+     * さらにカスタマイズすることもできます。
      *
-     * <p>The given AsyncListener class must define a zero argument
-     * constructor, which is used to instantiate it.
+     * <p>指定されたAsyncListenerはインスタンス化するために使用される引数のないコンストラクタが定義されている必要があります。
      *
-     * <p>This method supports resource injection if the given
-     * <tt>clazz</tt> represents a Managed Bean.
-     * See the Java EE platform and JSR 299 specifications for additional
-     * details about Managed Beans and resource injection.
-
-     * <p>This method supports any annotations applicable to AsyncListener.
+     * <p>このメソッドは指定された<tt>clazz</tt>がマネージドビーンを表す場合、リソースインジェクションをサポートします。
+     * マネージドビーンとリソースインジェクションについての詳細はJava EEプラットフォームとJSR 299の仕様を参照してください。
+     * 
+     * <p>このメソッドは、AsyncListenerに適用可能なアノテーションをすべてサポートします。
      *
-     * @param <T> the class of the object to instantiate
-     * @param clazz the AsyncListener class to instantiate
+     * @param <T> インスタンス化されるオブジェクトのクラス
+     * @param clazz インスタンス化されるAsyncListenerクラス
      *
-     * @return the new AsyncListener instance
+     * @return 新しいAsyncListenerのインスタンス
      *
-     * @throws ServletException if the given <tt>clazz</tt> fails to be
-     * instantiated
+     * @throws ServletException 指定された<tt>clazz</tt>のインスタンス化に失敗した場合
      */
     public <T extends AsyncListener> T createListener(Class<T> clazz)
         throws ServletException; 
 
 
     /**
-     * Sets the timeout (in milliseconds) for this AsyncContext.
-     *
-     * <p>The timeout applies to this AsyncContext once the
-     * container-initiated dispatch during which one of the
-     * {@link ServletRequest#startAsync} methods was called has
-     * returned to the container. 
-     *
-     * <p>The timeout will expire if neither the {@link #complete} method
-     * nor any of the dispatch methods are called. A timeout value of
-     * zero or less indicates no timeout. 
+     * このAsyncContextのタイムアウト時間を(ミリ秒単位で)設定します。
      * 
-     * <p>If {@link #setTimeout} is not called, then the container's
-     * default timeout, which is available via a call to
-     * {@link #getTimeout}, will apply.
+     * <p>タイムアウトはこのAscyncContextがひとたびコンテナが開始したディスパッチが{@link ServletRequest#startAsync}メソッドのうちが呼び出されコンテナに返されるまでの間に適用されます。
      *
-     * <p>The default value is <code>30000</code> ms.
+     * <p>{@link #complete}メソッドも、いかなるディスパッチメソッドも呼び出されない場合、タイムアウトします。 
+     * 0以下のタイムアウト値は、タイムアウトがないことを示します。
+     * 
+     * <p>{@link #setTimeout}が呼び出されてない場合、コンテナのデフォルトのタイムアウトとして{@link #getTimeout}の呼び出しによって使用可能な値が適用されます。
+     *
+     * <p>デフォルト値は<code>30000</code>ミリ秒です。
      *
      * @param timeout ミリ秒単位のタイムアウト時間
      *
