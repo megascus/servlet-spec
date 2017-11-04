@@ -359,33 +359,22 @@ public interface AsyncContext {
 
 
     /**
-     * Registers the given {@link AsyncListener} with the most recent
-     * asynchronous cycle that was started by a call to one of the
-     * {@link ServletRequest#startAsync} methods.
+     * 与えられた{@link AsyncListener}を{@link ServletRequest#startAsync}メソッドのいずれかの呼び出しによって開始された最新の非同期サイクルに登録します。
+     * 
+     * <p>指定されたAsyncListenerは、非同期サイクルが正常に完了したとき、タイムアウトしたとき、エラーの結果の時、
+     * {@link ServletRequest#startAsync}メソッドのいずれかの呼び出しによって新しい非同期サイクルが開始された時に{@link AsyncEvent}を受け取ります。
      *
-     * <p>The given AsyncListener will receive an {@link AsyncEvent} when
-     * the asynchronous cycle completes successfully, times out, results
-     * in an error, or a new asynchronous cycle is being initiated via
-     * one of the {@link ServletRequest#startAsync} methods.
+     * <p>AsyncListenerインスタンスは追加された順番で通知されます。
      *
-     * <p>AsyncListener instances will be notified in the order in which
-     * they were added.
+     * <p>与えられたServletRequestとServletResponseのオブジェクトは、
+     * 与えられたAsyncListenerに届けられた{@link AsyncEvent}内の各々{@link AsyncEvent#getSuppliedRequest getSuppliedRequest}メソッドと{@link AsyncEvent#getSuppliedResponse getSuppliedResponse}メソッドを使用することで
+     * AsyncListenerで使用できるようになります。
+     * これらのオブジェクトは与えられたAsyncListenerが登録されてから追加でのラッピングが発生する可能性があるだけではなく、
+     * それらに関連したリソースの開放のために使用される可能性もあるため、AsyncEventが配信された時点では読み書きしないでください。
      *
-     * <p>The given ServletRequest and ServletResponse objects will
-     * be made available to the given AsyncListener via the
-     * {@link AsyncEvent#getSuppliedRequest getSuppliedRequest} and
-     * {@link AsyncEvent#getSuppliedResponse getSuppliedResponse} methods,
-     * respectively, of the {@link AsyncEvent} delivered to it. These objects
-     * should not be read from or written to, respectively, at the time the
-     * AsyncEvent is delivered, because additional wrapping may have
-     * occurred since the given AsyncListener was registered, but may be used
-     * in order to release any resources associated with them.
-     *
-     * @param listener the AsyncListener to be registered
-     * @param servletRequest the ServletRequest that will be included
-     * in the AsyncEvent
-     * @param servletResponse the ServletResponse that will be included
-     * in the AsyncEvent
+     * @param listener 登録されるAsyncListener
+     * @param servletRequest AsyncEventに含まれるようになるServletRequest
+     * @param servletResponse AsyncEventに含まれるようになるServletResponse
      *
      * @throws IllegalStateException このメソッドがコンテナが開始したディスパッチの後、{@link ServletRequest#startAsync}メソッドのうちの一つが呼び出された後の間、コンテナに返されるまでに呼ばれた場合
      */
