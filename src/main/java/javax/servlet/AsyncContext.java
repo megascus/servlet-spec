@@ -300,25 +300,18 @@ public interface AsyncContext {
 
 
     /**
-     * Completes the asynchronous operation that was started on the request
-     * that was used to initialze this AsyncContext, closing the response
-     * that was used to initialize this AsyncContext.
+     * このAsyncContextを初期化するために使用されたリクエストで開始された非同期操作を完了し、
+     * このAsyncContextを初期化するために使用されたレスポンスを閉じます。
+     * 
+     * <p>このAsyncContextが作成されたServletRequestに登録されている{@link AsyncList}型のリスナーは{@link AsyncListener#onComplete(AsyncEvent) onComplete}メソッドが呼び出されます。
+     * 
+     * <p>{@link ServletRequest#startAsync()}または{@link ServletRequest#startAsync(ServletRequest, ServletResponse)}を呼び出した後、
+     * およびこのクラスの<tt>dispatch</tt>メソッドのうちの1つを呼び出す前ならいつでもこのメソッドを呼び出すことができます。
      *
-     * <p>Any listeners of type {@link AsyncListener} that were registered
-     * with the ServletRequest for which this AsyncContext was created will
-     * be invoked at their {@link AsyncListener#onComplete(AsyncEvent)
-     * onComplete} method.
-     *
-     * <p>It is legal to call this method any time after a call to
-     * {@link ServletRequest#startAsync()} or
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
-     * and before a call to one of the <tt>dispatch</tt> methods
-     * of this class. 
-     * If this method is called before the container-initiated dispatch
-     * that called <tt>startAsync</tt> has returned to the container, then
-     * the call will not take effect (and any invocations of
-     * {@link AsyncListener#onComplete(AsyncEvent)} will be delayed) until
-     * after the container-initiated dispatch has returned to the container.
+     * <tt>startAsync</tt>を呼び出したコンテナ開始ディスパッチがコンテナに返される前にこのメソッドが呼び出されると、
+     * コンテナによって開始されたディスパッチが完了するまで、コンテナに戻された後までこのメソッドの呼び出しは何も効果を及ぼしません
+     * (し、いかなる{@link AsyncListener#onComplete(AsyncEvent)}呼び出しは遅延されます)。
+     * 呼び出しはAsyncListener.onComplete(AsyncEvent)呼び出しはAsyncListener.onComplete(AsyncEvent)遅延されます）容器に戻った。
      */
     public void complete();
 
