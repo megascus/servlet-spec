@@ -334,24 +334,17 @@ public interface AsyncContext {
 
 
     /**
-     * Registers the given {@link AsyncListener} with the most recent
-     * asynchronous cycle that was started by a call to one of the
-     * {@link ServletRequest#startAsync} methods.
+     * 与えられた{@link AsyncListener}を{@link ServletRequest#startAsync}メソッドのいずれかの呼び出しによって開始された最新の非同期サイクルに登録します。
      *
-     * <p>The given AsyncListener will receive an {@link AsyncEvent} when
-     * the asynchronous cycle completes successfully, times out, results
-     * in an error, or a new asynchronous cycle is being initiated via
-     * one of the {@link ServletRequest#startAsync} methods.
+     * <p>指定されたAsyncListenerは、非同期サイクルが正常に完了したとき、タイムアウトしたとき、エラーの結果の時、
+     * {@link ServletRequest#startAsync}メソッドのいずれかの呼び出しによって新しい非同期サイクルが開始された時に{@link AsyncEvent}を受け取ります。
      *
-     * <p>AsyncListener instances will be notified in the order in which
-     * they were added.
+     * <p>AsyncListenerインスタンスは追加された順番で通知されます。
      *
-     * <p>If {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
-     * or {@link ServletRequest#startAsync} is called,
-     * the exact same request and response objects are available from the
-     * {@link AsyncEvent} when the {@link AsyncListener} is notified.
+     * <p>{@link ServletRequest#startAsync(ServletRequest, ServletResponse)}か{@link ServletRequest#startAsync}が呼びだされると、
+     * {@link AsyncListener}に通知された時には正しく同じリクエストとレスポンスのオブジェクトが{@link AsyncEvent}から使用可能になります。
      *
-     * @param listener the AsyncListener to be registered
+     * @param listener 登録されるAsyncListener
      * 
      * @throws IllegalStateException このメソッドがコンテナが開始したディスパッチの後、{@link ServletRequest#startAsync}メソッドのうちの一つが呼び出された後の間、コンテナに返されるまでに呼ばれた場合
      */
