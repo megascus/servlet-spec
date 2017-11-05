@@ -258,41 +258,25 @@ public interface AsyncContext {
 
 
     /**
-     * Dispatches the request and response objects of this AsyncContext
-     * to the given <tt>path</tt> scoped to the given <tt>context</tt>.
+     * このAsyncContextのリクエストとレスポンスのオブジェクトを与えられた<tt>context</tt>のスコープにある与えられた<tt>path</tt>にディスパッチします。
+     * 
+     * <p><tt>path</tt>パラメータは{@link ServletRequest#getRequestDispatcher(String)}と、
+     * 与えられた<tt>context</tt>のスコープであることを除いて同じ方法で解釈されます。
+     * 
+     * <p>リクエストのすべてのパスに関連する問合せメソッドは、ディスパッチターゲットを反映する必要がありますが、
+     * オリジナルのリクエストURIやコンテキストパス、パス情報、サーブレットパスおよび問合せ文字列はリクエスト属性の{@link #ASYNC_REQUEST_URI}、{@link #ASYNC_CONTEXT_PATH}、{@link #ASYNC_PATH_INFO}、{@link #ASYNC_SERVLET_PATH}、{@link #ASYNC_QUERY_STRING}から復元できるでしょう。
+     * これらの属性はディスパッチを繰り返しても、常にオリジナルのパス要素を反映します。
+     * 
+     * <p>{@link ServletRequest#startAsync}メソッドの1つを呼び出すことによって開始される非同期サイクルごとに、最大で1つの非同期ディスパッチ操作を行うことができます。
+     * 同じ非同期サイクル内で追加の非同期ディスパッチ操作を実行しようとするとIllegalStateExceptionが発生します。
+     * その後にstartAsyncがディスパッチされたリクエストで呼び出された場合、dispatchメソッドまたは{@link #complete}メソッドのいずれかが呼び出される可能性があります。
      *
-     * <p>The <tt>path</tt> parameter is interpreted in the same way 
-     * as in {@link ServletRequest#getRequestDispatcher(String)}, except that
-     * it is scoped to the given <tt>context</tt>.
+     * <p>エラーハンドリングを含め、詳細については{@link #dispatch()}を参照してください。
      *
-     * <p>All path related query methods of the request must reflect the
-     * dispatch target, while the original request URI, context path,
-     * path info, servlet path, and query string may be recovered from
-     * the {@link #ASYNC_REQUEST_URI}, {@link #ASYNC_CONTEXT_PATH},
-     * {@link #ASYNC_PATH_INFO}, {@link #ASYNC_SERVLET_PATH}, and
-     * {@link #ASYNC_QUERY_STRING} attributes of the request. These
-     * attributes will always reflect the original path elements, even under
-     * repeated dispatches.
+     * @param context ディスパッチターゲットのServletContext
+     * @param path 与えられたServletContextのスコープにあるディスパッチターゲットのパス
      *
-     * <p>There can be at most one asynchronous dispatch operation per
-     * asynchronous cycle, which is started by a call to one of the
-     * {@link ServletRequest#startAsync} methods. Any attempt to perform an
-     * additional asynchronous dispatch operation within the same
-     * asynchronous cycle will result in an IllegalStateException.
-     * If startAsync is subsequently called on the dispatched request,
-     * then any of the dispatch or {@link #complete} methods may be called.
-     *
-     * <p>See {@link #dispatch()} for additional details, including error
-     * handling.
-     *
-     * @param context the ServletContext of the dispatch target
-     * @param path the path of the dispatch target, scoped to the given
-     * ServletContext
-     *
-     * @throws IllegalStateException if one of the dispatch methods
-     * has been called and the startAsync method has not been
-     * called during the resulting dispatch, or if {@link #complete}
-     * was called
+     * @throws IllegalStateException ディスパッチメソッドの1つが呼び出され、ディスパッチの結果までの間にstartAsyncメソッドが呼び出されなかった場合、または{@link #complete}が呼び出された場合
      *
      * @see ServletRequest#getDispatcherType
      */
