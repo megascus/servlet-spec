@@ -194,13 +194,9 @@ public interface AsyncContext {
      * {@link #complete}.</li>
      * </ol>
      *
-     * <p>There can be at most one asynchronous dispatch operation per
-     * asynchronous cycle, which is started by a call to one of the
-     * {@link ServletRequest#startAsync} methods. Any attempt to perform an
-     * additional asynchronous dispatch operation within the same
-     * asynchronous cycle will result in an IllegalStateException.
-     * If startAsync is subsequently called on the dispatched request,
-     * then any of the dispatch or {@link #complete} methods may be called.
+     * <p>{@link ServletRequest#startAsync}メソッドの1つを呼び出すことによって開始される非同期サイクルごとに、最大で1つの非同期ディスパッチ操作を行うことができます。
+     * 同じ非同期サイクル内で追加の非同期ディスパッチ操作を実行しようとするとIllegalStateExceptionが発生します。
+     * その後にstartAsyncがディスパッチされたリクエストで呼び出された場合、dispatchメソッドまたは{@link #complete}メソッドのいずれかが呼び出される可能性があります。
      *
      * @throws IllegalStateException ディスパッチメソッドの1つが呼び出され、ディスパッチの結果までの間にstartAsyncメソッドが呼び出されなかった場合、または{@link #complete}が呼び出された場合
      *
