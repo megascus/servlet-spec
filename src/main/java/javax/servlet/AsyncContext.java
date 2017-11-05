@@ -154,44 +154,26 @@ public interface AsyncContext {
      * ac.dispatch(); // ASYNC dispatch to /url/B
      * }</pre>
      *
-     * <p>This method returns immediately after passing the request
-     * and response objects to a container managed thread, on which the
-     * dispatch operation will be performed.
-     * If this method is called before the container-initiated dispatch
-     * that called <tt>startAsync</tt> has returned to the container, the
-     * dispatch operation will be delayed until after the container-initiated
-     * dispatch has returned to the container.
+     * <p>このメソッドはディスパッチ操作が実行されるコンテナ管理スレッドにリクエストとレスポンスのオブジェクトを渡すとすぐに戻ります。
+     * <tt>startAsync</tt>を呼び出したコンテナ開始ディスパッチがコンテナに返される前にこのメソッドが呼び出されると、
+     * コンテナ開始ディスパッチがコンテナに返されるまでディスパッチ操作は遅延されます。
      *
-     * <p>The dispatcher type of the request is set to
-     * <tt>DispatcherType.ASYNC</tt>. Unlike
-     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse)
-     * forward dispatches}, the response buffer and
-     * headers will not be reset, and it is legal to dispatch even if the
-     * response has already been committed.
+     * <p>リクエストのディスパッチャータイプは<tt>DispatcherType.ASYNC</tt>に設定されます。
+     * {@link RequestDispatcher#forward(ServletRequest, ServletResponse) forward dispatches}とは異なり、
+     * レスポンスのバッファとヘッダーはリセットされず、レスポンスがすでにコミットされていてもディスパッチすることはできます。
      *
-     * <p>Control over the request and response is delegated
-     * to the dispatch target, and the response will be closed when the
-     * dispatch target has completed execution, unless
-     * {@link ServletRequest#startAsync()} or
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)}
-     * are called.
+     * <p>{@link ServletRequest#startAsync()}や{@link ServletRequest#startAsync(ServletRequest, ServletResponse)}が呼び出されない限り、
+     * リクエストとレスポンスの制御はディスパッチターゲットに委譲され、ディスパッチターゲットの実行が完了するとレスポンスがクローズされます。
      * 
-     * <p>Any errors or exceptions that may occur during the execution
-     * of this method must be caught and handled by the container, as
-     * follows:
+     * <p>このメソッドの実行中に発生する可能性のあるエラーや例外は、コンテナによって次のように捕捉され、処理されなければなりません。
      * <ol>
-     * <li>Invoke, at their {@link AsyncListener#onError onError} method, all
-     * {@link AsyncListener} instances registered with the ServletRequest
-     * for which this AsyncContext was created, and make the caught 
-     * <tt>Throwable</tt> available via {@link AsyncEvent#getThrowable}.</li>
-     * <li>If none of the listeners called {@link #complete} or any of the
-     * {@link #dispatch} methods, perform an error dispatch with a status code
-     * equal to <tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>, and
-     * make the above <tt>Throwable</tt> available as the value of the
-     * <tt>RequestDispatcher.ERROR_EXCEPTION</tt> request attribute.</li>
-     * <li>If no matching error page was found, or the error page did not call
-     * {@link #complete} or any of the {@link #dispatch} methods, call
-     * {@link #complete}.</li>
+     * <li>このAsyncContextが作成されたServletRequestに登録されているすべての{@link AsyncListener}インスタンスを、
+     * キャッチされたThrowableを{@link AsyncEvent#getThrowable}を使用して利用可能にした状態で{@link AsyncListener#onError onError}メソッドを呼び出します。</li>
+     * <li>リスナーがどれも{@link #complete}も{@link #dispatch}のいずれかも呼び出さない場合、
+     * <tt>HttpServletResponse.SC_INTERNAL_SERVER_ERROR</tt>と等しいステータスコードでエラーディスパッチを行い、
+     * 上記の<tt>Throwable</tt>を<tt>RequestDispatcher.ERROR_EXCEPTION</tt>リクエスト属性の値として利用可能にします。</li>
+     * <li>一致するエラーページが見つからない場合、もしくはエラーページが{@link #complete}や{@link #dispatch}メソッドのいずれも呼び出さない場合は、
+     * {@link #complete}を呼び出します。</li>
      * </ol>
      *
      * <p>{@link ServletRequest#startAsync}メソッドの1つを呼び出すことによって開始される非同期サイクルごとに、最大で1つの非同期ディスパッチ操作を行うことができます。
