@@ -123,15 +123,12 @@ public interface AsyncContext {
     /**
      * このAsyncContextのリクエストとレスポンスのオブジェクトをサーブレットコンテナにディスパッチします。
      * 
-     * <p>If the asynchronous cycle was started with
-     * {@link ServletRequest#startAsync(ServletRequest, ServletResponse)},
-     * and the request passed is an instance of HttpServletRequest,
-     * then the dispatch is to the URI returned by
-     * {@link javax.servlet.http.HttpServletRequest#getRequestURI}.
-     * Otherwise, the dispatch is to the URI of the request when it was
-     * last dispatched by the container.
+     * <p>非同期サイクルが{@link ServletRequest#startAsync(ServletRequest, ServletResponse)}で開始され、
+     * 渡されたリクエストがHttpServletRequestのインスタンスである場合、
+     * ディスパッチは{@link javax.servlet.http.HttpServletRequest#getRequestURI}によって返されたURIに対して行われます。
+     * それ以外の場合、ディスパッチはコンテナによって最後にディスパッチされたときのリクエストのURIに対して行われます。
      *
-     * <p>The following sequence illustrates how this will work:
+     * <p>次のシーケンスでこれがどのように機能するかを示します。
      * <pre>{@code
      * // REQUEST dispatch to /url/A
      * AsyncContext ac = request.startAsync();
