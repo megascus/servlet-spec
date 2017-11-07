@@ -69,24 +69,18 @@ public interface ServletRegistration extends Registration {
     public Set<String> addMapping(String... urlPatterns);
 
     /**
-     * Gets the currently available mappings of the
-     * Servlet represented by this <code>ServletRegistration</code>.
+     * このServletRegistrationによって表されるサーブレットの現在使用可能なマッピングを取得します。
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not 
-     * affect this <code>ServletRegistration</code>.
+     * <p>許可されている場合、返された<code>Collection</code>への変更はこの<code>ServletRegistration</code>に影響してはなりません。
      *
-     * @return a (possibly empty) <code>Collection</code> of the currently
-     * available mappings of the Servlet represented by this
-     * <code>ServletRegistration</code>
+     * @return この<code>ServletRegistration</code>によって表されるサーブレットの現在利用可能なマッピングの(空の可能性のある)<code>Collection</code>
      */
     public Collection<String> getMappings();
 
     /**
-     * Gets the name of the runAs role of the Servlet represented by this
-     * <code>ServletRegistration</code>.
+     * この<code>ServletRegistration</code>によって表されるサーブレットのrunAsロールの名前を取得します。
      * 
-     * @return the name of the runAs role, or null if the Servlet is
-     * configured to run as its caller
+     * @return runAsロールの名前、サーブレットが呼び出し元として実行するように設定されている場合はnull
      */
     public String getRunAsRole();
 
