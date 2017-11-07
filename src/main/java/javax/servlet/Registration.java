@@ -138,7 +138,7 @@ public interface Registration {
          *
          * @param isAsyncSupported この動的なRegistrationによって表されるサーブレットまたはフィルターが非同期操作をサポートする場合はtrue、そうでない場合はfalse
          *
-         * @throws IllegalStateException この動的なRegistrationが取得されたServletContextがすでに初期化完了している場合
+         * @throws IllegalStateException この動的なRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public void setAsyncSupported(boolean isAsyncSupported);
     }

@@ -125,8 +125,7 @@ public interface ServletRegistration extends Registration {
          *
          * @param loadOnStartup the initialization priority of the Servlet
          *
-         * @throws IllegalStateException if the ServletContext from which
-         * this ServletRegistration was obtained has already been initialized
+         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public void setLoadOnStartup(int loadOnStartup);
 
@@ -164,52 +163,40 @@ public interface ServletRegistration extends Registration {
          * so changes in the returned set are not reflected in the
          * {@code Dynamic} object, and vice-versa.</p>
          * 
-         * @param constraint the {@link ServletSecurityElement} to be applied
-         * to the patterns mapped to this ServletRegistration
+         * @param constraint このServletRegistrationにマップされたパターンに適用される{@link ServletSecurityElement}
          * 
          * @return the (possibly empty) Set of URL patterns that were already
          * the exact target of a <code>security-constraint</code> that was
          * established via the portable deployment descriptor. This method
          * has no effect on the patterns included in the returned set
          * 
-         * @throws IllegalArgumentException if <tt>constraint</tt> is null
+         * @throws IllegalArgumentException <tt>constraint</tt>がnull
          * 
-         * @throws IllegalStateException if the {@link ServletContext} from
-         * which this <code>ServletRegistration</code> was obtained has
-         * already been initialized 
+         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public Set<String> setServletSecurity(ServletSecurityElement constraint);
 
         /**
-         * Sets the {@link MultipartConfigElement} to be applied to the
-         * mappings defined for this <code>ServletRegistration</code>. If this
-         * method is called multiple times, each successive call overrides the
-         * effects of the former.
+         * この<code>ServletRegistration</code>のために定義されたマッピングに適用される{@link MultipartConfigElement}を設定します。
+         * このメソッドが複数回呼び出された場合、連続する各呼び出しは前の呼び出しの効果よりも優先されます。
          *
-         * @param multipartConfig the {@link MultipartConfigElement} to be
-         * applied to the patterns mapped to the registration
+         * @param multipartConfig ServletRegistrationにマップされたパターンに適用される{@link MultipartConfigElement}
          *
-         * @throws IllegalArgumentException if <tt>multipartConfig</tt> is
-         * null
+         * @throws IllegalArgumentException <tt>multipartConfig</tt>がnull
          *
-         * @throws IllegalStateException if the {@link ServletContext} from
-         * which this ServletRegistration was obtained has already been
-         * initialized
+         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public void setMultipartConfig(
             MultipartConfigElement multipartConfig);
 
         /**
-         * Sets the name of the <code>runAs</code> role for this
-         * <code>ServletRegistration</code>.
+         * この<code>ServletRegistration</code>の<code>runAs</code>ロールの名前を設定します。
          *
-         * @param roleName the name of the <code>runAs</code> role
+         * @param roleName <code>runAs</code>ロールの名前
          *
-         * @throws IllegalArgumentException if <tt>roleName</tt> is null
+         * @throws IllegalArgumentException <tt>roleName</tt>がnull
          *
-         * @throws IllegalStateException if the {@link ServletContext} from
-         * which this ServletRegistration was obtained has already been
-         * initialized
+         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public void setRunAsRole(String roleName);
 
