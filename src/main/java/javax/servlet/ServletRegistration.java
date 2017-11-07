@@ -68,10 +68,9 @@ public interface ServletRegistration extends Registration {
      * @return the (possibly empty) Set of URL patterns that are already
      * mapped to a different Servlet
      *
-     * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null
+     * @throws IllegalArgumentException <tt>urlPatterns</tt>がnull
      * or empty
-     * @throws IllegalStateException if the ServletContext from which this
-     * ServletRegistration was obtained has already been initialized
+     * @throws IllegalStateException このServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
      */
     public Set<String> addMapping(String... urlPatterns);
 
@@ -125,7 +124,7 @@ public interface ServletRegistration extends Registration {
          *
          * @param loadOnStartup the initialization priority of the Servlet
          *
-         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
+         * @throws IllegalStateException このServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public void setLoadOnStartup(int loadOnStartup);
 
@@ -172,7 +171,7 @@ public interface ServletRegistration extends Registration {
          * 
          * @throws IllegalArgumentException <tt>constraint</tt>がnull
          * 
-         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
+         * @throws IllegalStateException このServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public Set<String> setServletSecurity(ServletSecurityElement constraint);
 
@@ -184,7 +183,7 @@ public interface ServletRegistration extends Registration {
          *
          * @throws IllegalArgumentException <tt>multipartConfig</tt>がnull
          *
-         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
+         * @throws IllegalStateException このServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public void setMultipartConfig(
             MultipartConfigElement multipartConfig);
@@ -196,7 +195,7 @@ public interface ServletRegistration extends Registration {
          *
          * @throws IllegalArgumentException <tt>roleName</tt>がnull
          *
-         * @throws IllegalStateException ServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
+         * @throws IllegalStateException このServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
         public void setRunAsRole(String roleName);
 
