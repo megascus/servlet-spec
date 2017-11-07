@@ -50,7 +50,7 @@ import java.util.*;
 public interface FilterRegistration extends Registration {
 
     /**
-     * このFilterRegistrationによって表されるFilterに対して、与えられたサーブレット名とディスパッチャータイプを持つフィルターマッピングを追加します。
+     * このFilterRegistrationによって表されるフィルターに対して、与えられたサーブレット名とディスパッチャータイプを持つフィルターマッピングを追加します。
      *
      * <p>フィルターマッピングは追加された順番で一致します。
      * 
@@ -82,7 +82,7 @@ public interface FilterRegistration extends Registration {
     public Collection<String> getServletNameMappings();
 
     /**
-     * このFilterRegistrationによって表されるFilterに対して、与えられたURLパターンとディスパッチャータイプを持つフィルターマッピングを追加します。
+     * このFilterRegistrationによって表されるフィルターに対して、与えられたURLパターンとディスパッチャータイプを持つフィルターマッピングを追加します。
      *
      * <p>フィルターマッピングは追加された順番で一致します。
      * 

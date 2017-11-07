@@ -102,7 +102,7 @@ public interface Registration {
      * このメソッドが指定されたMapのいずれかの初期化パラメータに対してfalseを返すと、更新は実行されず、このメソッドの戻り値として返されます。
      * 同様に、Mapに<tt>null</tt>の名前または値を持つ初期化パラメータが含まれている場合、更新は実行されず、IllegalArgumentExceptionが投げられます。
      * 
-     * <p>返されたSetは{@code Registration}オブジェクトによって追跡されていないため、返されたSetの変更は{@code Registration}オブジェクトに反映されず、その逆もそうです。</p>
+     * <p>返されたSetは{@code Registration}オブジェクトによって追跡されていないため、返されたSetへの変更は{@code Registration}オブジェクトに反映されず、その逆もそうです。</p>
      *
      * @param initParameters 初期化パラメーター
      *

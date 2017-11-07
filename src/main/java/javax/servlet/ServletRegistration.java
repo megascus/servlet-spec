@@ -50,23 +50,17 @@ import java.util.*;
 public interface ServletRegistration extends Registration {
 
     /**
-     * Adds a servlet mapping with the given URL patterns for the Servlet
-     * represented by this ServletRegistration.
+     * このServletRegistrationによって表されるサーブレットに対して、与えられたURLパターンを指定してサーブレットマッピングを追加します。
      *
-     * <p>If any of the specified URL patterns are already mapped to a 
-     * different Servlet, no updates will be performed.
+     * <p>指定されたURLパターンのいずれかがすでに別のサーブレットにマッピングされている場合、更新は実行されません。
      *
-     * <p>If this method is called multiple times, each successive call
-     * adds to the effects of the former.
+     * <p>このメソッドが複数回呼び出された場合、後続の各呼び出しが前の呼び出しの効果に追加されます。
+     * 
+     * <p>返されるSetはServletRegistrationオブジェクトによって追跡されないため、返されたSetへの変更はServletRegistrationオブジェクトに反映されず、その逆もそうです。</p>
      *
-     * <p>The returned set is not backed by the {@code ServletRegistration}
-     * object, so changes in the returned set are not reflected in the
-     * {@code ServletRegistration} object, and vice-versa.</p>
+     * @param urlPatterns サーブレットマッピングのURLパターン
      *
-     * @param urlPatterns the URL patterns of the servlet mapping
-     *
-     * @return the (possibly empty) Set of URL patterns that are already
-     * mapped to a different Servlet
+     * @return 別のサーブレットにすでにマッピングされているURLパターンの(空の可能性がある)Set
      *
      * @throws IllegalArgumentException <tt>urlPatterns</tt>がnull
      * or empty
