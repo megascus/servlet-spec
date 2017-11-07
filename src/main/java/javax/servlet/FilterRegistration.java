@@ -137,9 +137,8 @@ public interface FilterRegistration extends Registration {
     public Collection<String> getUrlPatternMappings();
 
     /**
-     * Interface through which a {@link Filter} registered via one of the
-     * <tt>addFilter</tt> methods on {@link ServletContext} may be further
-     * configured.
+     * {@link ServletContext}の<tt>addFilter</tt>メソッドの1つを使用して登録された
+     * {@link Filter}を詳細に構成するためのインターフェース。
      */
     interface Dynamic extends FilterRegistration, Registration.Dynamic {
     }

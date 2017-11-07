@@ -98,9 +98,8 @@ public interface ServletRegistration extends Registration {
     public String getRunAsRole();
 
     /**
-     * Interface through which a {@link Servlet} registered via one of the
-     * <tt>addServlet</tt> methods on {@link ServletContext} may be further
-     * configured.
+     * {@link ServletContext}の<tt>addServlet</tt>メソッドの1つを使用して登録された
+     * {@link Servlet}を詳細に構成するためのインターフェース。
      */
     interface Dynamic extends ServletRegistration, Registration.Dynamic {
 
