@@ -50,89 +50,66 @@ import java.util.*;
 public interface FilterRegistration extends Registration {
 
     /**
-     * このFilterRegistrationによって表されるFilterに対して、指定されたサーブレット名とディスパッチャータイプを持つフィルターマッピングを追加します。
+     * このFilterRegistrationによって表されるFilterに対して、与えられたサーブレット名とディスパッチャータイプを持つフィルターマッピングを追加します。
      *
      * <p>フィルターマッピングは追加された順番で一致します。
      * 
-     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
-     * given filter mapping will be considered after or before any
-     * <i>declared</i> filter mappings of the ServletContext from which this
-     * FilterRegistration was obtained.
+     * <p><tt>isMatchAfter</tt>パラメータの値に応じて、このFilterRegistrationが取得されたServletContextで<i>宣言された</i>
+     * フィルターマッピングの後または前に、与えられたフィルターマッピングを設定します。
      *
-     * <p>If this method is called multiple times, each successive call
-     * adds to the effects of the former.
+     * <p>このメソッドが複数回呼び出された場合、後続の各呼び出しが前の呼び出しの効果に追加されます。
      *
-     * @param dispatcherTypes the dispatcher types of the filter mapping,
-     * nullの場合はデフォルトとして <tt>DispatcherType.REQUEST</tt>が使用されます。
-     * @param isMatchAfter true if the given filter mapping should be matched
-     * after any declared filter mappings, and false if it is supposed to
-     * be matched before any declared filter mappings of the ServletContext
-     * from which this FilterRegistration was obtained
+     * @param dispatcherTypes フィルターマッピングのディスパッチャータイプ、
+     * nullの場合はデフォルトとして <tt>DispatcherType.REQUEST</tt>が使用される
+     * @param isMatchAfter 与えられたフィルターマッピングが宣言されたフィルターマッピングの後で一致する必要がある場合はtrue、
+     * このFilterRegistrationが取得されたServletContextで宣言されたフィルターマッピングの前に一致しなければならない場合はfalse
      * @param servletNames フィルターマッピングのサーブレット名
      *
      * @throws IllegalArgumentException <tt>servletNames</tt>がnullもしくは空の場合
-     * @throws IllegalStateException if the ServletContext from which this
-     * FilterRegistration was obtained has already been initialized
+     * @throws IllegalStateException このFilterRegistrationが取得されたServletContextがすでに初期化完了していた場合
      */
     public void addMappingForServletNames(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... servletNames);
 
     /**
-     * Gets the currently available servlet name mappings
-     * of the Filter represented by this <code>FilterRegistration</code>.
+     * この<code>FilterRegistration</code>の表すフィルターの現在使用可能なサーブレット名のマッピングを取得します。
+     * 
+     * <p>許可されている場合、返された<code>Collection</code>への変更はこの<code>FilterRegistration</code>に影響してはなりません。
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not 
-     * affect this <code>FilterRegistration</code>.
-     *
-     * @return a (possibly empty) <code>Collection</code> of the currently
-     * available servlet name mappings of the Filter represented by this
-     * <code>FilterRegistration</code>
+     * @return この<code>FilterRegistration</code>によって表されるフィルターの現在利用可能なサーブレット名のマッピングの(空の可能性のある)<code>Collection</code>
      */
     public Collection<String> getServletNameMappings();
 
     /**
-     * Adds a filter mapping with the given url patterns and dispatcher
-     * types for the Filter represented by this FilterRegistration.
+     * このFilterRegistrationによって表されるFilterに対して、与えられたURLパターンとディスパッチャータイプを持つフィルターマッピングを追加します。
      *
-     * <p>Filter mappings are matched in the order in which they were
-     * added.
+     * <p>フィルターマッピングは追加された順番で一致します。
      * 
-     * <p>Depending on the value of the <tt>isMatchAfter</tt> parameter, the
-     * given filter mapping will be considered after or before any
-     * <i>declared</i> filter mappings of the ServletContext from which
-     * this FilterRegistration was obtained.
+     * <p><tt>isMatchAfter</tt>パラメータの値に応じて、このFilterRegistrationが取得されたServletContextで<i>宣言された</i>
+     * フィルターマッピングの後または前に、与えられたフィルターマッピングを設定します。
      *
-     * <p>If this method is called multiple times, each successive call
-     * adds to the effects of the former.
+     * <p>このメソッドが複数回呼び出された場合、後続の各呼び出しが前の呼び出しの効果に追加されます。
      *
-     * @param dispatcherTypes the dispatcher types of the filter mapping,
-     * or null if the default <tt>DispatcherType.REQUEST</tt> is to be used
-     * @param isMatchAfter true if the given filter mapping should be matched
-     * after any declared filter mappings, and false if it is supposed to
-     * be matched before any declared filter mappings of the ServletContext
-     * from which this FilterRegistration was obtained
-     * @param urlPatterns the url patterns of the filter mapping
+     * @param dispatcherTypes フィルターマッピングのディスパッチャータイプ、
+     * nullの場合はデフォルトとして <tt>DispatcherType.REQUEST</tt>が使用される
+     * @param isMatchAfter 与えられたフィルターマッピングが宣言されたフィルターマッピングの後で一致する必要がある場合はtrue、
+     * このFilterRegistrationが取得されたServletContextで宣言されたフィルターマッピングの前に一致しなければならない場合はfalse
+     * @param urlPatterns フィルターマッピングのURLパターン
      *
-     * @throws IllegalArgumentException if <tt>urlPatterns</tt> is null or
-     * empty
-     * @throws IllegalStateException if the ServletContext from which this
-     * FilterRegistration was obtained has already been initialized
+     * @throws IllegalArgumentException <tt>urlPatterns</tt>がnullもしくは空
+     * @throws IllegalStateException このFilterRegistrationが取得されたServletContextがすでに初期化完了していた場合
      */
     public void addMappingForUrlPatterns(
         EnumSet<DispatcherType> dispatcherTypes, boolean isMatchAfter,
         String... urlPatterns);
 
     /**
-     * Gets the currently available URL pattern mappings of the Filter
-     * represented by this <code>FilterRegistration</code>.
+     * この<code>FilterRegistration</code>の表すフィルターの現在使用可能なURLパターンマッピングを取得します。
+     * 
+     * <p>許可されている場合、返された<code>Collection</code>への変更はこの<code>FilterRegistration</code>に影響してはなりません。
      *
-     * <p>If permitted, any changes to the returned <code>Collection</code> must not 
-     * affect this <code>FilterRegistration</code>.
-     *
-     * @return a (possibly empty) <code>Collection</code> of the currently
-     * available URL pattern mappings of the Filter represented by this
-     * <code>FilterRegistration</code>
+     * @return この<code>FilterRegistration</code>によって表されるフィルターの現在利用可能なURLパターンマッピングの(空の可能性のある)<code>Collection</code>
      */
     public Collection<String> getUrlPatternMappings();
 
