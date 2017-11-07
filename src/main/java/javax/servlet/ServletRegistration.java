@@ -105,9 +105,9 @@ public interface ServletRegistration extends Registration {
          * <p>If <tt>loadOnStartup</tt> is a negative integer, the container
          * is free to instantiate and initialize the Servlet lazily.
          *
-         * <p>The default value for <tt>loadOnStartup</tt> is <code>-1</code>.
+         * <p><tt>loadOnStartup</tt>のデフォルト値は<code>-1</code>です。
          *
-         * <p>A call to this method overrides any previous setting.
+         * <p>このメソッドの呼び出しは前の設定を上書きします。
          *
          * @param loadOnStartup the initialization priority of the Servlet
          *
