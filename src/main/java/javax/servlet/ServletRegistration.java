@@ -110,8 +110,7 @@ public interface ServletRegistration extends Registration {
         public void setLoadOnStartup(int loadOnStartup);
 
         /**
-         * Sets the {@link ServletSecurityElement} to be applied to the
-         * mappings defined for this <code>ServletRegistration</code>.
+         * この<code>ServletRegistration</code>のために定義されたマッピングに適用される{@link ServletSecurityElement}を設定します。
          *
          * <p>This method applies to all mappings added to this
          * <code>ServletRegistration</code> up until the point that the
@@ -143,7 +142,7 @@ public interface ServletRegistration extends Registration {
          * so changes in the returned set are not reflected in the
          * {@code Dynamic} object, and vice-versa.</p>
          * 
-         * @param constraint このServletRegistrationにマップされたパターンに適用される{@link ServletSecurityElement}
+         * @param constraint このServletRegistrationにマッピングされたパターンに適用される{@link ServletSecurityElement}
          * 
          * @return the (possibly empty) Set of URL patterns that were already
          * the exact target of a <code>security-constraint</code> that was
@@ -160,7 +159,7 @@ public interface ServletRegistration extends Registration {
          * この<code>ServletRegistration</code>のために定義されたマッピングに適用される{@link MultipartConfigElement}を設定します。
          * このメソッドが複数回呼び出された場合、連続する各呼び出しは前の呼び出しの効果よりも優先されます。
          *
-         * @param multipartConfig ServletRegistrationにマップされたパターンに適用される{@link MultipartConfigElement}
+         * @param multipartConfig ServletRegistrationにマッピングされたパターンに適用される{@link MultipartConfigElement}
          *
          * @throws IllegalArgumentException <tt>multipartConfig</tt>がnull
          *

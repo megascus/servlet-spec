@@ -61,28 +61,28 @@ public interface JspPropertyGroupDescriptor {
     public Collection<String> getUrlPatterns();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページでExpression Language(EL)式を使用可能にするかどうかを指定する<code>el-ignored</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページでExpression Language(EL)式を使用可能にするかどうかを指定する<code>el-ignored</code>の値を取得します。
      *
      * @return <code>el-ignored</code>の値、指定されてない場合はnull
      */
     public String getElIgnored();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページのデフォルトページエンコーディングを指定する<code>page-encoding</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページのデフォルトページエンコーディングを指定する<code>page-encoding</code>の値を取得します。
      *
      * @return <code>page-encoding</code>の値、指定されてない場合はnull
      */
     public String getPageEncoding();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページでスクリプトを有効にするかどうかを指定する<code>scripting-invalid</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページでスクリプトを有効にするかどうかを指定する<code>scripting-invalid</code>の値を取得します。
      *
      * @return <code>scripting-invalid</code>の値、指定されてない場合はnull
      */
     public String getScriptingInvalid();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページをJSPドキュメント(XML構文)として扱うかどうかを指定する<code>is-xml</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページをJSPドキュメント(XML構文)として扱うかどうかを指定する<code>is-xml</code>の値を取得します。
      *
      * @return <code>is-xml</code>の値、指定されてない場合はnull
      */
@@ -111,7 +111,7 @@ public interface JspPropertyGroupDescriptor {
     public Collection<String> getIncludeCodas();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページで通常Expression Language(EL)式で予約されている
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページで通常Expression Language(EL)式で予約されている
      * <code>&quot;#{}&quot;</code>という文字列が文字列リテラルとして現れた時に変換エラーを発生させるかどうかを指定する<code>deferred-syntax-allowed-as-literal</code>の値を取得します。
      *
      * @return <code>deferred-syntax-allowed-as-literal</code>の値、指定されてない場合はnull
@@ -119,7 +119,7 @@ public interface JspPropertyGroupDescriptor {
     public String getDeferredSyntaxAllowedAsLiteral();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページの
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページの
      * レスポンスの出力から空白のみを含むテンプレートテキストを除去するべきであるかどうかを指定する<code>trim-directive-whitespaces</code>の値を取得します。
      *
      * @return <code>trim-directive-whitespaces</code>の値、指定されてない場合はnull
@@ -127,21 +127,21 @@ public interface JspPropertyGroupDescriptor {
     public String getTrimDirectiveWhitespaces();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページのデフォルトのコンテンツタイプを指定する<code>default-content-type</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページのデフォルトのコンテンツタイプを指定する<code>default-content-type</code>の値を取得します。
      *
      * @return <code>default-content-type</code>の値、指定されてない場合はnull
      */
     public String getDefaultContentType();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされたJSPページのレスポンスバッファのデフォルトサイズを指定する<code>buffer</code>の値を取得します。
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされたJSPページのレスポンスバッファのデフォルトサイズを指定する<code>buffer</code>の値を取得します。
      *
      * @return <code>buffer</code>の値、指定されてない場合はnull
      */
     public String getBuffer();
 
     /**
-     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマップされた
+     * この<code>JspPropertyGroupDescriptor</code>によって表されるJSPプロパティグループにマッピングされた
      * 宣言されていない名前空間のタグが使用されている場合にJSPページの変換時にエラーが発生するかどうかを指定する<code>error-on-undeclared-namespace</code>の値を取得します。
      *
      * @return <code>error-on-undeclared-namespace</code>の値、指定されてない場合はnull
