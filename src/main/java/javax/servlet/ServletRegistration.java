@@ -91,8 +91,7 @@ public interface ServletRegistration extends Registration {
     interface Dynamic extends ServletRegistration, Registration.Dynamic {
 
         /**
-         * Sets the <code>loadOnStartup</code> priority on the Servlet
-         * represented by this dynamic ServletRegistration.
+         * この動的(Dynamic:動的)なServletRegistrationによって表されるServletの<code>loadOnStartup</code>優先度を設定します。
          *
          * <p>A <tt>loadOnStartup</tt> value of greater than or equal to
          * zero indicates to the container the initialization priority of
