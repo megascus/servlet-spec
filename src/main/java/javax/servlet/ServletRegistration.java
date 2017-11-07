@@ -93,23 +93,17 @@ public interface ServletRegistration extends Registration {
         /**
          * この動的(Dynamic:動的)なServletRegistrationによって表されるServletの<code>loadOnStartup</code>優先度を設定します。
          *
-         * <p>A <tt>loadOnStartup</tt> value of greater than or equal to
-         * zero indicates to the container the initialization priority of
-         * the Servlet. In this case, the container must instantiate and
-         * initialize the Servlet during the initialization phase of the
-         * ServletContext, that is, after it has invoked all of the
-         * ServletContextListener objects configured for the ServletContext
-         * at their {@link ServletContextListener#contextInitialized}
-         * method.
+         * <p>ゼロ以上の<tt>loadOnStartup</tt>の値はサーブレットの初期化優先度をコンテナに示します。
+         * この場合、コンテナは、ServletContextの初期化フェーズ{@link ServletContextListener#contextInitialized}メソッドで{@link ServletContextListener#contextInitialized}用にコンフィグレーションされたServletContextListenerオブジェクトのすべてを呼び出した後）でServletをインスタンス化して初期化する必要があります。
+         * この場合、コンテナはサーブレットコンテキストの初期化フェーズの間、すなわち、そのServletContextに設定されたすべてのServletContextListenerオブジェクトの{@link ServletContextListener#contextInitialized}メソッドを呼び出した後に、このサーブレットをインスタンス化し、初期化する必要があります。
          *
-         * <p>If <tt>loadOnStartup</tt> is a negative integer, the container
-         * is free to instantiate and initialize the Servlet lazily.
+         * <p><tt>loadOnStartup</tt>が負の数の場合、コンテナはサーブレットを遅延させてインスタンス化し、初期化することができます。
          *
          * <p><tt>loadOnStartup</tt>のデフォルト値は<code>-1</code>です。
          *
          * <p>このメソッドの呼び出しは前の設定を上書きします。
          *
-         * @param loadOnStartup the initialization priority of the Servlet
+         * @param loadOnStartup サーブレットの初期化優先度
          *
          * @throws IllegalStateException このServletRegistrationが取得されたServletContextがすでに初期化完了していた場合
          */
