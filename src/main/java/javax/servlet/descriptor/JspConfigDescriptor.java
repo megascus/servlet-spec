@@ -43,7 +43,7 @@ package javax.servlet.descriptor;
 import java.util.Collection;
 
 /**
- * このインタフェースはウェブアプリケーションの<code>&lt;jsp-config&gt;</code>関連の設定へのアクセス方法を提供します。
+ * このインターフェースはウェブアプリケーションの<code>&lt;jsp-config&gt;</code>関連の設定へのアクセス方法を提供します。
  *
  * <p>設定はウェブアプリケーションの<code>web.xml</code>および<code>web-fragment.xml</code>から集められます。
  * 

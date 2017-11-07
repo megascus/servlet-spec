@@ -123,7 +123,7 @@ public interface Servlet {
      * {@link ServletConfig} のオブジェクトを返します。これにはサーブレットを初期化するためのパラメーターが入っています。
      * この<code>ServletConfig</code> のオブジェクトは <code>init</code> に渡されたものが返されます。
      *
-     * <p>このインタフェースの実装は <code>ServletConfig</code> のオブジェクトを格納しこのメソッドが返すようにします。 
+     * <p>このインターフェースの実装は <code>ServletConfig</code> のオブジェクトを格納しこのメソッドが返すようにします。 
      * このインターフェースを実装している {@link GenericServlet} クラスではすでにこれを行っています。
      *
      * @return		このサーブレットを初期化する <code>ServletConfig</code> のオブジェクト

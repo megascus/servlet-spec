@@ -63,7 +63,7 @@ import java.io.PrintWriter;
 import java.util.Locale;
 
 /**
- * サーブレットにレスポンスを適合させたい開発者がサブクラス化できるServletResponseインタフェースの便利な実装を提供します。
+ * サーブレットにレスポンスを適合させたい開発者がサブクラス化できるServletResponseインターフェースの便利な実装を提供します。
  * このクラスはWrapperもしくはDecoratorパターンを実装します。
  * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。
  * 

@@ -65,7 +65,7 @@ import java.util.function.Supplier;
 import javax.servlet.ServletResponseWrapper;
 
 /**
- * サーブレットにレスポンスを適合させたい開発者がサブクラス化できるHttpServletResponseインタフェースの便利な実装を提供します。
+ * サーブレットにレスポンスを適合させたい開発者がサブクラス化できるHttpServletResponseインターフェースの便利な実装を提供します。
  * このクラスはWrapperもしくはDecoratorパターンを実装します。
  * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。
  * 

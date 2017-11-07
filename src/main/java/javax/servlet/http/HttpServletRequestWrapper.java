@@ -64,7 +64,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequestWrapper;
 
 /**
- * サーブレットにリクエストを適合させたい開発者がサブクラス化できるHttpServletRequestインタフェースの便利な実装を提供します。
+ * サーブレットにリクエストを適合させたい開発者がサブクラス化できるHttpServletRequestインターフェースの便利な実装を提供します。
  * 
  * <p>このクラスはWrapperもしくはDecoratorパターンを実装します。
  * メソッドはデフォルトでラップされたリクエストオブジェクトを呼び出します。

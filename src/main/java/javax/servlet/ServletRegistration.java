@@ -43,7 +43,7 @@ package javax.servlet;
 import java.util.*;
 
 /**
- * Interface through which a {@link Servlet} may be further configured.
+ * {@link Servlet} に詳細な構成をするためのインターフェース。
  *
  * @since Servlet 3.0
  */

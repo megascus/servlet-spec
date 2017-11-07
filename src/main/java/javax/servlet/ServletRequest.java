@@ -66,7 +66,7 @@ import java.util.*;
  * サーブレットコンテナは<code>ServletRequest</code>オブジェクトを作成し、サーブレットの<code>service</code>メソッドへの引数として渡します。
  * 
  * <p><code>ServletRequest</code>オブジェクトはパラメータ名と値、属性、および入力ストリームを含むデータを提供します。
- * <code>ServletRequest</code>を拡張するインタフェースは追加のプロトコル固有のデータを提供できます。
+ * <code>ServletRequest</code>を拡張するインターフェースは追加のプロトコル固有のデータを提供できます。
  * （たとえば、HTTPのデータは{@link javax.servlet.http.HttpServletRequest}によって提供されます。）
  * 
  * @author Various
@@ -384,7 +384,7 @@ public interface ServletRequest {
     public int getRemotePort();
 
     /**
-     * リクエストを受信したインタフェースのインターネットプロトコル(IP)ホスト名を返します。
+     * リクエストを受信したインターフェースのインターネットプロトコル(IP)ホスト名を返します。
      *
      * @return リクエストを受信したIPのホスト名を含む <code>String</code>
      *
@@ -393,7 +393,7 @@ public interface ServletRequest {
     public String getLocalName();
 
     /**
-     * リクエストを受信したインタフェースのインターネットプロトコル(IP)アドレスを返します。
+     * リクエストを受信したインターフェースのインターネットプロトコル(IP)アドレスを返します。
      *
      * @return リクエストを受信したIPアドレスを含む <code>String</code>
      *
@@ -402,7 +402,7 @@ public interface ServletRequest {
     public String getLocalAddr();
 
     /**
-     * リクエストを受信したインタフェースのインターネットプロトコル(IP)ポート番号を返します。
+     * リクエストを受信したインターフェースのインターネットプロトコル(IP)ポート番号を返します。
      *
      * @return ポート番号を指定する整数
      *

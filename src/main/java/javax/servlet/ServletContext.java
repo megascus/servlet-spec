@@ -519,7 +519,7 @@ public interface ServletContext {
     /**
      * 指定された名前のサーブレットコンテナの属性を返します。属性が存在しない場合は<code>null</code>を返します。
      *
-     * <p>属性を使用することでサーブレットコンテナはこのインタフェースによってまだ提供されていない追加情報をサーブレットに与えることができます。
+     * <p>属性を使用することでサーブレットコンテナはこのインターフェースによってまだ提供されていない追加情報をサーブレットに与えることができます。
      * 属性の情報についてはサーバーのドキュメントを参照してください。
      * サポートされている属性の一覧は<code>getAttributeNames</code>を使用して取得できます。
      *
@@ -1039,7 +1039,7 @@ public interface ServletContext {
      *
      * <p>このメソッド呼び出しの一環として、コンテナは指定されたクラス名を持つ必要なインターフェイスの1つが実装されていることを保証されたクラスをロードする必要があります。
      *
-     * <p>指定された名前のクラスが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * <p>指定された名前のクラスが呼び出される順序が宣言した順序に対応するリスナーのインターフェースを実装している場合
      * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
      * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      * 
@@ -1078,7 +1078,7 @@ public interface ServletContext {
      * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
      * 指定されたリスナーは先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
-     * <p>指定されたリスナーが呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * <p>指定されたリスナーが呼び出される順序が宣言した順序に対応するリスナーのインターフェースを実装している場合
      * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
      * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      *
@@ -1115,7 +1115,7 @@ public interface ServletContext {
      * <p>このServletContextが{@link ServletContainerInitializer#onStartup}に渡されている場合、
      * 指定された<tt>listenerClass</tt>は先に一覧化されたインターフェースに加えて{@link ServletContextListener}を実装することもできます。
      *
-     * <p>指定された<tt>listenerClass</tt>が呼び出される順序が宣言した順序に対応するリスナーのインタフェースを実装している場合
+     * <p>指定された<tt>listenerClass</tt>が呼び出される順序が宣言した順序に対応するリスナーのインターフェースを実装している場合
      * (つまり、{@link ServletRequestListener}、{@link ServletContextListener}、{@link javax.servlet.http.HttpSessionListener}を実装している場合)
      * 新しいリスナーはそのインターフェースのリスナーの順序付きリストの最後に追加されます。
      * 

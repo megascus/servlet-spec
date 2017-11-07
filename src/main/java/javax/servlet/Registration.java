@@ -44,142 +44,101 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Interface through which a {@link Servlet} or {@link Filter} may be
- * further configured.
+ * {@link Servlet}や{@link Filter} に詳細な構成をするためのインターフェース。
  *
- * <p>A Registration object whose {@link #getClassName} method returns null
- * is considered <i>preliminary</i>. Servlets and Filters whose implementation
- * class is container implementation specific may be declared without
- * any <tt>servlet-class</tt> or <tt>filter-class</tt> elements, respectively,
- * and will be represented as preliminary Registration objects. 
- * Preliminary registrations must be completed by calling one of the
- * <tt>addServlet</tt> or <tt>addFilter</tt> methods on
- * {@link ServletContext}, and passing in the Servlet or Filter name 
- * (obtained via {@link #getName}) along with the supporting Servlet or Filter
- * implementation class name, Class object, or instance, respectively.
- * In most cases, preliminary registrations will be completed by an
- * appropriate, container-provided {@link ServletContainerInitializer}.
+ * <p>{@link #getClassName}メソッドがnullを返す登録オブジェクトは<i>準備段階</i>とみなされます。
+ * サーブレットとフィルタのコンテナ実装固有のクラスは、それぞれ<tt>servlet-class</tt>または<tt>filter-class</tt>要素なしで宣言され、
+ * 事前登録(Registration:登録)オブジェクトとして表されます。
+ * 事前登録は{@link ServletContext}の<tt>addServlet</tt>メソッドまたは<tt>addFilter</tt>メソッドの1つを呼び出し、
+ * サポートするサーブレットまたはフィルターの実装クラス名、クラスオブジェクトかインスタンス、
+ * それらと一緒にサーブレット名またはフィルター名（{@link #getName}を使用して取得される)を渡すことによって完了する必要があります。
+ * ほとんどの場合、事前登録はコンテナ提供の適切な{@link ServletContainerInitializer}によって完了されます。
  *
  * @since Servlet 3.0
  */
 public interface Registration {
 
     /**
-     * Gets the name of the Servlet or Filter that is represented by this
-     * Registration.
+     * このRegistrationによって表されるサーブレットまたはフィルターの名前を取得します。
      *
-     * @return the name of the Servlet or Filter that is represented by this
-     * Registration
+     * @return このRegistrationによって表されるサーブレットまたはフィルタの名前
      */
     public String getName();
 
     /**
-     * Gets the fully qualified class name of the Servlet or Filter that
-     * is represented by this Registration.
+     * このRegistrationによって表されるサーブレットまたはフィルターの完全修飾クラス名(FQCN)を取得します。
      *
-     * @return the fully qualified class name of the Servlet or Filter
-     * that is represented by this Registration, or null if this
-     * Registration is preliminary
+     * @return このRegistrationによって表されるサーブレットまたはフィルタの完全修飾クラス名、このRegistrationが事前登録状態である場合はnull
      */
     public String getClassName();
 
     /**
-     * Sets the initialization parameter with the given name and value
-     * on the Servlet or Filter that is represented by this Registration.
+     * 指定された名前と値を持つ初期化パラメーターをこのRegistrationで表されるサーブレットまたはフィルターに設定します。
      *
-     * @param name the initialization parameter name
-     * @param value the initialization parameter value
+     * @param name 初期化パラメーター名
+     * @param value 初期化パラメーターの値
      *
-     * @return true if the update was successful, i.e., an initialization
-     * parameter with the given name did not already exist for the Servlet
-     * or Filter represented by this Registration, and false otherwise
+     * @return 更新が成功した場合、つまり指定された名前を持つ初期化パラメータがこのRegistrationで表されるサーブレットまたはフィルターに存在しない場合はtrue、そうでない場合はfalse
      *
-     * @throws IllegalStateException if the ServletContext from which this
-     * Registration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given name or value is
-     * <tt>null</tt>
+     * @throws IllegalStateException この登録が取得されたServletContextがすでに初期化されている場合
+     * @throws IllegalArgumentException 指定された名前または値が<tt>null</tt>の場合
      */ 
     public boolean setInitParameter(String name, String value);
 
     /**
-     * Gets the value of the initialization parameter with the given name
-     * that will be used to initialize the Servlet or Filter represented
-     * by this Registration object.
+     * このRegistrationオブジェクトによって表されるサーブレットまたはフィルターを初期化するために使用される指定された名前を持つ初期化パラメータの値を取得します。
      *
-     * @param name the name of the initialization parameter whose value is
-     * requested
+     * @param name 値が要求されている初期化パラメータの名前
      *
-     * @return the value of the initialization parameter with the given
-     * name, or <tt>null</tt> if no initialization parameter with the given
-     * name exists
+     * @return 指定された名前を持つ初期化パラメータの値、指定された名前を持つ初期化パラメータが存在しない場合は<tt>null</tt>
      */ 
     public String getInitParameter(String name);
 
     /**
-     * Sets the given initialization parameters on the Servlet or Filter
-     * that is represented by this Registration.
+     * 指定された初期化パラメータをこのRegistrationによって表されるサーブレットまたはフィルターに設定します。
+     * 
+     * <p>初期化パラメータの指定されたMapは、 <i>値毎に</i>処理されます。
+     * つまり、Mapに含まれる各初期化パラメータについて、このメソッドは{@link #setInitParameter(String,String)}を呼び出します。
+     * このメソッドが指定されたMapのいずれかの初期化パラメータに対してfalseを返すと、更新は実行されず、このメソッドの戻り値として返されます。
+     * 同様に、Mapに<tt>null</tt>の名前または値を持つ初期化パラメータが含まれている場合、更新は実行されず、IllegalArgumentExceptionが投げられます。
+     * 
+     * <p>返されたSetは{@code Registration}オブジェクトによって追跡されていないため、返されたSetの変更は{@code Registration}オブジェクトに反映されず、その逆もそうです。</p>
      *
-     * <p>The given map of initialization parameters is processed
-     * <i>by-value</i>, i.e., for each initialization parameter contained
-     * in the map, this method calls {@link #setInitParameter(String,String)}.
-     * If that method would return false for any of the
-     * initialization parameters in the given map, no updates will be
-     * performed, and false will be returned. Likewise, if the map contains
-     * an initialization parameter with a <tt>null</tt> name or value, no
-     * updates will be performed, and an IllegalArgumentException will be
-     * thrown.
+     * @param initParameters 初期化パラメーター
      *
-     * <p>The returned set is not backed by the {@code Registration} object,
-     * so changes in the returned set are not reflected in the
-     * {@code Registration} object, and vice-versa.</p>
+     * @return コンフリクトした初期化パラメーターの(空の可能性がある)Set
      *
-     * @param initParameters the initialization parameters
-     *
-     * @return the (possibly empty) Set of initialization parameter names
-     * that are in conflict
-     *
-     * @throws IllegalStateException if the ServletContext from which this
-     * Registration was obtained has already been initialized
-     * @throws IllegalArgumentException if the given map contains an
-     * initialization parameter with a <tt>null</tt> name or value
+     * @throws IllegalStateException このRegistratioが取得されたServletContextがすでに初期化されている場合
+     * @throws IllegalArgumentException 指定されたMapに<tt>null</tt>の名前または値を持つ初期化パラメータを含まれていた場合
      */ 
     public Set<String> setInitParameters(Map<String, String> initParameters);
 
     /**
-     * Gets an immutable (and possibly empty) Map containing the
-     * currently available initialization parameters that will be used to
-     * initialize the Servlet or Filter represented by this Registration
-     * object.
+     * このRegistrationオブジェクトによって表されるサーブレットまたはフィルターを初期化するために使用される
+     * 現在使用可能な初期化パラメータを含む不変の(空の可能性がある)Mapを取得します。
      *
-     * @return Map containing the currently available initialization
-     * parameters that will be used to initialize the Servlet or Filter
-     * represented by this Registration object
+     * @return このRegistrationオブジェクトによって表されるサーブレットまたはフィルターを初期化するために使用される
+     * 現在利用可能な初期化パラメータを含むMap
      */ 
     public Map<String, String> getInitParameters();
 
     /**
-     * Interface through which a {@link Servlet} or {@link Filter} registered
-     * via one of the <tt>addServlet</tt> or <tt>addFilter</tt> methods,
-     * respectively, on {@link ServletContext} may be further configured.
+     * {@link ServletContext}の<tt>addServlet</tt>メソッドまたは<tt>addFilter</tt>メソッドの1つを使用して登録された
+     * {@link Servlet}または{@link Filter}を詳細に構成するためのインターフェース。
      */
     interface Dynamic extends Registration {
 
         /**
-         * Configures the Servlet or Filter represented by this dynamic
-         * Registration as supporting asynchronous operations or not.
+         * この動的(Dynamic:動的)なRegistrationによって表されるサーブレットまたはフィルターを、
+         * 非同期操作をサポートするかどうかを設定します。
+         * 
+         * <p>デフォルトでは、サーブレットとフィルターは非同期操作をサポートしていません。
+         * 
+         * <p>このメソッドを呼び出すと、以前の設定が上書きされます。
          *
-         * <p>By default, servlet and filters do not support asynchronous
-         * operations.
+         * @param isAsyncSupported この動的なRegistrationによって表されるサーブレットまたはフィルターが非同期操作をサポートする場合はtrue、そうでない場合はfalse
          *
-         * <p>A call to this method overrides any previous setting.
-         *
-         * @param isAsyncSupported true if the Servlet or Filter represented
-         * by this dynamic Registration supports asynchronous operations,
-         * false otherwise
-         *
-         * @throws IllegalStateException if the ServletContext from which
-         * this dynamic Registration was obtained has already been
-         * initialized
+         * @throws IllegalStateException この動的なRegistrationが取得されたServletContextがすでに初期化完了している場合
          */
         public void setAsyncSupported(boolean isAsyncSupported);
     }

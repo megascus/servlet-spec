@@ -67,7 +67,7 @@ import java.util.EventListener;
  * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
  * {@link javax.servlet.ServletContext}で定義されているaddListenerメソッドの1つを使って登録する必要があります。
  *
- * <p>このインタフェースの実装は{@link #sessionCreated}メソッドは宣言された順に、 
+ * <p>このインターフェースの実装は{@link #sessionCreated}メソッドは宣言された順に、 
  * {@link #sessionDestroyed}メソッドは逆の順序で呼び出されます。
  *
  * @see HttpSessionEvent

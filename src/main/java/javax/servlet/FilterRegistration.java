@@ -43,7 +43,7 @@ package javax.servlet;
 import java.util.*;
 
 /**
- * {@link Filter} に詳細な構成をするためのインタフェース。
+ * {@link Filter} に詳細な構成をするためのインターフェース。
  *
  * @since Servlet 3.0
  */

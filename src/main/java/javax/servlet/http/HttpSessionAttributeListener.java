@@ -67,7 +67,7 @@ import java.util.EventListener;
  * {@link javax.servlet.annotation.WebListener}アノテーションを付けるか、
  * {@link javax.servlet.ServletContext}で定義されているaddListenerメソッドの1つを使って登録する必要があります。
  *
- * <p>このインタフェースの実装が呼び出される順序は定義されていません。
+ * <p>このインターフェースの実装が呼び出される順序は定義されていません。
  *
  * @since Servlet 2.3
  */
