@@ -112,10 +112,7 @@ public interface ServletRegistration extends Registration {
         /**
          * この<code>ServletRegistration</code>のために定義されたマッピングに適用される{@link ServletSecurityElement}を設定します。
          *
-         * <p>This method applies to all mappings added to this
-         * <code>ServletRegistration</code> up until the point that the
-         * <code>ServletContext</code> from which it was obtained has been
-         * initialized.
+         * <p>このメソッドはこの<code>ServletRegistration</code>が取得された<code>ServletContext</code>が初期化完了された時点までに追加されたすべてのマッピングに適用されます。
          * 
          * <p>If a URL pattern of this ServletRegistration is an exact target
          * of a <code>security-constraint</code> that was established via
@@ -138,9 +135,7 @@ public interface ServletRegistration extends Registration {
          * for that pattern from the argument
          * <code>ServletSecurityElement</code>.
          *
-         * <p>The returned set is not backed by the {@code Dynamic} object,
-         * so changes in the returned set are not reflected in the
-         * {@code Dynamic} object, and vice-versa.</p>
+         * <p>返されたSetは{@code Dynamic}オブジェクトから独立しているため、返されたSetへの変更は{@code Dynamic}オブジェクトに影響を与えませんし、逆もそうです。</p>
          * 
          * @param constraint このServletRegistrationにマッピングされたパターンに適用される{@link ServletSecurityElement}
          * 
