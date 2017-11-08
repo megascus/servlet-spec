@@ -114,35 +114,22 @@ public interface ServletRegistration extends Registration {
          *
          * <p>このメソッドはこの<code>ServletRegistration</code>が取得された<code>ServletContext</code>が初期化完了された時点までに追加されたすべてのマッピングに適用されます。
          * 
-         * <p>If a URL pattern of this ServletRegistration is an exact target
-         * of a <code>security-constraint</code> that was established via
-         * the portable deployment descriptor, then this method does not
-         * change the <code>security-constraint</code> for that pattern,
-         * and the pattern will be included in the return value.
+         * <p>もし、このServletRegistrationのURLパターンがポータブルなデプロイメントディスクリプタで設定された<code>security-constraint</code>内のターゲットとして正確に存在する場合、
+         * このメソッドはそのパターンの<code>security-constraint</code>は変更せず、そのパターンを戻り値の中に含めるでしょう。
          * 
-         * <p>If a URL pattern of this ServletRegistration is an exact
-         * target of a security constraint that was established via the
-         * {@link javax.servlet.annotation.ServletSecurity} annotation
-         * or a previous call to this method, then this method replaces
-         * the security constraint for that pattern.
+         * <p>もし、このServletRegistrationのURLパターンが{@link javax.servlet.annotation.ServletSecurity}アノテーションやこのメソッドの前回の呼び出し内のターゲットとして正確に存在する場合、
+         * このメソッドはそのパターンのセキュリティ制約を置き換えるでしょう。
          * 
-         * <p>If a URL pattern of this ServletRegistration is neither the
-         * exact target of a security constraint that was established via
-         * the {@link javax.servlet.annotation.ServletSecurity} annotation
-         * or a previous call to this method, nor the exact target of a
-         * <code>security-constraint</code> in the portable deployment
-         * descriptor, then this method establishes the security constraint
-         * for that pattern from the argument
-         * <code>ServletSecurityElement</code>.
+         * <p>もし、このServletRegistrationのURLパターンが{@link javax.servlet.annotation.ServletSecurity}アノテーションやこのメソッドの前回の呼び出し内のターゲットとしても、
+         * ポータブルなデプロイメントディスクリプタで設定された<code>security-constraint</code>内のターゲットとしても存在しない場合、
+         * このメソッドは引数の<code>ServletSecurityElement</code>のパターンのセキュリティ制約を設定します。
          *
          * <p>返されたSetは{@code Dynamic}オブジェクトから独立しているため、返されたSetへの変更は{@code Dynamic}オブジェクトに影響を与えませんし、逆もそうです。</p>
          * 
          * @param constraint このServletRegistrationにマッピングされたパターンに適用される{@link ServletSecurityElement}
          * 
-         * @return the (possibly empty) Set of URL patterns that were already
-         * the exact target of a <code>security-constraint</code> that was
-         * established via the portable deployment descriptor. This method
-         * has no effect on the patterns included in the returned set
+         * @return ポータブルなデプロイメントディスクリプタで設定された<code>security-constraint</code>内のターゲットとして正確に存在するURLパターンの(空の可能性のある)Set、
+         * このメソッドは、返されたSetに含まれるパターンには影響を与えない
          * 
          * @throws IllegalArgumentException <tt>constraint</tt>がnull
          * 
