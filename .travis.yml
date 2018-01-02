@@ -9,4 +9,7 @@ deploy:
   github_token: $GITHUB_API_TOKEN
   on:
     branch: translation
-
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
