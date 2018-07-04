@@ -1,0 +1,109 @@
+/*
+ * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+ *
+ * Copyright (c) 1997-2017 Oracle and/or its affiliates. All rights reserved.
+ *
+ * The contents of this file are subject to the terms of either the GNU
+ * General Public License Version 2 only ("GPL") or the Common Development
+ * and Distribution License("CDDL") (collectively, the "License").  You
+ * may not use this file except in compliance with the License.  You can
+ * obtain a copy of the License at
+ * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * or packager/legal/LICENSE.txt.  See the License for the specific
+ * language governing permissions and limitations under the License.
+ *
+ * When distributing the software, include this License Header Notice in each
+ * file and include the License file at packager/legal/LICENSE.txt.
+ *
+ * GPL Classpath Exception:
+ * Oracle designates this particular file as subject to the "Classpath"
+ * exception as provided by Oracle in the GPL Version 2 section of the License
+ * file that accompanied this code.
+ *
+ * Modifications:
+ * If applicable, add the following below the License Header, with the fields
+ * enclosed by brackets [] replaced by your own identifying information:
+ * "Portions Copyright [year] [name of copyright owner]"
+ *
+ * Contributor(s):
+ * If you wish your version of this file to be governed by only the CDDL or
+ * only the GPL Version 2, indicate your decision by adding "[Contributor]
+ * elects to include this software in this distribution under the [CDDL or GPL
+ * Version 2] license."  If you don't indicate a single choice of license, a
+ * recipient has the option to distribute your version of this file under
+ * either the CDDL, the GPL Version 2 or to extend the choice of license to
+ * its licensees as provided above.  However, if you add GPL Version 2 code
+ * and therefore, elected the GPL Version 2 license, then the option applies
+ * only if the new code is made subject to such option by the copyright
+ * holder.
+ *
+ *
+ * This file incorporates work covered by the following copyright and
+ * permission notice:
+ *
+ * Copyright 2004 The Apache Software Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package javax.servlet;
+
+
+    /** 
+     * ウェブアプリケーションのServletRequestの属性が変更された通知のためのイベントクラスです。
+     * @see ServletRequestAttributeListener
+     * @since Servlet 2.4
+     */
+
+public class ServletRequestAttributeEvent extends ServletRequestEvent { 
+
+    private static final long serialVersionUID = -1466635426192317793L;
+
+    private String name;
+    private Object value;
+
+     /**
+      * 与えられたこのウェブアプリケーションのServletContext、属性が変更されたServletRequestとその属性の名前と値でServletRequestAttributeEventを生成します。
+      *
+      * @param sc		イベントが送られているServletContext
+      * @param request		イベントが送られているServletRequest
+      * @param name		ServletRequestの属性の名前
+      * @param value		ServletRequestの属性の値
+      */
+    public ServletRequestAttributeEvent(ServletContext sc, ServletRequest request, String name, Object value) {
+        super(sc, request);
+        this.name = name;
+        this.value = value;
+    }
+
+    /**
+      * ServletRequestの変更された属性の名前を取得します。
+      *
+      * @return		ServletRequestの変更された属性の名前
+      */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * 属性の追加された、削除された、置き換えられた値を返します。
+     * 
+     * 属性が追加された場合は属性の値です。属性が削除された場合は削除された値です。
+     * 属性が置き換えられた場合は属性の古い値です。
+     *
+     * @return		ServletRequestの変更された属性の値
+     */
+    public Object getValue() {
+        return this.value;   
+    }
+}
