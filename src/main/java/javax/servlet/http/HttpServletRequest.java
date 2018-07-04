@@ -533,7 +533,7 @@ public interface HttpServletRequest extends ServletRequest {
      * かつ提供された資格証明の検証が成功した場合に<code>ServletException</code>を投げずに処理を戻します。
      * それ以外の場合はこのメソッドは以下に説明するように<code>ServletException</code>を投げます。
      * 
-     * <p>訳注：ログインの設定ができていてユーザーがまだログインしていなくてこのメソッドでログインに成功した場合に<code>ServletException</code>を投げずに処理を戻します。
+     * <p>訳注：サーブレットAPIを使用してログインを行なえるような設定をしているときに、ユーザーがまだログインしておらず、このメソッドでログインに成功した場合にのみ<code>ServletException</code>を投げずに処理を戻します。
      * 
      * <p>このメソッドが例外を投げないで処理を返すときは<code>getUserPrincipal</code>、<code>getRemoteUser</code>、<code>getAuthType</code>
      * から返される値としてnull以外の値を設定するべきです。
