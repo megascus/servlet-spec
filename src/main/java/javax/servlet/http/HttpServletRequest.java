@@ -625,7 +625,7 @@ public interface HttpServletRequest extends ServletRequest {
         throws IOException, ServletException;
 
     /**
-     * リクエストのトレーラフィールドを取得します。
+     * リクエストのトレーラーフィールドを取得します。
      * 
      * <p>返されるMapはHttpServletRequestオブジェクトによって追跡されていないため、返されるMapへの変更はHttpServletRequestオブジェクトには反映されません。
      * その逆もそうです。</p>
@@ -653,7 +653,7 @@ public interface HttpServletRequest extends ServletRequest {
      * また、次の条件の両方が満たされていればtrueを返します。
      * <ol type="a">
      * <li>アプリケーションはすべてのリクエストデータを読み取り、{@link #getReader}もしくは{@link #getInputStream}からEOFが返された。
-     * <li>クライアントによって送信されたすべてのトレーラフィールドが受信された。この場合クライアントがトレーラフィールドをまったく送信していない可能性があることに注意してください。
+     * <li>クライアントによって送信されたすべてのトレーラーフィールドが受信された。この場合クライアントがトレーラーフィールドをまったく送信していない可能性があることに注意してください。
      * </ol>
      *
      * @implSpec デフォルト実装ではfalseを返します。
